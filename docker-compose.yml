@@ -22,8 +22,20 @@ services:
     <<: *runtime
     volumes:
       - ./data:/work/data:ro
-      - ./results:/work/results
-    command: ["python", "-m", "prec_analysis", "analyze", "--data", "/work/data", "--out", "/work/results", "--check"]
+      - ./results:/work/results:ro
+      - ./README.md:/work/README.md:ro
+      - ./REPORT.md:/work/REPORT.md:ro
+      - ./site:/work/site:ro
+    # Every number in results/, README.md, REPORT.md and the explorer must come
+    # out of the raw data byte for byte.
+    command:
+      - sh
+      - -c
+      - >-
+        python -m prec_analysis analyze --data /work/data --out /work/results --check &&
+        python -m prec_analysis render --data /work/data --results /work/results
+        --readme /work/README.md --report /work/REPORT.md --site /work/site/dist --check &&
+        echo "reproduced: results, README, REPORT and explorer match the raw data"
 
   verify:
     <<: *runtime
@@ -32,8 +44,8 @@ services:
         condition: service_completed_successfully
     volumes:
       - ./data:/work/data:ro
-      - ./results:/work/results
-    command: ["precedence", "verify", "--data", "/work/data", "--out", "/work/results/verify.json"]
+    # Written to the container only: a live RPC check is evidence, not a result to diff.
+    command: ["precedence", "verify", "--data", "/work/data", "--out", "/tmp/verify.json"]
 
   dryrun:
     <<: *runtime
