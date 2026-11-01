@@ -4,4 +4,8 @@
 
 pub mod cost;
 pub mod design;
+pub mod ledger;
+pub mod rpc;
+pub mod snapshot;
+pub mod targets;
 pub mod tx;
