@@ -67,9 +67,9 @@ enum Cmd {
         lead_slots: u64,
         #[arg(long, default_value_t = 16)]
         payer_pool: u16,
-        #[arg(long, env = "PRECEDENCE_CU_LIMIT", default_value_t = 8_000)]
+        #[arg(long, env = "PRECEDENCE_CU_LIMIT", default_value_t = 6_500)]
         cu_limit: u32,
-        #[arg(long, env = "PRECEDENCE_LOADED_LIMIT", default_value_t = 262_144)]
+        #[arg(long, env = "PRECEDENCE_LOADED_LIMIT", default_value_t = 81_920)]
         loaded_data_limit: u32,
         #[arg(long, default_value_t = 50_000)]
         min_stake_sol: u64,

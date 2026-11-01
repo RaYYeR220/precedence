@@ -425,6 +425,19 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
     let slots_log = JsonlWriter::open(run_dir.join("slots.jsonl"))?;
     let feed = tokio::spawn(run_ws_feed(args.ws_url.clone(), clock.clone(), tb, Some(slots_log.clone())));
     let poller = tokio::spawn(crate::clock::run_poll_feed(args.poll_url.clone(), clock.clone(), tb, args.poll_hz, Some(slots_log)));
+    // The entry stream starts now: its first-shred events (with the provider's
+    // timestamps) are the most current slot clock we have.
+    let wanted: crate::yellowstone::Wanted = Default::default();
+    let recorder = args.grpc_url.as_ref().map(|url| {
+        tokio::spawn(crate::yellowstone::record(
+            url.clone(),
+            args.grpc_token.clone(),
+            wanted.clone(),
+            run_dir.clone(),
+            tb,
+            Some(clock.clone()),
+        ))
+    });
     for _ in 0..120 {
         if clock.lock().unwrap().fit().is_some() {
             break;
@@ -486,20 +499,12 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         cap_hit: AtomicBool::new(false),
     });
 
-    // Optional entry recorder for exactly the planned windows.
-    let recorder = match (&args.grpc_url, dry) {
-        (Some(url), _) => {
-            let slots: Vec<u64> = batches.iter().flat_map(|b| (b.window_first_slot.saturating_sub(4))..(b.window_first_slot + 8)).collect();
-            Some(tokio::spawn(crate::yellowstone::record(
-                url.clone(),
-                args.grpc_token.clone(),
-                slots,
-                run_dir.clone(),
-                tb,
-            )))
-        }
-        _ => None,
-    };
+    // Record entries for the planned windows and their neighbours (probes can
+    // spill into the next leader's block).
+    wanted
+        .lock()
+        .unwrap()
+        .extend(batches.iter().flat_map(|b| b.window_first_slot.saturating_sub(8)..(b.window_first_slot + 12)));
 
     // Periodic gossip refresh (clientId can flip with BAM connection state).
     let refresh = {

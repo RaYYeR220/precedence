@@ -50,9 +50,24 @@ pub async fn connect(url: &str, token: Option<String>) -> Result<GeyserGrpcClien
     Ok(b.connect().await?)
 }
 
-/// Record until the task is aborted. Only slots in `slots` are written.
-pub async fn record(url: String, token: Option<String>, slots: Vec<u64>, run_dir: PathBuf, tb: TimeBase) -> Result<()> {
-    let wanted: BTreeSet<u64> = slots.into_iter().collect();
+/// Slots whose entries, footers and slot events are written. Filled in after
+/// planning; the stream starts earlier so it can drive the slot clock.
+pub type Wanted = std::sync::Arc<std::sync::Mutex<BTreeSet<u64>>>;
+
+/// SlotStatus::SLOT_FIRST_SHRED_RECEIVED in the Yellowstone protocol.
+const FIRST_SHRED_RECEIVED: i32 = 3;
+
+/// Record until the task is aborted. Every first-shred event feeds `clock`
+/// (with the provider's timestamp); only slots in `wanted` are written.
+pub async fn record(
+    url: String,
+    token: Option<String>,
+    wanted: Wanted,
+    run_dir: PathBuf,
+    tb: TimeBase,
+    clock: Option<crate::clock::SharedClock>,
+) -> Result<()> {
+    let is_wanted = |s: u64| wanted.lock().unwrap().contains(&s);
     let entries = JsonlWriter::open(run_dir.join("entries.jsonl"))?;
     let footers = JsonlWriter::open(run_dir.join("footers.jsonl"))?;
     let slot_log = JsonlWriter::open(run_dir.join("slots.jsonl"))?;
@@ -65,7 +80,7 @@ pub async fn record(url: String, token: Option<String>, slots: Vec<u64>, run_dir
                         let Ok(update) = msg else { break };
                         let created = ts_us(&update.created_at);
                         match update.update_oneof {
-                            Some(UpdateOneof::Entry(e)) if wanted.contains(&e.slot) => entries.write(&json!({
+                            Some(UpdateOneof::Entry(e)) if is_wanted(e.slot) => entries.write(&json!({
                                 "slot": e.slot,
                                 "index": e.index,
                                 "starting_transaction_index": e.starting_transaction_index,
@@ -76,13 +91,13 @@ pub async fn record(url: String, token: Option<String>, slots: Vec<u64>, run_dir
                                 "created_at_unix_us": created,
                                 "recv_unix_us": recv,
                             })),
-                            Some(UpdateOneof::EntryUpdateParent(p)) if wanted.contains(&p.slot) => entries.write(&json!({
+                            Some(UpdateOneof::EntryUpdateParent(p)) if is_wanted(p.slot) => entries.write(&json!({
                                 "slot": p.slot,
                                 "update_parent": {"cleared_bank_id": p.cleared_bank_id, "parent_slot": p.parent_slot},
                                 "created_at_unix_us": created,
                                 "recv_unix_us": recv,
                             })),
-                            Some(UpdateOneof::BlockFooter(f)) if wanted.contains(&f.slot) => footers.write(&json!({
+                            Some(UpdateOneof::BlockFooter(f)) if is_wanted(f.slot) => footers.write(&json!({
                                 "slot": f.slot,
                                 "bank_id": f.bank_id,
                                 "producer_time_ns": f.block_producer_time_nanos,
@@ -90,13 +105,22 @@ pub async fn record(url: String, token: Option<String>, slots: Vec<u64>, run_dir
                                 "created_at_unix_us": created,
                                 "recv_unix_us": recv,
                             })),
-                            Some(UpdateOneof::Slot(s)) if wanted.contains(&s.slot) => slot_log.write(&json!({
-                                "slot": s.slot,
-                                "status": s.status,
-                                "source": "grpc",
-                                "created_at_unix_us": created,
-                                "recv_unix_us": recv,
-                            })),
+                            Some(UpdateOneof::Slot(s)) => {
+                                if s.status == FIRST_SHRED_RECEIVED {
+                                    if let Some(c) = &clock {
+                                        c.lock().unwrap().observe(s.slot, recv, created);
+                                    }
+                                }
+                                if is_wanted(s.slot) || s.status == FIRST_SHRED_RECEIVED {
+                                    slot_log.write(&json!({
+                                        "slot": s.slot,
+                                        "status": s.status,
+                                        "source": "grpc",
+                                        "server_unix_us": created,
+                                        "recv_unix_us": recv,
+                                    }));
+                                }
+                            }
                             _ => {}
                         }
                     }
