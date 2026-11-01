@@ -27,8 +27,9 @@ from typing import Any
 
 import numpy as np
 
+from .card import COMPONENTS, CardContext, ComponentFit, card_fits
 from .constants import BATCH_W_GRID_MS, CORE_MODELS
-from .models import fit_all, rule_order, sign_matrix
+from .models import candidate_signs, fit_all, rule_order, sign_matrix
 from .orders import OrderSet
 from .simulate import Rule, SimValidator, generate, preset_validation
 from .tidy import probes_frame
@@ -36,6 +37,14 @@ from .tidy import probes_frame
 SEPARATION_MIN = 0.02
 SELECTABLE = ("fifo", "priority_fifo_ties", "priority_lifo_ties", "batched", "random")
 DESIGNS = {"shipped": "rising", "rejected_falling_sweep": "decreasing"}
+# What each rule-card component should find for each generating rule (batched over time is
+# decided per validator from its own sweeps: an auction narrower than the sweep spacing is
+# send order there, one wider than the sweep is plain priority).
+CARD_EXPECT: dict[str, dict[str, str]] = {
+    "simultaneous": {"fifo": "fifo", "priority_fifo_ties": "priority", "priority_lifo_ties": "priority", "batched": "priority", "threads": "priority", "random": "random"},
+    "ties": {"fifo": "fifo", "priority_fifo_ties": "fifo", "priority_lifo_ties": "lifo", "batched": "fifo", "threads": "fifo", "random": "random"},
+    "over_time": {"fifo": "fifo", "priority_fifo_ties": "priority", "priority_lifo_ties": "priority", "batched": "batched", "threads": "priority", "random": "random"},
+}
 
 
 def noise_free_signs(os: OrderSet, bb_ids: np.ndarray, rule: Rule, v: SimValidator) -> np.ndarray:
@@ -69,6 +78,32 @@ def separation(os: OrderSet, bb_ids: np.ndarray, rule: Rule, v: SimValidator) ->
     return out
 
 
+def component_check(cf: ComponentFit, rule: Rule, v: SimValidator) -> dict[str, Any]:
+    """Did one card component find the generating rule's behaviour on its own condition?
+
+    `behaviour_ok` also accepts a different label whose predictions agree with
+    the generating rule's noise-free predictions on >= 98% of the pairs (the
+    design cannot tell them apart there).
+    """
+    if not cf.has_data:
+        return {"expected": CARD_EXPECT[cf.name][rule.name], "selected": None, "label_ok": None, "behaviour_ok": None}
+    os = cf.ctx.os
+    pairs = os.pairs_of(cf.bb_ids)
+    expected = CARD_EXPECT[cf.name][rule.name]
+    truth = noise_free_signs(os, cf.bb_ids, rule, v) if rule.name != "random" else None
+    if cf.name == "over_time" and rule.name == "batched" and truth is not None:
+        if np.mean(truth != cf.ctx.signs[0, pairs]) < SEPARATION_MIN:
+            expected = "fifo"
+        elif np.mean(truth != cf.ctx.signs[1, pairs]) < SEPARATION_MIN:
+            expected = "priority"
+    selected = cf.rule
+    ok = selected == expected
+    if not ok and truth is not None and selected not in ("random", None) and expected != "random":
+        chosen = candidate_signs(cf.ctx.signs, cf.blocks, cf.fit.best_index)[pairs]  # type: ignore[union-attr]
+        ok = bool(np.mean(chosen == truth) >= 1 - SEPARATION_MIN)
+    return {"expected": expected, "selected": selected, "label_ok": selected == expected, "behaviour_ok": bool(ok), "scope": cf.scope}
+
+
 def run_design(seed: int, reps: int, sweep_fee: str, n_perm: int, n_boot: int) -> dict[str, Any]:
     cfg = preset_validation(seed, reps=reps, sweep_fee=sweep_fee)
     data = generate(cfg)
@@ -78,6 +113,9 @@ def run_design(seed: int, reps: int, sweep_fee: str, n_perm: int, n_boot: int) -
     signs = sign_matrix(os)
     res = fit_all(os, signs, n_perm=n_perm, n_boot=n_boot)
     producer = os.bbs["producer"].astype(str).to_numpy()
+    ctx = CardContext(os, signs, res.strata, res.strata_names, n_perm, n_boot, 0)
+    entry_os = OrderSet.from_probes(probes, by_entry=True)
+    entry_ctx = CardContext.build(entry_os, n_perm, n_boot, 0) if entry_os.n_bb else None
     rows = []
     for v in cfg.validators:
         fit = res.validators.get(v.identity)
@@ -91,6 +129,7 @@ def run_design(seed: int, reps: int, sweep_fee: str, n_perm: int, n_boot: int) -
         mine = probes[probes["target"] == v.identity]
         kinds = mine.drop_duplicates("window_key")["kind"].value_counts()
         selected = fit.selected if fit is not None else "random"
+        fits = card_fits(ctx, f"validation:{v.identity}", ctx.members([v.identity]), entry_ctx, entry_ctx.members([v.identity]) if entry_ctx else None)
         rows.append(
             {
                 "validator": v.identity,
@@ -112,6 +151,7 @@ def run_design(seed: int, reps: int, sweep_fee: str, n_perm: int, n_boot: int) -
                 "windows_per_kind": {k: int(kinds.get(k, 0)) for k in ("ladder", "tie", "sweep", "format")},
                 "probes_per_batch": sorted({int(x) for x in mine.groupby("window_key").size()}),
                 "landing_rate": float(mine.loc[mine["sent"], "landed"].mean()) if len(mine) else None,
+                "card": {name: component_check(cf, v.rule, v) for name, cf in fits.items()},
             }
         )
     return summarise(rows, cfg, sweep_fee)
@@ -137,8 +177,20 @@ def summarise(rows: list[dict[str, Any]], cfg: Any, sweep_fee: str) -> dict[str,
     non_threads_priority = [x for x in rows if x["generating"] in ("priority_fifo_ties", "priority_lifo_ties")]
     sizes = [x["windows_per_kind"] for x in rows]
     probes_per_batch = sorted({n for x in rows for n in x["probes_per_batch"]})
+    per_kind = {}
+    for name in COMPONENTS:
+        checks = [(x["generating"], x["card"][name]) for x in rows if x["card"][name]["selected"] is not None]
+        per_kind[name] = {
+            "kinds": list(COMPONENTS[name][0]),
+            "n": len(checks),
+            "accuracy": float(np.mean([c["behaviour_ok"] for _, c in checks])) if checks else None,
+            "accuracy_label": float(np.mean([c["label_ok"] for _, c in checks])) if checks else None,
+            "confusion": {g: dict(sorted(Counter(c["selected"] for gg, c in checks if gg == g).items())) for g in gens},
+            "expected": {g: dict(sorted(Counter(c["expected"] for gg, c in checks if gg == g).items())) for g in gens},
+        }
     return {
         "sweep_fee": sweep_fee,
+        "per_kind": per_kind,
         "n_validators": len(rows),
         "accuracy": float(np.mean([x["correct"] for x in rows])),
         "n_identifiable": len(ident),

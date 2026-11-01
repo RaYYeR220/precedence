@@ -55,7 +55,7 @@ def power_curve(
     for theta in thetas:
         th = np.full(n_strata, theta)
         sims = [simulate_block(os, signs, strata, n_strata, b, rk, th, n_sim, rng) for b, rk in zip(blocks, ranks)]
-        t, _, _ = aic_gap(unit_candidates(sims), k_rule, prof)
+        t, _, _ = aic_gap(unit_candidates(sims), k_rule, prof, fit.allowed)
         exceed = null.size - np.searchsorted(null, t - 1e-9, side="left")
         p = (1 + exceed) / (1 + null.size)
         power = float(np.mean(p < ALPHA))

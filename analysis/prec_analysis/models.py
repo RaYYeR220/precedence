@@ -303,8 +303,22 @@ def candidate_params(n_blocks: int) -> np.ndarray:
     return np.array([0] * N_CORE + [1 + n_blocks] * N_W, dtype=float)
 
 
-def aic_gap(d: np.ndarray, k_rule: np.ndarray, prof: UnitProfile) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """(T, loglik, aic) where T = AIC(random) − min over rules of AIC(rule); d is (S, C, n)."""
+def allowed_mask(allowed: tuple[int, ...] | list[int] | None) -> np.ndarray:
+    """Boolean mask over CANDIDATES; None allows every candidate."""
+    mask = np.ones(len(CANDIDATES), dtype=bool)
+    if allowed is not None:
+        mask[:] = False
+        mask[list(allowed)] = True
+    return mask
+
+
+def aic_gap(
+    d: np.ndarray, k_rule: np.ndarray, prof: UnitProfile, allowed: tuple[int, ...] | list[int] | None = None
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """(T, loglik, aic) where T = AIC(random) − min over allowed rules of AIC(rule); d is (S, C, n).
+
+    Candidates outside `allowed` get an infinite AIC.
+    """
     _, c, n = d.shape
     ll = np.zeros((c, n))
     for s in prof.present:
@@ -312,6 +326,7 @@ def aic_gap(d: np.ndarray, k_rule: np.ndarray, prof: UnitProfile) -> tuple[np.nd
         ll += ll_s.reshape(c, n)
     k = k_rule + len(prof.present)
     aic = 2 * k[:, None] - 2 * ll
+    aic[~allowed_mask(allowed)] = np.inf
     t = -2 * prof.loglik_random - aic.min(axis=0)
     return t, ll, aic
 
@@ -346,6 +361,7 @@ class UnitFit:
     by_arm: dict[str, Any]
     batched_check: dict[str, Any] | None = None
     t_null: np.ndarray = field(repr=False, default_factory=lambda: np.zeros(0))
+    allowed: list[int] | None = None
     best_index: int = -1
     best_phase_index: list[int] = field(default_factory=list)
     theta_cells: np.ndarray = field(repr=False, default_factory=lambda: np.zeros(0))
@@ -508,6 +524,7 @@ def batched_check(
     delta_obs: float,
     label: str,
     n_sim: int = GUARD_SIMS,
+    allowed: tuple[int, ...] | list[int] | None = None,
 ) -> float:
     """p-value that batched beats the best core rule only through its grid search.
 
@@ -519,7 +536,7 @@ def batched_check(
     ranks = predicted_ranks(os, MODEL_GRID[core])
     n = prof.n_strata
     sims = [simulate_block(os, signs, strata, n, b, ranks, theta[i * n : (i + 1) * n], n_sim, rng) for i, b in enumerate(blocks)]
-    _, _, aic = aic_gap(unit_candidates(sims), candidate_params(len(blocks)), prof)
+    _, _, aic = aic_gap(unit_candidates(sims), candidate_params(len(blocks)), prof, allowed)
     delta = aic[:N_CORE].min(axis=0) - aic[N_CORE:].min(axis=0)
     return float((1 + np.sum(delta >= delta_obs - 1e-9)) / (1 + n_sim))
 
@@ -532,11 +549,13 @@ def fit_unit(
     strata_names: list[str],
     blocks: list[Block],
     n_boot: int = N_BOOT,
+    allowed: tuple[int, ...] | list[int] | None = None,
 ) -> UnitFit:
     """Select a rule for one unit (one or more validators) and quantify it.
 
     θ and concordance are reported for the reference rule: the chosen rule, or
-    the closest non-random rule when `random` wins.
+    the closest non-random rule when `random` wins. `allowed` restricts the
+    candidates (indices into CANDIDATES); None means all of them.
     """
     blocks = [b for b in blocks if b.n_pairs > 0]
     bb_ids = np.sort(np.concatenate([b.bb_ids for b in blocks])) if blocks else np.zeros(0, dtype=np.int64)
@@ -556,7 +575,8 @@ def fit_unit(
         )
     d = unit_candidates(blocks)
     k_rule = candidate_params(len(blocks))
-    t, ll, aic = aic_gap(d, k_rule, prof)
+    mask = allowed_mask(allowed)
+    t, ll, aic = aic_gap(d, k_rule, prof, allowed)
     t_obs, t_null = float(t[0]), t[1:]
     p_perm = float((1 + np.sum(t_null >= t_obs - 1e-9)) / (1 + t_null.size)) if t_null.size else None
     aic_obs = aic[:, 0]
@@ -568,7 +588,7 @@ def fit_unit(
         core = int(np.argmin(aic_obs[:N_CORE]))
         delta_obs = float(aic_obs[core] - aic_obs[ref])
         theta_core = _cell_theta(prof, d[:, core, 0])
-        p_grid = batched_check(os, signs, strata, blocks, prof, core, theta_core, delta_obs, label)
+        p_grid = batched_check(os, signs, strata, blocks, prof, core, theta_core, delta_obs, label, allowed=allowed)
         check = {"p": p_grid, "delta_aic": delta_obs, "core_rule": CANDIDATES[core], "kept": p_grid < ALPHA}
         if p_grid >= ALPHA:
             ref = core
@@ -587,6 +607,7 @@ def fit_unit(
             "concordance": float(1 - d_total[i] / n_pairs),
         }
         for i, name in enumerate(CANDIDATES)
+        if mask[i]
     ]
     rows.append(
         {
@@ -649,6 +670,7 @@ def fit_unit(
         by_arm=arm_contrast(os, s_ref, bb_ids, label, n_boot),
         batched_check=check,
         t_null=t_null,
+        allowed=None if allowed is None else sorted(int(i) for i in allowed),
         best_index=ref,
         best_phase_index=[int(b.phase_obs[ref - N_CORE]) if ref >= N_CORE else 0 for b in blocks],
         theta_cells=theta_cells,
@@ -659,21 +681,27 @@ def arm_contrast(os: OrderSet, s_ref: np.ndarray, bb_ids: np.ndarray, label: str
     """Concordance with the reference rule, distinct vs shared arm, and their difference.
 
     Shared-arm probes write-lock one account, so parallel execution threads
-    cannot reorder them; shared > distinct points at the threads. Only kinds
-    run in both arms (ladder, tie) are compared, so the arms differ in nothing
-    but the conflict.
+    cannot reorder them; shared > distinct points at the threads. Only design
+    conditions (kind, anchor, path) run in both arms are compared, so the arms
+    differ in nothing but the conflict.
     """
     out: dict[str, Any] = {}
-    arms = os.bbs["arm"].astype(str).to_numpy()[bb_ids]
-    kinds = os.bbs["kind"].astype(str).to_numpy()[bb_ids]
-    both = [k for k in sorted(set(kinds)) if {"distinct", "shared"} <= set(arms[kinds == k])]
+    bbs = os.bbs
+    arms = bbs["arm"].astype(str).to_numpy()[bb_ids]
+    kinds = bbs["kind"].astype(str).to_numpy()[bb_ids]
+    cond_cols = [c for c in ("kind", "anchor_type", "anchor_slots", "path") if c in bbs.columns]
+    conds = bbs[cond_cols].astype(str).agg("|".join, axis=1).to_numpy()[bb_ids] if bb_ids.size else np.zeros(0, dtype=str)
+    matched = sorted(c for c in set(conds) if {"distinct", "shared"} <= set(arms[conds == c]))
+    keep = np.isin(conds, matched)
+    both = sorted(set(kinds[keep]))
     d_bb = per_bb_disagreement(os, s_ref)
     sizes_all = os.sizes
-    clusters_all = os.bbs["cluster"].to_numpy()
+    clusters_all = bbs["cluster"].to_numpy()
     samples: dict[str, np.ndarray] = {}
     out["kinds_compared"] = both
+    out["conditions_compared"] = matched
     for arm in ("distinct", "shared"):
-        ids = bb_ids[(arms == arm) & np.isin(kinds, both)]
+        ids = bb_ids[(arms == arm) & keep]
         sizes = sizes_all[ids]
         n_pairs = float((sizes * (sizes - 1) / 2).sum())
         if n_pairs == 0:

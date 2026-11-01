@@ -51,6 +51,522 @@
    "orderer_class": "local-greedy",
    "p_perm": 0.001,
    "reference_model": "fifo",
+   "rule_card": {
+    "alpha": 0.05,
+    "conflicts": {
+     "all": {
+      "conditions_compared": [
+       "ladder|in_window|0.0|quic",
+       "tie|in_window|0.0|quic"
+      ],
+      "distinct": {
+       "concordance": 0.729167,
+       "concordance_ci": [
+        0.604167,
+        0.860119
+       ],
+       "n_pairs": 336
+      },
+      "kinds_compared": [
+       "ladder",
+       "tie"
+      ],
+      "shared": {
+       "concordance": 0.877976,
+       "concordance_ci": [
+        0.764807,
+        0.970238
+       ],
+       "n_pairs": 336
+      },
+      "shared_minus_distinct": {
+       "ci": [
+        -0.020833,
+        0.306548
+       ],
+       "value": 0.14881
+      },
+      "threads_reorder": false
+     },
+     "ladder": {
+      "conditions_compared": [
+       "ladder|in_window|0.0|quic"
+      ],
+      "distinct": {
+       "concordance": 0.541667,
+       "concordance_ci": [
+        0.452381,
+        0.672619
+       ],
+       "n_pairs": 168
+      },
+      "kinds_compared": [
+       "ladder"
+      ],
+      "shared": {
+       "concordance": 0.755952,
+       "concordance_ci": [
+        0.60119,
+        0.910714
+       ],
+       "n_pairs": 168
+      },
+      "shared_minus_distinct": {
+       "ci": [
+        0.011905,
+        0.404762
+       ],
+       "value": 0.214286
+      },
+      "threads_reorder": true
+     },
+     "threads_reorder": false,
+     "tie": {
+      "conditions_compared": [
+       "tie|in_window|0.0|quic"
+      ],
+      "distinct": {
+       "concordance": 0.916667,
+       "concordance_ci": [
+        0.803571,
+        0.982143
+       ],
+       "n_pairs": 168
+      },
+      "kinds_compared": [
+       "tie"
+      ],
+      "shared": {
+       "concordance": 1.0,
+       "concordance_ci": [
+        1.0,
+        1.0
+       ],
+       "n_pairs": 168
+      },
+      "shared_minus_distinct": {
+       "ci": [
+        0.017857,
+        0.196429
+       ],
+       "value": 0.083333
+      },
+      "threads_reorder": true
+     },
+     "under_single_model": {
+      "ci": [
+       -0.047693,
+       0.232143
+      ],
+      "value": 0.10119
+     }
+    },
+    "format": {
+     "ci": [
+      null,
+      null
+     ],
+     "detectable": false,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "over_time": {
+     "batched": {
+      "batched_check": null,
+      "best_grid_w_ms": 5.0,
+      "reads_as": null,
+      "separation_from_fifo": 0.0,
+      "separation_from_priority": 1.0,
+      "w_identifiable": false,
+      "w_ms": null,
+      "w_range_ms": [
+       5.0,
+       10.0
+      ]
+     },
+     "candidates": [
+      {
+       "aic": 2.000799,
+       "concordance": 1.0,
+       "delta_aic": 0.0,
+       "id": "fifo",
+       "rule": "fifo"
+      },
+      {
+       "aic": 236.876761,
+       "concordance": 0.0,
+       "delta_aic": 234.875962,
+       "id": "priority_fifo_ties",
+       "rule": "priority"
+      },
+      {
+       "aic": 6.000799,
+       "concordance": 1.0,
+       "delta_aic": 4.0,
+       "id": "batched(w=5ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 6.000799,
+       "concordance": 1.0,
+       "delta_aic": 4.0,
+       "id": "batched(w=10ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 100.585145,
+       "concordance": 0.945455,
+       "delta_aic": 98.584346,
+       "id": "batched(w=20ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 153.999236,
+       "concordance": 0.877922,
+       "delta_aic": 151.998437,
+       "id": "batched(w=30ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 181.961734,
+       "concordance": 0.823377,
+       "delta_aic": 179.960935,
+       "id": "batched(w=40ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 204.76129,
+       "concordance": 0.761039,
+       "delta_aic": 202.760492,
+       "id": "batched(w=50ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 232.390781,
+       "concordance": 0.631169,
+       "delta_aic": 230.389983,
+       "id": "batched(w=75ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 239.634598,
+       "concordance": 0.550649,
+       "delta_aic": 237.633799,
+       "id": "batched(w=100ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 240.810807,
+       "concordance": 0.511688,
+       "delta_aic": 238.810008,
+       "id": "batched(w=150ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 240.876761,
+       "concordance": 0.322078,
+       "delta_aic": 238.875962,
+       "id": "batched(w=200ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 234.876761,
+       "concordance": null,
+       "delta_aic": 232.875962,
+       "id": "random",
+       "rule": "random"
+      }
+     ],
+     "closest_rule": "fifo",
+     "concordance": 1.0,
+     "concordance_ci": [
+      1.0,
+      1.0
+     ],
+     "detectable": true,
+     "earlier_sent_first": {
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n_batches": 6,
+      "n_pairs": 385,
+      "p_perm": 0.001,
+      "rate": 1.0
+     },
+     "higher_priority_first": {
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n_batches": 6,
+      "n_pairs": 385,
+      "p_perm": 0.001,
+      "rate": 0.0
+     },
+     "kinds": [
+      "sweep"
+     ],
+     "mde": null,
+     "n_batch_blocks": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rule": "fifo",
+     "scope": "all_pairs",
+     "theta": 12.0
+    },
+    "sentence": "Priority among probes queued together (100% within an entry, 55% across entries), arrival order across scheduling passes (sweep 100% send order), ties oldest first (96%).",
+    "simultaneous": {
+     "all_pairs": {
+      "closest_rule": "fifo",
+      "concordance": 0.738095,
+      "concordance_ci": [
+       0.627976,
+       0.839286
+      ],
+      "detectable": true,
+      "n_pairs": 336,
+      "p_perm": 0.001,
+      "rule": "fifo"
+     },
+     "candidates": [
+      {
+       "aic": 70.115144,
+       "concordance": 0.567568,
+       "delta_aic": 66.114763,
+       "id": "fifo",
+       "rule": "fifo"
+      },
+      {
+       "aic": 4.000381,
+       "concordance": 1.0,
+       "delta_aic": 0.0,
+       "id": "priority_fifo_ties",
+       "rule": "priority"
+      },
+      {
+       "aic": 69.367122,
+       "concordance": null,
+       "delta_aic": 65.366741,
+       "id": "random",
+       "rule": "random"
+      }
+     ],
+     "closest_rule": "priority",
+     "concordance": 1.0,
+     "concordance_ci": [
+      1.0,
+      1.0
+     ],
+     "detectable": true,
+     "earlier_sent_first": {
+      "ci": [
+       0.6331,
+       0.858974
+      ],
+      "n_batches": 12,
+      "n_pairs": 307,
+      "p_perm": 0.001,
+      "rate": 0.752443
+     },
+     "entries": {
+      "available": true,
+      "cross_entry": {
+       "ci": [
+        0.442952,
+        0.6765
+       ],
+       "n_batches": 11,
+       "n_pairs": 262,
+       "p_perm": 0.294,
+       "rate": 0.549618
+      },
+      "cross_entry_earlier_sent_first": {
+       "ci": [
+        0.688643,
+        0.912527
+       ],
+       "n_batches": 11,
+       "n_pairs": 242,
+       "p_perm": 0.001,
+       "rate": 0.797521
+      },
+      "same_entry": {
+       "ci": [
+        1.0,
+        1.0
+       ],
+       "n_batches": 7,
+       "n_pairs": 74,
+       "p_perm": 0.001,
+       "rate": 1.0
+      }
+     },
+     "higher_priority_first": {
+      "ci": [
+       0.532738,
+       0.764881
+      ],
+      "n_batches": 12,
+      "n_pairs": 336,
+      "p_perm": 0.001,
+      "rate": 0.64881
+     },
+     "kinds": [
+      "ladder",
+      "format"
+     ],
+     "mde": null,
+     "n_batch_blocks": 13,
+     "n_pairs": 74,
+     "p_perm": 0.001,
+     "rule": "priority",
+     "scope": "same_entry",
+     "theta": 12.0
+    },
+    "ties": {
+     "by_spacing": {
+      "0.5ms": {
+       "all": {
+        "ci": [
+         0.972222,
+         0.996032
+        ],
+        "n_batches": 9,
+        "n_pairs": 252,
+        "p_perm": 0.001,
+        "rate": 0.984127
+       },
+       "distinct": {
+        "ci": [
+         0.964286,
+         0.964286
+        ],
+        "n_batches": 4,
+        "n_pairs": 112,
+        "p_perm": 0.001,
+        "rate": 0.964286
+       },
+       "shared": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 5,
+        "n_pairs": 140,
+        "p_perm": 0.001,
+        "rate": 1.0
+       }
+      },
+      "2ms": {
+       "all": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.001,
+        "rate": 1.0
+       },
+       "distinct": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.001,
+        "rate": 1.0
+       }
+      },
+      "5ms": {
+       "all": {
+        "ci": [
+         0.642857,
+         1.0
+        ],
+        "n_batches": 2,
+        "n_pairs": 56,
+        "p_perm": 0.004,
+        "rate": 0.821429
+       },
+       "distinct": {
+        "ci": [
+         0.642857,
+         0.642857
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.42,
+        "rate": 0.642857
+       },
+       "shared": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.001,
+        "rate": 1.0
+       }
+      }
+     },
+     "candidates": [
+      {
+       "aic": 65.863171,
+       "concordance": 0.958333,
+       "delta_aic": 0.0,
+       "id": "fifo",
+       "rule": "fifo"
+      },
+      {
+       "aic": 258.51047,
+       "concordance": 0.041667,
+       "delta_aic": 192.647298,
+       "id": "priority_lifo_ties",
+       "rule": "lifo"
+      },
+      {
+       "aic": 254.51047,
+       "concordance": null,
+       "delta_aic": 188.647298,
+       "id": "random",
+       "rule": "random"
+      }
+     ],
+     "closest_rule": "fifo",
+     "concordance": 0.958333,
+     "concordance_ci": [
+      0.895833,
+      0.994048
+     ],
+     "detectable": true,
+     "earlier_sent_first": {
+      "ci": [
+       0.898735,
+       0.994048
+      ],
+      "n_batches": 12,
+      "n_pairs": 336,
+      "p_perm": 0.001,
+      "rate": 0.958333
+     },
+     "kinds": [
+      "tie"
+     ],
+     "mde": null,
+     "n_batch_blocks": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rule": "fifo",
+     "scope": "all_pairs",
+     "theta": 1.9047
+    }
+   },
+   "single_model_text": "arrival order (earliest sent first); concordance 0.904 [0.840, 0.955], theta 1.106, p=0.001",
    "theta": 1.106299,
    "theta_ci": [
     0.759958,
@@ -61,7 +577,7 @@
     "fifo": 1
    },
    "verdict": "rule",
-   "verdict_text": "arrival order (earliest sent first); concordance 0.904 [0.840, 0.955], theta 1.106, p=0.001",
+   "verdict_text": "Priority among probes queued together (100% within an entry, 55% across entries), arrival order across scheduling passes (sweep 100% send order), ties oldest first (96%).",
    "w_ms": null
   }
  },
@@ -161,6 +677,522 @@
    "orderer_class": "local-greedy",
    "p_perm": 0.001,
    "reference_model": "fifo",
+   "rule_card": {
+    "alpha": 0.05,
+    "conflicts": {
+     "all": {
+      "conditions_compared": [
+       "ladder|in_window|0.0|quic",
+       "tie|in_window|0.0|quic"
+      ],
+      "distinct": {
+       "concordance": 0.729167,
+       "concordance_ci": [
+        0.60119,
+        0.860119
+       ],
+       "n_pairs": 336
+      },
+      "kinds_compared": [
+       "ladder",
+       "tie"
+      ],
+      "shared": {
+       "concordance": 0.877976,
+       "concordance_ci": [
+        0.767857,
+        0.970238
+       ],
+       "n_pairs": 336
+      },
+      "shared_minus_distinct": {
+       "ci": [
+        -0.02381,
+        0.3125
+       ],
+       "value": 0.14881
+      },
+      "threads_reorder": false
+     },
+     "ladder": {
+      "conditions_compared": [
+       "ladder|in_window|0.0|quic"
+      ],
+      "distinct": {
+       "concordance": 0.541667,
+       "concordance_ci": [
+        0.452381,
+        0.672917
+       ],
+       "n_pairs": 168
+      },
+      "kinds_compared": [
+       "ladder"
+      ],
+      "shared": {
+       "concordance": 0.755952,
+       "concordance_ci": [
+        0.60119,
+        0.904762
+       ],
+       "n_pairs": 168
+      },
+      "shared_minus_distinct": {
+       "ci": [
+        0.011905,
+        0.39881
+       ],
+       "value": 0.214286
+      },
+      "threads_reorder": true
+     },
+     "threads_reorder": false,
+     "tie": {
+      "conditions_compared": [
+       "tie|in_window|0.0|quic"
+      ],
+      "distinct": {
+       "concordance": 0.916667,
+       "concordance_ci": [
+        0.803571,
+        0.982143
+       ],
+       "n_pairs": 168
+      },
+      "kinds_compared": [
+       "tie"
+      ],
+      "shared": {
+       "concordance": 1.0,
+       "concordance_ci": [
+        1.0,
+        1.0
+       ],
+       "n_pairs": 168
+      },
+      "shared_minus_distinct": {
+       "ci": [
+        0.017857,
+        0.196429
+       ],
+       "value": 0.083333
+      },
+      "threads_reorder": true
+     },
+     "under_single_model": {
+      "ci": [
+       -0.056622,
+       0.229167
+      ],
+      "value": 0.10119
+     }
+    },
+    "format": {
+     "ci": [
+      null,
+      null
+     ],
+     "detectable": false,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "over_time": {
+     "batched": {
+      "batched_check": null,
+      "best_grid_w_ms": 5.0,
+      "reads_as": null,
+      "separation_from_fifo": 0.0,
+      "separation_from_priority": 1.0,
+      "w_identifiable": false,
+      "w_ms": null,
+      "w_range_ms": [
+       5.0,
+       10.0
+      ]
+     },
+     "candidates": [
+      {
+       "aic": 2.000799,
+       "concordance": 1.0,
+       "delta_aic": 0.0,
+       "id": "fifo",
+       "rule": "fifo"
+      },
+      {
+       "aic": 236.876761,
+       "concordance": 0.0,
+       "delta_aic": 234.875962,
+       "id": "priority_fifo_ties",
+       "rule": "priority"
+      },
+      {
+       "aic": 6.000799,
+       "concordance": 1.0,
+       "delta_aic": 4.0,
+       "id": "batched(w=5ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 6.000799,
+       "concordance": 1.0,
+       "delta_aic": 4.0,
+       "id": "batched(w=10ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 100.585145,
+       "concordance": 0.945455,
+       "delta_aic": 98.584346,
+       "id": "batched(w=20ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 153.999236,
+       "concordance": 0.877922,
+       "delta_aic": 151.998437,
+       "id": "batched(w=30ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 181.961734,
+       "concordance": 0.823377,
+       "delta_aic": 179.960935,
+       "id": "batched(w=40ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 204.76129,
+       "concordance": 0.761039,
+       "delta_aic": 202.760492,
+       "id": "batched(w=50ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 232.390781,
+       "concordance": 0.631169,
+       "delta_aic": 230.389983,
+       "id": "batched(w=75ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 239.634598,
+       "concordance": 0.550649,
+       "delta_aic": 237.633799,
+       "id": "batched(w=100ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 240.810807,
+       "concordance": 0.511688,
+       "delta_aic": 238.810008,
+       "id": "batched(w=150ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 240.876761,
+       "concordance": 0.322078,
+       "delta_aic": 238.875962,
+       "id": "batched(w=200ms)",
+       "rule": "batched"
+      },
+      {
+       "aic": 234.876761,
+       "concordance": null,
+       "delta_aic": 232.875962,
+       "id": "random",
+       "rule": "random"
+      }
+     ],
+     "closest_rule": "fifo",
+     "concordance": 1.0,
+     "concordance_ci": [
+      1.0,
+      1.0
+     ],
+     "detectable": true,
+     "earlier_sent_first": {
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n_batches": 6,
+      "n_pairs": 385,
+      "p_perm": 0.001,
+      "rate": 1.0
+     },
+     "higher_priority_first": {
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n_batches": 6,
+      "n_pairs": 385,
+      "p_perm": 0.001,
+      "rate": 0.0
+     },
+     "kinds": [
+      "sweep"
+     ],
+     "mde": null,
+     "n_batch_blocks": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rule": "fifo",
+     "scope": "all_pairs",
+     "theta": 12.0
+    },
+    "sentence": "Priority among probes queued together (100% within an entry, 55% across entries), arrival order across scheduling passes (sweep 100% send order), ties oldest first (96%).",
+    "simultaneous": {
+     "all_pairs": {
+      "closest_rule": "fifo",
+      "concordance": 0.738095,
+      "concordance_ci": [
+       0.627976,
+       0.833333
+      ],
+      "detectable": true,
+      "n_pairs": 336,
+      "p_perm": 0.001,
+      "rule": "fifo"
+     },
+     "candidates": [
+      {
+       "aic": 70.115144,
+       "concordance": 0.567568,
+       "delta_aic": 66.114763,
+       "id": "fifo",
+       "rule": "fifo"
+      },
+      {
+       "aic": 4.000381,
+       "concordance": 1.0,
+       "delta_aic": 0.0,
+       "id": "priority_fifo_ties",
+       "rule": "priority"
+      },
+      {
+       "aic": 69.367122,
+       "concordance": null,
+       "delta_aic": 65.366741,
+       "id": "random",
+       "rule": "random"
+      }
+     ],
+     "closest_rule": "priority",
+     "concordance": 1.0,
+     "concordance_ci": [
+      1.0,
+      1.0
+     ],
+     "detectable": true,
+     "earlier_sent_first": {
+      "ci": [
+       0.634615,
+       0.866883
+      ],
+      "n_batches": 12,
+      "n_pairs": 307,
+      "p_perm": 0.001,
+      "rate": 0.752443
+     },
+     "entries": {
+      "available": true,
+      "cross_entry": {
+       "ci": [
+        0.446882,
+        0.668049
+       ],
+       "n_batches": 11,
+       "n_pairs": 262,
+       "p_perm": 0.313,
+       "rate": 0.549618
+      },
+      "cross_entry_earlier_sent_first": {
+       "ci": [
+        0.688438,
+        0.914894
+       ],
+       "n_batches": 11,
+       "n_pairs": 242,
+       "p_perm": 0.001,
+       "rate": 0.797521
+      },
+      "same_entry": {
+       "ci": [
+        1.0,
+        1.0
+       ],
+       "n_batches": 7,
+       "n_pairs": 74,
+       "p_perm": 0.001,
+       "rate": 1.0
+      }
+     },
+     "higher_priority_first": {
+      "ci": [
+       0.532738,
+       0.770833
+      ],
+      "n_batches": 12,
+      "n_pairs": 336,
+      "p_perm": 0.001,
+      "rate": 0.64881
+     },
+     "kinds": [
+      "ladder",
+      "format"
+     ],
+     "mde": null,
+     "n_batch_blocks": 13,
+     "n_pairs": 74,
+     "p_perm": 0.001,
+     "rule": "priority",
+     "scope": "same_entry",
+     "theta": 12.0
+    },
+    "ties": {
+     "by_spacing": {
+      "0.5ms": {
+       "all": {
+        "ci": [
+         0.972222,
+         0.996032
+        ],
+        "n_batches": 9,
+        "n_pairs": 252,
+        "p_perm": 0.001,
+        "rate": 0.984127
+       },
+       "distinct": {
+        "ci": [
+         0.964286,
+         0.964286
+        ],
+        "n_batches": 4,
+        "n_pairs": 112,
+        "p_perm": 0.001,
+        "rate": 0.964286
+       },
+       "shared": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 5,
+        "n_pairs": 140,
+        "p_perm": 0.001,
+        "rate": 1.0
+       }
+      },
+      "2ms": {
+       "all": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.001,
+        "rate": 1.0
+       },
+       "distinct": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.001,
+        "rate": 1.0
+       }
+      },
+      "5ms": {
+       "all": {
+        "ci": [
+         0.642857,
+         1.0
+        ],
+        "n_batches": 2,
+        "n_pairs": 56,
+        "p_perm": 0.002,
+        "rate": 0.821429
+       },
+       "distinct": {
+        "ci": [
+         0.642857,
+         0.642857
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.403,
+        "rate": 0.642857
+       },
+       "shared": {
+        "ci": [
+         1.0,
+         1.0
+        ],
+        "n_batches": 1,
+        "n_pairs": 28,
+        "p_perm": 0.001,
+        "rate": 1.0
+       }
+      }
+     },
+     "candidates": [
+      {
+       "aic": 65.863171,
+       "concordance": 0.958333,
+       "delta_aic": 0.0,
+       "id": "fifo",
+       "rule": "fifo"
+      },
+      {
+       "aic": 258.51047,
+       "concordance": 0.041667,
+       "delta_aic": 192.647298,
+       "id": "priority_lifo_ties",
+       "rule": "lifo"
+      },
+      {
+       "aic": 254.51047,
+       "concordance": null,
+       "delta_aic": 188.647298,
+       "id": "random",
+       "rule": "random"
+      }
+     ],
+     "closest_rule": "fifo",
+     "concordance": 0.958333,
+     "concordance_ci": [
+      0.895833,
+      0.994048
+     ],
+     "detectable": true,
+     "earlier_sent_first": {
+      "ci": [
+       0.895833,
+       0.994048
+      ],
+      "n_batches": 12,
+      "n_pairs": 336,
+      "p_perm": 0.001,
+      "rate": 0.958333
+     },
+     "kinds": [
+      "tie"
+     ],
+     "mde": null,
+     "n_batch_blocks": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rule": "fifo",
+     "scope": "all_pairs",
+     "theta": 1.9047
+    }
+   },
+   "single_model_text": "arrival order (earliest sent first); concordance 0.904 [0.838, 0.953], theta 1.106, p=0.001",
    "theta": 1.106299,
    "theta_ci": [
     0.75996,
@@ -168,7 +1200,7 @@
    ],
    "threads_reorder": false,
    "verdict": "rule",
-   "verdict_text": "arrival order (earliest sent first); concordance 0.904 [0.838, 0.953], theta 1.106, p=0.001",
+   "verdict_text": "Priority among probes queued together (100% within an entry, 55% across entries), arrival order across scheduling passes (sweep 100% send order), ties oldest first (96%).",
    "w_ms": null
   }
  }

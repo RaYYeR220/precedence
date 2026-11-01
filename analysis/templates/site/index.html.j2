@@ -1,0 +1,87 @@
+{% extends "_layout.html.j2" %}
+{% set page = "overview" %}
+{% block title %}Precedence{% endblock %}
+{% block body_class %}page-overview{% endblock %}
+{% block main %}
+<section class="intro">
+  <h1>How Solana leaders ordered our transactions</h1>
+  <p class="lede">We sent small batches of probe transactions to known leaders, with fees and send times we chose in advance, then read back where each one landed in the block. A rule is claimed only when it beats random ordering in a permutation test; its strictness is the share of probe pairs it puts in the observed order.</p>
+  <dl class="stats" id="stats"></dl>
+</section>
+
+<section class="section focal" aria-labelledby="h-verdicts">
+  <div class="section-head">
+    <h2 id="h-verdicts">Rule by client family</h2>
+    <p>Open a family to see its validators. Strictness is concordance with the rule, 95% interval over batches; the scale runs from 50% (coin flip) to 100%.</p>
+  </div>
+  <div class="table-wrap">
+    <table class="verdicts" id="verdicts">
+      <thead>
+        <tr>
+          <th scope="col">Family</th>
+          <th scope="col" class="r hide-s">Validators</th>
+          <th scope="col" class="r hide-s">Windows</th>
+          <th scope="col" class="r hide-s">Landed</th>
+          <th scope="col">Rule</th>
+          <th scope="col" class="conc-col">Strictness</th>
+          <th scope="col" class="r hide-s">θ</th>
+          <th scope="col" class="hide-m">Verdict</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="h-dose">
+  <div class="section-head">
+    <h2 id="h-dose">Does a later, higher fee still win?</h2>
+    <p>Share of probe pairs where the higher-priority probe came first, by how much later it was sent. A local scheduler keeps the fee winning across the gap; a batch auction stops honouring it once the gap crosses a batch boundary.</p>
+  </div>
+  <div class="multiples" id="dose"></div>
+</section>
+
+<div class="split">
+  <section class="section" aria-labelledby="h-ties">
+    <div class="section-head">
+      <h2 id="h-ties">Equal fees: oldest or newest first</h2>
+      <p>Tie batches: eight probes with the same fee, sent 0.5 to 5 ms apart. Share of pairs where the earlier-sent probe came first.</p>
+    </div>
+    <div class="dots" id="ties"></div>
+  </section>
+  <section class="section" aria-labelledby="h-inclusion">
+    <div class="section-head">
+      <h2 id="h-inclusion">Did the probes land</h2>
+      <p>By the family of the leader we targeted. The hairline marks how many landed in another leader's block.</p>
+    </div>
+    <div class="dots" id="inclusion"></div>
+  </section>
+</div>
+
+<section class="section" aria-labelledby="h-fp">
+  <div class="section-head">
+    <h2 id="h-fp">Naming the orderer from our probes alone</h2>
+    <p>A classifier sees only our probes' order, timing and landing, and names the component that ordered the block. Each validator is scored by a model trained without it. The baseline sees every transaction of the same blocks instead.</p>
+  </div>
+  <div class="bars" id="fingerprint"></div>
+</section>
+
+<section class="section" aria-labelledby="h-pred">
+  <div class="section-head">
+    <h2 id="h-pred">Predictions written before the first transaction</h2>
+    <p>Each line was derived from the producers' source code and committed before any probe was sent.</p>
+  </div>
+  <div class="table-wrap">
+    <table class="preds" id="predictions">
+      <thead><tr><th scope="col">Id</th><th scope="col">Prediction</th><th scope="col">Outcome</th><th scope="col" class="hide-s">Evidence</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+<noscript><p class="empty">The charts and tables on this page are drawn by JavaScript from <code>data/overview.json</code>.</p></noscript>
+{% endblock %}
+{% block scripts %}
+<script src="data/overview.js?v={{ v['data/overview.js'] }}"></script>
+<script src="assets/common.js?v={{ v['assets/common.js'] }}"></script>
+<script src="assets/overview.js?v={{ v['assets/overview.js'] }}"></script>
+{% endblock %}

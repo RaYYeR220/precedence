@@ -19,6 +19,7 @@ import pandas as pd
 
 from . import __version__
 from .constants import ALPHA, BATCH_PASS_MAX_MS, BATCH_W_GRID_MS, FLOAT_DIGITS, N_BOOT, N_PERM, PHASE_STEPS, POWER_SIMS, orderer_class
+from .card import CardContext, all_cards
 from .controls import controls
 from .entries import entries_report
 from .fingerprint import fingerprint
@@ -106,6 +107,14 @@ def component_hint(fit: UnitFit) -> str:
     return "scheduler priority pass; no reordering by parallel execution detected"
 
 
+def _attach_card(entry: dict[str, Any], card: dict[str, Any] | None) -> None:
+    """Add the rule card; the headline text becomes its sentence, the single-model text is kept."""
+    entry["single_model_text"] = entry.get("verdict_text")
+    entry["rule_card"] = card
+    if card is not None:
+        entry["verdict_text"] = card["sentence"]
+
+
 def _unit_counts(probes: pd.DataFrame, col: str, value: str) -> dict[str, int]:
     own = probes[(probes["in_block"]) & (probes[col].astype(str) == value)]
     return {"n_windows": int(own["window_key"].nunique()), "n_landed_probes": int(len(own))}
@@ -123,6 +132,10 @@ def analyze(ds: Dataset, settings: Settings = Settings()) -> dict[str, Any]:
     res = fit_all(os, signs, n_perm=settings.n_perm, n_boot=settings.n_boot)
     power = power_all(os, signs, res, n_sim=settings.power_sims)
     fp, baseline = fingerprint(probes, os, signs, blocks_df) if not probes.empty else ({}, {})
+    ctx = CardContext(os, signs, res.strata, res.strata_names, settings.n_perm, settings.n_boot, settings.power_sims)
+    entry_os = OrderSet.from_probes(probes, by_entry=True) if not probes.empty and probes["entry_index"].notna().any() else OrderSet.empty()
+    entry_ctx = CardContext.build(entry_os, settings.n_perm, settings.n_boot, settings.power_sims) if entry_os.n_bb else None
+    cards = all_cards(ctx, res, entry_ctx)
     outputs: dict[str, Any] = {
         "pairs_by_condition": {
             "by_family": condition_rates(os, "producer_family", settings.n_boot, settings.n_perm),
@@ -140,7 +153,7 @@ def analyze(ds: Dataset, settings: Settings = Settings()) -> dict[str, Any]:
         "power": power,
         "entries": entries_report(os, probes, ds.runs, ds.blocks, blocks_df, settings.n_boot, settings.n_perm),
     }
-    outputs["summary"] = summary_json(ds, probes, pairs, windows, os, res, power, fp, baseline, outputs, settings)
+    outputs["summary"] = summary_json(ds, probes, pairs, windows, os, res, power, fp, baseline, outputs, settings, cards)
     return {f"{name}.json": outputs[name] for name in (n[:-5] for n in OUTPUT_FILES)}
 
 
@@ -184,6 +197,7 @@ def summary_json(
     baseline: dict[str, Any],
     outputs: dict[str, Any],
     settings: Settings,
+    cards: tuple[dict[str, Any], dict[str, Any]] = ({}, {}),
 ) -> dict[str, Any]:
     landed = probes[probes["landed"]] if not probes.empty else probes
     inputs = {
@@ -215,6 +229,7 @@ def summary_json(
             "key_rates": key_rates(os, "producer", v, settings.n_boot, settings.n_perm),
             "min_detectable": {k: power["validators"].get(v, {}).get(k) for k in ("theta_mde", "concordance_mde")},
         }
+        _attach_card(validators[v], cards[0].get(v))
     families = {}
     for fam, fit in sorted(res.families.items()):
         members = sorted({b.validator for b in res.family_blocks.get(fam, [])})
@@ -230,6 +245,7 @@ def summary_json(
             "key_rates": key_rates(os, "producer_family", fam, settings.n_boot, settings.n_perm),
             "min_detectable": {k: power["families"].get(fam, {}).get(k) for k in ("theta_mde", "concordance_mde")},
         }
+        _attach_card(families[fam], cards[1].get(fam))
     ctrl = outputs["controls"]
     return {
         "inputs": inputs,

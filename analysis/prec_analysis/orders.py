@@ -45,6 +45,8 @@ BB_COLUMNS = [
     "arm",
     "path",
     "spacing_us",
+    "anchor_type",
+    "anchor_slots",
 ]
 
 
@@ -62,10 +64,17 @@ class OrderSet:
 
     # -- construction -----------------------------------------------------
     @classmethod
-    def from_probes(cls, probes: pd.DataFrame) -> "OrderSet":
-        """Build from the tidy probe table: landed probes with a known block index."""
+    def from_probes(cls, probes: pd.DataFrame, by_entry: bool = False) -> "OrderSet":
+        """Build from the tidy probe table: landed probes with a known block index.
+
+        With `by_entry` the units are the probes of one batch inside one entry
+        (one scheduler hand-off to one execution thread) instead of one block.
+        """
         sel = probes[probes["in_block"].fillna(False).astype(bool)].copy()
         key = ["run_id", "batch_id", "landed_slot"]
+        if by_entry:
+            sel = sel[sel["entry_index"].notna()].copy()
+            key = key + ["entry_index"]
         if len(sel):
             sizes = sel.groupby(key)["idx"].transform("size")
             sel = sel[sizes >= 2]

@@ -5,6 +5,10 @@
    "best_model": "fifo",
    "best_rule": "fifo",
    "by_arm": {
+    "conditions_compared": [
+     "ladder|in_window|0.0|quic",
+     "tie|in_window|0.0|quic"
+    ],
     "distinct": {
      "concordance": 0.797619,
      "concordance_ci": [
@@ -285,6 +289,10 @@
    "best_model": "fifo",
    "best_rule": "fifo",
    "by_arm": {
+    "conditions_compared": [
+     "ladder|in_window|0.0|quic",
+     "tie|in_window|0.0|quic"
+    ],
     "distinct": {
      "concordance": 0.797619,
      "concordance_ci": [

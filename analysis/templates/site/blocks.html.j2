@@ -1,0 +1,34 @@
+{% extends "_layout.html.j2" %}
+{% set page = "blocks" %}
+{% block title %}Precedence blocks{% endblock %}
+{% block body_class %}page-blocks{% endblock %}
+{% block main %}
+<section class="intro intro-tight">
+  <h1>Every batch, in its block</h1>
+  <p class="lede">Each strip is one block in ledger order: one tick per transaction, ours drawn wide. Inside each of our probes, the top number is its fee rank (1 is the highest fee of the batch) and the bottom number is its send order (1 was sent first). Read the top row left to right: 1, 2, 3 means the fee decided the order.</p>
+  <div class="legend" aria-label="Legend">
+    <span class="lg"><svg width="22" height="14" aria-hidden="true"><rect class="lg-foreign" x="1" y="3" width="2" height="8"/><rect class="lg-foreign" x="5" y="3" width="2" height="8"/><rect class="lg-foreign" x="9" y="3" width="2" height="8"/><rect class="lg-foreign" x="13" y="3" width="2" height="8"/><rect class="lg-foreign" x="17" y="3" width="2" height="8"/></svg>other transactions</span>
+    <span class="lg"><span class="lg-ramp" id="lg-ramp" aria-hidden="true"></span>our probes, highest fee to lowest</span>
+    <span class="lg"><svg width="22" height="14" aria-hidden="true"><path class="lg-entry" d="M4 2v10M11 2v10M18 2v10"/></svg>entry boundary</span>
+  </div>
+</section>
+
+<section class="filters" aria-label="Filters">
+  <label class="f"><span>Family</span><select id="f-family"><option value="">All families</option></select></label>
+  <label class="f"><span>Validator</span><select id="f-validator"><option value="">All validators</option></select></label>
+  <label class="f"><span>Kind</span><select id="f-kind"><option value="">All kinds</option><option value="ladder">Ladder</option><option value="tie">Tie</option><option value="sweep">Sweep</option><option value="format">Format</option></select></label>
+  <label class="f"><span>Arm</span><select id="f-arm"><option value="">Both arms</option><option value="distinct">Distinct accounts</option><option value="shared">Shared account</option></select></label>
+  <label class="f"><span>Show</span><select id="f-landed"><option value="">All batches</option><option value="landed">With a landed probe</option><option value="none">With nothing landed</option></select></label>
+  <label class="f f-zoom"><span>Tick width</span><select id="f-zoom"><option value="2">2 px</option><option value="3" selected>3 px</option><option value="5">5 px</option></select></label>
+  <p class="f-count" id="f-count" aria-live="polite"></p>
+</section>
+
+<section class="batches" id="batches" aria-label="Batches"></section>
+<nav class="pager" id="pager" aria-label="Pages of batches"></nav>
+<noscript><p class="empty">The strips are drawn by JavaScript from <code>data/batches.json</code>.</p></noscript>
+{% endblock %}
+{% block scripts %}
+<script src="data/batches.js?v={{ v['data/batches.js'] }}"></script>
+<script src="assets/common.js?v={{ v['assets/common.js'] }}"></script>
+<script src="assets/blocks.js?v={{ v['assets/blocks.js'] }}"></script>
+{% endblock %}
