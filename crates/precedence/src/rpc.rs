@@ -27,6 +27,8 @@ pub struct RpcError {
 
 impl Rpc {
     pub fn new(url: &str) -> Self {
+        // reqwest is built without a bundled TLS provider; use ring everywhere.
+        let _ = rustls::crypto::ring::default_provider().install_default();
         let mut spacing = HashMap::new();
         // The public mainnet endpoint limits getBlock hardest.
         spacing.insert("getBlock", Duration::from_millis(1_100));
