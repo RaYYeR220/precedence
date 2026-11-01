@@ -10,6 +10,8 @@ pub struct PathInfo {
     pub addr: String,
     pub handshake_us: Option<u64>,
     pub rtt_us: Option<u64>,
+    /// An already-open connection to this address was reused.
+    pub reused: bool,
 }
 
 #[derive(Debug, Clone, Serialize, PartialEq)]
@@ -20,6 +22,8 @@ pub struct SendRecord {
     pub t_done_us: u64,
     pub err: Option<String>,
     pub dry: bool,
+    /// The server had closed the connection; this send went out on a new one.
+    pub reconnected: bool,
 }
 
 /// `sendTransaction` with `skipPreflight` and `maxRetries: 0`: one forward
@@ -28,11 +32,11 @@ pub async fn send_via_rpc(rpc: &crate::rpc::Rpc, tb: &crate::clock::TimeBase, wi
     use base64::Engine;
     let t_open = tb.now_us();
     if dry {
-        return SendRecord { t_open_us: t_open, t_done_us: t_open, err: None, dry: true };
+        return SendRecord { t_open_us: t_open, t_done_us: t_open, err: None, dry: true, reconnected: false };
     }
     let b64 = base64::engine::general_purpose::STANDARD.encode(wire);
     let res = rpc.send_transaction(&b64).await;
-    SendRecord { t_open_us: t_open, t_done_us: tb.now_us(), err: res.err().map(|e| e.to_string()), dry: false }
+    SendRecord { t_open_us: t_open, t_done_us: tb.now_us(), err: res.err().map(|e| e.to_string()), dry: false, reconnected: false }
 }
 
 /// Wait until `target` with sub-millisecond precision: sleep most of the

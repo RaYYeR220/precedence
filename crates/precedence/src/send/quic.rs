@@ -98,7 +98,7 @@ impl QuicSender {
         let handshake_us = self.tb.now_us() - t0;
         let rtt_us = conn.rtt().as_micros() as u64;
         self.conn = Some(conn);
-        Ok(PathInfo { addr: addr.to_string(), handshake_us: Some(handshake_us), rtt_us: Some(rtt_us) })
+        Ok(PathInfo { addr: addr.to_string(), handshake_us: Some(handshake_us), rtt_us: Some(rtt_us), reused: false })
     }
 
     pub fn rtt_us(&self) -> Option<u64> {
@@ -110,10 +110,10 @@ impl QuicSender {
     pub async fn send(&self, wire: &[u8]) -> SendRecord {
         let t_open = self.tb.now_us();
         if self.dry {
-            return SendRecord { t_open_us: t_open, t_done_us: t_open, err: None, dry: true };
+            return SendRecord { t_open_us: t_open, t_done_us: t_open, err: None, dry: true, reconnected: false };
         }
         let Some(conn) = &self.conn else {
-            return SendRecord { t_open_us: t_open, t_done_us: t_open, err: Some("not connected".into()), dry: false };
+            return SendRecord { t_open_us: t_open, t_done_us: t_open, err: Some("not connected".into()), dry: false, reconnected: false };
         };
         let res: Result<()> = async {
             let mut s = conn.open_uni().await?;
@@ -122,12 +122,92 @@ impl QuicSender {
             Ok(())
         }
         .await;
-        SendRecord { t_open_us: t_open, t_done_us: self.tb.now_us(), err: res.err().map(|e| e.to_string()), dry: false }
+        SendRecord { t_open_us: t_open, t_done_us: self.tb.now_us(), err: res.err().map(|e| e.to_string()), dry: false, reconnected: false }
     }
 
     pub async fn close(&mut self) {
         if let Some(c) = self.conn.take() {
             c.close(0u32.into(), b"done");
+        }
+    }
+}
+
+/// Connections shared by every batch of a run, one per TPU address. Unstaked
+/// clients are limited in how many new connections they may open per IP and
+/// minute, and a busy server prunes idle unstaked connections, so a connection
+/// is reused while the server keeps it open and replaced the moment it is
+/// closed.
+pub struct QuicPool {
+    endpoint: Endpoint,
+    conns: tokio::sync::Mutex<std::collections::HashMap<SocketAddr, Connection>>,
+    tb: TimeBase,
+    dry: bool,
+}
+
+impl QuicPool {
+    pub fn new(tb: TimeBase, dry: bool) -> Result<Self> {
+        let mut endpoint = Endpoint::client("0.0.0.0:0".parse().unwrap())?;
+        endpoint.set_default_client_config(client_config()?);
+        Ok(QuicPool { endpoint, conns: Default::default(), tb, dry })
+    }
+
+    async fn handshake(&self, addr: SocketAddr) -> Result<(Connection, u64)> {
+        let t0 = self.tb.now_us();
+        let connecting = self.endpoint.connect(addr, "solana").context("quic connect")?;
+        let conn = tokio::time::timeout(Duration::from_secs(3), connecting)
+            .await
+            .context("quic handshake timed out")?
+            .context("quic handshake")?;
+        Ok((conn, self.tb.now_us() - t0))
+    }
+
+    /// A live connection to `addr`: the pooled one if the server has not
+    /// closed it, otherwise a new handshake.
+    pub async fn connection(&self, addr: SocketAddr) -> Result<(Connection, PathInfo)> {
+        let mut m = self.conns.lock().await;
+        if let Some(c) = m.get(&addr) {
+            if c.close_reason().is_none() {
+                let info = PathInfo { addr: addr.to_string(), handshake_us: None, rtt_us: Some(c.rtt().as_micros() as u64), reused: true };
+                return Ok((c.clone(), info));
+            }
+        }
+        let (c, hs) = self.handshake(addr).await?;
+        m.insert(addr, c.clone());
+        let info = PathInfo { addr: addr.to_string(), handshake_us: Some(hs), rtt_us: Some(c.rtt().as_micros() as u64), reused: false };
+        Ok((c, info))
+    }
+
+    async fn write(conn: &Connection, wire: &[u8]) -> Result<()> {
+        let mut s = conn.open_uni().await?;
+        s.write_all(wire).await?;
+        s.finish()?;
+        Ok(())
+    }
+
+    /// Send one transaction on a fresh unidirectional stream of `conn`. If the
+    /// server has closed the connection, open a new one once and send on it
+    /// (the record says so). Dry runs never open a stream.
+    pub async fn send(&self, addr: SocketAddr, conn: &mut Connection, wire: &[u8]) -> SendRecord {
+        let t_open = self.tb.now_us();
+        if self.dry {
+            return SendRecord { t_open_us: t_open, t_done_us: t_open, err: None, dry: true, reconnected: false };
+        }
+        let first = Self::write(conn, wire).await;
+        if first.is_ok() {
+            return SendRecord { t_open_us: t_open, t_done_us: self.tb.now_us(), err: None, dry: false, reconnected: false };
+        }
+        if conn.close_reason().is_none() {
+            let err = first.err().map(|e| e.to_string());
+            return SendRecord { t_open_us: t_open, t_done_us: self.tb.now_us(), err, dry: false, reconnected: false };
+        }
+        match self.connection(addr).await {
+            Ok((fresh, _)) => {
+                *conn = fresh;
+                let t_retry = self.tb.now_us();
+                let res = Self::write(conn, wire).await;
+                SendRecord { t_open_us: t_retry, t_done_us: self.tb.now_us(), err: res.err().map(|e| e.to_string()), dry: false, reconnected: true }
+            }
+            Err(e) => SendRecord { t_open_us: t_open, t_done_us: self.tb.now_us(), err: Some(format!("reconnect failed: {e}")), dry: false, reconnected: true },
         }
     }
 }

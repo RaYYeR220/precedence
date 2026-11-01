@@ -9,7 +9,7 @@ use crate::keys;
 use crate::ledger::Ledger;
 use crate::plan::{self, Path as SendPath, PlanParams, PlannedBatch};
 use crate::rpc::Rpc;
-use crate::send::{self, quic::QuicSender, SendRecord};
+use crate::send::{self, quic::QuicPool, SendRecord};
 use crate::snapshot::{self, Snapshot};
 use crate::targets::{pick_targets, Selection};
 use crate::tx::{self, ProbeSpec};
@@ -38,6 +38,7 @@ pub struct RunConfig {
     pub ws_url: String,
     pub poll_url: String,
     pub poll_hz: f64,
+    pub aux_rpc_url: String,
     pub grpc_url: Option<String>,
     pub cap_lamports: u64,
     pub cu_limit: u32,
@@ -68,6 +69,9 @@ pub struct RunArgs {
     pub ws_url: String,
     pub poll_url: String,
     pub poll_hz: f64,
+    /// Second RPC for blockhashes and block collection, so the public
+    /// endpoint's per-IP limits never sit on a batch's critical path.
+    pub aux_rpc_url: String,
     pub grpc_url: Option<String>,
     pub grpc_token: Option<String>,
     pub cap_lamports: u64,
@@ -115,7 +119,11 @@ fn new_run_id(tb: &TimeBase) -> String {
 }
 
 struct Ctx {
+    /// Blockhashes (auxiliary endpoint).
     rpc: Rpc,
+    /// The RPC path's `sendTransaction` goes to the public mainnet endpoint, never
+    /// to a provider that reroutes transactions through private relays.
+    send_rpc: Rpc,
     tb: TimeBase,
     clock: SharedClock,
     payers: Vec<Keypair>,
@@ -128,6 +136,7 @@ struct Ctx {
     cu_limit: u32,
     loaded_data_limit: u32,
     cap_hit: AtomicBool,
+    quic: QuicPool,
     /// Latest blockhash and its slot, refreshed in the background so that
     /// fetching one is never on a batch's critical path.
     blockhash: Mutex<Option<(String, u64)>>,
@@ -212,8 +221,10 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
         ctx.skip(b, "no_clock", |_| {});
         return Ok(());
     };
-    // Start preparing 2.5 s ahead: connect, fetch a blockhash, sign.
-    let prepare_at = first.saturating_sub(2_500_000);
+    // Start preparing 1.2 s ahead: take the cached blockhash, sign, make sure
+    // the pooled connection is alive. Idle unstaked connections get pruned,
+    // so we do not open them earlier than needed.
+    let prepare_at = first.saturating_sub(1_200_000);
     let now = ctx.tb.now_us();
     if now + 400_000 > first {
         ctx.skip(b, "late_before_prepare", |_| {});
@@ -230,17 +241,18 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
     let mut quic = None;
     let mut path_info = None;
     if b.path == SendPath::Quic {
-        let addr = b.tpu_quic.parse().context("tpu address")?;
-        let mut s = QuicSender::new(ctx.tb, ctx.dry)?;
-        match s.connect(addr).await {
-            Ok(info) => path_info = Some(info),
+        let addr: std::net::SocketAddr = b.tpu_quic.parse().context("tpu address")?;
+        match ctx.quic.connection(addr).await {
+            Ok((conn, info)) => {
+                path_info = Some(info);
+                quic = Some((addr, conn));
+            }
             Err(e) => {
                 ctx.skip(b, "connect", |_| {});
                 ctx.log.write(&json!({"batch_id": b.batch_id, "connect_error": e.to_string()}));
                 return Ok(());
             }
         }
-        quic = Some(s);
     }
     let cached = ctx.blockhash.lock().unwrap().clone();
     let (bh, bh_slot) = match cached {
@@ -306,11 +318,17 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
     let mut records: Vec<Option<SendRecord>> = vec![None; built.len()];
     match b.path {
         SendPath::Quic => {
-            let s = quic.as_ref().unwrap();
+            let (addr, conn) = quic.as_mut().unwrap();
+            // The server may have pruned the connection while we prepared.
+            if conn.close_reason().is_some() {
+                if let Ok((fresh, _)) = ctx.quic.connection(*addr).await {
+                    *conn = fresh;
+                }
+            }
             for &i in &order {
                 let at = first as i64 + built[i].0.send_offset_us;
                 send::wait_until(ctx.tb.instant_at(at as u64)).await;
-                records[i] = Some(s.send(&built[i].2).await);
+                records[i] = Some(ctx.quic.send(*addr, conn, &built[i].2).await);
             }
         }
         SendPath::Rpc => {
@@ -318,7 +336,7 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
             for &i in &order {
                 let at = first as i64 + built[i].0.send_offset_us;
                 send::wait_until(ctx.tb.instant_at(at as u64)).await;
-                let (rpc, tb, wire, dry) = (ctx.rpc.clone(), ctx.tb, built[i].2.clone(), ctx.dry);
+                let (rpc, tb, wire, dry) = (ctx.send_rpc.clone(), ctx.tb, built[i].2.clone(), ctx.dry);
                 handles.push((i, tokio::spawn(async move { send::send_via_rpc(&rpc, &tb, &wire, dry).await })));
             }
             for (i, h) in handles {
@@ -327,6 +345,7 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
                     t_done_us: 0,
                     err: Some(e.to_string()),
                     dry: ctx.dry,
+                    reconnected: false,
                 }));
             }
         }
@@ -350,10 +369,11 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
             "sent_done_unix_us": if r.dry { None } else { Some(r.t_done_us) },
             "dry_send_unix_us": if r.dry { Some(r.t_open_us) } else { None },
             "send_err": r.err,
+            "reconnected": r.reconnected,
             "wire_len": wire.len(),
         }));
     }
-    let rtt_now = quic.as_ref().and_then(|q| q.rtt_us());
+    let rtt_now = quic.as_ref().map(|(_, c)| c.rtt().as_micros() as u64);
     ctx.windows.write(&WindowRecord {
         batch_id: b.batch_id,
         target: &b.target,
@@ -376,11 +396,7 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
         blockhash_slot: Some(bh_slot),
         status: if ctx.dry { "dry".into() } else { "sent".into() },
     });
-    // Keep the connection open briefly so the last streams are delivered.
-    if let Some(mut s) = quic {
-        tokio::time::sleep(Duration::from_millis(1_500)).await;
-        s.close().await;
-    }
+    // The pooled connection stays open for the next batch to the same TPU.
     Ok(())
 }
 
@@ -398,6 +414,7 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         Err(why) => tracing::info!(%run_id, %why, "dry run: nothing will be sent"),
     }
     let rpc = Rpc::new(&args.rpc_url);
+    let aux = Rpc::new(&args.aux_rpc_url).with_spacing("getBlock", Duration::from_millis(150));
     let snap: Snapshot = snapshot::take_snapshot(&rpc, &run_dir.join("snapshot")).await?;
     if let Err(e) = snapshot::check_regime(&snap.features) {
         if !dry {
@@ -414,6 +431,7 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         ws_url: args.ws_url.clone(),
         poll_url: args.poll_url.clone(),
         poll_hz: args.poll_hz,
+        aux_rpc_url: args.aux_rpc_url.clone(),
         grpc_url: args.grpc_url.clone(),
         cap_lamports: args.cap_lamports,
         cu_limit: args.cu_limit,
@@ -440,7 +458,11 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
     let clock: SharedClock = Arc::new(Mutex::new(SlotClock::new()));
     let slots_log = JsonlWriter::open(run_dir.join("slots.jsonl"))?;
     let feed = tokio::spawn(run_ws_feed(args.ws_url.clone(), clock.clone(), tb, Some(slots_log.clone())));
-    let poller = tokio::spawn(crate::clock::run_poll_feed(args.poll_url.clone(), clock.clone(), tb, args.poll_hz, Some(slots_log)));
+    // With an entry stream the clock has exact, current first-shred times;
+    // polling would only add load on the public endpoint.
+    let poller = args.grpc_url.is_none().then(|| {
+        tokio::spawn(crate::clock::run_poll_feed(args.poll_url.clone(), clock.clone(), tb, args.poll_hz, Some(slots_log)))
+    });
     // The entry stream starts now: its first-shred events (with the provider's
     // timestamps) are the most current slot clock we have.
     let wanted: crate::yellowstone::Wanted = Default::default();
@@ -500,7 +522,8 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         Some(Mutex::new(Ledger::open(args.data_dir.join("ledger").join("spend.jsonl"), args.cap_lamports, &run_id)?))
     };
     let ctx = Arc::new(Ctx {
-        rpc: rpc.clone(),
+        rpc: aux.clone(),
+        send_rpc: rpc.clone(),
         tb,
         clock: clock.clone(),
         payers: keys::derive_payers(&master, args.payer_pool),
@@ -513,6 +536,7 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         cu_limit: args.cu_limit,
         loaded_data_limit: args.loaded_data_limit,
         cap_hit: AtomicBool::new(false),
+        quic: QuicPool::new(tb, dry)?,
         blockhash: Mutex::new(None),
     });
     let bh_refresh = {
@@ -565,9 +589,11 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         r.abort();
     }
     feed.abort();
-    poller.abort();
+    if let Some(p) = poller {
+        p.abort();
+    }
     if !dry {
-        let summary = crate::collect::collect(&rpc, &args.data_dir, &run_dir).await?;
+        let summary = crate::collect::collect(&aux, &args.data_dir, &run_dir).await?;
         write_json(run_dir.join("collect.json"), &summary)?;
         settle(&ctx, &run_dir).await?;
     }

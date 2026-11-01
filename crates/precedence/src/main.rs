@@ -43,6 +43,9 @@ enum Cmd {
         poll_rpc: String,
         #[arg(long, default_value_t = 3.5)]
         poll_hz: f64,
+        /// RPC for blockhashes and block collection (needs v1 getBlock and recent history).
+        #[arg(long, env = "PRECEDENCE_AUX_RPC", default_value = "https://solana-rpc.publicnode.com")]
+        aux_rpc: String,
         /// Yellowstone gRPC endpoint for entry boundaries (optional).
         #[arg(long, env = "PRECEDENCE_GRPC")]
         grpc: Option<String>,
@@ -180,6 +183,7 @@ async fn main() -> Result<()> {
             ws,
             poll_rpc,
             poll_hz,
+            aux_rpc,
             grpc,
             grpc_token,
             seed,
@@ -203,6 +207,7 @@ async fn main() -> Result<()> {
                 ws_url: ws,
                 poll_url: poll_rpc,
                 poll_hz,
+                aux_rpc_url: aux_rpc,
                 grpc_url: grpc.filter(|s| !s.is_empty()),
                 grpc_token: grpc_token.filter(|s| !s.is_empty()),
                 cap_lamports: common.cap,
