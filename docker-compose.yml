@@ -66,10 +66,14 @@ services:
       context: .
       target: localnet
     image: precedence-localnet:local
+    # The validator's file layer uses io_uring, which Docker's default seccomp profile blocks.
+    security_opt:
+      - seccomp:unconfined
     ulimits:
       nofile: 1000000
     volumes:
       - ./localnet:/work/localnet
+    command: ["sh", "/work/localnet/run.sh"]
 
   test:
     profiles: ["test"]

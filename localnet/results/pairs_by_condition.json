@@ -1,0 +1,694 @@
+{
+ "batch_tau_by_family": {
+  "Agave": {
+   "ladder": {
+    "tau_priority": {
+     "ci": [
+      0.083333,
+      0.541667
+     ],
+     "mean": 0.297619,
+     "n": 12,
+     "n_negative": 4,
+     "n_positive": 8,
+     "sign_test_p": 0.387695
+    },
+    "tau_send": {
+     "ci": [
+      0.259971,
+      0.681942
+     ],
+     "mean": 0.483837,
+     "n": 12,
+     "n_negative": 2,
+     "n_positive": 10,
+     "sign_test_p": 0.038574
+    }
+   },
+   "sweep": {
+    "tau_priority": {
+     "ci": [
+      -1.0,
+      -1.0
+     ],
+     "mean": -1.0,
+     "n": 6,
+     "n_negative": 6,
+     "n_positive": 0,
+     "sign_test_p": 0.03125
+    },
+    "tau_send": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "mean": 1.0,
+     "n": 6,
+     "n_negative": 0,
+     "n_positive": 6,
+     "sign_test_p": 0.03125
+    }
+   },
+   "tie": {
+    "tau_priority": {
+     "ci": [
+      null,
+      null
+     ],
+     "mean": null,
+     "n": 0,
+     "n_negative": 0,
+     "n_positive": 0,
+     "sign_test_p": null
+    },
+    "tau_send": {
+     "ci": [
+      0.791667,
+      0.988095
+     ],
+     "mean": 0.916667,
+     "n": 12,
+     "n_negative": 0,
+     "n_positive": 12,
+     "sign_test_p": 0.000488
+    }
+   }
+  }
+ },
+ "by_family": {
+  "Agave": {
+   "all": {
+    "earlier_sent_first": {
+     "ci": [
+      0.852086,
+      0.96
+     ],
+     "n_batches": 30,
+     "n_pairs": 1028,
+     "p_perm": 0.001,
+     "rate": 0.912451
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.155231,
+      0.496783
+     ],
+     "n_batches": 18,
+     "n_pairs": 721,
+     "p_perm": 0.001,
+     "rate": 0.302358
+    }
+   },
+   "ladder/all": {
+    "earlier_sent_first": {
+     "ci": [
+      0.633987,
+      0.858086
+     ],
+     "n_batches": 12,
+     "n_pairs": 307,
+     "p_perm": 0.001,
+     "rate": 0.752443
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.532738,
+      0.764881
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.64881
+    },
+    "n_batch_blocks": 12
+   },
+   "ladder/distinct": {
+    "earlier_sent_first": {
+     "ci": [
+      0.572368,
+      0.813333
+     ],
+     "n_batches": 6,
+     "n_pairs": 152,
+     "p_perm": 0.008,
+     "rate": 0.690789
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.440476,
+      0.672619
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.53,
+     "rate": 0.541667
+    },
+    "n_batch_blocks": 6
+   },
+   "ladder/shared": {
+    "earlier_sent_first": {
+     "ci": [
+      0.615385,
+      0.953947
+     ],
+     "n_batches": 6,
+     "n_pairs": 155,
+     "p_perm": 0.001,
+     "rate": 0.812903
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.60119,
+      0.910714
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.001,
+     "rate": 0.755952
+    },
+    "n_batch_blocks": 6
+   },
+   "sweep/all": {
+    "earlier_sent_first": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 1.0
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 0.0
+    },
+    "n_batch_blocks": 6
+   },
+   "sweep/distinct": {
+    "earlier_sent_first": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 1.0
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 0.0
+    },
+    "n_batch_blocks": 6
+   },
+   "tie/all": {
+    "earlier_sent_first": {
+     "ci": [
+      0.89881,
+      0.994048
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.958333
+    },
+    "higher_priority_first": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "n_batch_blocks": 12
+   },
+   "tie/distinct": {
+    "earlier_sent_first": {
+     "ci": [
+      0.803571,
+      0.982143
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.001,
+     "rate": 0.916667
+    },
+    "higher_priority_first": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "n_batch_blocks": 6
+   },
+   "tie/shared": {
+    "earlier_sent_first": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.001,
+     "rate": 1.0
+    },
+    "higher_priority_first": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "n_batch_blocks": 6
+   }
+  }
+ },
+ "by_validator": {
+  "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ": {
+   "all": {
+    "earlier_sent_first": {
+     "ci": [
+      0.848154,
+      0.959028
+     ],
+     "n_batches": 30,
+     "n_pairs": 1028,
+     "p_perm": 0.001,
+     "rate": 0.912451
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.158309,
+      0.503516
+     ],
+     "n_batches": 18,
+     "n_pairs": 721,
+     "p_perm": 0.001,
+     "rate": 0.302358
+    }
+   },
+   "ladder/all": {
+    "earlier_sent_first": {
+     "ci": [
+      0.628289,
+      0.860853
+     ],
+     "n_batches": 12,
+     "n_pairs": 307,
+     "p_perm": 0.001,
+     "rate": 0.752443
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.535714,
+      0.764881
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.64881
+    },
+    "n_batch_blocks": 12
+   },
+   "ladder/distinct": {
+    "earlier_sent_first": {
+     "ci": [
+      0.566645,
+      0.809211
+     ],
+     "n_batches": 6,
+     "n_pairs": 152,
+     "p_perm": 0.002,
+     "rate": 0.690789
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.440476,
+      0.672619
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.535,
+     "rate": 0.541667
+    },
+    "n_batch_blocks": 6
+   },
+   "ladder/shared": {
+    "earlier_sent_first": {
+     "ci": [
+      0.624204,
+      0.96
+     ],
+     "n_batches": 6,
+     "n_pairs": 155,
+     "p_perm": 0.001,
+     "rate": 0.812903
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.60119,
+      0.910714
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.001,
+     "rate": 0.755952
+    },
+    "n_batch_blocks": 6
+   },
+   "sweep/all": {
+    "earlier_sent_first": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 1.0
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 0.0
+    },
+    "n_batch_blocks": 6
+   },
+   "sweep/distinct": {
+    "earlier_sent_first": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 1.0
+    },
+    "higher_priority_first": {
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 385,
+     "p_perm": 0.001,
+     "rate": 0.0
+    },
+    "n_batch_blocks": 6
+   },
+   "tie/all": {
+    "earlier_sent_first": {
+     "ci": [
+      0.89881,
+      0.994048
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.958333
+    },
+    "higher_priority_first": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "n_batch_blocks": 12
+   },
+   "tie/distinct": {
+    "earlier_sent_first": {
+     "ci": [
+      0.803571,
+      0.982143
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.001,
+     "rate": 0.916667
+    },
+    "higher_priority_first": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "n_batch_blocks": 6
+   },
+   "tie/shared": {
+    "earlier_sent_first": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 6,
+     "n_pairs": 168,
+     "p_perm": 0.001,
+     "rate": 1.0
+    },
+    "higher_priority_first": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "n_batch_blocks": 6
+   }
+  }
+ },
+ "definitions": {
+  "ci": "95% percentile interval, bootstrap over batches (windows)",
+  "dose_response": "higher_priority_first among pairs where the higher-priority probe was sent later by the bucket's gap",
+  "earlier_sent_first": "pairs with different send times: share where the earlier-sent probe precedes",
+  "higher_priority_first": "pairs with different agave_priority: share where the higher-priority probe precedes",
+  "p_perm": "two-sided permutation p-value, positions permuted within each batch-block (null rate 0.5)",
+  "tau_priority": "Kendall tau_b of priority vs position per batch-block, +1 = higher priority earlier",
+  "tau_send": "Kendall tau_b of send time vs position per batch-block, +1 = earlier sent earlier",
+  "units": "attribution by block producer; family = producer clientId in the snapshot nearest the window"
+ },
+ "dose_response_by_family": {
+  "Agave": [
+   {
+    "bucket": "hp_sent_earlier_or_same",
+    "ci": [
+     0.681202,
+     0.913466
+    ],
+    "n_batches": 12,
+    "n_pairs": 207,
+    "p_perm": 0.001,
+    "rate": 0.811594
+   },
+   {
+    "bucket": "<1ms",
+    "ci": [
+     0.18745,
+     0.597053
+    ],
+    "n_batches": 12,
+    "n_pairs": 129,
+    "p_perm": 0.101,
+    "rate": 0.387597
+   },
+   {
+    "bucket": "1-5ms",
+    "ci": [
+     null,
+     null
+    ],
+    "n_batches": 0,
+    "n_pairs": 0,
+    "p_perm": null,
+    "rate": null
+   },
+   {
+    "bucket": "5-20ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 6,
+    "n_pairs": 54,
+    "p_perm": 0.001,
+    "rate": 0.0
+   },
+   {
+    "bucket": "20-50ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 6,
+    "n_pairs": 140,
+    "p_perm": 0.001,
+    "rate": 0.0
+   },
+   {
+    "bucket": "50-150ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 6,
+    "n_pairs": 175,
+    "p_perm": 0.001,
+    "rate": 0.0
+   },
+   {
+    "bucket": ">150ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 2,
+    "n_pairs": 16,
+    "p_perm": 0.006,
+    "rate": 0.0
+   }
+  ],
+  "all": [
+   {
+    "bucket": "hp_sent_earlier_or_same",
+    "ci": [
+     0.68932,
+     0.911508
+    ],
+    "n_batches": 12,
+    "n_pairs": 207,
+    "p_perm": 0.001,
+    "rate": 0.811594
+   },
+   {
+    "bucket": "<1ms",
+    "ci": [
+     0.188021,
+     0.614188
+    ],
+    "n_batches": 12,
+    "n_pairs": 129,
+    "p_perm": 0.086,
+    "rate": 0.387597
+   },
+   {
+    "bucket": "1-5ms",
+    "ci": [
+     null,
+     null
+    ],
+    "n_batches": 0,
+    "n_pairs": 0,
+    "p_perm": null,
+    "rate": null
+   },
+   {
+    "bucket": "5-20ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 6,
+    "n_pairs": 54,
+    "p_perm": 0.001,
+    "rate": 0.0
+   },
+   {
+    "bucket": "20-50ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 6,
+    "n_pairs": 140,
+    "p_perm": 0.001,
+    "rate": 0.0
+   },
+   {
+    "bucket": "50-150ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 6,
+    "n_pairs": 175,
+    "p_perm": 0.001,
+    "rate": 0.0
+   },
+   {
+    "bucket": ">150ms",
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n_batches": 2,
+    "n_pairs": 16,
+    "p_perm": 0.003,
+    "rate": 0.0
+   }
+  ]
+ },
+ "format_effect": {
+  "Agave": {
+   "v1_first_same_fee": {
+    "ci": [
+     null,
+     null
+    ],
+    "n_batches": 0,
+    "n_pairs": 0,
+    "p_perm": null,
+    "rate": null
+   }
+  },
+  "all": {
+   "v1_first_same_fee": {
+    "ci": [
+     null,
+     null
+    ],
+    "n_batches": 0,
+    "n_pairs": 0,
+    "p_perm": null,
+    "rate": null
+   }
+  }
+ }
+}

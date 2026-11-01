@@ -1,0 +1,175 @@
+{
+ "controls": {
+  "inert_p_perm": 0.544,
+  "inert_rate": 0.528646,
+  "shuffled_mean_tau_priority": -0.002202,
+  "shuffled_share_random": 1.0,
+  "shuffled_sign_test_rejection_rate": 0.02
+ },
+ "families": {
+  "Agave": {
+   "best_model": "fifo",
+   "best_rule": "fifo",
+   "component": "arrival order: no priority pass reached our probes",
+   "concordance": 0.9035,
+   "concordance_ci": [
+    0.839623,
+    0.955439
+   ],
+   "indistinguishable_from": [],
+   "key_rates": {
+    "earlier_sent_first_tie": {
+     "ci": [
+      0.895833,
+      0.994048
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.958333
+    },
+    "higher_priority_first_ladder_format": {
+     "ci": [
+      0.541667,
+      0.77381
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.003,
+     "rate": 0.64881
+    }
+   },
+   "min_detectable": {
+    "concordance_mde": 0.59686,
+    "theta_mde": 0.15
+   },
+   "n_batch_blocks": 30,
+   "n_landed_probes": 264,
+   "n_pairs": 1057,
+   "n_validators": 1,
+   "n_windows": 30,
+   "orderer_class": "local-greedy",
+   "p_perm": 0.001,
+   "reference_model": "fifo",
+   "theta": 1.106299,
+   "theta_ci": [
+    0.759958,
+    1.701324
+   ],
+   "threads_reorder": false,
+   "validator_rules": {
+    "fifo": 1
+   },
+   "verdict": "rule",
+   "verdict_text": "arrival order (earliest sent first); concordance 0.904 [0.840, 0.955], theta 1.106, p=0.001",
+   "w_ms": null
+  }
+ },
+ "fingerprint": {
+  "validator_level": {
+   "baseline_accuracy": null,
+   "baseline_balanced_accuracy": null,
+   "chance_majority": null,
+   "chance_uniform": null,
+   "n_rows": 1,
+   "n_validators": 1,
+   "probe_accuracy": null,
+   "probe_balanced_accuracy": null
+  },
+  "window_level": {
+   "baseline_accuracy": null,
+   "baseline_balanced_accuracy": null,
+   "chance_majority": null,
+   "chance_uniform": null,
+   "n_rows": 30,
+   "n_validators": 1,
+   "probe_accuracy": null,
+   "probe_balanced_accuracy": null
+  }
+ },
+ "inputs": {
+  "analysis_version": "0.1.0",
+  "issues": [],
+  "n_batch_blocks": 30,
+  "n_blocks": 31,
+  "n_pairs": 1057,
+  "n_probes": 264,
+  "n_probes_landed": 264,
+  "n_probes_sent": 264,
+  "n_windows_planned": 30,
+  "n_windows_sent": 30,
+  "n_windows_with_probes": 30,
+  "runs": [
+   {
+    "design_sha256": null,
+    "mode": "localnet",
+    "run_id": "localnet-000001"
+   }
+  ],
+  "settings": {
+   "alpha": 0.05,
+   "n_boot": 2000,
+   "n_perm": 999,
+   "power_sims": 200
+  }
+ },
+ "validators": {
+  "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ": {
+   "best_model": "fifo",
+   "best_rule": "fifo",
+   "component": "arrival order: no priority pass reached our probes",
+   "concordance": 0.9035,
+   "concordance_ci": [
+    0.83822,
+    0.9527
+   ],
+   "families_seen": [
+    "Agave"
+   ],
+   "family": "Agave",
+   "indistinguishable_from": [],
+   "key_rates": {
+    "earlier_sent_first_tie": {
+     "ci": [
+      0.895833,
+      0.994048
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.958333
+    },
+    "higher_priority_first_ladder_format": {
+     "ci": [
+      0.541592,
+      0.767857
+     ],
+     "n_batches": 12,
+     "n_pairs": 336,
+     "p_perm": 0.001,
+     "rate": 0.64881
+    }
+   },
+   "min_detectable": {
+    "concordance_mde": 0.59686,
+    "theta_mde": 0.15
+   },
+   "n_batch_blocks": 30,
+   "n_landed_probes": 264,
+   "n_pairs": 1057,
+   "n_windows": 30,
+   "orderer_class": "local-greedy",
+   "p_perm": 0.001,
+   "reference_model": "fifo",
+   "theta": 1.106299,
+   "theta_ci": [
+    0.75996,
+    1.659138
+   ],
+   "threads_reorder": false,
+   "verdict": "rule",
+   "verdict_text": "arrival order (earliest sent first); concordance 0.904 [0.838, 0.953], theta 1.106, p=0.001",
+   "w_ms": null
+  }
+ }
+}

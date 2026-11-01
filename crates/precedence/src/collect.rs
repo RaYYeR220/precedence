@@ -14,6 +14,10 @@ pub const COMPUTE_BUDGET: &str = "ComputeBudget111111111111111111111111111111";
 pub struct TrimmedTx {
     pub i: u32,
     pub sig: String,
+    /// Signatures after the first (multi-signer transactions). Needed to
+    /// recompute entry hashes, which commit to every signature.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub more_sigs: Vec<String>,
     pub version: String,
     pub fee: u64,
     pub cost_units: Option<u64>,
@@ -108,6 +112,7 @@ pub fn trim_block(slot: u64, raw: &Value) -> TrimmedBlock {
                     TrimmedTx {
                         i: i as u32,
                         sig: sigs.first().and_then(|s| s.as_str()).unwrap_or("").to_string(),
+                        more_sigs: sigs.iter().skip(1).filter_map(|s| s.as_str().map(str::to_string)).collect(),
                         version,
                         fee,
                         cost_units: meta["costUnits"].as_u64(),
@@ -165,20 +170,26 @@ pub async fn collect(rpc: &Rpc, data_dir: &Path, run_dir: &Path) -> Result<Colle
     }
     write_json(run_dir.join("statuses.json"), &map)?;
     let mut fetched = 0;
-    let mut missing = Vec::new();
-    for &slot in &slots {
-        let path = block_path(data_dir, slot);
-        if path.exists() {
-            continue;
-        }
-        match rpc.block(slot).await? {
-            Some(raw) => {
-                write_json_gz(&path, &trim_block(slot, &raw))?;
-                fetched += 1;
+    let mut pending: Vec<u64> = slots.iter().copied().filter(|s| !block_path(data_dir, *s).exists()).collect();
+    // A block becomes available once finalized; retry the stragglers.
+    for attempt in 0..6 {
+        let mut still = Vec::new();
+        for &slot in &pending {
+            match rpc.block(slot).await? {
+                Some(raw) => {
+                    write_json_gz(block_path(data_dir, slot), &trim_block(slot, &raw))?;
+                    fetched += 1;
+                }
+                None => still.push(slot),
             }
-            None => missing.push(slot),
         }
+        pending = still;
+        if pending.is_empty() || attempt == 5 {
+            break;
+        }
+        tokio::time::sleep(std::time::Duration::from_secs(5)).await;
     }
+    let missing = pending;
     let landed = map.values().filter(|v| !v.is_null()).count();
     tracing::info!(probes = sigs.len(), landed, blocks = slots.len(), fetched, "collected");
     Ok(CollectSummary { probes_sent: sigs.len(), landed, blocks: slots.len(), fetched, missing })
@@ -223,6 +234,8 @@ mod tests {
         assert_eq!((b.txs[0].priority_fee, b.txs[0].cu_limit), (150, Some(7000)));
         assert_eq!(b.txs[0].writable, vec!["P0", "W0"]);
         assert_eq!(b.txs[1].version, "legacy");
+        assert_eq!(b.txs[1].more_sigs, vec!["S1b"]);
+        assert!(b.txs[0].more_sigs.is_empty());
         assert_eq!(b.txs[1].priority_fee, 0);
         assert_eq!(b.txs[1].cu_limit, Some(200_000));
         assert_eq!(b.txs[1].writable, vec!["P1", "L"]);

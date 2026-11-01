@@ -1,0 +1,33 @@
+{
+ "method": "multinomial logistic regression (impute 0 + missing indicators, standardise), leave-one-validator-out",
+ "validator_level": {
+  "accuracy": null,
+  "classes": [
+   "local-greedy"
+  ],
+  "features": [
+   "block_spearman_priority_index",
+   "block_adjacent_monotonicity",
+   "block_n_tx",
+   "block_share_zero_priority"
+  ],
+  "n_rows": 1,
+  "n_validators": 1,
+  "note": "needs at least two classes and three validators"
+ },
+ "window_level": {
+  "accuracy": null,
+  "classes": [
+   "local-greedy"
+  ],
+  "features": [
+   "block_spearman_priority_index",
+   "block_adjacent_monotonicity",
+   "block_n_tx",
+   "block_share_zero_priority"
+  ],
+  "n_rows": 30,
+  "n_validators": 1,
+  "note": "needs at least two classes and three validators"
+ }
+}

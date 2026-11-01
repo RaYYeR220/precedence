@@ -1,0 +1,59 @@
+{
+ "method": "multinomial logistic regression (impute 0 + missing indicators, standardise), leave-one-validator-out",
+ "validator_level": {
+  "accuracy": null,
+  "classes": [
+   "local-greedy"
+  ],
+  "features": [
+   "tau_priority@ladder+format",
+   "conc_fifo@ladder+format",
+   "tau_send@tie",
+   "conc_priority_lifo_ties@tie",
+   "tau_send@sweep",
+   "batched_gain@sweep+ladder",
+   "inclusion@ladder+tie+sweep+format",
+   "spill_rate@ladder+tie+sweep+format",
+   "mean_slot_in_window@ladder+tie+sweep+format",
+   "mean_entry_size@ladder+tie+sweep+format",
+   "share_single_tx_entry@ladder+tie+sweep+format",
+   "arm_gap_priority"
+  ],
+  "n_rows": 1,
+  "n_validators": 1,
+  "note": "needs at least two classes and three validators"
+ },
+ "window_level": {
+  "accuracy": null,
+  "classes": [
+   "local-greedy"
+  ],
+  "features": [
+   "kind_ladder",
+   "kind_tie",
+   "kind_sweep",
+   "kind_format",
+   "arm_shared",
+   "path_rpc",
+   "inclusion",
+   "spill_rate",
+   "n_slots",
+   "mean_slot_in_window",
+   "tau_priority",
+   "tau_send",
+   "conc_fifo",
+   "conc_priority_fifo_ties",
+   "conc_priority_lifo_ties",
+   "best_is_fifo",
+   "best_is_priority_fifo_ties",
+   "best_is_priority_lifo_ties",
+   "batched_gain",
+   "batched_best_w_ms",
+   "mean_entry_size",
+   "share_single_tx_entry"
+  ],
+  "n_rows": 30,
+  "n_validators": 1,
+  "note": "needs at least two classes and three validators"
+ }
+}

@@ -1,0 +1,527 @@
+{
+ "families": {
+  "Agave": {
+   "batched_check": null,
+   "best_model": "fifo",
+   "best_rule": "fifo",
+   "by_arm": {
+    "distinct": {
+     "concordance": 0.797619,
+     "concordance_ci": [
+      0.696429,
+      0.886905
+     ],
+     "n_pairs": 336
+    },
+    "kinds_compared": [
+     "ladder",
+     "tie"
+    ],
+    "shared": {
+     "concordance": 0.89881,
+     "concordance_ci": [
+      0.782738,
+      0.982143
+     ],
+     "n_pairs": 336
+    },
+    "shared_minus_distinct": {
+     "ci": [
+      -0.047693,
+      0.232143
+     ],
+     "value": 0.10119
+    },
+    "threads_reorder": false
+   },
+   "by_stratum": {
+    "ladder/distinct": {
+     "concordance": 0.678571,
+     "n_pairs": 168,
+     "theta": 0.329778
+    },
+    "ladder/shared": {
+     "concordance": 0.797619,
+     "n_pairs": 168,
+     "theta": 0.645884
+    },
+    "sweep/distinct": {
+     "concordance": 1.0,
+     "n_pairs": 385,
+     "theta": 12.0
+    },
+    "tie/distinct": {
+     "concordance": 0.916667,
+     "n_pairs": 168,
+     "theta": 1.311548
+    },
+    "tie/shared": {
+     "concordance": 1.0,
+     "n_pairs": 168,
+     "theta": 12.0
+    }
+   },
+   "candidates": [
+    {
+     "aic": 288.304258,
+     "concordance": 0.9035,
+     "delta_aic": 0.0,
+     "distance": 102,
+     "id": "fifo",
+     "loglik": -139.152129,
+     "n_params": 5,
+     "rule": "fifo",
+     "theta_pooled": 1.106299
+    },
+    {
+     "aic": 540.317783,
+     "concordance": 0.51088,
+     "delta_aic": 252.013524,
+     "distance": 517,
+     "id": "priority_fifo_ties",
+     "loglik": -265.158891,
+     "n_params": 5,
+     "rule": "priority_fifo_ties",
+     "theta_pooled": 0.016455
+    },
+    {
+     "aic": 732.965081,
+     "concordance": 0.219489,
+     "delta_aic": 444.660823,
+     "distance": 825,
+     "id": "priority_lifo_ties",
+     "loglik": -361.48254,
+     "n_params": 5,
+     "rule": "priority_lifo_ties",
+     "theta_pooled": 0.0
+    },
+    {
+     "aic": 309.441821,
+     "concordance": 0.875118,
+     "delta_aic": 21.137562,
+     "distance": 132,
+     "id": "batched(w=5ms)",
+     "loglik": -147.72091,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.915089
+    },
+    {
+     "aic": 309.441821,
+     "concordance": 0.875118,
+     "delta_aic": 21.137562,
+     "distance": 132,
+     "id": "batched(w=10ms)",
+     "loglik": -147.72091,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.915089
+    },
+    {
+     "aic": 404.026167,
+     "concordance": 0.855251,
+     "delta_aic": 115.721909,
+     "distance": 153,
+     "id": "batched(w=20ms)",
+     "loglik": -195.013083,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.81046
+    },
+    {
+     "aic": 457.440257,
+     "concordance": 0.830653,
+     "delta_aic": 169.135999,
+     "distance": 179,
+     "id": "batched(w=30ms)",
+     "loglik": -221.720129,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.70299
+    },
+    {
+     "aic": 485.402756,
+     "concordance": 0.810785,
+     "delta_aic": 197.098498,
+     "distance": 200,
+     "id": "batched(w=40ms)",
+     "loglik": -235.701378,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.629207
+    },
+    {
+     "aic": 508.202312,
+     "concordance": 0.788079,
+     "delta_aic": 219.898054,
+     "distance": 224,
+     "id": "batched(w=50ms)",
+     "loglik": -247.101156,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.555497
+    },
+    {
+     "aic": 535.831803,
+     "concordance": 0.740776,
+     "delta_aic": 247.527545,
+     "distance": 274,
+     "id": "batched(w=75ms)",
+     "loglik": -260.915902,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.427774
+    },
+    {
+     "aic": 543.07562,
+     "concordance": 0.711447,
+     "delta_aic": 254.771361,
+     "distance": 305,
+     "id": "batched(w=100ms)",
+     "loglik": -264.53781,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.360936
+    },
+    {
+     "aic": 544.251829,
+     "concordance": 0.697256,
+     "delta_aic": 255.94757,
+     "distance": 320,
+     "id": "batched(w=150ms)",
+     "loglik": -265.125914,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.331087
+    },
+    {
+     "aic": 544.317783,
+     "concordance": 0.628193,
+     "delta_aic": 256.013524,
+     "distance": 393,
+     "id": "batched(w=200ms)",
+     "loglik": -265.158891,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.202228
+    },
+    {
+     "aic": 743.8977,
+     "concordance": null,
+     "delta_aic": 455.593442,
+     "distance": null,
+     "id": "random",
+     "loglik": -371.94885,
+     "n_params": 0,
+     "rule": "random",
+     "theta_pooled": 0.0
+    }
+   ],
+   "concordance": 0.9035,
+   "concordance_ci": [
+    0.839623,
+    0.955439
+   ],
+   "delta_aic_vs_random": 455.593442,
+   "indistinguishable_from": [],
+   "label": "family:Agave",
+   "lr_stat": 465.593442,
+   "n_batch_blocks": 30,
+   "n_batches": 30,
+   "n_pairs": 1057,
+   "n_validators": 1,
+   "p_lr_nominal": 0.0,
+   "p_perm": 0.001,
+   "phase_ms": {},
+   "reference_model": "fifo",
+   "theta": 1.106299,
+   "theta_ci": [
+    0.759958,
+    1.701324
+   ],
+   "verdict": "rule",
+   "verdict_text": "arrival order (earliest sent first); concordance 0.904 [0.840, 0.955], theta 1.106, p=0.001",
+   "w_ms": null
+  }
+ },
+ "method": {
+  "batched_check": "a selected batched rule is kept only if it beats the best core rule beyond its grid search (parametric bootstrap, alpha 0.05)",
+  "candidates": [
+   "fifo",
+   "priority_fifo_ties",
+   "priority_lifo_ties",
+   "batched(w=5ms)",
+   "batched(w=10ms)",
+   "batched(w=20ms)",
+   "batched(w=30ms)",
+   "batched(w=40ms)",
+   "batched(w=50ms)",
+   "batched(w=75ms)",
+   "batched(w=100ms)",
+   "batched(w=150ms)",
+   "batched(w=200ms)",
+   "random"
+  ],
+  "likelihood": "Mallows on Kendall distance, theta >= 0 by maximum likelihood, one theta per unit",
+  "phase_steps": 8,
+  "rule_vs_random": "permutation test of the AIC gap to random, positions permuted within batch-blocks; rule declared at p < 0.05",
+  "selection": "AIC; batched counts theta, w and one phase per validator",
+  "w_grid_ms": [
+   5,
+   10,
+   20,
+   30,
+   40,
+   50,
+   75,
+   100,
+   150,
+   200
+  ]
+ },
+ "validators": {
+  "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ": {
+   "batched_check": null,
+   "best_model": "fifo",
+   "best_rule": "fifo",
+   "by_arm": {
+    "distinct": {
+     "concordance": 0.797619,
+     "concordance_ci": [
+      0.699405,
+      0.895833
+     ],
+     "n_pairs": 336
+    },
+    "kinds_compared": [
+     "ladder",
+     "tie"
+    ],
+    "shared": {
+     "concordance": 0.89881,
+     "concordance_ci": [
+      0.77381,
+      0.982143
+     ],
+     "n_pairs": 336
+    },
+    "shared_minus_distinct": {
+     "ci": [
+      -0.056622,
+      0.229167
+     ],
+     "value": 0.10119
+    },
+    "threads_reorder": false
+   },
+   "by_stratum": {
+    "ladder/distinct": {
+     "concordance": 0.678571,
+     "n_pairs": 168,
+     "theta": 0.329778
+    },
+    "ladder/shared": {
+     "concordance": 0.797619,
+     "n_pairs": 168,
+     "theta": 0.645884
+    },
+    "sweep/distinct": {
+     "concordance": 1.0,
+     "n_pairs": 385,
+     "theta": 12.0
+    },
+    "tie/distinct": {
+     "concordance": 0.916667,
+     "n_pairs": 168,
+     "theta": 1.311548
+    },
+    "tie/shared": {
+     "concordance": 1.0,
+     "n_pairs": 168,
+     "theta": 12.0
+    }
+   },
+   "candidates": [
+    {
+     "aic": 288.304258,
+     "concordance": 0.9035,
+     "delta_aic": 0.0,
+     "distance": 102,
+     "id": "fifo",
+     "loglik": -139.152129,
+     "n_params": 5,
+     "rule": "fifo",
+     "theta_pooled": 1.106299
+    },
+    {
+     "aic": 540.317783,
+     "concordance": 0.51088,
+     "delta_aic": 252.013524,
+     "distance": 517,
+     "id": "priority_fifo_ties",
+     "loglik": -265.158891,
+     "n_params": 5,
+     "rule": "priority_fifo_ties",
+     "theta_pooled": 0.016455
+    },
+    {
+     "aic": 732.965081,
+     "concordance": 0.219489,
+     "delta_aic": 444.660823,
+     "distance": 825,
+     "id": "priority_lifo_ties",
+     "loglik": -361.48254,
+     "n_params": 5,
+     "rule": "priority_lifo_ties",
+     "theta_pooled": 0.0
+    },
+    {
+     "aic": 309.441821,
+     "concordance": 0.875118,
+     "delta_aic": 21.137562,
+     "distance": 132,
+     "id": "batched(w=5ms)",
+     "loglik": -147.72091,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.915089
+    },
+    {
+     "aic": 309.441821,
+     "concordance": 0.875118,
+     "delta_aic": 21.137562,
+     "distance": 132,
+     "id": "batched(w=10ms)",
+     "loglik": -147.72091,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.915089
+    },
+    {
+     "aic": 404.026167,
+     "concordance": 0.855251,
+     "delta_aic": 115.721909,
+     "distance": 153,
+     "id": "batched(w=20ms)",
+     "loglik": -195.013083,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.81046
+    },
+    {
+     "aic": 457.440257,
+     "concordance": 0.830653,
+     "delta_aic": 169.135999,
+     "distance": 179,
+     "id": "batched(w=30ms)",
+     "loglik": -221.720129,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.70299
+    },
+    {
+     "aic": 485.402756,
+     "concordance": 0.810785,
+     "delta_aic": 197.098498,
+     "distance": 200,
+     "id": "batched(w=40ms)",
+     "loglik": -235.701378,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.629207
+    },
+    {
+     "aic": 508.202312,
+     "concordance": 0.788079,
+     "delta_aic": 219.898054,
+     "distance": 224,
+     "id": "batched(w=50ms)",
+     "loglik": -247.101156,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.555497
+    },
+    {
+     "aic": 535.831803,
+     "concordance": 0.740776,
+     "delta_aic": 247.527545,
+     "distance": 274,
+     "id": "batched(w=75ms)",
+     "loglik": -260.915902,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.427774
+    },
+    {
+     "aic": 543.07562,
+     "concordance": 0.711447,
+     "delta_aic": 254.771361,
+     "distance": 305,
+     "id": "batched(w=100ms)",
+     "loglik": -264.53781,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.360936
+    },
+    {
+     "aic": 544.251829,
+     "concordance": 0.697256,
+     "delta_aic": 255.94757,
+     "distance": 320,
+     "id": "batched(w=150ms)",
+     "loglik": -265.125914,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.331087
+    },
+    {
+     "aic": 544.317783,
+     "concordance": 0.628193,
+     "delta_aic": 256.013524,
+     "distance": 393,
+     "id": "batched(w=200ms)",
+     "loglik": -265.158891,
+     "n_params": 7,
+     "rule": "batched",
+     "theta_pooled": 0.202228
+    },
+    {
+     "aic": 743.8977,
+     "concordance": null,
+     "delta_aic": 455.593442,
+     "distance": null,
+     "id": "random",
+     "loglik": -371.94885,
+     "n_params": 0,
+     "rule": "random",
+     "theta_pooled": 0.0
+    }
+   ],
+   "concordance": 0.9035,
+   "concordance_ci": [
+    0.83822,
+    0.9527
+   ],
+   "delta_aic_vs_random": 455.593442,
+   "indistinguishable_from": [],
+   "label": "validator:AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+   "lr_stat": 465.593442,
+   "n_batch_blocks": 30,
+   "n_batches": 30,
+   "n_pairs": 1057,
+   "n_validators": 1,
+   "p_lr_nominal": 0.0,
+   "p_perm": 0.001,
+   "phase_ms": {},
+   "reference_model": "fifo",
+   "theta": 1.106299,
+   "theta_ci": [
+    0.75996,
+    1.659138
+   ],
+   "verdict": "rule",
+   "verdict_text": "arrival order (earliest sent first); concordance 0.904 [0.838, 0.953], theta 1.106, p=0.001",
+   "w_ms": null
+  }
+ }
+}

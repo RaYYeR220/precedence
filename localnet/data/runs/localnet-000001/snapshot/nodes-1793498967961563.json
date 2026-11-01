@@ -1,0 +1,19 @@
+[
+  {
+    "clientId": "Agave",
+    "featureSet": 3383571666,
+    "gossip": "127.0.0.1:8000",
+    "pubkey": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+    "pubsub": "127.0.0.1:8900",
+    "rpc": "127.0.0.1:8899",
+    "serveRepair": "127.0.0.1:8008",
+    "shredVersion": 8501,
+    "tpu": null,
+    "tpuForwards": null,
+    "tpuForwardsQuic": "127.0.0.1:8003",
+    "tpuQuic": "127.0.0.1:8002",
+    "tpuVote": "127.0.0.1:8004",
+    "tvu": "127.0.0.1:8001",
+    "version": "4.3.2"
+  }
+]

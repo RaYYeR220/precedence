@@ -1,0 +1,96 @@
+{
+ "inert_variable": {
+  "expected": "rate ~ 0.5, tau ~ 0, p_perm uniform",
+  "odd_idx_first": {
+   "ci": [
+    0.445312,
+    0.614648
+   ],
+   "n_batches": 24,
+   "n_pairs": 384,
+   "p_perm": 0.544,
+   "rate": 0.528646
+  },
+  "tau_parity": {
+   "ci": [
+    -0.086617,
+    0.173234
+   ],
+   "mean": 0.043308,
+   "n": 24,
+   "n_negative": 9,
+   "n_positive": 12,
+   "sign_test_p": 0.663624
+  },
+  "variable": "idx parity (odd before even), ladder/tie/format batches"
+ },
+ "shuffled_positions": {
+  "expected": "mean tau ~ 0, sign test fires ~5% of shuffles, units select random except at the 5% test level",
+  "families_selected": {
+   "random": 3
+  },
+  "model_shuffles": 3,
+  "share_families_random": 1.0,
+  "share_validators_random": 1.0,
+  "tau_priority_ladder_format": {
+   "mean_tau": -0.002202,
+   "n_batch_blocks": 12,
+   "n_shuffles": 200,
+   "range_95": [
+    -0.167262,
+    0.14881
+   ],
+   "sign_test_rejection_rate": 0.02
+  },
+  "tau_send_tie_sweep": {
+   "mean_tau": 0.003827,
+   "n_batch_blocks": 18,
+   "n_shuffles": 200,
+   "range_95": [
+    -0.10615,
+    0.13368
+   ],
+   "sign_test_rejection_rate": 0.035
+  },
+  "validators_selected": {
+   "random": 3
+  }
+ },
+ "whole_block_observational": {
+  "Agave": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.549116,
+     0.797222
+    ],
+    "mean": 0.675253,
+    "n": 30
+   },
+   "n_blocks": 31,
+   "n_tx": {
+    "ci": [
+     8.806452,
+     10.225806
+    ],
+    "mean": 9.516129,
+    "n": 31
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.147987,
+     0.254622
+    ],
+    "mean": 0.188792,
+    "n": 31
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.450514,
+     -0.092423
+    ],
+    "mean": -0.27846,
+    "n": 30
+   }
+  }
+ }
+}

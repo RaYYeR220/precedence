@@ -13,6 +13,75 @@ use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::path::Path;
 
+/// One entry as recorded: where its transactions start, how many, how many
+/// hashes it carries, and its hash.
+#[derive(Debug, Clone, PartialEq)]
+pub struct EntryRec {
+    pub index: u64,
+    pub start: u64,
+    pub count: u64,
+    pub num_hashes: u64,
+    pub hash: String,
+}
+
+fn sha(parts: &[&[u8]]) -> [u8; 32] {
+    use sha2::Digest;
+    let mut h = sha2::Sha256::new();
+    for p in parts {
+        h.update(p);
+    }
+    h.finalize().into()
+}
+
+/// Merkle root over signatures, as the ledger commits to them (leaf prefix
+/// 0x00, node prefix 0x01, an odd node is paired with itself).
+pub fn signature_merkle_root(sigs: &[Vec<u8>]) -> [u8; 32] {
+    if sigs.is_empty() {
+        return [0u8; 32];
+    }
+    let mut level: Vec<[u8; 32]> = sigs.iter().map(|s| sha(&[&[0u8], s])).collect();
+    while level.len() > 1 {
+        level = level.chunks(2).map(|c| sha(&[&[1u8], &c[0], c.get(1).unwrap_or(&c[0])])).collect();
+    }
+    level[0]
+}
+
+/// Recompute the hash chain of a block's entries from its parent's
+/// blockhash and its own signatures. Returns the index of the first entry
+/// whose recorded hash differs, or `Ok(last_hash)`.
+pub fn recompute_chain(previous_blockhash: &str, block: &TrimmedBlock, entries: &[EntryRec]) -> Result<String, u64> {
+    let mut h: [u8; 32] = match bs58::decode(previous_blockhash).into_vec() {
+        Ok(v) if v.len() == 32 => v.try_into().unwrap(),
+        _ => return Err(0),
+    };
+    let mut sigs: Vec<Vec<Vec<u8>>> = Vec::with_capacity(block.txs.len());
+    for t in &block.txs {
+        let mut v = vec![bs58::decode(&t.sig).into_vec().unwrap_or_default()];
+        v.extend(t.more_sigs.iter().map(|s| bs58::decode(s).into_vec().unwrap_or_default()));
+        sigs.push(v);
+    }
+    let mut es = entries.to_vec();
+    es.sort_by_key(|e| e.index);
+    for e in &es {
+        if e.count == 0 {
+            for _ in 0..e.num_hashes {
+                h = sha(&[&h]);
+            }
+        } else {
+            for _ in 0..e.num_hashes.saturating_sub(1) {
+                h = sha(&[&h]);
+            }
+            let (s, c) = (e.start as usize, e.count as usize);
+            let flat: Vec<Vec<u8>> = sigs.get(s..s + c).map(|x| x.iter().flatten().cloned().collect()).unwrap_or_default();
+            h = sha(&[&h, &signature_merkle_root(&flat)]);
+        }
+        if bs58::encode(h).into_string() != e.hash {
+            return Err(e.index);
+        }
+    }
+    Ok(bs58::encode(h).into_string())
+}
+
 #[derive(Debug, Serialize, Default)]
 pub struct VerifyReport {
     pub rpc: String,
@@ -21,6 +90,11 @@ pub struct VerifyReport {
     pub mismatches: Vec<String>,
     pub entry_slots_checked: usize,
     pub entry_mismatches: Vec<String>,
+    /// Blocks whose entry hashes we recomputed from signatures, and of those
+    /// how many chains end exactly on the block's blockhash.
+    pub poh_chains_checked: usize,
+    pub poh_chains_reach_blockhash: usize,
+    pub poh_mismatches: Vec<String>,
 }
 
 /// Signatures of a block in ledger order, as `getBlock` returns them.
@@ -75,6 +149,7 @@ pub async fn verify(rpc: &Rpc, data_dir: &Path) -> Result<VerifyReport> {
     // probe signature -> slot, over all runs
     let mut by_slot: BTreeMap<u64, Vec<String>> = BTreeMap::new();
     let mut entries_by_slot: HashMap<u64, Vec<(u64, u64)>> = HashMap::new();
+    let mut entry_recs: HashMap<u64, Vec<EntryRec>> = HashMap::new();
     let runs = data_dir.join("runs");
     if runs.exists() {
         for run in std::fs::read_dir(&runs)? {
@@ -95,6 +170,15 @@ pub async fn verify(rpc: &Rpc, data_dir: &Path) -> Result<VerifyReport> {
                         (e["slot"].as_u64(), e["starting_transaction_index"].as_u64(), e["executed_transaction_count"].as_u64())
                     {
                         entries_by_slot.entry(slot).or_default().push((start, count));
+                        if let (Some(index), Some(nh), Some(hash)) = (e["index"].as_u64(), e["num_hashes"].as_u64(), e["hash"].as_str()) {
+                            entry_recs.entry(slot).or_default().push(EntryRec {
+                                index,
+                                start,
+                                count,
+                                num_hashes: nh,
+                                hash: hash.to_string(),
+                            });
+                        }
                     }
                 }
             }
@@ -121,6 +205,14 @@ pub async fn verify(rpc: &Rpc, data_dir: &Path) -> Result<VerifyReport> {
             if let Err(why) = entries_cover(stored.txs.len(), e) {
                 report.entry_mismatches.push(format!("slot {slot}: {why}"));
             }
+            if let Some(recs) = entry_recs.get(&slot) {
+                report.poh_chains_checked += 1;
+                match recompute_chain(&stored.previous_blockhash, &stored, recs) {
+                    Ok(last) if last == stored.blockhash => report.poh_chains_reach_blockhash += 1,
+                    Ok(last) => report.poh_mismatches.push(format!("slot {slot}: chain ends at {last}, blockhash {}", stored.blockhash)),
+                    Err(i) => report.poh_mismatches.push(format!("slot {slot}: entry {i} hash differs from its recomputation")),
+                }
+            }
         }
     }
     Ok(report)
@@ -136,6 +228,7 @@ mod tests {
         TrimmedTx {
             i,
             sig: sig.into(),
+            more_sigs: vec![],
             version: "1".into(),
             fee: 5000,
             cost_units: None,
@@ -181,6 +274,21 @@ mod tests {
     fn wrong_leader_is_reported() {
         let live = json!({"signatures": ["s0", "s1", "s2"], "rewards": [{"pubkey": "M", "rewardType": "Fee"}]});
         assert!(compare_block(&stored(), &live, &[]).iter().any(|e| e.contains("leader")));
+    }
+
+    #[test]
+    fn merkle_root_shapes() {
+        let a = vec![1u8; 64];
+        let b = vec![2u8; 64];
+        let c = vec![3u8; 64];
+        assert_eq!(signature_merkle_root(&[a.clone()]), sha(&[&[0u8], &a]));
+        let la = sha(&[&[0u8], &a]);
+        let lb = sha(&[&[0u8], &b]);
+        let lc = sha(&[&[0u8], &c]);
+        assert_eq!(signature_merkle_root(&[a.clone(), b.clone()]), sha(&[&[1u8], &la, &lb]));
+        let ab = sha(&[&[1u8], &la, &lb]);
+        let cc = sha(&[&[1u8], &lc, &lc]);
+        assert_eq!(signature_merkle_root(&[a, b, c]), sha(&[&[1u8], &ab, &cc]));
     }
 
     #[test]

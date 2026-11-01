@@ -1,0 +1,2808 @@
+{
+  "batches": [
+    {
+      "batch_id": 0,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 3,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 7,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 10,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 15111851994976402252,
+        "spacing_us": 0
+      },
+      "design_hash": "787b22e7f23ba04b468d4dd0637ce800c334e4b30b32175987278f960e2b541b",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 8
+    },
+    {
+      "batch_id": 1,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 14,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 9,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 12,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 13,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 0,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 5,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 8,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 2,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 3,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 11,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 13931689153203228033,
+        "spacing_us": 20000
+      },
+      "design_hash": "140213f9566a202e1475ff6affefa48bc07482e02cdc9367bfd1412fcdb437d5",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 11
+    },
+    {
+      "batch_id": 2,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 11,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 6,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          }
+        ],
+        "seed": 17824786150486405900,
+        "spacing_us": 0
+      },
+      "design_hash": "8608bd951087fa556c5206707ceba7443aa133bbfdf6e30e897a0ae2ca96d5cb",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 14
+    },
+    {
+      "batch_id": 3,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 12,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 0,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 6,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 3204187127380742030,
+        "spacing_us": 0
+      },
+      "design_hash": "8dbb065a07d34f1034c6c4c0f949681b9904048c37e8bd2a9a691a476d613b07",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 17
+    },
+    {
+      "batch_id": 4,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 4,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 12,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 11,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 0,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 6463196527015016463,
+        "spacing_us": 0
+      },
+      "design_hash": "4c35724c909fc4fb238db82a6cdd4edb4ef87f3beada74f80e5551f3f9386ff6",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 20
+    },
+    {
+      "batch_id": 5,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          }
+        ],
+        "seed": 1503751258486413031,
+        "spacing_us": 500
+      },
+      "design_hash": "d301c6edcdcd2a1cab7127a6feba781d5b9f2ddfb213f881aa2e93b108064328",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 23
+    },
+    {
+      "batch_id": 6,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          }
+        ],
+        "seed": 15967456537607169505,
+        "spacing_us": 500
+      },
+      "design_hash": "44e2cf7365d7afe17172fc44266aa7b03be3111aeb637736abab9853b6aa1c72",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 26
+    },
+    {
+      "batch_id": 7,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 15,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 5,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 3,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 10,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          }
+        ],
+        "seed": 4808018838927642146,
+        "spacing_us": 0
+      },
+      "design_hash": "f8d26f2e33fa48d3855b4fca418ba13d94c4d106af02f35647ffd656c2c28d83",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 28
+    },
+    {
+      "batch_id": 8,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 30000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 25000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 35000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 15000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 5000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 20000,
+            "send_rank": 4
+          }
+        ],
+        "seed": 3264918726621331686,
+        "spacing_us": 5000
+      },
+      "design_hash": "b5c74efc87031e4bdf1eb34fae80807f28bb3052e5edaac84133ef6fdace7476",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 31
+    },
+    {
+      "batch_id": 9,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          }
+        ],
+        "seed": 7360958988466844217,
+        "spacing_us": 500
+      },
+      "design_hash": "cd42a5874401553395c99d1784f83c8d2126f111ae4f6076551eddaa433b1af6",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 34
+    },
+    {
+      "batch_id": 10,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          }
+        ],
+        "seed": 9750924602886509916,
+        "spacing_us": 500
+      },
+      "design_hash": "a57a70abf4582773625fce38ba53ddf8c411418b6e7973ac28c44f9736e6bf96",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 37
+    },
+    {
+      "batch_id": 11,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          }
+        ],
+        "seed": 16063009206308251432,
+        "spacing_us": 500
+      },
+      "design_hash": "1c50be16917e968945b6a7347ce4dcc15cbf5e4b792a14623a31842dbe764b51",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 40
+    },
+    {
+      "batch_id": 12,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 11,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 1,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 4,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 0,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 2,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 14,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 4
+          }
+        ],
+        "seed": 3361839683177094679,
+        "spacing_us": 0
+      },
+      "design_hash": "29e31b14d0eb162f91560bdf4a63db58ec71b8d4e83f8be97acf1f4ed5a43557",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 43
+    },
+    {
+      "batch_id": 13,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          }
+        ],
+        "seed": 16651828816115112524,
+        "spacing_us": 500
+      },
+      "design_hash": "fd95e21622224cf72b2b631718bb29d2225d4003c9c37b2e741202cc3d68b8e0",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 46
+    },
+    {
+      "batch_id": 14,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          }
+        ],
+        "seed": 15608425414627381913,
+        "spacing_us": 500
+      },
+      "design_hash": "5ce40d821336dd52036b0f619e1b861c521127cf627956cbbd9ce8b50aa45df9",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 49
+    },
+    {
+      "batch_id": 15,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 13,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 14,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 5,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 3,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 1,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          }
+        ],
+        "seed": 4821146965899292224,
+        "spacing_us": 0
+      },
+      "design_hash": "09b7d881edbfa00eeb86d1e00812d813e08325f42a17a5dea8e026126361f1e7",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 52
+    },
+    {
+      "batch_id": 16,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 0,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 11,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 12,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 1,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 14,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 8,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 16093741537000633227,
+        "spacing_us": 0
+      },
+      "design_hash": "9613138050e57215d1429a60628b706c08c75952681933bacd842c13e0223c61",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 55
+    },
+    {
+      "batch_id": 17,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 25000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 30000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 15000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 5000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 35000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 20000,
+            "send_rank": 4
+          }
+        ],
+        "seed": 8953580416533635308,
+        "spacing_us": 5000
+      },
+      "design_hash": "5fc2c2661839345a853e1c1c6cc865c20e5c97a4ed3914dd41c1d3eef135afdb",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 57
+    },
+    {
+      "batch_id": 18,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 6,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 13,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 0,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 2,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 10,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 12,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 1,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 8,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 4570652747553235980,
+        "spacing_us": 20000
+      },
+      "design_hash": "e4689c8e67783ea11f064e8be693ca3a4d9a6019b553c84f926c38297a650754",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 60
+    },
+    {
+      "batch_id": 19,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 5,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 6,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 13,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 8,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 0,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 9,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 12,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 4
+          }
+        ],
+        "seed": 5490996327397177157,
+        "spacing_us": 0
+      },
+      "design_hash": "a29e2ed1918c51ba0ec56ff4e99dcc28a7f2ddc969f8781a5781d4d41c50b177",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 64
+    },
+    {
+      "batch_id": 20,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 2,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 11,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 6,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 14,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 13,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 1,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 0,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 2164750646797552765,
+        "spacing_us": 10000
+      },
+      "design_hash": "b88098e1a93afb8e9e458f4007a864a1dd691bfac91505dd9bb95fbdd96d202e",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 67
+    },
+    {
+      "batch_id": 21,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 6,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 1,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 3,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 12,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 2,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 4,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 17852540243201097240,
+        "spacing_us": 0
+      },
+      "design_hash": "356693abad0c1ae2ee639c4db959bd51eda9f974f06a51c70517ee78de94ebcc",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 70
+    },
+    {
+      "batch_id": 22,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          }
+        ],
+        "seed": 11972192377345013008,
+        "spacing_us": 500
+      },
+      "design_hash": "596bc8744551ccc0688fe45d0bc0c7c33048cdb537f1b70f38bedcc1cec02ba5",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 73
+    },
+    {
+      "batch_id": 23,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 5,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 0,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 2,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 13,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 8,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 14,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 1,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 10,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 15,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 630272928579266653,
+        "spacing_us": 10000
+      },
+      "design_hash": "e9e1767bb962310e84f2880ba73b70fa72d7c2644dd2b16494d7a475dfa889ef",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 76
+    },
+    {
+      "batch_id": 24,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 1,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 15,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 14,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 7,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 2,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 8,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 1
+          }
+        ],
+        "seed": 16392905442193790288,
+        "spacing_us": 0
+      },
+      "design_hash": "75012525556a4d6ae724ebc1c8ae3a443462be614ab54645d6de3ff357a4f65b",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 79
+    },
+    {
+      "batch_id": 25,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 13,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 3,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 5,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 15,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 11,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 1
+          }
+        ],
+        "seed": 5746624133516046529,
+        "spacing_us": 0
+      },
+      "design_hash": "4f17886af4a0c67f6e9dc8bbffd8561a668fbf7a43b6990db904dee9b0eb95f8",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 82
+    },
+    {
+      "batch_id": 26,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "shared",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          }
+        ],
+        "seed": 14009525041873129215,
+        "spacing_us": 500
+      },
+      "design_hash": "20d3ac72806ac609aee307e5554c6ab0acba46c5b6979cfc2eec8ab8a09d2c94",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 85
+    },
+    {
+      "batch_id": 27,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 6,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 1,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 3,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 12,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 0,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 8,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 2,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 13076536605077212579,
+        "spacing_us": 10000
+      },
+      "design_hash": "f885eba986e35019dc041871033684ed311adaa55163953da3ce6ef1299e5995",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 88
+    },
+    {
+      "batch_id": 28,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 5,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 4,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 3,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 9,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 8,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 0,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 1,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 10,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 14200859023261921226,
+        "spacing_us": 10000
+      },
+      "design_hash": "cb2bf8263201d26774925017d18d2435b348ae5d05d4ecddce7e2f04f51e8c0c",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 91
+    },
+    {
+      "batch_id": 29,
+      "design": {
+        "anchor": {
+          "slots": 0.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 14000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 12000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 4000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 6000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 8000,
+            "send_rank": 4
+          }
+        ],
+        "seed": 8150189232132382216,
+        "spacing_us": 2000
+      },
+      "design_hash": "9b8a71ad6bd099b9114fc40e0950cbe0d939dc28c9346cf9dfed73a37519a632",
+      "family": "LocalAgave",
+      "path": "quic",
+      "target": "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ",
+      "tpu_is_proxy": false,
+      "tpu_quic": "127.0.0.1:8002",
+      "version": "4.3.2",
+      "window_first_slot": 94
+    }
+  ],
+  "run_id": "localnet-000001",
+  "run_seed": 1
+}

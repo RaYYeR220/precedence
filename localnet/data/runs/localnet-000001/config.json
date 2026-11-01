@@ -1,0 +1,11 @@
+{
+  "cu_limit": 8000,
+  "git_commit": "unknown",
+  "loaded_data_limit": 262144,
+  "master": "4y3vgzbdXCarpze71a14smHCEVJRr6yrKhLCZdoD859W",
+  "mode": "localnet",
+  "rpc_url": "http://127.0.0.1:8899",
+  "run_id": "localnet-000001",
+  "run_seed": 1,
+  "started_unix_us": 1793499005350362
+}

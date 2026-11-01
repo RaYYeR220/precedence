@@ -1,8 +1,9 @@
-"""Command line: analyze, simulate, validate.
+"""Command line: analyze, simulate, validate, render.
 
     python -m prec_analysis analyze  --data data --out results [--check]
     python -m prec_analysis simulate --out data-sim --seed 1 --preset validation
     python -m prec_analysis validate --out results [--seed 7] [--reps 6]
+    python -m prec_analysis render   --data data --results results --readme README.md --report REPORT.md --site site/dist [--check]
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ import time
 from pathlib import Path
 
 from .constants import N_BOOT, N_PERM, POWER_SIMS
+from .render import add_parser as add_render_parser
 from .report import Settings, dumps, run_analysis
 from .simulate import PRESETS, simulate
 from .validate import run_validation
@@ -79,6 +81,8 @@ def main(argv: list[str] | None = None) -> int:
     v.add_argument("--perms", type=int, default=N_PERM)
     v.add_argument("--boot", type=int, default=200)
     v.set_defaults(func=_validate)
+
+    add_render_parser(sub)
 
     args = parser.parse_args(argv)
     return int(args.func(args))

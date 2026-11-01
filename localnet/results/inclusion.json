@@ -1,0 +1,402 @@
+{
+ "by_family": [
+  {
+   "ci": [
+    0.985658,
+    1.0
+   ],
+   "k": 264,
+   "n": 264,
+   "rate": 1.0,
+   "target_family": "Agave"
+  }
+ ],
+ "by_family_kind": [
+  {
+   "ci": [
+    0.961524,
+    1.0
+   ],
+   "k": 96,
+   "kind": "ladder",
+   "n": 96,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.949349,
+    1.0
+   ],
+   "k": 72,
+   "kind": "sweep",
+   "n": 72,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.961524,
+    1.0
+   ],
+   "k": 96,
+   "kind": "tie",
+   "n": 96,
+   "rate": 1.0,
+   "target_family": "Agave"
+  }
+ ],
+ "by_family_kind_path_fee": [
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "ladder",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "sweep",
+   "n": 6,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.961524,
+    1.0
+   ],
+   "k": 96,
+   "kind": "tie",
+   "n": 96,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  }
+ ],
+ "by_family_path": [
+  {
+   "ci": [
+    0.985658,
+    1.0
+   ],
+   "k": 264,
+   "n": 264,
+   "path": "quic",
+   "rate": 1.0,
+   "target_family": "Agave"
+  }
+ ],
+ "client_changed": {
+  "n_probes": 0,
+  "n_windows": 0,
+  "validators": []
+ },
+ "landing_slot": [
+  {
+   "kind": "ladder",
+   "n": 96,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "1": 88,
+    "2": 8
+   },
+   "target_family": "Agave"
+  },
+  {
+   "kind": "sweep",
+   "n": 72,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "1": 61,
+    "2": 11
+   },
+   "target_family": "Agave"
+  },
+  {
+   "kind": "tie",
+   "n": 96,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "1": 88,
+    "2": 8
+   },
+   "target_family": "Agave"
+  }
+ ],
+ "n_landed": 264,
+ "n_landed_without_block": 0,
+ "n_probes": 264,
+ "n_sent": 264,
+ "overall": {
+  "ci": [
+   0.985658,
+   1.0
+  ],
+  "k": 264,
+  "n": 264,
+  "rate": 1.0
+ },
+ "spill_by_family": [
+  {
+   "ci": [
+    0.0,
+    0.014342
+   ],
+   "k": 0,
+   "n": 264,
+   "rate": 0.0,
+   "target_family": "Agave"
+  }
+ ],
+ "window_status": {
+  "sent": 30
+ }
+}

@@ -1,0 +1,84 @@
+{
+ "available": true,
+ "families": {
+  "Agave": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 247,
+     "17-64": 0,
+     "2-4": 12,
+     "5-16": 3,
+     ">64": 0
+    },
+    "max": 8,
+    "mean": 1.125954,
+    "median": 1.0,
+    "n_entries": 262,
+    "p90": 1.0,
+    "share_single_tx": 0.942748
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.893939,
+      0.994048
+     ],
+     "n_batches": 12,
+     "n_pairs": 334,
+     "p_perm": 0.001,
+     "rate": 0.958084
+    },
+    "same_entry": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 1,
+     "n_pairs": 2,
+     "p_perm": 0.536,
+     "rate": 1.0
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.442434,
+      0.670295
+     ],
+     "n_batches": 11,
+     "n_pairs": 262,
+     "p_perm": 0.285,
+     "rate": 0.549618
+    },
+    "same_entry": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 7,
+     "n_pairs": 74,
+     "p_perm": 0.001,
+     "rate": 1.0
+    }
+   },
+   "n_pairs_cross_entry": 981,
+   "n_pairs_same_entry": 76,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 216,
+     "17-64": 0,
+     "2-4": 29,
+     "5-16": 19,
+     ">64": 0
+    },
+    "max": 8,
+    "mean": 1.575758,
+    "median": 1.0,
+    "n_entries": 264,
+    "p90": 3.0,
+    "share_single_tx": 0.818182
+   },
+   "share_pairs_same_entry": 0.071902
+  }
+ }
+}

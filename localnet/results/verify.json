@@ -1,0 +1,13 @@
+{
+  "rpc": "http://127.0.0.1:8899",
+  "blocks_checked": 30,
+  "probes_checked": 256,
+  "mismatches": [
+    "slot 9: getBlock returned no block"
+  ],
+  "entry_slots_checked": 30,
+  "entry_mismatches": [],
+  "poh_chains_checked": 30,
+  "poh_chains_reach_blockhash": 30,
+  "poh_mismatches": []
+}

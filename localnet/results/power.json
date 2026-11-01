@@ -1,0 +1,67 @@
+{
+ "families": {
+  "Agave": {
+   "concordance_mde": 0.59686,
+   "curve": [
+    {
+     "expected_concordance": 0.513222,
+     "power": 0.09,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.532979,
+     "power": 0.2,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565425,
+     "power": 0.55,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.59686,
+     "power": 0.935,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 30,
+   "n_pairs": 1057,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 0.15
+  }
+ },
+ "method": "200 Mallows data sets per theta (same theta in every stratum) around each unit's reference rule, observed batch-block sizes, same permutation null as the real data; MDE = smallest theta with power >= 80% at alpha 0.05",
+ "validators": {
+  "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ": {
+   "concordance_mde": 0.59686,
+   "curve": [
+    {
+     "expected_concordance": 0.513222,
+     "power": 0.105,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.532979,
+     "power": 0.165,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565425,
+     "power": 0.52,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.59686,
+     "power": 0.935,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 30,
+   "n_pairs": 1057,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 0.15
+  }
+ }
+}
