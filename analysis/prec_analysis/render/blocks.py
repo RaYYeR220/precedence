@@ -20,6 +20,7 @@ from .fmt import (
     account_link,
     dec,
     dec_ci,
+    gap_label,
     is_num,
     lamports,
     model_text,
@@ -27,6 +28,7 @@ from .fmt import (
     num,
     pct,
     pct_ci,
+    plural,
     pval,
     rate_ci,
     rule_text,
@@ -38,7 +40,7 @@ from .predictions import evaluate, outcome_counts
 NO_RESULTS = note("No results yet: run `python -m prec_analysis analyze` first.")
 NO_DATA = note("No run in the data directory.")
 
-DOSE_LABELS = {"hp_sent_earlier_or_same": "sent earlier or same time"} | {name: f"{name} later" for _, _, name in GAP_BUCKETS_MS}
+DOSE_LABELS = {"hp_sent_earlier_or_same": "sent earlier or at the same time"} | {name: f"{gap_label(name)} later" for _, _, name in GAP_BUCKETS_MS}
 
 
 def family_order(names: list[str]) -> list[str]:
@@ -52,7 +54,7 @@ def _rule_cell(unit: dict[str, Any]) -> str:
         return "insufficient data"
     if unit.get("verdict") != "rule":
         ref = unit.get("reference_model")
-        return f"none detectable (closest: {model_text(ref)})" if ref else "none detectable"
+        return f"none detectable; closest {model_text(ref)}" if ref else "none detectable"
     return rule_text(unit.get("best_rule"), unit.get("w_ms"))
 
 
@@ -96,7 +98,7 @@ def headline_items(ctx: Context) -> list[str]:
     inc = ctx.r("inclusion").get("overall", {})
     items = [
         f"**{num(inp.get('n_probes_landed'))}** of {num(inp.get('n_probes_sent'))} probes landed ({pct(inc.get('rate'))}), "
-        f"in {num(inp.get('n_windows_sent'))} leader windows over {num(len(inp.get('runs', [])))} run(s) and {num(inp.get('n_blocks'))} blocks."
+        f"in {plural(inp.get('n_windows_sent'), 'leader window')} over {plural(len(inp.get('runs', [])), 'run')} and {plural(inp.get('n_blocks'), 'block')}."
     ]
     fams = ctx.families()
     vals = ctx.validators()
@@ -573,7 +575,7 @@ def block_what_went_wrong_stats(ctx: Context) -> str:
         rows.append(["Landed probes without a stored block", num(inc.get("n_landed_without_block")), DASH])
     cc = inc.get("client_changed")
     if cc:
-        rows.append(["Client changed during the run", f"{num(cc.get('n_windows'))} windows", f"{num(cc.get('n_probes'))} probes, {num(len(cc.get('validators') or []))} validator(s); each label counted in its own family"])
+        rows.append(["Client changed during the run", f"{num(cc.get('n_windows'))} windows", f"{plural(cc.get('n_probes'), 'probe')}, {plural(len(cc.get('validators') or []), 'validator')}; each label counted in its own family"])
     issues = ctx.summary.get("inputs", {}).get("issues") or []
     rows.append(["Input issues logged by the loader", num(len(issues)), "; ".join(issues[:3]) + (" …" if len(issues) > 3 else "") if issues else DASH])
     return table(["What", "Count", "Detail"], rows, "lrl")

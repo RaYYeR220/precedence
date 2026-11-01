@@ -10,6 +10,8 @@ from __future__ import annotations
 import math
 from typing import Any, Iterable, Sequence
 
+from ..constants import THETA_MAX
+
 DASH = "–"
 
 RULE_SHORT = {
@@ -67,6 +69,13 @@ def num(x: Any) -> str:
     if not is_num(x):
         return DASH
     return f"{int(round(float(x))):,}"
+
+
+def plural(n: Any, word: str, many: str | None = None) -> str:
+    """'1 run', '2 runs', '1,204 blocks'."""
+    if not is_num(n):
+        return f"{DASH} {many or word + 's'}"
+    return f"{num(n)} {word if int(n) == 1 else (many or word + 's')}"
 
 
 def dec(x: Any, digits: int = 2) -> str:
@@ -145,10 +154,28 @@ def strictness(unit: dict[str, Any]) -> str:
     if ci:
         text += f" {ci}"
     if is_num(unit.get("theta")):
-        text += f", θ {dec(unit['theta'])}"
-        tci = dec_ci(unit.get("theta_ci"))
-        if tci:
-            text += f" {tci}"
+        text += f", θ {theta(unit['theta'])}"
+        tci = unit.get("theta_ci")
+        if isinstance(tci, (list, tuple)) and len(tci) == 2 and all(is_num(v) for v in tci):
+            text += f" [{theta(tci[0])}, {theta(tci[1])}]"
+    return text
+
+
+def theta(x: Any) -> str:
+    """Mallows θ with two decimals; the fitting bound shows as '≥ 12'."""
+    if not is_num(x):
+        return DASH
+    if float(x) >= THETA_MAX - 1e-9:
+        return f"≥ {THETA_MAX:g}"
+    return f"{float(x):.2f}"
+
+
+def gap_label(bucket: str) -> str:
+    """'1-5ms' → '1–5 ms', '<1ms' → '< 1 ms', '>150ms' → '> 150 ms'."""
+    text = bucket.replace("ms", " ms").replace("-", "–")
+    for sign in ("<", ">"):
+        if text.startswith(sign):
+            text = f"{sign} {text[1:]}"
     return text
 
 

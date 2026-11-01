@@ -61,8 +61,7 @@ def run_render(
             stale.extend(f"{site / rel}" for rel in check_site(files, site))
         else:
             write_site(files, site)
-            n = len(ctx.data.dataset.runs) if ctx.data else 0
-            print(f"{site}: wrote {len(files)} files ({n} run(s))", file=out)
+            print(f"{site}: wrote {len(files)} files", file=out)
     if check:
         if stale:
             print("generated content differs from the files: " + ", ".join(stale), file=err)

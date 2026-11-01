@@ -94,3 +94,7 @@ def orderer_class(family: str | None) -> str | None:
     if family is None:
         return None
     return ORDERER_CLASS.get(family)
+
+# A fitted batch window at or below this is read as a continuous scheduler's passes,
+# above it as a batch auction (BAM rounds are 20-50 ms, Harmonic FBA 50 ms).
+BATCH_PASS_MAX_MS: float = 10.0

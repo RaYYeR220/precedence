@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 
 from . import __version__
-from .constants import ALPHA, BATCH_W_GRID_MS, FLOAT_DIGITS, N_BOOT, N_PERM, PHASE_STEPS, POWER_SIMS, orderer_class
+from .constants import ALPHA, BATCH_PASS_MAX_MS, BATCH_W_GRID_MS, FLOAT_DIGITS, N_BOOT, N_PERM, PHASE_STEPS, POWER_SIMS, orderer_class
 from .controls import controls
 from .entries import entries_report
 from .fingerprint import fingerprint
@@ -90,7 +90,15 @@ def component_hint(fit: UnitFit) -> str:
     if fit.verdict != "rule":
         return "none detectable"
     if fit.best_name == "batched":
-        return f"external sequencer or batch auction: batches of about {fit.w_ms:g} ms, priority order inside each"
+        # A continuous scheduler that re-sorts what has arrived every few ms looks
+        # like a batch auction with a very short window; the window length is
+        # what separates the two (the localnet Agave control fits w = 5 ms).
+        if fit.w_ms is not None and fit.w_ms <= BATCH_PASS_MAX_MS:
+            return (
+                f"time-sliced priority: probes arriving within ~{fit.w_ms:g} ms are ordered by priority, "
+                "later arrivals after them (a continuous scheduler's passes)"
+            )
+        return f"batch auction: batches of about {fit.w_ms:g} ms in time order, priority order inside each"
     if fit.best_name == "fifo":
         return "arrival order: no priority pass reached our probes"
     if fit.by_arm.get("threads_reorder"):

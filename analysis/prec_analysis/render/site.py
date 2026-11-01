@@ -29,7 +29,7 @@ from ..report import to_jsonable
 from ..tidy import SlotEntries, clean_entries, tx_priority
 from .blocks import DOSE_LABELS, family_order, headline_items
 from .context import Context, DataFacts
-from .fmt import ORDERER_CLASS_TEXT, is_num, model_text, rule_text
+from .fmt import ORDERER_CLASS_TEXT, is_num, model_text, plural, rule_text
 from .predictions import evaluate, outcome_counts
 
 STATIC_FILES = ("app.css", "common.js", "overview.js", "blocks.js")
@@ -100,7 +100,7 @@ def _stats(ctx: Context) -> list[dict[str, str]]:
     vals = [v for v in ctx.validators().values() if v.get("verdict") != "insufficient_data"]
     out = [
         {"value": f"{int(inp.get('n_probes_landed') or 0):,}", "label": f"probes landed of {int(inp.get('n_probes_sent') or 0):,} sent ({_pct(inc.get('rate'))})"},
-        {"value": f"{int(inp.get('n_windows_sent') or 0):,}", "label": f"leader windows probed in {len(inp.get('runs', []))} run(s), {int(inp.get('n_blocks') or 0):,} blocks"},
+        {"value": f"{int(inp.get('n_windows_sent') or 0):,}", "label": f"leader windows probed in {plural(len(inp.get('runs', [])), 'run')}, {plural(inp.get('n_blocks'), 'block')}"},
     ]
     if fams:
         out.append(
