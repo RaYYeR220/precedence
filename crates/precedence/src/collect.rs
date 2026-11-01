@@ -175,12 +175,17 @@ pub async fn collect(rpc: &Rpc, data_dir: &Path, run_dir: &Path) -> Result<Colle
     for attempt in 0..6 {
         let mut still = Vec::new();
         for &slot in &pending {
-            match rpc.block(slot).await? {
-                Some(raw) => {
+            match rpc.block(slot).await {
+                Ok(Some(raw)) => {
                     write_json_gz(block_path(data_dir, slot), &trim_block(slot, &raw))?;
                     fetched += 1;
                 }
-                None => still.push(slot),
+                Ok(None) => still.push(slot),
+                Err(e) => {
+                    // One node's error must not stop the collection: retry later.
+                    tracing::warn!(slot, error = %e, "getBlock failed");
+                    still.push(slot);
+                }
             }
         }
         pending = still;

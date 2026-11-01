@@ -224,22 +224,30 @@ fn first_send_unix_us(ctx: &Ctx, b: &PlannedBatch) -> Option<(u64, u64, crate::c
 }
 
 async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
-    let Some((_, first, _)) = first_send_unix_us(ctx, b) else {
-        ctx.skip(b, "no_clock", |_| {});
-        return Ok(());
-    };
-    // Start preparing 1.2 s ahead: take the cached blockhash, sign, make sure
-    // the pooled connection is alive. Idle unstaked connections get pruned,
-    // so we do not open them earlier than needed.
-    let prepare_at = first.saturating_sub(1_200_000);
-    let now = ctx.tb.now_us();
-    if now + 400_000 > first {
-        ctx.skip(b, "late_before_prepare", |_| {});
-        ctx.log.write(&json!({"batch_id": b.batch_id, "late_before_prepare_us": (now + 400_000).saturating_sub(first)}));
-        return Ok(());
-    }
-    if prepare_at > now {
-        tokio::time::sleep_until(ctx.tb.instant_at(prepare_at).into()).await;
+    // Wait until 1.2 s before the first send, predicting the window start
+    // again at least every 5 s: window starts drift like a random walk, so a
+    // prediction made minutes ahead can be off by tens of seconds, and a batch
+    // prepared that early would carry a blockhash that has expired by the time
+    // the window arrives. Then: make sure the pooled connection is alive, take
+    // a blockhash, sign. Idle unstaked connections get pruned, so we do not
+    // open them earlier than needed.
+    loop {
+        let Some((_, first, _)) = first_send_unix_us(ctx, b) else {
+            ctx.skip(b, "no_clock", |_| {});
+            return Ok(());
+        };
+        let now = ctx.tb.now_us();
+        if now + 400_000 > first {
+            ctx.skip(b, "late_before_prepare", |_| {});
+            ctx.log.write(&json!({"batch_id": b.batch_id, "late_before_prepare_us": (now + 400_000).saturating_sub(first)}));
+            return Ok(());
+        }
+        let prepare_at = first.saturating_sub(1_200_000);
+        if now >= prepare_at {
+            break;
+        }
+        let wake = prepare_at.min(now + 5_000_000);
+        tokio::time::sleep_until(ctx.tb.instant_at(wake).into()).await;
     }
     if ctx.cap_hit.load(Ordering::SeqCst) {
         ctx.skip(b, "cap", |_| {});
