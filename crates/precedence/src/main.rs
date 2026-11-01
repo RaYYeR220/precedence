@@ -38,6 +38,11 @@ enum Cmd {
         common: Common,
         #[arg(long, env = "PRECEDENCE_WS", default_value = "wss://api.mainnet-beta.solana.com")]
         ws: String,
+        /// HTTP endpoint polled with getSlot for a fresh slot clock.
+        #[arg(long, env = "PRECEDENCE_POLL_RPC", default_value = "https://api.mainnet-beta.solana.com")]
+        poll_rpc: String,
+        #[arg(long, default_value_t = 3.5)]
+        poll_hz: f64,
         /// Yellowstone gRPC endpoint for entry boundaries (optional).
         #[arg(long, env = "PRECEDENCE_GRPC")]
         grpc: Option<String>,
@@ -149,6 +154,8 @@ async fn main() -> Result<()> {
         Cmd::Run {
             common,
             ws,
+            poll_rpc,
+            poll_hz,
             grpc,
             grpc_token,
             seed,
@@ -170,6 +177,8 @@ async fn main() -> Result<()> {
                 keypair: common.keypair,
                 rpc_url: common.rpc,
                 ws_url: ws,
+                poll_url: poll_rpc,
+                poll_hz,
                 grpc_url: grpc,
                 grpc_token,
                 cap_lamports: common.cap,

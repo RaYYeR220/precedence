@@ -36,6 +36,8 @@ pub struct RunConfig {
     pub run_seed: u64,
     pub rpc_url: String,
     pub ws_url: String,
+    pub poll_url: String,
+    pub poll_hz: f64,
     pub grpc_url: Option<String>,
     pub cap_lamports: u64,
     pub cu_limit: u32,
@@ -64,6 +66,8 @@ pub struct RunArgs {
     pub keypair: PathBuf,
     pub rpc_url: String,
     pub ws_url: String,
+    pub poll_url: String,
+    pub poll_hz: f64,
     pub grpc_url: Option<String>,
     pub grpc_token: Option<String>,
     pub cap_lamports: u64,
@@ -191,7 +195,7 @@ async fn execute_batch(ctx: Arc<Ctx>, b: PlannedBatch) {
 
 fn first_send_unix_us(ctx: &Ctx, b: &PlannedBatch) -> Option<(u64, u64, crate::clock::Fit)> {
     let fit = ctx.clock.lock().unwrap().fit()?;
-    let start = fit.predict(b.window_first_slot);
+    let start = fit.predict_window_start(b.window_first_slot);
     let first = start + b.design.anchor.offset_us(fit.slot_us) as f64;
     Some((start as u64, first as u64, fit))
 }
@@ -274,7 +278,7 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
         ctx.skip(b, "clock_stale", |_| {});
         return Ok(());
     };
-    let start = fit.predict(b.window_first_slot);
+    let start = fit.predict_window_start(b.window_first_slot);
     let first = (start + b.design.anchor.offset_us(fit.slot_us) as f64) as u64;
     if ctx.tb.now_us() > first + 5_000 {
         ctx.skip(b, "late", |_| {});
@@ -392,6 +396,8 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         run_seed,
         rpc_url: args.rpc_url.clone(),
         ws_url: args.ws_url.clone(),
+        poll_url: args.poll_url.clone(),
+        poll_hz: args.poll_hz,
         grpc_url: args.grpc_url.clone(),
         cap_lamports: args.cap_lamports,
         cu_limit: args.cu_limit,
@@ -415,9 +421,10 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
     write_json(run_dir.join("config.json"), &cfg)?;
 
     // Slot clock.
-    let clock: SharedClock = Arc::new(Mutex::new(SlotClock::new(240)));
+    let clock: SharedClock = Arc::new(Mutex::new(SlotClock::new()));
     let slots_log = JsonlWriter::open(run_dir.join("slots.jsonl"))?;
-    let feed = tokio::spawn(run_ws_feed(args.ws_url.clone(), clock.clone(), tb, Some(slots_log)));
+    let feed = tokio::spawn(run_ws_feed(args.ws_url.clone(), clock.clone(), tb, Some(slots_log.clone())));
+    let poller = tokio::spawn(crate::clock::run_poll_feed(args.poll_url.clone(), clock.clone(), tb, args.poll_hz, Some(slots_log)));
     for _ in 0..120 {
         if clock.lock().unwrap().fit().is_some() {
             break;
@@ -523,6 +530,7 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         r.abort();
     }
     feed.abort();
+    poller.abort();
     if !dry {
         let summary = crate::collect::collect(&rpc, &args.data_dir, &run_dir).await?;
         write_json(run_dir.join("collect.json"), &summary)?;

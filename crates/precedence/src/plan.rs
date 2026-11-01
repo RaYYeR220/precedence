@@ -26,9 +26,9 @@ const fn c(kind: ProbeKind, arm: PayerArm, anchor: Anchor, path: Path) -> Condit
     Condition { kind, arm, anchor, path }
 }
 
-const BEFORE: Anchor = Anchor::BeforeWindow { slots: 1.0 };
-const MID: Anchor = Anchor::InWindow { slots: 1.5 };
-const EARLY_IN: Anchor = Anchor::InWindow { slots: 0.5 };
+const BEFORE: Anchor = Anchor::BeforeWindow { slots: 3.0 };
+const MID: Anchor = Anchor::InWindow { slots: 2.0 };
+const EARLY_IN: Anchor = Anchor::InWindow { slots: 1.0 };
 
 /// One cycle of conditions per target (weights by repetition). Every target
 /// works through the cycle in a fresh random order before repeating it.

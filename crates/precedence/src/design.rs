@@ -31,9 +31,13 @@ pub enum ProbeKind {
     /// 8 equal-fee probes sent at a fixed spacing. With priority tied, does
     /// the leader keep arrival order (FIFO), reverse it (LIFO), or neither?
     Tie,
-    /// 12 probes spread over ~120–240 ms with fee falling as send time
-    /// rises. Continuous FIFO keeps send order, pure priority reverses it,
-    /// a batch auction of length w reverses it only inside each w window.
+    /// 12 probes spread over ~120–240 ms with fee RISING with send time
+    /// (every later probe pays more). Continuous FIFO keeps send order (lowest
+    /// fee first), priority among queued probes reverses it (highest first), a
+    /// batch auction of length w reverses it only inside each w window. With
+    /// fee falling instead, FIFO and priority would predict the same order and
+    /// a batch auction could not be told from either: the simulation study in
+    /// `analysis/` is what fixed this direction.
     Sweep,
     /// 4 v1 + 4 legacy at equal reward/cost. Does the wire format matter?
     Format,
@@ -116,7 +120,7 @@ pub fn design_batch(kind: ProbeKind, arm: PayerArm, anchor: Anchor, seed: u64, p
         }
         ProbeKind::Sweep => {
             let spacing = *[10_000i64, 20_000].choose_ref(&mut rng);
-            // Assigned below in send order: highest fee first, lowest last.
+            // Assigned below in send order: lowest fee first, highest last.
             (LADDER12.to_vec(), vec![TxFormat::V1; 12], spacing)
         }
         ProbeKind::Format => {
@@ -134,7 +138,7 @@ pub fn design_batch(kind: ProbeKind, arm: PayerArm, anchor: Anchor, seed: u64, p
     let mut send_rank: Vec<u16> = (0..n as u16).collect();
     let mut fees = fees;
     if kind == ProbeKind::Sweep {
-        fees.sort_unstable_by(|a, b| b.cmp(a)); // idx 0 = highest fee = sent first
+        fees.sort_unstable(); // idx 0 = lowest fee = sent first
     } else {
         send_rank.shuffle(&mut rng);
     }
@@ -214,13 +218,13 @@ mod tests {
     }
 
     #[test]
-    fn sweep_fee_strictly_decreasing_in_send_time() {
+    fn sweep_fee_strictly_increasing_in_send_time() {
         for seed in 0..200 {
             let d = design_batch(ProbeKind::Sweep, PayerArm::Distinct, A, seed, 16);
             let mut by_time = d.probes.clone();
             by_time.sort_by_key(|p| p.send_offset_us);
             for w in by_time.windows(2) {
-                assert!(w[0].priority_fee > w[1].priority_fee);
+                assert!(w[0].priority_fee < w[1].priority_fee);
                 assert!(w[1].send_offset_us - w[0].send_offset_us == d.spacing_us);
             }
             assert!(d.spacing_us == 10_000 || d.spacing_us == 20_000);
