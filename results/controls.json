@@ -1,0 +1,9 @@
+{
+ "inert_variable": {
+  "n_batch_blocks": 0
+ },
+ "shuffled_positions": {
+  "n_batch_blocks": 0
+ },
+ "whole_block_observational": {}
+}

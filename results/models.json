@@ -1,0 +1,39 @@
+{
+ "families": {},
+ "method": {
+  "batched_check": "a selected batched rule is kept only if it beats the best core rule beyond its grid search (parametric bootstrap, alpha 0.05)",
+  "candidates": [
+   "fifo",
+   "priority_fifo_ties",
+   "priority_lifo_ties",
+   "batched(w=5ms)",
+   "batched(w=10ms)",
+   "batched(w=20ms)",
+   "batched(w=30ms)",
+   "batched(w=40ms)",
+   "batched(w=50ms)",
+   "batched(w=75ms)",
+   "batched(w=100ms)",
+   "batched(w=150ms)",
+   "batched(w=200ms)",
+   "random"
+  ],
+  "likelihood": "Mallows on Kendall distance, theta >= 0 by maximum likelihood, one theta per unit",
+  "phase_steps": 8,
+  "rule_vs_random": "permutation test of the AIC gap to random, positions permuted within batch-blocks; rule declared at p < 0.05",
+  "selection": "AIC; batched counts theta, w and one phase per validator",
+  "w_grid_ms": [
+   5,
+   10,
+   20,
+   30,
+   40,
+   50,
+   75,
+   100,
+   150,
+   200
+  ]
+ },
+ "validators": {}
+}

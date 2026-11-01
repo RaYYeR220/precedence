@@ -1,0 +1,53 @@
+{
+ "controls": {
+  "inert_p_perm": null,
+  "inert_rate": null,
+  "shuffled_mean_tau_priority": null,
+  "shuffled_share_random": null,
+  "shuffled_sign_test_rejection_rate": null
+ },
+ "families": {},
+ "fingerprint": {
+  "validator_level": {
+   "baseline_accuracy": null,
+   "baseline_balanced_accuracy": null,
+   "chance_majority": null,
+   "chance_uniform": null,
+   "n_rows": null,
+   "n_validators": null,
+   "probe_accuracy": null,
+   "probe_balanced_accuracy": null
+  },
+  "window_level": {
+   "baseline_accuracy": null,
+   "baseline_balanced_accuracy": null,
+   "chance_majority": null,
+   "chance_uniform": null,
+   "n_rows": null,
+   "n_validators": null,
+   "probe_accuracy": null,
+   "probe_balanced_accuracy": null
+  }
+ },
+ "inputs": {
+  "analysis_version": "0.1.0",
+  "issues": [],
+  "n_batch_blocks": 0,
+  "n_blocks": 0,
+  "n_pairs": 0,
+  "n_probes": 0,
+  "n_probes_landed": 0,
+  "n_probes_sent": 0,
+  "n_windows_planned": 0,
+  "n_windows_sent": 0,
+  "n_windows_with_probes": 0,
+  "runs": [],
+  "settings": {
+   "alpha": 0.05,
+   "n_boot": 2000,
+   "n_perm": 999,
+   "power_sims": 200
+  }
+ },
+ "validators": {}
+}
