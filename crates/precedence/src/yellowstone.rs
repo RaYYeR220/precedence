@@ -134,6 +134,37 @@ pub async fn record(
     }
 }
 
+/// Keeps one gRPC connection for blockhashes. The node behind the entry
+/// stream is current (its first-shred events arrive within tens of ms),
+/// unlike load-balanced HTTP endpoints whose "processed" view can lag by
+/// hundreds of slots.
+pub struct BlockhashSource {
+    url: String,
+    token: Option<String>,
+    client: Option<GeyserGrpcClient>,
+}
+
+impl BlockhashSource {
+    pub fn new(url: String, token: Option<String>) -> Self {
+        BlockhashSource { url, token, client: None }
+    }
+
+    /// `(blockhash, slot)` at processed commitment.
+    pub async fn latest(&mut self) -> Result<(String, u64)> {
+        if self.client.is_none() {
+            self.client = Some(connect(&self.url, self.token.clone()).await?);
+        }
+        let res = self.client.as_mut().unwrap().get_latest_blockhash(Some(CommitmentLevel::Processed)).await;
+        match res {
+            Ok(r) => Ok((r.blockhash, r.slot)),
+            Err(e) => {
+                self.client = None;
+                Err(e.into())
+            }
+        }
+    }
+}
+
 /// Stand-alone check: subscribe for a few seconds and report what arrives.
 pub async fn probe(url: &str, token: Option<String>, seconds: u64) -> Result<serde_json::Value> {
     let mut client = connect(url, token).await?;

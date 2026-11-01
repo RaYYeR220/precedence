@@ -142,6 +142,10 @@ struct Ctx {
     blockhash: Mutex<Option<(String, u64)>>,
 }
 
+/// A blockhash older than this (slots behind our clock's tip) is refused:
+/// it must stay valid (150 blocks) through the send and any spill.
+const MAX_BLOCKHASH_LAG_SLOTS: u64 = 40;
+
 /// A send may start this late and still go out; the analysis uses the
 /// measured send time, so a small delay only shifts the batch's phase.
 const MAX_LATE_US: u64 = 150_000;
@@ -255,13 +259,22 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
         }
     }
     let cached = ctx.blockhash.lock().unwrap().clone();
+    let tip = ctx.clock.lock().unwrap().highest_slot();
     let (bh, bh_slot) = match cached {
-        Some(c) if ctx.clock.lock().unwrap().highest_slot() <= c.1 + 30 => c,
-        _ => ctx.rpc.latest_blockhash().await?,
+        Some(c) if tip <= c.1 + MAX_BLOCKHASH_LAG_SLOTS / 2 => c,
+        _ => {
+            // Fall back to the public endpoint; whichever is fresher wins.
+            let fresh = ctx.send_rpc.latest_blockhash().await?;
+            match cached {
+                Some(c) if c.1 > fresh.1 => c,
+                _ => fresh,
+            }
+        }
     };
     let highest = ctx.clock.lock().unwrap().highest_slot();
-    if highest > bh_slot + 60 {
+    if highest > bh_slot + MAX_BLOCKHASH_LAG_SLOTS {
         ctx.skip(b, "stale_blockhash", |_| {});
+        ctx.log.write(&json!({"batch_id": b.batch_id, "stale_blockhash_lag_slots": highest - bh_slot}));
         return Ok(());
     }
     let blockhash = Hash::from_str(&bh).context("blockhash")?;
@@ -541,13 +554,29 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
     });
     let bh_refresh = {
         let ctx = ctx.clone();
+        let mut grpc = args.grpc_url.clone().map(|u| crate::yellowstone::BlockhashSource::new(u, args.grpc_token.clone()));
         tokio::spawn(async move {
             loop {
-                match ctx.rpc.latest_blockhash().await {
-                    Ok(v) => *ctx.blockhash.lock().unwrap() = Some(v),
+                let got = match grpc.as_mut() {
+                    Some(g) => match g.latest().await {
+                        Ok(v) => Ok(v),
+                        Err(e) => {
+                            tracing::warn!(error = %e, "gRPC blockhash failed, using RPC");
+                            ctx.rpc.latest_blockhash().await
+                        }
+                    },
+                    None => ctx.rpc.latest_blockhash().await,
+                };
+                match got {
+                    Ok(v) => {
+                        let mut slot = ctx.blockhash.lock().unwrap();
+                        if slot.as_ref().is_none_or(|c| v.1 >= c.1) {
+                            *slot = Some(v);
+                        }
+                    }
                     Err(e) => tracing::warn!(error = %e, "blockhash refresh failed"),
                 }
-                tokio::time::sleep(Duration::from_secs(2)).await;
+                tokio::time::sleep(Duration::from_secs(1)).await;
             }
         })
     };
