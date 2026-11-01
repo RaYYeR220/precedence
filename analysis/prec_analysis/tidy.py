@@ -16,7 +16,7 @@ from typing import Any, Iterable
 import numpy as np
 import pandas as pd
 
-from .constants import LEADER_SHARE_PER_SIGNATURE, UNKNOWN_FAMILY, agave_priority, orderer_class
+from .constants import STALE_BLOCKHASH_LAG_SLOTS, LEADER_SHARE_PER_SIGNATURE, UNKNOWN_FAMILY, agave_priority, orderer_class
 from .load import Dataset, Run, Snapshot
 from .orders import OrderSet
 
@@ -272,6 +272,8 @@ def _probe_rows(run: Run, blocks: dict[int, dict[str, Any]], index: BlockIndex) 
                 "slot_us": window.get("slot_us"),
                 "tpu_is_proxy": window.get("tpu_is_proxy", batch.get("tpu_is_proxy")),
                 "rtt_us": window.get("rtt_us"),
+                "blockhash_lag_slots": _bh_lag(window),
+                "stale_blockhash": (_bh_lag(window) or 0) > STALE_BLOCKHASH_LAG_SLOTS,
                 "priority_fee": int(p.get("priority_fee", dprobe.get("priority_fee", 0))),
                 "format": p.get("format", dprobe.get("format")),
                 "est_cost": p.get("est_cost"),
@@ -390,6 +392,14 @@ def tidy(runs: list[Run], blocks: dict[int, dict[str, Any]]) -> tuple[pd.DataFra
 
 def tidy_dataset(ds: Dataset) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     return tidy(ds.runs, ds.blocks)
+
+
+def _bh_lag(window: dict) -> int | None:
+    """Slots between our clock's tip at send time and the blockhash's context slot."""
+    hi, bh = window.get("highest_slot_seen_at_send"), window.get("blockhash_slot")
+    if hi is None or bh is None:
+        return None
+    return int(hi) - int(bh)
 
 
 def windows_frame(runs: list[Run]) -> pd.DataFrame:

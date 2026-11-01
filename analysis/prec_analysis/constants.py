@@ -98,3 +98,9 @@ def orderer_class(family: str | None) -> str | None:
 # A fitted batch window at or below this is read as a continuous scheduler's passes,
 # above it as a batch auction (BAM rounds are 20-50 ms, Harmonic FBA 50 ms).
 BATCH_PASS_MAX_MS: float = 10.0
+
+# A batch signed with a blockhash this many slots behind the tip at send time
+# (our slot clock vs the blockhash's context slot) cannot land: a blockhash is
+# valid for 150 blocks. Such batches say nothing about the leader and are
+# kept out of the landing statistics.
+STALE_BLOCKHASH_LAG_SLOTS: int = 140

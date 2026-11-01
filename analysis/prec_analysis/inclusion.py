@@ -45,13 +45,19 @@ def inclusion(probes: pd.DataFrame, windows: pd.DataFrame | None = None) -> dict
     """Landing, spill and landing-slot tables."""
     if probes.empty:
         return {"n_probes": 0}
-    sent = probes[probes["sent"].astype(bool)].copy()
+    all_sent = probes[probes["sent"].astype(bool)].copy()
+    # Batches signed with an expired blockhash could not land anywhere; they
+    # measure our blockhash source, not the leader, and are reported apart.
+    stale = all_sent["stale_blockhash"].fillna(False).astype(bool) if "stale_blockhash" in all_sent else pd.Series(False, index=all_sent.index)
+    sent = all_sent[~stale].copy()
     sent["target_family"] = sent["target_family"].fillna("Unknown")
     landed = sent[sent["landed"].astype(bool)]
     attributed = landed[landed["producer"].notna()]
     out: dict[str, Any] = {
         "n_probes": int(len(probes)),
         "n_sent": int(len(sent)),
+        "n_sent_stale_blockhash": int(stale.sum()),
+        "n_landed_stale_blockhash": int(all_sent.loc[stale, "landed"].astype(bool).sum()),
         "n_landed": int(len(landed)),
         "n_landed_without_block": int((landed["in_block"] == False).sum()),  # noqa: E712
         "overall": _rate(int(len(landed)), int(len(sent))),
