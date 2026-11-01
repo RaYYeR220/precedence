@@ -12,6 +12,7 @@ pub mod io;
 pub mod keys;
 pub mod ledger;
 pub mod plan;
+pub mod reconcile;
 pub mod rpc;
 pub mod run;
 pub mod selftest;

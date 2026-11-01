@@ -142,9 +142,12 @@ struct Ctx {
     blockhash: Mutex<Option<(String, u64)>>,
 }
 
-/// A blockhash older than this (slots behind our clock's tip) is refused:
-/// it must stay valid (150 blocks) through the send and any spill.
-const MAX_BLOCKHASH_LAG_SLOTS: u64 = 40;
+/// A blockhash older than this (slots behind our clock's tip, which comes
+/// from first-shred events and is current) is refused: it must stay valid
+/// (150 blocks) through the send and any late landing. Free RPC nodes replay
+/// behind the tip, and some fall further behind over a run, so the freshest
+/// of several sources is used.
+const MAX_BLOCKHASH_LAG_SLOTS: u64 = 80;
 
 /// A send may start this late and still go out; the analysis uses the
 /// measured send time, so a small delay only shifts the batch's phase.
@@ -263,12 +266,9 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
     let (bh, bh_slot) = match cached {
         Some(c) if tip <= c.1 + MAX_BLOCKHASH_LAG_SLOTS / 2 => c,
         _ => {
-            // Fall back to the public endpoint; whichever is fresher wins.
-            let fresh = ctx.send_rpc.latest_blockhash().await?;
-            match cached {
-                Some(c) if c.1 > fresh.1 => c,
-                _ => fresh,
-            }
+            // Ask both HTTP endpoints now; the freshest answer wins.
+            let (a, b2) = tokio::join!(ctx.send_rpc.latest_blockhash(), ctx.rpc.latest_blockhash());
+            [cached, a.ok(), b2.ok()].into_iter().flatten().max_by_key(|c| c.1).context("no blockhash source answered")?
         }
     };
     let highest = ctx.clock.lock().unwrap().highest_slot();
@@ -557,24 +557,22 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         let mut grpc = args.grpc_url.clone().map(|u| crate::yellowstone::BlockhashSource::new(u, args.grpc_token.clone()));
         tokio::spawn(async move {
             loop {
-                let got = match grpc.as_mut() {
-                    Some(g) => match g.latest().await {
-                        Ok(v) => Ok(v),
-                        Err(e) => {
-                            tracing::warn!(error = %e, "gRPC blockhash failed, using RPC");
-                            ctx.rpc.latest_blockhash().await
-                        }
-                    },
-                    None => ctx.rpc.latest_blockhash().await,
+                let grpc_fut = async {
+                    match grpc.as_mut() {
+                        Some(g) => g.latest().await.ok(),
+                        None => None,
+                    }
                 };
-                match got {
-                    Ok(v) => {
+                let (g, a, x) = tokio::join!(grpc_fut, ctx.send_rpc.latest_blockhash(), ctx.rpc.latest_blockhash());
+                let best = [g, a.ok(), x.ok()].into_iter().flatten().max_by_key(|c| c.1);
+                match best {
+                    Some(v) => {
                         let mut slot = ctx.blockhash.lock().unwrap();
                         if slot.as_ref().is_none_or(|c| v.1 >= c.1) {
                             *slot = Some(v);
                         }
                     }
-                    Err(e) => tracing::warn!(error = %e, "blockhash refresh failed"),
+                    None => tracing::warn!("every blockhash source failed"),
                 }
                 tokio::time::sleep(Duration::from_secs(1)).await;
             }
@@ -625,6 +623,15 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         let summary = crate::collect::collect(&aux, &args.data_dir, &run_dir).await?;
         write_json(run_dir.join("collect.json"), &summary)?;
         settle(&ctx, &run_dir).await?;
+        // Batches skipped after their reservation never left the process:
+        // close those reservations from the chain's answer.
+        if let Some(l) = &ctx.ledger {
+            let path = args.data_dir.join("ledger").join("spend.jsonl");
+            let mut guard = l.lock().unwrap();
+            let fut = crate::reconcile::reconcile(&aux, &mut guard, &path);
+            let r = tokio::task::block_in_place(|| tokio::runtime::Handle::current().block_on(fut))?;
+            write_json(run_dir.join("reconcile.json"), &r)?;
+        }
     }
     cfg.ended_unix_us = Some(tb.now_us());
     write_json(run_dir.join("config.json"), &cfg)?;

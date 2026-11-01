@@ -1,0 +1,36 @@
+{
+ "note": "Every transaction touching our wallets that we did not send. The first is the operator's funding transfer; the rest are unsolicited dust transfers into fee-payer accounts. Funding + dust - fees settled in spend.jsonl = the wallets' balance.",
+ "funding": [
+  {
+   "account": "8UUfxyZX1r1rMDJ5LsT4Wn9tPY3JXgMu1UngddB7xBvA",
+   "signature": "31G4nvyU3jChjSXbtREgHYAa4ro6cnu6fqTpYPEpPSTVh6wESEuuYQjVtcXsz9d4hM53g3mK6YQvQB8QoiUReyS",
+   "slot": 464178558,
+   "lamports": 83092573,
+   "sender": "F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe"
+  }
+ ],
+ "dust": [
+  {
+   "account": "CJxap3MwnDksnEJxJPotHqb5G54dCFVZrpurYqggYvSv",
+   "signature": "VCaqPRsXTWgm7PEHLEbrd4HkbWuxqMyMFduakwfwXwcvKHYKnGRAsjuGgdAGz1vNLskxY7uaeYQ32sKVKuGkGhy",
+   "slot": 464188730,
+   "lamports": 11614,
+   "sender": "AnnPWfhB1Ru5ZThMbvdRF5X9a8nzEVaHoN2HrvyPNkih"
+  },
+  {
+   "account": "3vGksBYBt72UgCXqE28WDwDtbyHfDooecS3AHJXnFBrX",
+   "signature": "4c8uXRhBcm7haFLhzpfKRTVkb1nxyqmeFfsKgkTtFJ84aPVFnk8miBpYSaefLSWiXpPYvUsuZnZw3GMuehNT1dSH",
+   "slot": 464188470,
+   "lamports": 9775,
+   "sender": "3y3XPfoPZSz7TFxywqxioVgu4mf6QdKXuDBy6apvM3yZ"
+  },
+  {
+   "account": "3rptegCD3f2AcSUcoX9Jr8jHRPCtq4e2a31TDH8Us7Lv",
+   "signature": "5nX7xvnYJraeZvhHwcLZkscxrBMjRcUw8tCzMjXawLbzPewf7Bn3MicFMpQ2wSvwFhD4x6BQ7TWKLkiZ7fxAN7x2",
+   "slot": 464230289,
+   "lamports": 7605,
+   "sender": "9tHAeFwMpvMPRxqUpsmVfyEjNPa1UGmcdG1GYTghauUN"
+  }
+ ],
+ "dust_total_lamports": 28994
+}

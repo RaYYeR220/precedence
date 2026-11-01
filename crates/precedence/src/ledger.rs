@@ -59,6 +59,10 @@ pub struct Totals {
     pub settled: u64,
     pub n_reserved: u64,
     pub n_settled: u64,
+    /// What counts against the cap: fees settled plus the worst case of every
+    /// reservation not settled yet. A settled transaction's actual fee never
+    /// exceeds its reservation, so this bound is never below what was spent.
+    pub committed: u64,
 }
 
 pub struct Ledger {
@@ -66,6 +70,7 @@ pub struct Ledger {
     file: File,
     totals: Totals,
     run_id: String,
+    open: std::collections::HashMap<String, u64>,
 }
 
 pub fn now_us() -> u64 {
@@ -85,6 +90,7 @@ impl Ledger {
         }
         let mut totals = Totals { cap: requested_cap, ..Default::default() };
         let mut stored_cap: Option<u64> = None;
+        let mut open: std::collections::HashMap<String, u64> = std::collections::HashMap::new();
         if path.exists() {
             for line in BufReader::new(File::open(&path)?).lines() {
                 let line = line?;
@@ -97,17 +103,24 @@ impl Ledger {
                     EntryKind::Reserve => {
                         totals.reserved += e.lamports;
                         totals.n_reserved += 1;
+                        if let Some(sig) = &e.signature {
+                            *open.entry(sig.clone()).or_default() += e.lamports;
+                        }
                     }
                     EntryKind::Settle => {
                         totals.settled += e.lamports;
                         totals.n_settled += 1;
+                        if let Some(sig) = &e.signature {
+                            open.remove(sig);
+                        }
                     }
                 }
             }
         }
         totals.cap = stored_cap.map_or(requested_cap, |c| c.min(requested_cap));
+        totals.committed = totals.settled + open.values().sum::<u64>();
         let file = OpenOptions::new().create(true).append(true).open(&path)?;
-        let mut ledger = Ledger { path, file, totals, run_id: run_id.to_string() };
+        let mut ledger = Ledger { path, file, totals, run_id: run_id.to_string(), open };
         if stored_cap != Some(ledger.totals.cap) {
             let cap = ledger.totals.cap;
             ledger.append(&[Entry {
@@ -139,7 +152,7 @@ impl Ledger {
     }
 
     pub fn remaining(&self) -> u64 {
-        self.totals.cap.saturating_sub(self.totals.reserved)
+        self.totals.cap.saturating_sub(self.totals.committed)
     }
 
     pub fn path(&self) -> &Path {
@@ -149,8 +162,8 @@ impl Ledger {
     /// Reserve a whole batch: `(signature, worst_case_lamports)`. All or nothing.
     pub fn reserve(&mut self, purpose: &str, batch_id: Option<u32>, items: &[(String, u64)]) -> Result<(), LedgerError> {
         let batch: u64 = items.iter().map(|i| i.1).sum();
-        if self.totals.reserved + batch > self.totals.cap {
-            return Err(LedgerError::CapExceeded { reserved: self.totals.reserved, batch, cap: self.totals.cap });
+        if self.totals.committed + batch > self.totals.cap {
+            return Err(LedgerError::CapExceeded { reserved: self.totals.committed, batch, cap: self.totals.cap });
         }
         let ts = now_us();
         let entries: Vec<Entry> = items
@@ -167,7 +180,11 @@ impl Ledger {
             .collect();
         self.append(&entries)?;
         self.totals.reserved += batch;
+        self.totals.committed += batch;
         self.totals.n_reserved += items.len() as u64;
+        for (sig, l) in items {
+            *self.open.entry(sig.clone()).or_default() += *l;
+        }
         Ok(())
     }
 
@@ -184,6 +201,8 @@ impl Ledger {
         }])?;
         self.totals.settled += lamports;
         self.totals.n_settled += 1;
+        let released = self.open.remove(signature).unwrap_or(0);
+        self.totals.committed = self.totals.committed - released + lamports;
         Ok(())
     }
 }
@@ -223,6 +242,21 @@ mod tests {
         assert_eq!(l.totals().cap, 10_000_000);
         drop(l);
         assert_eq!(Ledger::open(&p, 50_000_000, "r").unwrap().totals().cap, 10_000_000);
+    }
+
+    #[test]
+    fn settling_releases_the_unspent_worst_case() {
+        let p = tmp("release");
+        let mut l = Ledger::open(&p, 20_000, "r").unwrap();
+        l.reserve("probe", Some(0), &[("a".into(), 9_000), ("b".into(), 9_000)]).unwrap();
+        assert!(l.reserve("probe", Some(1), &[("c".into(), 9_000)]).is_err());
+        l.settle("probe", "a", 5_000).unwrap(); // landed, cheaper than its worst case
+        l.settle("probe", "b", 0).unwrap(); // never landed
+        assert_eq!(l.totals().committed, 5_000);
+        l.reserve("probe", Some(1), &[("c".into(), 9_000)]).unwrap();
+        drop(l);
+        let t = Ledger::open(&p, 20_000, "r").unwrap().totals();
+        assert_eq!((t.committed, t.settled, t.reserved), (14_000, 5_000, 27_000));
     }
 
     #[test]

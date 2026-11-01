@@ -44,7 +44,7 @@ enum Cmd {
         #[arg(long, default_value_t = 3.5)]
         poll_hz: f64,
         /// RPC for blockhashes and block collection (needs v1 getBlock and recent history).
-        #[arg(long, env = "PRECEDENCE_AUX_RPC", default_value = "https://solana-rpc.publicnode.com")]
+        #[arg(long, env = "PRECEDENCE_AUX_RPC", default_value = "https://solana.leorpc.com/?api_key=FREE")]
         aux_rpc: String,
         /// Yellowstone gRPC endpoint for entry boundaries (optional).
         #[arg(long, env = "PRECEDENCE_GRPC")]
@@ -110,6 +110,11 @@ enum Cmd {
         common: Common,
         #[arg(long, default_value_t = 16)]
         payers: u16,
+    },
+    /// Settle every open reservation from the chain (actual fee, or zero if it never landed).
+    Reconcile {
+        #[command(flatten)]
+        common: Common,
     },
     /// Balances and spend-ledger totals.
     Status {
@@ -255,6 +260,12 @@ async fn main() -> Result<()> {
             let rpc = Rpc::new(&common.rpc);
             let mut l = ledger::Ledger::open(common.data.join("ledger/spend.jsonl"), common.cap, "sweep")?;
             println!("{}", serde_json::to_string_pretty(&fund::sweep(&rpc, &mut l, &master, payers, dry).await?)?);
+        }
+        Cmd::Reconcile { common } => {
+            let rpc = Rpc::new(&common.rpc);
+            let path = common.data.join("ledger/spend.jsonl");
+            let mut l = ledger::Ledger::open(&path, common.cap, "reconcile")?;
+            println!("{}", serde_json::to_string_pretty(&precedence::reconcile::reconcile(&rpc, &mut l, &path).await?)?);
         }
         Cmd::Status { common, payers } => {
             let rpc = Rpc::new(&common.rpc);
