@@ -167,9 +167,15 @@ td.num, td .num { font-family: var(--mono); font-variant-numeric: tabular-nums; 
 .fam-sub { display: block; color: var(--fg-3); font-size: 12.5px; font-weight: 400; margin: 2px 0 0 18px; }
 .rule { font-weight: 500; }
 .rule.none { color: var(--fg-3); font-weight: 400; }
-.rule-cell { min-width: 260px; }
+.rule-cell { min-width: 300px; max-width: 420px; }
+.card-line { display: grid; grid-template-columns: 74px 1fr; gap: 10px; padding: 2px 0; }
+.card-k { color: var(--fg-3); font-size: 12.5px; }
+.card-v { font-weight: 500; }
+.card-v small { font-weight: 400; color: var(--fg-3); font-size: 12px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.card-v.none { color: var(--fg-3); font-weight: 400; }
+.conc-sub { display: block; margin-top: 2px; color: var(--fg-3); font-size: 12px; }
 .rule-sub { display: block; color: var(--fg-3); font-size: 12.5px; margin-top: 2px; max-width: 46ch; }
-.verdict-text { display: block; color: var(--fg-2); font-size: 13px; max-width: 30ch; }
+.verdict-text { display: block; color: var(--fg-2); font-size: 13px; max-width: 46ch; }
 tr.val-row td { background: var(--sunk); border-bottom-color: var(--hair); padding-top: 9px; padding-bottom: 9px; }
 tr.val-row td:first-child { padding-left: 18px; }
 tr.val-row .rule { font-weight: 400; }
@@ -201,6 +207,7 @@ tr.val-row .rule { font-weight: 400; }
 /* -- small multiples (dose-response) ---------------------------------------- */
 
 .multiples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 40px; }
+.multiples.single { grid-template-columns: minmax(0, 560px); }
 .panel h3 { font-size: 13.5px; font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
 .panel h3 span { color: var(--fg-3); font-weight: 400; font-size: 12.5px; text-align: right; }
 .panel svg { display: block; width: 100%; height: auto; margin-top: 6px; overflow: visible; }
@@ -276,6 +283,7 @@ tr.val-row .rule { font-weight: 400; }
 .blk-head .who { font-family: var(--mono); }
 .spill { color: var(--accent); }
 .links { display: inline-flex; gap: 6px; margin-left: auto; }
+.muted-note { color: var(--fg-3); font-size: 12.5px; }
 .btn {
   font: 12.5px var(--sans); color: var(--fg-2); text-decoration: none; cursor: pointer;
   background: transparent; border: 1px solid var(--hair-2); border-radius: var(--radius); padding: 3px 9px;
@@ -361,6 +369,8 @@ details.more summary:hover { color: var(--fg); }
   .conc-val { text-align: left; }
   .verdicts .fam-cell { min-width: 0; }
   .rule-cell { min-width: 0; }
+  .card-line { grid-template-columns: 1fr; gap: 0; padding: 2px 0; }
+  .conc-sub { display: none; }
   .verdicts .rule-sub, .verdicts .fam-sub { display: none; }
   .verdicts td, .verdicts th { padding-right: 10px; }
   .multiples { grid-template-columns: 1fr; gap: 26px; }

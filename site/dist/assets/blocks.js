@@ -69,6 +69,7 @@
   function anchorText(a) {
     if (!a || !isNum(a.slots)) return "";
     const n = a.slots;
+    if (n === 0) return "first send at the window start";
     const word = n === 1 ? "slot" : "slots";
     return a.type === "before_window" ? `first send ${n} ${word} before the window` : `first send ${n} ${word} into the window`;
   }
@@ -174,6 +175,10 @@
     return { html: `<svg width="${width}" height="${H}" viewBox="0 0 ${width} ${H}" role="img" aria-label="${esc(label)}">${out}${overlay}${probes}</svg>`, x, width, starts, probeAt };
   }
 
+  function mainnet(b) {
+    return !b.mode || b.mode === "live" || b.mode === "dry";
+  }
+
   function ordinal(n) {
     const s = ["th", "st", "nd", "rd"], v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
@@ -191,7 +196,11 @@
     const blk = blocks[String(entry.slot)];
     const who = entry.producer ? `<span class="who" title="${esc(entry.producer)}">${esc(short(entry.producer))}</span> ${esc(entry.family)}` : "unknown producer";
     const where = isNum(entry.slot_in_window) ? (entry.slot_in_window >= 0 && entry.slot_in_window <= 3 ? `slot ${entry.slot_in_window + 1} of the window` : entry.slot_in_window < 0 ? `${-entry.slot_in_window} slot(s) before the window` : `${entry.slot_in_window - 3} slot(s) after the window`) : "";
-    const head = `<div class="blk-head"><span class="slot">Slot ${int(entry.slot)}</span><span>produced by ${who}</span>${where ? `<span>${esc(where)}</span>` : ""}${entry.spilled ? `<span class="spill">not the targeted leader</span>` : ""}<span class="links"><a class="btn" href="https://solscan.io/block/${entry.slot}" target="_blank" rel="noopener">Solscan</a><button class="btn" type="button" data-curl="${entry.slot}">Copy getBlock</button></span></div>`;
+    // Explorer links and the public RPC only make sense for mainnet runs; a local cluster's slots are its own.
+    const links = mainnet(b)
+      ? `<span class="links"><a class="btn" href="https://solscan.io/block/${entry.slot}" target="_blank" rel="noopener">Solscan</a><button class="btn" type="button" data-curl="${entry.slot}">Copy getBlock</button></span>`
+      : `<span class="links muted-note">${esc(b.mode || "local")} run: no public explorer</span>`;
+    const head = `<div class="blk-head"><span class="slot">Slot ${int(entry.slot)}</span><span>produced by ${who}</span>${where ? `<span>${esc(where)}</span>` : ""}${entry.spilled ? `<span class="spill">not the targeted leader</span>` : ""}${links}</div>`;
     if (!blk) return `<div class="b-block">${head}<p class="nothing">Block file not stored.</p></div>`;
     const pos = entry.probes.map((p) => p.i);
     const where2 = pos.length === 1 ? `1 of our probes at position <span class="num">${int(pos[0])}</span>` : `<span class="num">${pos.length}</span> of our probes at positions <span class="num">${int(Math.min(...pos))}–${int(Math.max(...pos))}</span>`;
@@ -200,10 +209,10 @@
     const rowsP = entry.probes
       .map((p) => {
         const k = entryOf(starts, p.i);
-        return `<tr><td>${int(p.i)}</td><td>${p.fee_rank}</td><td>${p.send_rank}</td><td>${int(p.fee)}</td><td>${P.dec(p.dt_us / 1000, 2)}</td><td>${k === null ? "–" : int(k + 1) + " (" + blk.entries[k] + " tx)"}</td><td>${esc(p.format || "")}</td><td><a href="https://solscan.io/tx/${esc(p.sig)}" target="_blank" rel="noopener" title="${esc(p.sig)}">${esc(short(p.sig))}</a></td></tr>`;
+        return `<tr><td>${int(p.i)}</td><td>${p.fee_rank}</td><td>${p.send_rank}</td><td>${int(p.fee)}</td><td>${P.dec(p.dt_us / 1000, 2)}</td><td>${k === null ? "–" : int(k + 1) + " (" + blk.entries[k] + " tx)"}</td><td>${esc(p.format || "")}</td><td>${mainnet(b) ? `<a href="https://solscan.io/tx/${esc(p.sig)}" target="_blank" rel="noopener" title="${esc(p.sig)}">${esc(short(p.sig))}</a>` : `<span title="${esc(p.sig)}">${esc(short(p.sig))}</span>`}</td></tr>`;
       })
       .join("");
-    const more = `<details class="more"><summary>Probe details and getBlock command</summary><div class="ptable"><table><thead><tr><th>Position</th><th>Fee rank</th><th>Send order</th><th>Fee (lamports)</th><th>Sent at (ms)</th><th>Entry</th><th>Format</th><th>Signature</th></tr></thead><tbody>${rowsP}</tbody></table></div><div class="curl">${esc(curlFor(entry.slot))}</div></details>`;
+    const more = `<details class="more"><summary>${mainnet(b) ? "Probe details and getBlock command" : "Probe details"}</summary><div class="ptable"><table><thead><tr><th>Position</th><th>Fee rank</th><th>Send order</th><th>Fee (lamports)</th><th>Sent at (ms)</th><th>Entry</th><th>Format</th><th>Signature</th></tr></thead><tbody>${rowsP}</tbody></table></div>${mainnet(b) ? `<div class="curl">${esc(curlFor(entry.slot))}</div>` : ""}</details>`;
     return `<div class="b-block" data-b="${bi}" data-slot="${entry.slot}">${head}<div class="mini" aria-hidden="true"></div><div class="strip shade" tabindex="0" aria-label="Block ${entry.slot}, scroll sideways"></div>${sum}${more}</div>`;
   }
 

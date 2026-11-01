@@ -22,23 +22,23 @@
     const none = u.verdict !== "rule";
     const c = u.concordance_ci || [];
     const bar = isNum(c[0]) && isNum(c[1]) ? `<span class="ci" style="left:${xs(c[0])}%;width:${Math.max(0.5, xs(c[1]) - xs(c[0]))}%"></span>` : "";
-    const tipText = `<b>${esc(u.name.length > 20 ? P.short(u.name) : u.name)}</b><br>concordance with ${esc(u.rule_text || u.reference_text)}: <span class="num">${pct(u.concordance)} ${ci(c)}</span><br><span class="muted">${int(u.n_pairs)} probe pairs; ${none ? "not distinguishable from random" : "p = " + (isNum(u.p_perm) ? (u.p_perm < 0.001 ? "< 0.001" : u.p_perm.toFixed(3)) : "–")}</span>`;
-    return `<div class="conc"><span class="conc-val">${pct(u.concordance)}</span><span class="scale${none ? " none" : ""}" data-tip="${esc(tipText)}"><span class="mid" style="left:${xs(0.75)}%"></span>${bar}<span class="pt" style="left:${xs(u.concordance)}%"></span></span></div>`;
+    const tipText = `<b>${esc(u.name.length > 20 ? P.short(u.name) : u.name)}</b><br>best single rule over all batches: ${esc(singleModel(u))}<br>concordance <span class="num">${pct(u.concordance)} ${ci(c)}</span>, θ <span class="num">${theta(u.theta)}</span><br><span class="muted">${int(u.n_pairs)} probe pairs; ${none ? "not distinguishable from random" : "p = " + (isNum(u.p_perm) ? (u.p_perm < 0.001 ? "< 0.001" : u.p_perm.toFixed(3)) : "–")}</span>`;
+    return `<div class="conc"><span class="conc-val">${pct(u.concordance)}</span><span class="scale${none ? " none" : ""}" data-tip="${esc(tipText)}"><span class="mid" style="left:${xs(0.75)}%"></span>${bar}<span class="pt" style="left:${xs(u.concordance)}%"></span></span></div><span class="conc-sub">${esc(singleModel(u))}</span>`;
   }
 
-  function ruleCell(u) {
-    if (u.verdict === "insufficient_data") return `<span class="rule none">insufficient data</span>`;
-    if (u.verdict !== "rule") return `<span class="rule none">none detectable</span><span class="rule-sub">closest: ${esc(u.reference_text)}</span>`;
-    return `<span class="rule">${esc(u.rule_text)}</span>` + (u.component ? `<span class="rule-sub">${esc(u.component)}</span>` : "");
+  function cardCell(u) {
+    // The rule card: what decides the order for probes queued together, ties, and probes spread over time.
+    const parts = (u.card || []).map((c) => {
+      const none = !c.rule || c.rule === "random";
+      const title = c.part === "simultaneous" ? "Together" : c.title;
+      return `<span class="card-line"><span class="card-k">${esc(title)}</span><span class="card-v${none ? " none" : ""}">${esc(c.label)}${c.detail ? ` <small>${esc(c.detail)}</small>` : ""}</span></span>`;
+    });
+    return parts.join("") || `<span class="rule none">no data</span>`;
   }
 
-  function verdictText(u) {
-    if (u.verdict === "insufficient_data") return "Insufficient data";
-    const p = isNum(u.p_perm) ? (u.p_perm < 0.001 ? "p < 0.001" : "p = " + u.p_perm.toFixed(3)) : "";
-    const mix = u.validator_rules && Object.keys(u.validator_rules).length
-      ? "; validators: " + Object.entries(u.validator_rules).sort((a, b) => b[1] - a[1]).map(([k, n]) => n + " " + k).join(", ")
-      : "";
-    return (u.verdict === "rule" ? "Rule, " : "No rule detectable, ") + p + mix;
+  function singleModel(u) {
+    if (u.verdict === "insufficient_data") return "insufficient data";
+    return u.verdict === "rule" ? u.rule_text : "none detectable; closest " + u.reference_text;
   }
 
   const byName = {};
@@ -52,12 +52,10 @@
     rows.push(`<tr class="fam-row">
       <td class="fam-cell"><button class="fam-toggle" type="button" aria-expanded="false" aria-controls="${id}" data-group="${id}">${chev}${esc(f.name)}</button><span class="fam-sub">${esc(f.orderer_text || "")}${esc(stake)}</span></td>
       <td class="r num hide-s">${int(f.n_validators)}</td>
-      <td class="r num hide-s">${int(f.n_windows)}</td>
       <td class="r num hide-s">${int(f.n_landed)}</td>
-      <td class="rule-cell">${ruleCell(f)}</td>
+      <td class="rule-cell">${cardCell(f)}</td>
       <td>${scale(f)}</td>
-      <td class="r num hide-s">${theta(f.theta)}</td>
-      <td class="hide-m"><span class="verdict-text">${esc(verdictText(f))}</span></td>
+      <td class="hide-m"><span class="verdict-text">${esc(f.sentence)}</span></td>
     </tr>`);
     (f.validators || []).forEach((name) => {
       const v = byName[name];
@@ -65,16 +63,14 @@
       rows.push(`<tr class="val-row" data-group="${id}" hidden>
         <td><a href="blocks.html#validator=${encodeURIComponent(v.name)}" title="${esc(v.name)}">${esc(P.short(v.name))}</a></td>
         <td class="r num hide-s"></td>
-        <td class="r num hide-s">${int(v.n_windows)}</td>
         <td class="r num hide-s">${int(v.n_landed)}</td>
-        <td class="rule-cell">${ruleCell({ ...v, component: null })}</td>
+        <td class="rule-cell">${cardCell(v)}</td>
         <td>${scale(v)}</td>
-        <td class="r num hide-s">${theta(v.theta)}</td>
-        <td class="hide-m"><span class="verdict-text">${esc(verdictText({ ...v, validator_rules: null }))}</span></td>
+        <td class="hide-m"><span class="verdict-text">${esc(v.sentence)}</span></td>
       </tr>`);
     });
   });
-  tbody.innerHTML = rows.join("") || `<tr><td colspan="8" class="empty">No results yet.</td></tr>`;
+  tbody.innerHTML = rows.join("") || `<tr><td colspan="6" class="empty">No results yet.</td></tr>`;
   tbody.addEventListener("click", (ev) => {
     const b = ev.target.closest(".fam-toggle");
     if (!b) return;
@@ -96,7 +92,11 @@
   let W = 280, H = 168;
   const M = { l: 30, r: 8, t: 8, b: 26 };
   const famRule = {};
-  (D.families || []).forEach((f) => (famRule[f.name] = f.verdict === "rule" ? f.rule_text : "no rule detectable"));
+  // Panel subtitle: the rule card's verdict for probes spread over time, which is what this chart shows.
+  (D.families || []).forEach((f) => {
+    const over = (f.card || []).find((c) => c.part === "over_time");
+    famRule[f.name] = over ? "over time: " + over.label : "";
+  });
 
   function panel(unit) {
     const rowsU = (dose.units || {})[unit] || [];
@@ -143,6 +143,7 @@
     doseEl.innerHTML = order.map(panel).join("") || `<p class="empty">No probe pairs yet.</p>`;
   }
   drawDose();
+  doseEl.classList.toggle("single", order.length === 1);
   if (narrowMq.addEventListener) narrowMq.addEventListener("change", drawDose);
   if (order.length) doseEl.insertAdjacentHTML("afterend", `<p class="x-title">Horizontal axis: how many milliseconds later the higher-priority probe was sent (≤ 0: sent first or together). Vertical: % of pairs where it still came first; dashed line at 50%. Hollow points rest on fewer than 20 pairs.</p>`);
 

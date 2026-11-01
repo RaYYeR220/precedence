@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/app.css?v=11df131761">
+<link rel="stylesheet" href="assets/app.css?v=e83cb6af44">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230B1016'/%3E%3Cg fill='%23E9B867'%3E%3Crect x='3' y='4' width='1.6' height='8'/%3E%3Crect x='6' y='5' width='1.6' height='7'/%3E%3Crect x='9' y='6.5' width='1.6' height='5.5'/%3E%3Crect x='12' y='8' width='1.6' height='4'/%3E%3C/g%3E%3C/svg%3E">
 </head>
 <body class="page-overview">
@@ -38,7 +38,7 @@
 <section class="section focal" aria-labelledby="h-verdicts">
   <div class="section-head">
     <h2 id="h-verdicts">Rule by client family</h2>
-    <p>Open a family to see its validators. Strictness is concordance with the rule, 95% interval over batches; the scale runs from 50% (coin flip) to 100%.</p>
+    <p>The rule card names what decides the order in each condition, claiming only what beats random. The best single rule is the one model that fits all batches at once; its strictness is the share of pairs it orders correctly, 95% interval over batches, on a scale from 50% (coin flip) to 100%. Open a family to see its validators.</p>
   </div>
   <div class="table-wrap">
     <table class="verdicts" id="verdicts">
@@ -46,11 +46,9 @@
         <tr>
           <th scope="col">Family</th>
           <th scope="col" class="r hide-s">Validators</th>
-          <th scope="col" class="r hide-s">Windows</th>
           <th scope="col" class="r hide-s">Landed</th>
-          <th scope="col">Rule</th>
-          <th scope="col" class="conc-col">Strictness</th>
-          <th scope="col" class="r hide-s">θ</th>
+          <th scope="col">Rule card</th>
+          <th scope="col" class="conc-col">Best single rule</th>
           <th scope="col" class="hide-m">Verdict</th>
         </tr>
       </thead>
@@ -113,9 +111,9 @@
 </footer>
 <div class="tip" id="tip" role="status" aria-live="polite" hidden></div>
 
-<script src="data/overview.js?v=55a92ababa"></script>
+<script src="data/overview.js?v=4453579e51"></script>
 <script src="assets/common.js?v=6b46ab3d34"></script>
-<script src="assets/overview.js?v=c1572692e3"></script>
+<script src="assets/overview.js?v=a4c5f111f8"></script>
 
 </body>
 </html>

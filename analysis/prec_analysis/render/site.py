@@ -27,9 +27,9 @@ import pandas as pd
 from ..constants import GAP_BUCKETS_MS
 from ..report import to_jsonable
 from ..tidy import SlotEntries, clean_entries, tx_priority
-from .blocks import DOSE_LABELS, family_order, headline_items
+from .blocks import DOSE_LABELS, family_order, headline_items, verdict_sentence
 from .context import Context, DataFacts
-from .fmt import ORDERER_CLASS_TEXT, is_num, model_text, plural, rule_text
+from .fmt import CARD_PART_TITLES, CARD_PARTS, ORDERER_CLASS_TEXT, card_part, is_num, model_text, plural, rule_text
 from .predictions import evaluate, outcome_counts
 
 STATIC_FILES = ("app.css", "common.js", "overview.js", "blocks.js")
@@ -87,6 +87,12 @@ def _unit_row(name: str, u: dict[str, Any], stake: float | None) -> dict[str, An
         "mde": (u.get("min_detectable") or {}).get("concordance_mde"),
         "tie": (u.get("key_rates") or {}).get("earlier_sent_first_tie"),
         "ladder": (u.get("key_rates") or {}).get("higher_priority_first_ladder_format"),
+        "sentence": verdict_sentence(u),
+        "card": [
+            {"part": name, "title": CARD_PART_TITLES[name], "rule": ((u.get("rule_card") or {}).get(name) or {}).get("rule"), "label": lab, "detail": det}
+            for name in CARD_PARTS
+            for lab, det in [card_part(name, (u.get("rule_card") or {}).get(name))]
+        ],
     }
 
 
@@ -121,6 +127,12 @@ def _pct(x: Any) -> str:
     return f"{float(x) * 100:.1f}%" if is_num(x) else "–"
 
 
+def _dose_order(fam_names: list[str], dose: dict[str, Any]) -> list[str]:
+    """Panels to draw: the pooled one only when there is more than one family to pool."""
+    fams = [f for f in fam_names if f in dose]
+    return (["all"] if len(fams) > 1 else []) + fams
+
+
 def overview_data(ctx: Context) -> dict[str, Any]:
     s = ctx.summary
     fams = ctx.families()
@@ -153,7 +165,7 @@ def overview_data(ctx: Context) -> dict[str, Any]:
         "stats": _stats(ctx),
         "families": [{**_unit_row(f, fams[f], stake_f(f)), "validators": [v["name"] for v in validators if v["family"] == f]} for f in fam_names],
         "validators": validators,
-        "dose": {"buckets": buckets, "labels": {b: DOSE_LABELS[b] for b in buckets}, "units": dose, "order": ["all"] + [f for f in fam_names if f in dose]},
+        "dose": {"buckets": buckets, "labels": {b: DOSE_LABELS[b] for b in buckets}, "units": dose, "order": _dose_order(fam_names, dose)},
         "inclusion": {"overall": inc.get("overall"), "families": inclusion},
         "fingerprint": fp,
         "predictions": [{"id": o.id, "prediction": o.prediction, "outcome": o.outcome, "evidence": o.evidence} for o in evaluate(ctx)],
@@ -235,6 +247,7 @@ def batches_data(facts: DataFacts) -> dict[str, Any]:
             rows = by_batch.get((run.run_id, bid))
             rec: dict[str, Any] = {
                 "run": run.run_id,
+                "mode": run.config.get("mode"),
                 "batch": bid,
                 "kind": design.get("kind"),
                 "arm": design.get("arm"),
@@ -253,8 +266,11 @@ def batches_data(facts: DataFacts) -> dict[str, Any]:
                 "blocks": [],
                 "unlanded": [],
             }
-            if b.get("family"):
-                families.add(str(b["family"]))
+            if rows is not None and len(rows) and pd.notna(rows["target_family"].iloc[0]):
+                # The target's clientId in the snapshot nearest the window, as the analysis labels it.
+                rec["target_family"] = str(rows["target_family"].iloc[0])
+            if rec["target_family"]:
+                families.add(str(rec["target_family"]))
             if rows is not None and len(rows):
                 first_send = rows["t_send_us"].min()
                 rec["n_sent"] = int(rows["sent"].sum())

@@ -157,25 +157,44 @@ def test_missing_results_make_every_prediction_inconclusive() -> None:
     assert {o.outcome for o in outcomes} == {"inconclusive"}
 
 
-def test_predictions_follow_the_interval_rule() -> None:
-    def fam_rate(rate: float, lo: float, hi: float) -> dict:
-        return {"rate": rate, "ci": [lo, hi], "n_batches": 10, "n_pairs": 80, "p_perm": 0.01}
+def _rate(rate: float, lo: float, hi: float, n_batches: int = 10) -> dict:
+    return {"rate": rate, "ci": [lo, hi], "n_batches": n_batches, "n_pairs": 80, "p_perm": 0.01}
 
+
+def _family(**card: dict) -> dict:
+    return {"rule_card": {"simultaneous": {}, "ties": {}, "over_time": {}, "conflicts": {}, "format": {}, **card}}
+
+
+def test_predictions_read_the_rule_card() -> None:
     results = {
-        "summary": {"families": {"Firedancer": {"key_rates": {"earlier_sent_first_tie": fam_rate(0.1, 0.02, 0.2)}, "best_model": "priority_lifo_ties"}}},
-        "pairs_by_condition": {
-            "by_family": {
-                "Agave": {"sweep/all": {"earlier_sent_first": fam_rate(0.9, 0.8, 0.97)}},
-                "JitoLabs": {"sweep/all": {"earlier_sent_first": fam_rate(0.3, 0.2, 0.4)}},
-                "Rakurai": {"ladder/all": {"higher_priority_first": fam_rate(0.6, 0.45, 0.75)}},
+        "summary": {
+            "families": {
+                "Firedancer": _family(ties={"rule": "lifo", "earlier_sent_first": _rate(0.1, 0.02, 0.2)}),
+                "Agave": _family(
+                    over_time={"rule": "fifo", "earlier_sent_first": _rate(0.9, 0.8, 0.97)},
+                    ties={"rule": "fifo", "earlier_sent_first": _rate(0.9, 0.8, 0.95), "by_spacing": {"0.5ms": {"all": _rate(0.55, 0.4, 0.7)}, "2ms": {"all": _rate(0.9, 0.8, 1.0)}}},
+                ),
+                "JitoLabs": _family(
+                    over_time={"rule": "priority", "higher_priority_first": _rate(0.7, 0.6, 0.8)},
+                    ties={"rule": "fifo", "earlier_sent_first": _rate(0.9, 0.8, 0.95), "by_spacing": {"0.5ms": {"all": _rate(0.95, 0.9, 1.0)}}},
+                ),
+                "Rakurai": _family(simultaneous={"rule": "random", "p_perm": 0.4}),
+                "AgaveBam": _family(over_time={"rule": "batched", "batched": {"w_ms": 30.0, "w_range_ms": [30.0, 40.0], "w_identifiable": True, "reads_as": "batch auction"}}),
+                "FireBAM": _family(over_time={"rule": "batched", "batched": {"w_ms": 100.0, "w_range_ms": [100.0, 150.0], "w_identifiable": True, "reads_as": "batch auction"}}),
             }
         },
     }
     by_id = {o.id: o for o in evaluate(Context(results=results, data=None))}
     assert by_id["P-F2"].outcome == "confirmed"
-    assert by_id["P-A5"].outcome == "refuted"  # JitoLabs contradicts
-    assert by_id["P-R1"].outcome == "inconclusive"  # interval contains 50%
+    assert by_id["P-A5"].outcome == "refuted"  # JitoLabs orders sweeps by fee
+    assert by_id["P-R1"].outcome == "inconclusive"  # no rule beats random
+    assert by_id["P-A3"].outcome == "refuted"  # JitoLabs orders 0.5 ms ties reliably
+    assert "0.5 ms is reliably ordered too" in by_id["P-A3"].evidence
+    assert by_id["P-B1"].outcome == "refuted"  # FireBAM batches are far longer than 50 ms
     assert all(o.outcome in OUTCOMES for o in by_id.values())
+    # Agave alone satisfies P-A3: FIFO at 2 ms and no reliable order at 0.5 ms.
+    agave_only = {"summary": {"families": {"Agave": results["summary"]["families"]["Agave"]}}}
+    assert {o.id: o for o in evaluate(Context(results=agave_only, data=None))}["P-A3"].outcome == "confirmed"
 
 
 # -- site --------------------------------------------------------------------------------
@@ -243,10 +262,84 @@ def test_stake_share_comes_from_the_snapshot(small_dir: Path, results_dir: Path,
     votes = {"current": [{"nodePubkey": n["pubkey"], "activatedStake": 1_000 * (k + 1)} for k, n in enumerate(nodes)], "delinquent": []}
     (run_dir / "snapshot" / "vote_accounts.json").write_text(json.dumps(votes), encoding="utf-8")
     readme = tmp_path / "README.md"
-    readme.write_text(doc_with_markers(["verdicts"]), encoding="utf-8")
+    readme.write_text(doc_with_markers(["verdicts", "leader_types"]), encoding="utf-8")
     assert main(["render", "--data", str(data), "--results", str(results_dir), "--readme", str(readme)]) == 0
-    rows = [line for line in readme.read_text(encoding="utf-8").splitlines() if line.startswith("| ") and "Family" not in line and "---" not in line]
+    text = readme.read_text(encoding="utf-8")
+    verdicts = text.split("<!-- results:verdicts:start -->")[1].split("<!-- results:verdicts:end -->")[0]
+    rows = [line for line in verdicts.splitlines() if line.startswith("| ") and "Family" not in line and "---" not in line]
     assert rows and all("%" in line.split("|")[2] for line in rows)
+    leaders = text.split("<!-- results:leader_types:start -->")[1].split("<!-- results:leader_types:end -->")[0]
+    lrows = [line.split("|") for line in leaders.splitlines() if line.startswith("| ") and "Client family" not in line and "---" not in line]
+    shares = [float(r[2].strip().rstrip("%")) for r in lrows]
+    assert lrows and abs(sum(shares) - 100.0) < 0.5
+    assert sum(int(r[3].strip()) for r in lrows) == len(nodes)
+
+
+def test_clock_block_reads_first_shred_times(small_dir: Path, results_dir: Path, tmp_path: Path) -> None:
+    data = tmp_path / "data"
+    shutil.copytree(small_dir, data)
+    run_dir = next((data / "runs").iterdir())
+    design = json.loads((run_dir / "design.json").read_text(encoding="utf-8"))
+    windows = [json.loads(line) for line in (run_dir / "windows.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    first_send = {w["batch_id"]: w["first_send_unix_us"] for w in windows}
+    # Exact window starts placed 50 ms after each batch's first send; slots inside the window 150 ms apart.
+    rows = []
+    for b in design["batches"]:
+        ws = b["window_first_slot"] - b["window_first_slot"] % 4
+        t0 = first_send[b["batch_id"]] + 50_000
+        for k in range(5):
+            rows.append({"slot": ws + k, "recv_unix_us": t0 + k * 150_000 + 900, "server_unix_us": t0 + k * 150_000, "source": "ws", "status": "firstShredReceived"})
+        b["window_first_slot"] = ws
+    (run_dir / "slots.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    (run_dir / "design.json").write_text(json.dumps(design), encoding="utf-8")
+    readme = tmp_path / "README.md"
+    readme.write_text(doc_with_markers(["clock"]), encoding="utf-8")
+    assert main(["render", "--data", str(data), "--results", str(results_dir), "--readme", str(readme)]) == 0
+    block = readme.read_text(encoding="utf-8").split("<!-- results:clock:start -->")[1].split("<!-- results:clock:end -->")[0]
+    assert "150 (n=" in block and "300 (n=" in block and "450 (n=" in block
+    assert "| 600 / 600 / " in block  # p10 and median of the window period; the tail mixes batches' timelines
+    assert "-50 / -50 / -50" in block
+
+
+def test_data_splits_for_predictions(small_dir: Path) -> None:
+    from prec_analysis.render.context import load_data_facts
+
+    facts = load_data_facts(small_dir)
+    assert facts is not None
+    families = tuple(sorted(set(facts.probes["producer_family"].dropna().astype(str))))
+    pre = facts.ladder_priority_by_anchor(families, "before_window")
+    assert pre is not None and pre["n_pairs"] > 0 and 0.0 <= pre["rate"] <= 1.0
+    by_anchor = facts.landing_by_anchor(str(facts.probes["target_family"].iloc[0]))
+    assert set(by_anchor) <= {"before_window", "in_window"} and all(v["n"] >= v["k"] for v in by_anchor.values())
+    early = facts.early_landings(families)
+    assert early["n_landed"] >= early["n_early"] >= sum(early["producers"].values()) - 0
+
+
+LOCALNET = REPO / "localnet"
+
+
+@pytest.mark.skipif(not (LOCALNET / "results" / "summary.json").exists(), reason="no localnet positive-control results")
+def test_localnet_positive_control_renders_as_one_family(tmp_path: Path) -> None:
+    readme = tmp_path / "README.md"
+    readme.write_bytes(doc_with_markers(list(BLOCKS)).encode("utf-8"))
+    site = tmp_path / "site"
+    args = ["render", "--data", str(LOCALNET / "data"), "--results", str(LOCALNET / "results"), "--readme", str(readme), "--site", str(site)]
+    assert main(args) == 0
+    assert main([*args, "--check"]) == 0
+    text = readme.read_text(encoding="utf-8")
+    summary = json.loads((LOCALNET / "results" / "summary.json").read_text(encoding="utf-8"))
+    sentence = summary["families"]["Agave"]["rule_card"]["sentence"]
+    verdicts = text.split("<!-- results:verdicts:start -->")[1].split("<!-- results:verdicts:end -->")[0]
+    assert sentence in verdicts
+    overview = json.loads((site / "data" / "overview.json").read_text(encoding="utf-8"))
+    assert [f["name"] for f in overview["families"]] == ["Agave"]
+    assert overview["dose"]["order"] == ["Agave"]
+    assert [c["part"] for c in overview["families"][0]["card"]] == ["simultaneous", "ties", "over_time"]
+    batches = json.loads((site / "data" / "batches.json").read_text(encoding="utf-8"))
+    design = json.loads(next((LOCALNET / "data" / "runs").iterdir()).joinpath("design.json").read_text(encoding="utf-8"))
+    assert len(batches["batches"]) == len(design["batches"])
+    assert {b["mode"] for b in batches["batches"]} == {"localnet"}
+    assert batches["families"] == ["Agave"]
 
 
 def test_priority_levels_are_one_character() -> None:

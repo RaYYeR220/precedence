@@ -1,20 +1,31 @@
 """Each pre-registered prediction of docs/PREDICTIONS.md, decided from the results.
 
-One small function per prediction id. Each reads named fields of the results
-JSON (its docstring says which), states the evidence as a number, and returns
-`confirmed`, `refuted` or `inconclusive`.
+One small function per prediction id. Each reads named fields (its docstring
+says which), states the evidence as a number, and returns `confirmed`,
+`refuted` or `inconclusive`.
+
+Where to read: the rule card (`summary.*.rule_card`) is the most direct
+evidence for how a unit orders probes queued together, equal-fee ties, and
+probes spread over time, so the order predictions read it. A few predictions
+need a split the results do not carry (by send anchor; who produced a block a
+probe landed in early; the advertised TPU address); those come from the small,
+documented `DataFacts` methods in `context.py`, computed from `data/` with the
+analysis' own estimators.
 
 Shared conventions:
 
-* A pair rate is read through its 95% bootstrap interval over batches. It
-  *favours* the predicted direction when the whole interval is above 50%,
-  *opposes* it when the whole interval is below 50%, and is undecided when
-  the interval contains 50%.
-* A rate built from fewer than `MIN_BATCHES` batches counts as missing.
+* A card component counts as evidence only when its rule beats random
+  (`rule` is not `random`); `random` gives `inconclusive`, never `refuted`.
+* A pair rate is read through its 95% bootstrap interval over batches: it
+  *favours* a direction when the whole interval is on that side of 50% and is
+  undecided when the interval contains 50%. A rate from fewer than
+  `MIN_BATCHES` batches counts as missing.
 * When a prediction names several families, every family with data must
   agree for `confirmed`; one family that contradicts it makes it `refuted`;
   anything else (undecided, or no family with data) is `inconclusive`.
   Families without data are listed in the evidence and otherwise ignored.
+* A prediction with a secondary clause is `refuted` when the data clearly
+  contradict that clause, even if the main clause holds; the evidence says which.
 * Missing results (a file, a family, a field) always give `inconclusive`.
 """
 
@@ -28,8 +39,9 @@ from typing import Any, Callable
 
 from scipy.stats import chi2_contingency, norm
 
+from ..constants import BATCH_PASS_MAX_MS
 from .context import Context
-from .fmt import DASH, is_num, model_text, num, pct, pval, rate_ci, rule_text
+from .fmt import card_part, is_num, num, pct, pct_ci, pval, rate_ci
 
 CONFIRMED = "confirmed"
 REFUTED = "refuted"
@@ -43,15 +55,19 @@ BAM = ("AgaveBam", "FireBAM")
 HARMONIC = ("HarmonicAgave", "HarmonicFiredancer")
 RAKURAI = ("Rakurai",)
 
-# Strict priority order (P-F1): at least this share of ladder pairs.
+# Strict priority order (P-F1): at least this share of pairs.
 STRICT = 0.95
 # BAM batch length (P-B1) and Harmonic double-buffered window (P-H1), ms.
 BAM_W_MS = (20.0, 50.0)
 HARMONIC_W_MS = (40.0, 75.0)
+# Two batched w estimates within this many ms count as the same (P-B4).
+SAME_W_MS = 10.0
 # P0: share of BAM/Harmonic windows whose tpuQuic must be a proxy.
 PROXY_CONFIRM, PROXY_REFUTE = 0.9, 0.5
-# P-B3: landed pre-window BAM probes needed before "never seen" counts as refuted.
+# P-B3: landed BAM-targeted probes needed before "never seen" counts as refuted.
 B3_MIN_PROBES = 100
+# P-F4: probes per anchor group needed for the landing comparison.
+F4_MIN_PROBES = 20
 
 
 @dataclass(frozen=True)
@@ -71,7 +87,7 @@ class Rule:
     def __call__(self, ctx: Context) -> Outcome:
         try:
             outcome, evidence = self.fn(ctx)
-        except (KeyError, TypeError, ValueError, ZeroDivisionError) as exc:
+        except (KeyError, TypeError, ValueError, ZeroDivisionError, IndexError) as exc:
             outcome, evidence = INCONCLUSIVE, f"results incomplete ({type(exc).__name__})"
         return Outcome(self.id, self.prediction, outcome, evidence)
 
@@ -102,13 +118,11 @@ def ids_in_document(path: Path | str) -> list[str]:
     return seen
 
 
-# -- reading the results ----------------------------------------------------------
+def outcome_counts(outcomes: list[Outcome]) -> dict[str, int]:
+    return {o: sum(1 for x in outcomes if x.outcome == o) for o in OUTCOMES}
 
 
-def _cond(ctx: Context, family: str, key: str) -> dict[str, Any] | None:
-    """`pairs_by_condition.by_family[family][key]`."""
-    cell = ctx.r("pairs_by_condition").get("by_family", {}).get(family, {}).get(key)
-    return cell if isinstance(cell, dict) else None
+# -- reading helpers ------------------------------------------------------------------
 
 
 def _usable(rate: dict[str, Any] | None) -> bool:
@@ -139,34 +153,54 @@ def _combine(calls: list[tuple[str, str | None]]) -> str:
     return INCONCLUSIVE
 
 
-def _directional(ctx: Context, families: tuple[str, ...], get: Callable[[str], dict[str, Any] | None], want: str, label: str) -> tuple[str, str]:
-    """A rate per family that should sit `want` ('above' or 'below') 50%."""
+def _component(ctx: Context, family: str, name: str) -> dict[str, Any] | None:
+    """`summary.families[family].rule_card[name]`."""
+    comp = (ctx.card(family=family) or {}).get(name)
+    return comp if isinstance(comp, dict) else None
+
+
+def _is_pass(comp: dict[str, Any]) -> bool:
+    """A batched sweep rule whose w is short enough to be the scheduler's own passes."""
+    w = (comp.get("batched") or {}).get("w_ms")
+    return comp.get("rule") == "batched" and is_num(w) and float(w) <= BATCH_PASS_MAX_MS
+
+
+def _card_call(ctx: Context, families: tuple[str, ...], name: str, want: Callable[[dict[str, Any]], bool]) -> tuple[str, str]:
+    """One card component per family: confirmed when `want(comp)`, refuted when another rule
+    beats random, inconclusive when no rule does; evidence is the component's own summary.
+    """
     calls, parts = [], []
     for fam in families:
-        rate = get(fam)
-        side = _side(rate)
-        if side is None:
+        comp = _component(ctx, fam, name)
+        if not comp or comp.get("rule") is None:
             calls.append((fam, None))
             parts.append(f"{fam} no data")
             continue
-        if side == want:
-            calls.append((fam, CONFIRMED))
-        elif side == "straddles":
+        label, detail = card_part(name, comp)
+        parts.append(f"{fam} {label}" + (f" ({detail})" if detail else ""))
+        if comp["rule"] == "random":
             calls.append((fam, INCONCLUSIVE))
         else:
-            calls.append((fam, REFUTED))
-        parts.append(f"{fam} {rate_ci(rate)}")
-    return _combine(calls), f"{label}: " + "; ".join(parts)
+            calls.append((fam, CONFIRMED if want(comp) else REFUTED))
+    return _combine(calls), "; ".join(parts)
 
 
-def _fam_model(ctx: Context, family: str) -> dict[str, Any] | None:
-    """`models.families[family]`."""
-    fit = ctx.r("models").get("families", {}).get(family)
-    return fit if isinstance(fit, dict) else None
+def _harmonic_cards(ctx: Context) -> list[tuple[str, str, dict[str, Any]]]:
+    """(validator, family, rule card) for validators whose family is Harmonic."""
+    out = []
+    for v, s in sorted(ctx.validators().items()):
+        card = s.get("rule_card")
+        if s.get("family") in HARMONIC and isinstance(card, dict):
+            out.append((v, str(s.get("family")), card))
+    return out
 
 
-def _val_family(ctx: Context, v: str) -> str | None:
-    return ctx.validators().get(v, {}).get("family")
+def _mix(cards: list[tuple[str, str, dict[str, Any]]], name: str) -> str:
+    counts: dict[str, int] = {}
+    for _, _, card in cards:
+        label = card_part(name, card.get(name))[0]
+        counts[label] = counts.get(label, 0) + 1
+    return ", ".join(f"{n} {k}" for k, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])))
 
 
 # -- P0 -------------------------------------------------------------------------------
@@ -174,11 +208,10 @@ def _val_family(ctx: Context, v: str) -> str | None:
 
 @rule("P0", "BAM and Harmonic: the gossip tpuQuic is a proxy, so we measure the external orderer")
 def p0(ctx: Context) -> tuple[str, str]:
-    """Reads `windows.jsonl: tpu_is_proxy` per planned family (data), and the
-    selected family rules `summary.families[*].best_rule` for context.
+    """Reads `windows.jsonl: tpu_is_proxy` per planned family (data; `DataFacts.proxy_by_family`).
 
-    Confirmed when at least 90% of BAM and Harmonic windows advertised a
-    proxy tpuQuic; refuted below 50%.
+    Confirmed when at least 90% of BAM and Harmonic windows advertised a proxy
+    tpuQuic; refuted below 50%.
     """
     if ctx.data is None or not ctx.data.proxy_by_family:
         return INCONCLUSIVE, "no window records with tpu_is_proxy"
@@ -202,35 +235,40 @@ def p0(ctx: Context) -> tuple[str, str]:
 
 @rule("P-A1", "Agave/JitoLabs ladder queued before the window: priority order")
 def p_a1(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.by_family[Agave|JitoLabs]["ladder/all"].higher_priority_first`.
+    """Reads `rule_card.simultaneous` of Agave and JitoLabs (rule selected on same-entry
+    groups where entries exist), plus the before-window ladder rate from data
+    (`DataFacts.ladder_priority_by_anchor`, anchor `before_window`).
 
-    The results pool ladder batches over anchors, so mid-window ladders (P-A4)
-    are included; a split by anchor would sharpen this.
+    Confirmed when the card's rule for probes queued together is priority.
     """
-    out, ev = _directional(ctx, LOCAL, lambda f: (_cond(ctx, f, "ladder/all") or {}).get("higher_priority_first"), "above", "higher priority first, ladder")
-    return out, ev + " (all anchors)"
+    out, ev = _card_call(ctx, LOCAL, "simultaneous", lambda c: c["rule"] == "priority")
+    if ctx.data is not None:
+        pre = ctx.data.ladder_priority_by_anchor(LOCAL, "before_window")
+        if pre and pre.get("n_pairs"):
+            ev += f"; ladders sent before the window: {rate_ci(pre, with_n=True)} higher priority first"
+    return out, ev
 
 
 @rule("P-A2", "Agave/JitoLabs: the shared arm holds priority order more strictly than distinct")
 def p_a2(ctx: Context) -> tuple[str, str]:
-    """Reads `models.families[Agave|JitoLabs].by_arm.shared_minus_distinct` (value, ci)
-    and `reference_model`.
+    """Reads `rule_card.conflicts.ladder.shared_minus_distinct` (value, ci) of Agave and
+    JitoLabs: concordance with the card's simultaneous rule, shared minus distinct arm,
+    ladder batches only. Requires that rule to be priority.
 
-    Confirmed when the interval of shared − distinct concordance is above 0 and
-    the reference rule is a priority rule; refuted when it is below 0.
+    Confirmed when the interval is above 0; refuted when it is below 0.
     """
     calls, parts = [], []
     for fam in LOCAL:
-        fit = _fam_model(ctx, fam)
-        diff = (fit or {}).get("by_arm", {}).get("shared_minus_distinct", {})
+        card = ctx.card(family=fam) or {}
+        diff = ((card.get("conflicts") or {}).get("ladder") or {}).get("shared_minus_distinct") or {}
         ci = diff.get("ci") or [None, None]
-        if not fit or not is_num(diff.get("value")) or not all(is_num(v) for v in ci):
+        if not card or not is_num(diff.get("value")) or not all(is_num(v) for v in ci):
             calls.append((fam, None))
             parts.append(f"{fam} no data")
             continue
-        ref = str(fit.get("reference_model") or "")
+        sim_rule = (card.get("simultaneous") or {}).get("closest_rule")
         lo, hi = float(ci[0]), float(ci[1])
-        if not ref.startswith("priority"):
+        if sim_rule != "priority":
             call = INCONCLUSIVE
         elif lo > 0:
             call = CONFIRMED
@@ -239,39 +277,75 @@ def p_a2(ctx: Context) -> tuple[str, str]:
         else:
             call = INCONCLUSIVE
         calls.append((fam, call))
-        parts.append(f"{fam} {float(diff['value']) * 100:+.1f} pts [{lo * 100:+.1f}, {hi * 100:+.1f}] vs {model_text(ref)}")
-    return _combine(calls), "shared − distinct concordance: " + "; ".join(parts)
+        parts.append(f"{fam} {float(diff['value']) * 100:+.1f} pts [{lo * 100:+.1f}, {hi * 100:+.1f}]")
+    return _combine(calls), "shared − distinct concordance with priority, ladders: " + "; ".join(parts)
 
 
 @rule("P-A3", "Agave/JitoLabs tie: oldest first (FIFO) at 2 and 5 ms; no reliable order at 0.5 ms")
 def p_a3(ctx: Context) -> tuple[str, str]:
-    """Reads `summary.families[Agave|JitoLabs].key_rates.earlier_sent_first_tie`.
+    """Reads `rule_card.ties` (rule, earlier_sent_first) and
+    `rule_card.ties.by_spacing["0.5ms"|"2ms"|"5ms"].all` of Agave and JitoLabs.
 
-    The results pool the three tie spacings, so only the FIFO direction is
-    tested here; the 0.5 ms part needs a per-spacing split.
+    Main clause: the ties rule is oldest first (fifo); refuted if newest first, or
+    if the 2 or 5 ms rate clearly favours newest first. Secondary clause: refuted
+    when the 0.5 ms rate clearly favours one order (whole interval off 50%).
     """
-    out, ev = _directional(ctx, LOCAL, lambda f: (ctx.family(f) or {}).get("key_rates", {}).get("earlier_sent_first_tie"), "above", "earlier sent first, tie")
-    return out, ev + " (spacings pooled)"
+    calls, parts = [], []
+    for fam in LOCAL:
+        ties = _component(ctx, fam, "ties")
+        if not ties or ties.get("rule") is None:
+            calls.append((fam, None))
+            parts.append(f"{fam} no data")
+            continue
+        by = ties.get("by_spacing") or {}
+        cell = {sp: (by.get(sp) or {}).get("all") for sp in ("0.5ms", "2ms", "5ms")}
+        call = {"fifo": CONFIRMED, "lifo": REFUTED}.get(ties["rule"], INCONCLUSIVE)
+        if any(_side(cell[sp]) == "below" for sp in ("2ms", "5ms")):
+            call = REFUTED
+        fast = _side(cell["0.5ms"])
+        fast_ordered = call == CONFIRMED and fast in ("above", "below")
+        if fast_ordered:
+            call = REFUTED
+        calls.append((fam, call))
+        label, detail = card_part("ties", ties)
+        spacing = ", ".join(f"{sp} {rate_ci(cell[sp])} ({num((cell[sp] or {}).get('n_batches'))} batches)" for sp in ("0.5ms", "2ms", "5ms") if cell[sp])
+        parts.append(f"{fam} {label} ({detail}); earlier sent first by spacing: {spacing or 'no data'}" + ("; 0.5 ms is reliably ordered too" if fast_ordered else ""))
+    return _combine(calls), "; ".join(parts)
 
 
 @rule("P-A4", "Agave/JitoLabs ladder arriving mid-window: weaker priority order than P-A1")
 def p_a4(ctx: Context) -> tuple[str, str]:
-    """Needs the ladder priority rate split by anchor (`before_window` vs
-    `in_window`). `pairs_by_condition` strata are kind × arm only, so this stays
-    inconclusive until that split exists; the pooled rate is shown.
+    """Reads ladder pairs of Agave and JitoLabs blocks from data, split by the batch's
+    send anchor (`design.json` anchor type): `DataFacts.ladder_priority_by_anchor` and
+    `DataFacts.ladder_anchor_difference` (before minus in-window, batch bootstrap).
+
+    Confirmed when the difference interval is above 0; refuted when below 0.
     """
-    parts = [f"{f} {rate_ci((_cond(ctx, f, 'ladder/all') or {}).get('higher_priority_first'))}" for f in LOCAL]
-    return INCONCLUSIVE, "no split by send anchor in the results; pooled ladder: " + "; ".join(parts)
+    if ctx.data is None:
+        return INCONCLUSIVE, "no data directory"
+    pre = ctx.data.ladder_priority_by_anchor(LOCAL, "before_window")
+    mid = ctx.data.ladder_priority_by_anchor(LOCAL, "in_window")
+    head = f"higher priority first, ladder: before the window {rate_ci(pre, with_n=True)}; in the window {rate_ci(mid, with_n=True)}"
+    if not _usable(pre) or not _usable(mid):
+        return INCONCLUSIVE, f"{head} (needs {MIN_BATCHES}+ batches each)"
+    diff = ctx.data.ladder_anchor_difference(LOCAL)
+    lo, hi = diff["ci"]
+    if not is_num(lo) or not is_num(hi):
+        return INCONCLUSIVE, head
+    evidence = f"{head}; difference {diff['value'] * 100:+.1f} pts [{lo * 100:+.1f}, {hi * 100:+.1f}]"
+    return (CONFIRMED if lo > 0 else (REFUTED if hi < 0 else INCONCLUSIVE)), evidence
 
 
 @rule("P-A5", "Agave/JitoLabs sweep (10–20 ms apart): send order")
 def p_a5(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.by_family[Agave|JitoLabs]["sweep/all"].earlier_sent_first`.
+    """Reads `rule_card.over_time` of Agave and JitoLabs (rule, earlier/higher-priority
+    rates, `batched.w_ms`).
 
-    In a sweep the fee rises with send time, so earlier-sent-first below 50%
-    means the fee won instead.
+    Confirmed when the sweep rule is send order (fifo), or passes of at most
+    `BATCH_PASS_MAX_MS` (each probe in its own pass); refuted for fee order or a
+    longer batch.
     """
-    return _directional(ctx, LOCAL, lambda f: (_cond(ctx, f, "sweep/all") or {}).get("earlier_sent_first"), "above", "earlier sent first, sweep")
+    return _card_call(ctx, LOCAL, "over_time", lambda c: c["rule"] == "fifo" or _is_pass(c))
 
 
 @rule("P-A6", "Agave/JitoLabs: inclusion does not depend on fee")
@@ -312,65 +386,66 @@ def p_a6(ctx: Context) -> tuple[str, str]:
 
 @rule("P-F1", "Firedancer ladder: strict priority order")
 def p_f1(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.by_family.Firedancer["ladder/all"].higher_priority_first`.
+    """Reads `rule_card.simultaneous` of Firedancer (rule, concordance, concordance_ci).
 
-    Strict means at least 95% of pairs: confirmed when the rate is ≥ 95% and
-    its interval is above 50%; refuted when the whole interval is below 95%.
+    Strict means at least 95% of pairs in priority order: confirmed when the rule
+    is priority with concordance ≥ 95%; refuted when the rule is send order, or
+    priority with the whole interval below 95%.
     """
-    rate = (_cond(ctx, "Firedancer", "ladder/all") or {}).get("higher_priority_first")
-    if not _usable(rate):
-        return INCONCLUSIVE, "Firedancer ladder: no data"
-    lo, hi = (float(v) for v in rate["ci"])
-    if float(rate["rate"]) >= STRICT and lo > 0.5:
-        out = CONFIRMED
-    elif hi < STRICT:
-        out = REFUTED
-    else:
-        out = INCONCLUSIVE
-    return out, f"higher priority first, ladder: Firedancer {rate_ci(rate, with_n=True)} (strict = at least {pct(STRICT, 0)})"
+    comp = _component(ctx, "Firedancer", "simultaneous")
+    if not comp or comp.get("rule") is None:
+        return INCONCLUSIVE, "Firedancer: no data"
+    label, detail = card_part("simultaneous", comp)
+    conc, ci = comp.get("concordance"), comp.get("concordance_ci") or [None, None]
+    evidence = f"Firedancer {label} ({detail}); concordance {pct(conc)} {pct_ci(ci)} (strict = at least {pct(STRICT, 0)})"
+    if comp["rule"] == "random":
+        return INCONCLUSIVE, evidence
+    if comp["rule"] != "priority":
+        return REFUTED, evidence
+    if is_num(conc) and conc >= STRICT:
+        return CONFIRMED, evidence
+    if is_num(ci[1]) and ci[1] < STRICT:
+        return REFUTED, evidence
+    return INCONCLUSIVE, evidence
 
 
 @rule("P-F2", "Firedancer tie: newest first (LIFO) when queued together")
 def p_f2(ctx: Context) -> tuple[str, str]:
-    """Reads `summary.families.Firedancer.key_rates.earlier_sent_first_tie`;
-    LIFO means the interval is below 50%. Also quotes `best_model`.
+    """Reads `rule_card.ties` of Firedancer (rule, earlier_sent_first).
+
+    Confirmed when the ties rule is newest first (lifo); refuted when oldest first.
     """
-    out, ev = _directional(ctx, FIREDANCER, lambda f: (ctx.family(f) or {}).get("key_rates", {}).get("earlier_sent_first_tie"), "below", "earlier sent first, tie")
-    fam = ctx.family("Firedancer")
-    if fam and fam.get("best_model"):
-        ev += f"; best rule {model_text(fam.get('best_model'))}"
-    return out, ev
+    return _card_call(ctx, FIREDANCER, "ties", lambda c: c["rule"] == "lifo")
 
 
 @rule("P-F3", "Firedancer sweep: send order")
 def p_f3(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.by_family.Firedancer["sweep/all"].earlier_sent_first`."""
-    return _directional(ctx, FIREDANCER, lambda f: (_cond(ctx, f, "sweep/all") or {}).get("earlier_sent_first"), "above", "earlier sent first, sweep")
-
-
-def _landing(ctx: Context, family: str, kinds: tuple[str, ...]) -> tuple[int, int]:
-    rows = [r for r in ctx.r("inclusion").get("by_family_kind", []) if r.get("target_family") == family and r.get("kind") in kinds]
-    return sum(int(r["k"]) for r in rows), sum(int(r["n"]) for r in rows)
+    """Reads `rule_card.over_time` of Firedancer; confirmed when the sweep rule is send
+    order (fifo) or passes of at most `BATCH_PASS_MAX_MS`.
+    """
+    return _card_call(ctx, FIREDANCER, "over_time", lambda c: c["rule"] == "fifo" or _is_pass(c))
 
 
 @rule("P-F4", "Firedancer: pre-window sends are kept until the blockhash expires")
 def p_f4(ctx: Context) -> tuple[str, str]:
-    """Reads `inclusion.by_family_kind` for target_family Firedancer.
+    """Reads landing of Firedancer-targeted probes by send anchor from data
+    (`DataFacts.landing_by_anchor`: `before_window` vs `in_window`).
 
-    Tie and format batches are always sent 3 slots before the window and
-    sweeps 1 slot into it (crates/precedence/src/plan.rs). Refuted when
-    pre-window probes land significantly less often than in-window ones
-    (one-sided two-proportion z-test, p < 0.05); confirmed otherwise.
+    Refuted when pre-window probes land significantly less often than in-window
+    ones (one-sided two-proportion z-test, p < 0.05); confirmed otherwise.
     """
-    k1, n1 = _landing(ctx, "Firedancer", ("tie", "format"))
-    k2, n2 = _landing(ctx, "Firedancer", ("sweep",))
-    if n1 < 20 or n2 < 20:
-        return INCONCLUSIVE, f"Firedancer: {num(n1)} pre-window and {num(n2)} in-window probes sent"
+    if ctx.data is None:
+        return INCONCLUSIVE, "no data directory"
+    by = ctx.data.landing_by_anchor("Firedancer")
+    pre, mid = by.get("before_window") or {"k": 0, "n": 0}, by.get("in_window") or {"k": 0, "n": 0}
+    k1, n1, k2, n2 = pre["k"], pre["n"], mid["k"], mid["n"]
+    if n1 < F4_MIN_PROBES or n2 < F4_MIN_PROBES:
+        return INCONCLUSIVE, f"Firedancer: {num(n1)} probes sent before the window and {num(n2)} in it"
     p1, p2 = k1 / n1, k2 / n2
     pooled = (k1 + k2) / (n1 + n2)
     se = math.sqrt(pooled * (1 - pooled) * (1 / n1 + 1 / n2)) if 0 < pooled < 1 else 0.0
     p = float(norm.cdf((p1 - p2) / se)) if se > 0 else (0.0 if p1 < p2 else 1.0)
-    evidence = f"landed {pct(p1)} of {num(n1)} pre-window vs {pct(p2)} of {num(n2)} in-window probes; one-sided p = {pval(p)}"
+    evidence = f"landed {pct(p1)} of {num(n1)} sent before the window vs {pct(p2)} of {num(n2)} sent in it; one-sided p = {pval(p)}"
     return (REFUTED if p < 0.05 else CONFIRMED), evidence
 
 
@@ -379,149 +454,162 @@ def p_f4(ctx: Context) -> tuple[str, str]:
 
 @rule("P-B1", "BAM sweep: batch auction, batched(w) with w between 20 and 50 ms")
 def p_b1(ctx: Context) -> tuple[str, str]:
-    """Reads `models.families[AgaveBam|FireBAM]`: `verdict`, `best_rule`, `w_ms`.
+    """Reads `rule_card.over_time` of AgaveBam and FireBAM: rule, `batched.w_ms`,
+    `batched.w_range_ms`, `batched.w_identifiable`.
 
-    Confirmed when the selected rule is batched with 20 ≤ w ≤ 50 ms; refuted
-    when another rule is selected, or batched with w outside that range.
+    Confirmed when the sweep rule is batched with a w range that meets 20–50 ms;
+    refuted for another rule or a w range entirely outside; inconclusive when w
+    is not identifiable on the data.
     """
     calls, parts = [], []
     for fam in BAM:
-        fit = _fam_model(ctx, fam)
-        if not fit or fit.get("verdict") == "insufficient_data":
+        comp = _component(ctx, fam, "over_time")
+        if not comp or comp.get("rule") is None:
             calls.append((fam, None))
             parts.append(f"{fam} no data")
             continue
-        if fit.get("verdict") != "rule":
+        label, detail = card_part("over_time", comp)
+        parts.append(f"{fam} {label}" + (f" ({detail})" if detail else ""))
+        if comp["rule"] == "random":
             calls.append((fam, INCONCLUSIVE))
-            parts.append(f"{fam} no rule detectable (p = {pval(fit.get('p_perm'))})")
             continue
-        w = fit.get("w_ms")
-        ok = fit.get("best_rule") == "batched" and is_num(w) and BAM_W_MS[0] <= float(w) <= BAM_W_MS[1]
-        calls.append((fam, CONFIRMED if ok else REFUTED))
-        parts.append(f"{fam} {rule_text(fit.get('best_rule'), w)}")
-    return _combine(calls), "selected rule: " + "; ".join(parts)
+        if comp["rule"] != "batched":
+            calls.append((fam, REFUTED))
+            continue
+        b = comp.get("batched") or {}
+        rng = b.get("w_range_ms") or [b.get("w_ms"), b.get("w_ms")]
+        if not b.get("w_identifiable", True):
+            calls.append((fam, INCONCLUSIVE))
+        elif is_num(rng[0]) and is_num(rng[1]) and rng[1] >= BAM_W_MS[0] and rng[0] <= BAM_W_MS[1]:
+            calls.append((fam, CONFIRMED))
+        else:
+            calls.append((fam, REFUTED))
+    return _combine(calls), "sweep: " + "; ".join(parts)
 
 
 @rule("P-B2", "BAM ladder burst: priority order")
 def p_b2(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.by_family[AgaveBam|FireBAM]["ladder/all"].higher_priority_first`."""
-    return _directional(ctx, BAM, lambda f: (_cond(ctx, f, "ladder/all") or {}).get("higher_priority_first"), "above", "higher priority first, ladder")
+    """Reads `rule_card.simultaneous` of AgaveBam and FireBAM; confirmed when the rule
+    for probes queued together is priority.
+    """
+    return _card_call(ctx, BAM, "simultaneous", lambda c: c["rule"] == "priority")
 
 
 @rule("P-B3", "BAM: pre-window sends can land in the previous BAM leader's block")
 def p_b3(ctx: Context) -> tuple[str, str]:
-    """Reads `inclusion.landing_slot` rows with target_family AgaveBam or FireBAM:
-    `slot_offset_counts` with a negative offset are probes that landed before
-    the targeted window, i.e. in an earlier leader's block.
+    """Reads probes aimed at AgaveBam/FireBAM leaders that landed before their window,
+    and the family of each such block's producer, from data (`DataFacts.early_landings`).
 
-    Confirmed when any such probe exists; refuted when none appears among at
-    least 100 landed probes; inconclusive with fewer. Whether that earlier
-    leader was itself a BAM leader is not in the results.
+    Confirmed when at least one landed in a block produced by a BAM leader;
+    refuted when none did among at least 100 landed BAM-targeted probes.
     """
-    rows = [r for r in ctx.r("inclusion").get("landing_slot", []) if r.get("target_family") in BAM]
-    n = sum(int(r.get("n") or 0) for r in rows)
-    early = sum(int(v) for r in rows for k, v in (r.get("slot_offset_counts") or {}).items() if int(k) < 0)
-    evidence = f"{num(early)} of {num(n)} landed BAM-targeted probes landed before the window"
-    if early > 0:
+    if ctx.data is None:
+        return INCONCLUSIVE, "no data directory"
+    e = ctx.data.early_landings(BAM)
+    in_bam = sum(n for fam, n in e["producers"].items() if fam in BAM)
+    who = ", ".join(f"{n} {fam}" for fam, n in e["producers"].items()) or "none"
+    evidence = f"{num(e['n_early'])} of {num(e['n_landed'])} landed BAM-targeted probes landed before the window; their producers: {who}"
+    if in_bam > 0:
         return CONFIRMED, evidence
-    return (REFUTED if n >= B3_MIN_PROBES else INCONCLUSIVE), evidence
+    return (REFUTED if e["n_landed"] >= B3_MIN_PROBES else INCONCLUSIVE), evidence
 
 
 @rule("P-B4", "FireBAM orders like AgaveBam")
 def p_b4(ctx: Context) -> tuple[str, str]:
-    """Reads `models.families[AgaveBam|FireBAM]`: `verdict`, `best_rule`, `w_ms`,
-    `concordance`.
+    """Reads `rule_card.simultaneous`, `.ties` and `.over_time` (rule, `batched.w_ms`) of
+    AgaveBam and FireBAM.
 
-    Confirmed when both families select the same rule; refuted when both
-    detect a rule and the rules differ.
+    Compared part by part where both detect a rule: confirmed when every such
+    part agrees (batched within `SAME_W_MS` counts as agreeing); refuted when any
+    differs; inconclusive when no part is detected in both.
     """
-    a, f = _fam_model(ctx, "AgaveBam"), _fam_model(ctx, "FireBAM")
+    a, f = ctx.card(family="AgaveBam"), ctx.card(family="FireBAM")
     if not a or not f:
         return INCONCLUSIVE, "one of the BAM families has no data"
-    desc = "; ".join(f"{name} {rule_text(m.get('best_rule'), m.get('w_ms')) if m.get('verdict') == 'rule' else 'no rule detectable'}" for name, m in (("AgaveBam", a), ("FireBAM", f)))
-    if a.get("verdict") != "rule" or f.get("verdict") != "rule":
-        return INCONCLUSIVE, desc
-    return (CONFIRMED if a.get("best_rule") == f.get("best_rule") else REFUTED), desc
+    agree, differ, parts = 0, 0, []
+    for name in ("simultaneous", "ties", "over_time"):
+        ca, cf = a.get(name) or {}, f.get(name) or {}
+        ra, rf = ca.get("rule"), cf.get("rule")
+        parts.append(f"{name.replace('_', ' ')}: AgaveBam {card_part(name, ca)[0]}, FireBAM {card_part(name, cf)[0]}")
+        if ra in (None, "random") or rf in (None, "random"):
+            continue
+        same = ra == rf
+        if same and ra == "batched":
+            wa, wf = (ca.get("batched") or {}).get("w_ms"), (cf.get("batched") or {}).get("w_ms")
+            same = is_num(wa) and is_num(wf) and abs(float(wa) - float(wf)) <= SAME_W_MS
+        agree += int(same)
+        differ += int(not same)
+    outcome = REFUTED if differ else (CONFIRMED if agree else INCONCLUSIVE)
+    return outcome, "; ".join(parts)
 
 
 # -- Harmonic -------------------------------------------------------------------------
 
 
-def _harmonic_validators(ctx: Context) -> list[tuple[str, dict[str, Any]]]:
-    """`summary.validators` whose family is HarmonicAgave or HarmonicFiredancer."""
-    return [(v, s) for v, s in sorted(ctx.validators().items()) if s.get("family") in HARMONIC and s.get("verdict") != "insufficient_data"]
-
-
-def _harmonic_mix(vals: list[tuple[str, dict[str, Any]]]) -> str:
-    parts = []
-    for _, s in vals:
-        parts.append(rule_text(s.get("best_rule"), s.get("w_ms")) if s.get("verdict") == "rule" else "none detectable")
-    counts: dict[str, int] = {}
-    for p in parts:
-        counts[p] = counts.get(p, 0) + 1
-    return ", ".join(f"{n} {k}" for k, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])))
-
-
 @rule("P-H1", "Harmonic validators on the default fba strategy: batched(w ≈ 50 ms)")
 def p_h1(ctx: Context) -> tuple[str, str]:
-    """Reads `summary.validators[v]` for Harmonic validators: `verdict`,
-    `best_rule`, `w_ms`.
+    """Reads `summary.validators[v].rule_card.over_time` for Harmonic validators: rule,
+    `batched.w_ms`, `batched.w_range_ms`.
 
-    The strategy is not published, so fba validators are the ones whose
-    selected rule is batched. Confirmed when there is at least one and all
-    have 40 ≤ w ≤ 75 ms; refuted when a batched validator's w is outside;
-    inconclusive when none selects batched.
+    The strategy is not published, so fba validators are the ones whose sweep rule
+    is batched. Confirmed when there is at least one and every one has a w range
+    meeting 40–75 ms; refuted when one is entirely outside; inconclusive when none
+    selects batched.
     """
-    vals = _harmonic_validators(ctx)
-    if not vals:
+    cards = _harmonic_cards(ctx)
+    if not cards:
         return INCONCLUSIVE, "no Harmonic validator with data"
-    batched = [s for _, s in vals if s.get("verdict") == "rule" and s.get("best_rule") == "batched"]
-    ws = [float(s["w_ms"]) for s in batched if is_num(s.get("w_ms"))]
-    evidence = f"{len(vals)} Harmonic validators: {_harmonic_mix(vals)}"
+    batched = [(card.get("over_time") or {}).get("batched") or {} for _, _, card in cards if (card.get("over_time") or {}).get("rule") == "batched"]
+    evidence = f"{len(cards)} Harmonic validators, over time: {_mix(cards, 'over_time')}"
     if not batched:
         return INCONCLUSIVE, evidence
-    ok = all(HARMONIC_W_MS[0] <= w <= HARMONIC_W_MS[1] for w in ws) and len(ws) == len(batched)
-    return (CONFIRMED if ok else REFUTED), evidence
+
+    def meets(b: dict[str, Any]) -> bool:
+        rng = b.get("w_range_ms") or [b.get("w_ms"), b.get("w_ms")]
+        return is_num(rng[0]) and is_num(rng[1]) and rng[1] >= HARMONIC_W_MS[0] and rng[0] <= HARMONIC_W_MS[1]
+
+    return (CONFIRMED if all(meets(b) for b in batched) else REFUTED), evidence
 
 
 @rule("P-H2", "Harmonic validators on fifo: send order regardless of fee")
 def p_h2(ctx: Context) -> tuple[str, str]:
-    """Reads `summary.validators[v]` for Harmonic validators: `verdict`, `best_rule`.
+    """Reads `summary.validators[v].rule_card.simultaneous` for Harmonic validators.
 
-    Confirmed when at least one Harmonic validator selects fifo (the
-    strategy is per validator and not published); otherwise inconclusive.
+    A fifo-strategy validator orders even probes queued together by send time,
+    whatever their fee. Confirmed when at least one Harmonic validator's rule for
+    probes queued together is send order; otherwise inconclusive (the strategy is
+    per validator and not published).
     """
-    vals = _harmonic_validators(ctx)
-    if not vals:
+    cards = _harmonic_cards(ctx)
+    if not cards:
         return INCONCLUSIVE, "no Harmonic validator with data"
-    fifo = [v for v, s in vals if s.get("verdict") == "rule" and s.get("best_rule") == "fifo"]
-    evidence = f"{len(vals)} Harmonic validators: {_harmonic_mix(vals)}"
+    fifo = [v for v, _, card in cards if (card.get("simultaneous") or {}).get("rule") == "fifo"]
+    evidence = f"{len(cards)} Harmonic validators, queued together: {_mix(cards, 'simultaneous')}"
     return (CONFIRMED if fifo else INCONCLUSIVE), evidence
 
 
 @rule("P-H3", "Harmonic: the validator's own client (Agave vs Firedancer) does not change the order")
 def p_h3(ctx: Context) -> tuple[str, str]:
-    """Reads `summary.families[HarmonicAgave|HarmonicFiredancer].validator_rules`
-    (selected rule per validator, counted).
+    """Reads `summary.validators[v].rule_card` for Harmonic validators: the detected rules
+    for probes queued together and over time, as one label per validator.
 
-    Because each validator runs its own strategy, the clients are compared
-    on the rules their validators select: confirmed when some detected rule
-    appears under both clients; refuted when both clients have validators
-    with a detected rule and no rule is shared.
+    Each validator runs its own strategy, so the clients are compared on the labels
+    their validators show: confirmed when some label appears under both clients;
+    refuted when both clients have labelled validators and none is shared.
     """
-    ha, hf = ctx.family("HarmonicAgave"), ctx.family("HarmonicFiredancer")
-    if not ha or not hf:
-        return INCONCLUSIVE, "one of the Harmonic families has no data"
-    ra = {k for k, n in (ha.get("validator_rules") or {}).items() if n and k != "random"}
-    rf = {k for k, n in (hf.get("validator_rules") or {}).items() if n and k != "random"}
-
-    def show(rules: dict[str, int]) -> str:
-        return ", ".join(f"{n} {rule_text(k)}" for k, n in sorted(rules.items())) or DASH
-
-    evidence = f"HarmonicAgave {show(ha.get('validator_rules') or {})}; HarmonicFiredancer {show(hf.get('validator_rules') or {})}"
-    if not ra or not rf:
+    labels: dict[str, set[str]] = {f: set() for f in HARMONIC}
+    for _, fam, card in _harmonic_cards(ctx):
+        sim = (card.get("simultaneous") or {}).get("rule")
+        over = card.get("over_time") or {}
+        if sim in (None, "random") or over.get("rule") in (None, "random"):
+            continue
+        w = (over.get("batched") or {}).get("w_ms")
+        o = f"batched({float(w):g} ms)" if over["rule"] == "batched" and is_num(w) else str(over["rule"])
+        labels[fam].add(f"{sim}/{o}")
+    evidence = "; ".join(f"{fam} {', '.join(sorted(labels[fam])) or 'no detected label'}" for fam in HARMONIC) + " (queued together / over time)"
+    if not labels[HARMONIC[0]] or not labels[HARMONIC[1]]:
         return INCONCLUSIVE, evidence
-    return (CONFIRMED if ra & rf else REFUTED), evidence
+    return (CONFIRMED if labels[HARMONIC[0]] & labels[HARMONIC[1]] else REFUTED), evidence
 
 
 # -- Rakurai and format ---------------------------------------------------------------
@@ -529,38 +617,39 @@ def p_h3(ctx: Context) -> tuple[str, str]:
 
 @rule("P-R1", "Rakurai ladder: priority order")
 def p_r1(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.by_family.Rakurai["ladder/all"].higher_priority_first`."""
-    return _directional(ctx, RAKURAI, lambda f: (_cond(ctx, f, "ladder/all") or {}).get("higher_priority_first"), "above", "higher priority first, ladder")
+    """Reads `rule_card.simultaneous` of Rakurai; confirmed when the rule for probes
+    queued together is priority.
+    """
+    return _card_call(ctx, RAKURAI, "simultaneous", lambda c: c["rule"] == "priority")
 
 
 @rule("P-X1", "Agave and Firedancer: no order difference between v1 and legacy at equal fee")
 def p_x1(ctx: Context) -> tuple[str, str]:
-    """Reads `pairs_by_condition.format_effect[Agave|Firedancer].v1_first_same_fee`.
+    """Reads `rule_card.format` (rate of v1 first at equal fee, ci, p_perm, detectable) of
+    Agave and Firedancer.
 
-    Confirmed when the interval contains 50% for every family with data;
-    refuted when it excludes 50%. BAM and Harmonic rates are quoted as the
-    open question they are, without entering the outcome.
+    Confirmed when the v1/legacy difference is not detectable (p ≥ alpha) for every
+    family with format pairs; refuted when it is. BAM and Harmonic rates are quoted
+    as the open question they are, without entering the outcome.
     """
-    effect = ctx.r("pairs_by_condition").get("format_effect", {})
     calls, parts = [], []
     for fam in ("Agave", "Firedancer"):
-        rate = (effect.get(fam) or {}).get("v1_first_same_fee")
-        side = _side(rate)
-        if side is None:
+        fmt = (ctx.card(family=fam) or {}).get("format") or {}
+        if not fmt.get("n_pairs"):
             calls.append((fam, None))
             parts.append(f"{fam} no data")
             continue
-        calls.append((fam, CONFIRMED if side == "straddles" else REFUTED))
-        parts.append(f"{fam} {rate_ci(rate)}")
-    others = [f"{fam} {rate_ci((effect.get(fam) or {}).get('v1_first_same_fee'))}" for fam in BAM + HARMONIC if _usable((effect.get(fam) or {}).get("v1_first_same_fee"))]
+        calls.append((fam, REFUTED if fmt.get("detectable") else CONFIRMED))
+        parts.append(f"{fam} {rate_ci(fmt, with_n=True)}, p = {pval(fmt.get('p_perm'))}")
+    others = []
+    for fam in BAM + HARMONIC:
+        fmt = (ctx.card(family=fam) or {}).get("format") or {}
+        if fmt.get("n_pairs"):
+            others.append(f"{fam} {rate_ci(fmt)}")
     evidence = "v1 first at equal fee: " + "; ".join(parts)
     if others:
         evidence += "; open question: " + "; ".join(others)
     return _combine(calls), evidence
-
-
-def outcome_counts(outcomes: list[Outcome]) -> dict[str, int]:
-    return {o: sum(1 for x in outcomes if x.outcome == o) for o in OUTCOMES}
 
 
 __all__ = ["RULES", "Outcome", "evaluate", "ids_in_document", "outcome_counts", "OUTCOMES", "CONFIRMED", "REFUTED", "INCONCLUSIVE"]

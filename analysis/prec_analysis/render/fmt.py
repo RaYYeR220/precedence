@@ -170,6 +170,66 @@ def theta(x: Any) -> str:
     return f"{float(x):.2f}"
 
 
+CARD_PARTS = ("simultaneous", "ties", "over_time")
+CARD_PART_TITLES = {"simultaneous": "Queued together", "ties": "Ties", "over_time": "Over time"}
+
+
+def flipped(rate: dict[str, Any] | None) -> dict[str, Any] | None:
+    """A pair rate read the other way round (share of pairs where the later-sent came first)."""
+    if not rate or not is_num(rate.get("rate")):
+        return rate
+    ci = rate.get("ci") or [None, None]
+    lo, hi = ci if len(ci) == 2 else (None, None)
+    return {**rate, "rate": 1 - rate["rate"], "ci": [1 - hi if is_num(hi) else None, 1 - lo if is_num(lo) else None]}
+
+
+def card_part(name: str, comp: dict[str, Any] | None) -> tuple[str, str]:
+    """(label, detail) of one rule-card component: what decides, and the number behind it."""
+    if not comp or comp.get("rule") is None:
+        return ("no data", "")
+    rule = comp["rule"]
+    if rule == "random":
+        mde = (comp.get("mde") or {}).get("concordance")
+        detail = f"p = {pval(comp.get('p_perm'))}" + (f", detectable from {pct(mde)}" if is_num(mde) else "")
+        return ("none detectable", detail)
+    if name == "simultaneous":
+        if rule == "priority":
+            entries = comp.get("entries") or {}
+            if comp.get("scope") == "same_entry":
+                same, cross = entries.get("same_entry") or {}, entries.get("cross_entry") or {}
+                detail = f"{pct(same.get('rate'))} in one entry"
+                if cross.get("n_pairs"):
+                    detail += f", {pct(cross.get('rate'))} across entries"
+                return ("priority", detail)
+            return ("priority", rate_ci(comp.get("higher_priority_first")))
+        if rule == "fifo":
+            return ("send order", rate_ci(comp.get("earlier_sent_first")))
+    if name == "ties":
+        if rule == "fifo":
+            return ("oldest first", rate_ci(comp.get("earlier_sent_first")))
+        if rule == "lifo":
+            return ("newest first", rate_ci(flipped(comp.get("earlier_sent_first"))))
+    if name == "over_time":
+        if rule == "fifo":
+            return ("send order", rate_ci(comp.get("earlier_sent_first")))
+        if rule == "priority":
+            return ("fee order", rate_ci(comp.get("higher_priority_first")))
+        if rule == "batched":
+            b = comp.get("batched") or {}
+            kind = "scheduler passes" if b.get("reads_as") == "scheduler passes" else "batch auction"
+            rng = b.get("w_range_ms") or []
+            detail = f"w within {ms(rng[0])}–{ms(rng[1])}" if len(rng) == 2 and rng[0] != rng[1] else ""
+            if not b.get("w_identifiable", True):
+                detail = (detail + ", " if detail else "") + "w not identifiable"
+            return (f"{kind}, w = {ms(b.get('w_ms'))}", detail)
+    return (str(rule), "")
+
+
+def card_cell(name: str, comp: dict[str, Any] | None) -> str:
+    label, detail = card_part(name, comp)
+    return f"{label}: {detail}" if detail else label
+
+
 def gap_label(bucket: str) -> str:
     """'1-5ms' → '1–5 ms', '<1ms' → '< 1 ms', '>150ms' → '> 150 ms'."""
     text = bucket.replace("ms", " ms").replace("-", "–")
@@ -188,7 +248,7 @@ def _cell(value: Any) -> str:
 def table(headers: Sequence[str], rows: Iterable[Sequence[Any]], align: str | None = None) -> str:
     """A plain-pipe Markdown table. `align` is one letter per column: l, r or c."""
     head = [_cell(h) for h in headers]
-    spec = align or "l" * len(head)
+    spec = (align or "")[: len(head)].ljust(len(head), "l")
     seps = {"l": "---", "r": "---:", "c": ":---:"}
     lines = ["| " + " | ".join(head) + " |", "| " + " | ".join(seps.get(a, "---") for a in spec) + " |"]
     for row in rows:
