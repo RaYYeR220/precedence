@@ -44,6 +44,14 @@ impl Rpc {
         }
     }
 
+    /// Override the minimum spacing of one method (e.g. a local node).
+    pub fn with_spacing(mut self, method: &'static str, gap: Duration) -> Self {
+        let mut m = (*self.spacing).clone();
+        m.insert(method, gap);
+        self.spacing = Arc::new(m);
+        self
+    }
+
     pub fn url(&self) -> &str {
         &self.url
     }

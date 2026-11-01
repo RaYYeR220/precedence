@@ -120,6 +120,30 @@ enum Cmd {
         #[command(flatten)]
         common: Common,
     },
+    /// Positive control against a local Agave validator.
+    Selftest {
+        #[arg(long, default_value = "http://127.0.0.1:8899")]
+        rpc: String,
+        #[arg(long, default_value = "data-localnet")]
+        data: PathBuf,
+        #[arg(long, default_value_t = 8)]
+        reps: usize,
+        #[arg(long, default_value_t = 1)]
+        seed: u64,
+        #[arg(long, default_value_t = 8_000)]
+        cu_limit: u32,
+        #[arg(long, default_value_t = 262_144)]
+        loaded_data_limit: u32,
+    },
+    /// After a selftest: dump entry boundaries of the probe slots from the local ledger.
+    LocalnetEntries {
+        #[arg(long)]
+        ledger: PathBuf,
+        #[arg(long)]
+        run: PathBuf,
+        #[arg(long, default_value = "agave-ledger-tool")]
+        tool: String,
+    },
     /// Subscribe to the entry stream for a few seconds and print what arrives.
     EntriesProbe {
         #[arg(long, env = "PRECEDENCE_GRPC")]
@@ -179,8 +203,8 @@ async fn main() -> Result<()> {
                 ws_url: ws,
                 poll_url: poll_rpc,
                 poll_hz,
-                grpc_url: grpc,
-                grpc_token,
+                grpc_url: grpc.filter(|s| !s.is_empty()),
+                grpc_token: grpc_token.filter(|s| !s.is_empty()),
                 cap_lamports: common.cap,
                 seed,
                 families,
@@ -253,6 +277,22 @@ async fn main() -> Result<()> {
             let rpc = Rpc::new(&common.rpc);
             let master = keys::load_keypair(&common.keypair)?;
             println!("{}", serde_json::to_string_pretty(&precedence::calibrate::calibrate(&rpc, &master).await?)?);
+        }
+        Cmd::Selftest { rpc, data, reps, seed, cu_limit, loaded_data_limit } => {
+            let dir = precedence::selftest::selftest(precedence::selftest::SelftestArgs {
+                rpc_url: rpc,
+                data_dir: data,
+                reps,
+                seed,
+                cu_limit,
+                loaded_data_limit,
+            })
+            .await?;
+            println!("{}", dir.display());
+        }
+        Cmd::LocalnetEntries { ledger, run, tool } => {
+            let n = precedence::selftest::dump_entries(&ledger, &run, &tool)?;
+            println!("{n} entries");
         }
         Cmd::EntriesProbe { grpc, grpc_token, seconds } => {
             println!("{}", serde_json::to_string_pretty(&yellowstone::probe(&grpc, grpc_token, seconds).await?)?);

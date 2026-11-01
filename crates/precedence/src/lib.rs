@@ -14,6 +14,7 @@ pub mod ledger;
 pub mod plan;
 pub mod rpc;
 pub mod run;
+pub mod selftest;
 pub mod send;
 pub mod snapshot;
 pub mod targets;

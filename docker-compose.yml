@@ -1,0 +1,81 @@
+# docker compose up            reproduce the analysis from the committed raw data (byte-identical check),
+#                              re-check every probe against getBlock on a public RPC, then a short
+#                              mainnet dry run (nothing is sent, nothing is spent)
+# docker compose --profile test run --rm test
+# docker compose --profile localnet run --rm localnet  positive control on a local Agave 4.3.2
+# docker compose --profile live run --rm live        real sends; needs keys/burner.json + .env (see README)
+# docker compose --profile tools run --rm tools precedence status|fund|sweep|calibrate [--live]
+
+x-runtime: &runtime
+  build:
+    context: .
+    target: runtime
+    args:
+      GIT_COMMIT: "${GIT_COMMIT:-unknown}"
+  image: precedence:local
+  env_file:
+    - path: .env
+      required: false
+
+services:
+  reproduce:
+    <<: *runtime
+    volumes:
+      - ./data:/work/data:ro
+      - ./results:/work/results
+    command: ["python", "-m", "prec_analysis", "analyze", "--data", "/work/data", "--out", "/work/results", "--check"]
+
+  verify:
+    <<: *runtime
+    depends_on:
+      reproduce:
+        condition: service_completed_successfully
+    volumes:
+      - ./data:/work/data:ro
+      - ./results:/work/results
+    command: ["precedence", "verify", "--data", "/work/data", "--out", "/work/results/verify.json"]
+
+  dryrun:
+    <<: *runtime
+    depends_on:
+      verify:
+        condition: service_completed_successfully
+    # A separate volume: a dry run never touches the committed data.
+    volumes:
+      - dryrun:/work/data
+    command: ["precedence", "run", "--pilot", "--horizon-slots", "${DRYRUN_HORIZON_SLOTS:-900}", "--collect-wait-s", "1"]
+
+  live:
+    <<: *runtime
+    profiles: ["live"]
+    volumes:
+      - ./data:/work/data
+      - ./keys:/keys:ro
+    command: ["precedence", "run", "--live"]
+
+  tools:
+    <<: *runtime
+    profiles: ["tools"]
+    volumes:
+      - ./data:/work/data
+      - ./keys:/keys:ro
+
+  localnet:
+    profiles: ["localnet"]
+    build:
+      context: .
+      target: localnet
+    image: precedence-localnet:local
+    ulimits:
+      nofile: 1000000
+    volumes:
+      - ./localnet:/work/localnet
+
+  test:
+    profiles: ["test"]
+    build:
+      context: .
+      target: test
+
+volumes:
+  dryrun:
