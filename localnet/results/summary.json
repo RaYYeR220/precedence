@@ -10,7 +10,7 @@
   "Agave": {
    "best_model": "fifo",
    "best_rule": "fifo",
-   "component": "arrival order: no priority pass reached our probes",
+   "component": "the scheduler sorts each batch it hands to a thread by priority; parallel threads then interleave those batches; probes arriving apart are handled in arrival order (continuous scheduling)",
    "concordance": 0.9035,
    "concordance_ci": [
     0.839623,
@@ -566,6 +566,7 @@
      "theta": 1.9047
     }
    },
+   "single_model_component": "arrival order: no priority pass reached our probes",
    "single_model_text": "arrival order (earliest sent first); concordance 0.904 [0.840, 0.955], theta 1.106, p=0.001",
    "theta": 1.106299,
    "theta_ci": [
@@ -633,7 +634,7 @@
   "AaSynsynQffFUg2nyH7ZVpqWkVb3watAqqYSGx1ovQtQ": {
    "best_model": "fifo",
    "best_rule": "fifo",
-   "component": "arrival order: no priority pass reached our probes",
+   "component": "the scheduler sorts each batch it hands to a thread by priority; parallel threads then interleave those batches; probes arriving apart are handled in arrival order (continuous scheduling)",
    "concordance": 0.9035,
    "concordance_ci": [
     0.83822,
@@ -1192,6 +1193,7 @@
      "theta": 1.9047
     }
    },
+   "single_model_component": "arrival order: no priority pass reached our probes",
    "single_model_text": "arrival order (earliest sent first); concordance 0.904 [0.838, 0.953], theta 1.106, p=0.001",
    "theta": 1.106299,
    "theta_ci": [

@@ -26,6 +26,7 @@ services:
       - ./README.md:/work/README.md:ro
       - ./REPORT.md:/work/REPORT.md:ro
       - ./site:/work/site:ro
+      - ./localnet:/work/localnet:ro
     # Every number in results/, README.md, REPORT.md and the explorer must come
     # out of the raw data byte for byte.
     command:
@@ -35,7 +36,10 @@ services:
         python -m prec_analysis analyze --data /work/data --out /work/results --check &&
         python -m prec_analysis render --data /work/data --results /work/results
         --readme /work/README.md --report /work/REPORT.md --site /work/site/dist --check &&
-        echo "reproduced: results, README, REPORT and explorer match the raw data"
+        python -m prec_analysis analyze --data /work/localnet/data --out /work/localnet/results --check &&
+        python -m prec_analysis render --data /work/localnet/data --results /work/localnet/results
+        --readme /work/localnet/CONTROL.md --check &&
+        echo "reproduced: results, README, REPORT, explorer and the localnet control match the raw data"
 
   verify:
     <<: *runtime

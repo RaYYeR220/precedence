@@ -110,9 +110,36 @@ def component_hint(fit: UnitFit) -> str:
 def _attach_card(entry: dict[str, Any], card: dict[str, Any] | None) -> None:
     """Add the rule card; the headline text becomes its sentence, the single-model text is kept."""
     entry["single_model_text"] = entry.get("verdict_text")
+    entry["single_model_component"] = entry.get("component")
     entry["rule_card"] = card
     if card is not None:
         entry["verdict_text"] = card["sentence"]
+        entry["component"] = card_component(card) or entry.get("component")
+
+
+def card_component(card: dict[str, Any]) -> str | None:
+    """Which component decided the order, read from the rule card's parts."""
+    parts: list[str] = []
+    sim = card.get("simultaneous") or {}
+    over = card.get("over_time") or {}
+    entries = sim.get("entries") or {}
+    if sim.get("detectable") and sim.get("rule") == "priority":
+        same = (entries.get("same_entry") or {}).get("rate")
+        cross = (entries.get("cross_entry") or {}).get("rate")
+        if sim.get("scope") == "same_entry" and same is not None and cross is not None and cross < same - 0.1:
+            parts.append("the scheduler sorts each batch it hands to a thread by priority; parallel threads then interleave those batches")
+        else:
+            parts.append("probes queued together are sorted by priority")
+    if over.get("detectable"):
+        batched = over.get("batched") or {}
+        w = batched.get("w_ms")
+        if over.get("rule") == "batched" and w is not None and w > BATCH_PASS_MAX_MS:
+            parts.append(f"arrivals are grouped into ~{w:g} ms batches (a batch auction)")
+        elif over.get("rule") == "fifo":
+            parts.append("probes arriving apart are handled in arrival order (continuous scheduling)")
+        elif over.get("rule") == "priority":
+            parts.append("probes arriving tens of ms apart are still re-sorted by priority (they wait together)")
+    return "; ".join(parts) if parts else None
 
 
 def _unit_counts(probes: pd.DataFrame, col: str, value: str) -> dict[str, int]:
