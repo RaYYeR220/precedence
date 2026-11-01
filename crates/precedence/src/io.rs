@@ -62,7 +62,14 @@ pub fn read_json_gz(path: impl AsRef<Path>) -> Result<serde_json::Value> {
 }
 
 pub fn read_jsonl(path: impl AsRef<Path>) -> Result<Vec<serde_json::Value>> {
-    let s = std::fs::read_to_string(path)?;
+    let path = path.as_ref();
+    let s = if path.extension().is_some_and(|e| e == "gz") {
+        let mut s = String::new();
+        flate2::read::GzDecoder::new(File::open(path)?).read_to_string(&mut s)?;
+        s
+    } else {
+        std::fs::read_to_string(path)?
+    };
     Ok(s.lines().filter(|l| !l.trim().is_empty()).map(serde_json::from_str).collect::<Result<_, _>>()?)
 }
 

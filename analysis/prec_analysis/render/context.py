@@ -245,18 +245,24 @@ class DataFacts:
 
     @cached_property
     def slot_times(self) -> dict[int, int]:
-        """Exact first-shred time per slot: `server_unix_us` of the websocket events in
-        slots.jsonl (the node's own timestamp), the earliest per slot.
+        """Exact first-shred time per slot, the earliest per slot, from ONE node's own
+        timestamps (`server_unix_us` in slots.jsonl): the entry stream's first-shred events
+        (`source: grpc`, status 3) when a run recorded them, otherwise the websocket's
+        (`source: ws`, `firstShredReceived`). Two nodes see a slot at different times, so
+        the sources are never mixed.
         """
-        out: dict[int, int] = {}
+        by_source: dict[str, dict[int, int]] = {"grpc": {}, "ws": {}}
         for run in self.dataset.runs:
             for row in run.slots:
-                t = row.get("server_unix_us")
-                if row.get("source") != "ws" or t is None or row.get("slot") is None:
+                t, src = row.get("server_unix_us"), row.get("source")
+                if t is None or row.get("slot") is None or src not in by_source:
+                    continue
+                if src == "grpc" and row.get("status") != 3:
                     continue
                 slot = int(row["slot"])
-                out[slot] = min(int(t), out.get(slot, int(t)))
-        return out
+                d = by_source[src]
+                d[slot] = min(int(t), d.get(slot, int(t)))
+        return by_source["grpc"] if len(by_source["grpc"]) >= 100 else by_source["ws"]
 
     def clock(self) -> dict[str, Any]:
         """Window timing from the exact slot times, and where our first sends fell.

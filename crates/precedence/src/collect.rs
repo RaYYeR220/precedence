@@ -190,9 +190,39 @@ pub async fn collect(rpc: &Rpc, data_dir: &Path, run_dir: &Path) -> Result<Colle
         tokio::time::sleep(std::time::Duration::from_secs(5)).await;
     }
     let missing = pending;
+    let pruned = prune_entries(data_dir, run_dir)?;
     let landed = map.values().filter(|v| !v.is_null()).count();
     tracing::info!(probes = sigs.len(), landed, blocks = slots.len(), fetched, "collected");
-    Ok(CollectSummary { probes_sent: sigs.len(), landed, blocks: slots.len(), fetched, missing })
+    Ok(CollectSummary { probes_sent: sigs.len(), landed, blocks: slots.len(), fetched, missing, entry_lines_kept: pruned })
+}
+
+/// The entry stream records every targeted slot and its neighbours; keep
+/// only the entries of blocks we stored (those that hold a probe), gzipped,
+/// and drop the raw recording. Returns how many entry lines were kept.
+pub fn prune_entries(data_dir: &Path, run_dir: &Path) -> Result<usize> {
+    let raw = run_dir.join("entries.jsonl");
+    if !raw.exists() {
+        return Ok(0);
+    }
+    let mut kept = Vec::new();
+    for line in std::fs::read_to_string(&raw)?.lines() {
+        let Ok(v) = serde_json::from_str::<Value>(line) else { continue };
+        if let Some(slot) = v["slot"].as_u64() {
+            if block_path(data_dir, slot).exists() {
+                kept.push(line.to_string());
+            }
+        }
+    }
+    let f = std::fs::File::create(run_dir.join("entries.jsonl.gz"))?;
+    let mut gz = flate2::GzBuilder::new().mtime(0).write(f, flate2::Compression::best());
+    use std::io::Write;
+    for l in &kept {
+        gz.write_all(l.as_bytes())?;
+        gz.write_all(b"\n")?;
+    }
+    gz.finish()?;
+    std::fs::remove_file(&raw)?;
+    Ok(kept.len())
 }
 
 #[derive(Debug, Serialize)]
@@ -202,6 +232,7 @@ pub struct CollectSummary {
     pub blocks: usize,
     pub fetched: usize,
     pub missing: Vec<u64>,
+    pub entry_lines_kept: usize,
 }
 
 #[cfg(test)]

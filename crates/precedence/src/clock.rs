@@ -241,6 +241,8 @@ pub type SharedClock = Arc<Mutex<SlotClock>>;
 /// timestamp); falls back to `slotSubscribe`. Reconnects on error.
 pub async fn run_ws_feed(ws_url: String, clock: SharedClock, tb: TimeBase, log: Option<crate::io::JsonlWriter>) {
     let mut use_updates = true;
+    // Public endpoints answer reconnect storms with HTTP 429: back off.
+    let mut backoff = Duration::from_millis(500);
     loop {
         match tokio_tungstenite::connect_async(&ws_url).await {
             Ok((mut ws, _)) => {
@@ -249,6 +251,7 @@ pub async fn run_ws_feed(ws_url: String, clock: SharedClock, tb: TimeBase, log: 
                 if ws.send(Message::Text(sub.to_string().into())).await.is_err() {
                     continue;
                 }
+                backoff = Duration::from_millis(500);
                 while let Some(msg) = ws.next().await {
                     let Ok(Message::Text(txt)) = msg else {
                         if msg.is_err() {
@@ -278,9 +281,10 @@ pub async fn run_ws_feed(ws_url: String, clock: SharedClock, tb: TimeBase, log: 
                     }
                 }
             }
-            Err(e) => tracing::warn!(error = %e, "slot websocket connect failed"),
+            Err(e) => tracing::warn!(error = %e, backoff_ms = backoff.as_millis() as u64, "slot websocket connect failed"),
         }
-        tokio::time::sleep(Duration::from_millis(500)).await;
+        tokio::time::sleep(backoff).await;
+        backoff = (backoff * 2).min(Duration::from_secs(30));
     }
 }
 

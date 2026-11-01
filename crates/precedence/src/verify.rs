@@ -163,7 +163,8 @@ pub async fn verify(rpc: &Rpc, data_dir: &Path) -> Result<VerifyReport> {
                     }
                 }
             }
-            let en = run.join("entries.jsonl");
+            let gz = run.join("entries.jsonl.gz");
+            let en = if gz.exists() { gz } else { run.join("entries.jsonl") };
             if en.exists() {
                 for e in read_jsonl(en)? {
                     if let (Some(slot), Some(start), Some(count)) =

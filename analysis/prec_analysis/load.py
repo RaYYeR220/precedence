@@ -94,7 +94,8 @@ def read_jsonl(path: Path, issues: list[str] | None = None) -> list[dict[str, An
     """Read a JSON-lines file, skipping blank and malformed lines (recorded in `issues`)."""
     out: list[dict[str, Any]] = []
     bad = 0
-    with path.open("r", encoding="utf-8") as fh:
+    opener = (lambda p: gzip.open(p, "rt", encoding="utf-8")) if path.suffix == ".gz" else (lambda p: p.open("r", encoding="utf-8"))
+    with opener(path) as fh:
         for line in fh:
             line = line.strip()
             if not line:
@@ -167,7 +168,10 @@ def load_run(run_dir: Path) -> Run:
         issues.append("statuses.json missing: every probe counts as not landed")
     windows = _optional_jsonl(run_dir / "windows.jsonl", issues) or []
     slots = _optional_jsonl(run_dir / "slots.jsonl", issues) or []
-    entries = _optional_jsonl(run_dir / "entries.jsonl", issues)
+    # Collection keeps only the entries of stored blocks, gzipped.
+    entries = _optional_jsonl(run_dir / "entries.jsonl.gz", issues)
+    if entries is None:
+        entries = _optional_jsonl(run_dir / "entries.jsonl", issues)
     footers = _optional_jsonl(run_dir / "footers.jsonl", issues)
     snapshots = load_snapshots(run_dir / "snapshot", issues)
     if not snapshots:

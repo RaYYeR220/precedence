@@ -93,11 +93,14 @@ impl Rpc {
                 Ok(r) => {
                     let v: Value = r.json().await.with_context(|| format!("{method}: bad json"))?;
                     if let Some(e) = v.get("error") {
-                        return Err(RpcError {
-                            code: e["code"].as_i64().unwrap_or(0),
-                            message: e["message"].as_str().unwrap_or("").to_string(),
+                        let mut message = e["message"].as_str().unwrap_or("").to_string();
+                        // Preflight failures carry the simulation's error and logs.
+                        if let Some(d) = e.get("data").filter(|d| !d.is_null()) {
+                            let err = &d["err"];
+                            let logs: Vec<&str> = d["logs"].as_array().map(|l| l.iter().filter_map(|x| x.as_str()).collect()).unwrap_or_default();
+                            message = format!("{message}; err={err}; logs={}", logs.join(" | "));
                         }
-                        .into());
+                        return Err(RpcError { code: e["code"].as_i64().unwrap_or(0), message }.into());
                     }
                     return v.get("result").cloned().ok_or_else(|| anyhow!("{method}: no result"));
                 }

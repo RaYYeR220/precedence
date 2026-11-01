@@ -128,7 +128,14 @@ struct Ctx {
     cu_limit: u32,
     loaded_data_limit: u32,
     cap_hit: AtomicBool,
+    /// Latest blockhash and its slot, refreshed in the background so that
+    /// fetching one is never on a batch's critical path.
+    blockhash: Mutex<Option<(String, u64)>>,
 }
+
+/// A send may start this late and still go out; the analysis uses the
+/// measured send time, so a small delay only shifts the batch's phase.
+const MAX_LATE_US: u64 = 150_000;
 
 #[derive(Serialize)]
 struct WindowRecord<'a> {
@@ -209,7 +216,8 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
     let prepare_at = first.saturating_sub(2_500_000);
     let now = ctx.tb.now_us();
     if now + 400_000 > first {
-        ctx.skip(b, "late", |_| {});
+        ctx.skip(b, "late_before_prepare", |_| {});
+        ctx.log.write(&json!({"batch_id": b.batch_id, "late_before_prepare_us": (now + 400_000).saturating_sub(first)}));
         return Ok(());
     }
     if prepare_at > now {
@@ -234,7 +242,11 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
         }
         quic = Some(s);
     }
-    let (bh, bh_slot) = ctx.rpc.latest_blockhash().await?;
+    let cached = ctx.blockhash.lock().unwrap().clone();
+    let (bh, bh_slot) = match cached {
+        Some(c) if ctx.clock.lock().unwrap().highest_slot() <= c.1 + 30 => c,
+        _ => ctx.rpc.latest_blockhash().await?,
+    };
     let highest = ctx.clock.lock().unwrap().highest_slot();
     if highest > bh_slot + 60 {
         ctx.skip(b, "stale_blockhash", |_| {});
@@ -280,10 +292,14 @@ async fn execute_batch_inner(ctx: &Ctx, b: &PlannedBatch) -> Result<()> {
     };
     let start = fit.predict_window_start(b.window_first_slot);
     let first = (start + b.design.anchor.offset_us(fit.slot_us) as f64) as u64;
-    if ctx.tb.now_us() > first + 5_000 {
-        ctx.skip(b, "late", |_| {});
+    let now = ctx.tb.now_us();
+    if now > first + MAX_LATE_US {
+        ctx.skip(b, "late_at_send", |_| {});
+        ctx.log.write(&json!({"batch_id": b.batch_id, "late_at_send_us": now - first}));
         return Ok(());
     }
+    // Slightly late: start now, keep the planned spacing.
+    let first = first.max(now);
     // Send in send order.
     let mut order: Vec<usize> = (0..built.len()).collect();
     order.sort_by_key(|&i| built[i].0.send_rank);
@@ -497,14 +513,27 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
         cu_limit: args.cu_limit,
         loaded_data_limit: args.loaded_data_limit,
         cap_hit: AtomicBool::new(false),
+        blockhash: Mutex::new(None),
     });
+    let bh_refresh = {
+        let ctx = ctx.clone();
+        tokio::spawn(async move {
+            loop {
+                match ctx.rpc.latest_blockhash().await {
+                    Ok(v) => *ctx.blockhash.lock().unwrap() = Some(v),
+                    Err(e) => tracing::warn!(error = %e, "blockhash refresh failed"),
+                }
+                tokio::time::sleep(Duration::from_secs(2)).await;
+            }
+        })
+    };
 
     // Record entries for the planned windows and their neighbours (probes can
     // spill into the next leader's block).
     wanted
         .lock()
         .unwrap()
-        .extend(batches.iter().flat_map(|b| b.window_first_slot.saturating_sub(8)..(b.window_first_slot + 12)));
+        .extend(batches.iter().flat_map(|b| b.window_first_slot.saturating_sub(8)..(b.window_first_slot + 24)));
 
     // Periodic gossip refresh (clientId can flip with BAM connection state).
     let refresh = {
@@ -529,6 +558,7 @@ pub async fn run(args: RunArgs) -> Result<PathBuf> {
     }
     tracing::info!(last_slot, "all batches done; waiting for finalization");
     refresh.abort();
+    bh_refresh.abort();
     let _ = snapshot::refresh_nodes(&rpc, &run_dir.join("snapshot")).await;
     tokio::time::sleep(Duration::from_secs(args.collect_wait_s)).await;
     if let Some(r) = recorder {
