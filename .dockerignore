@@ -1,0 +1,7 @@
+target/
+keys/
+.env
+.git/
+**/__pycache__/
+.venv/
+scratch/

@@ -1,0 +1,10 @@
+/target/
+/keys/
+*.keypair.json
+.env
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+/data/tmp/
+/scratch/
