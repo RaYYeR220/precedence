@@ -3,4 +3,5 @@
 //! each leader ordered them.
 
 pub mod cost;
+pub mod design;
 pub mod tx;
