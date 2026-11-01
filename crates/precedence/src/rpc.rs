@@ -119,7 +119,13 @@ impl Rpc {
     }
 
     pub async fn latest_blockhash(&self) -> Result<(String, u64)> {
-        let v = self.call("getLatestBlockhash", json!([{"commitment": "processed"}])).await?;
+        self.latest_blockhash_at("processed").await
+    }
+
+    /// A blockhash every node behind a load balancer already knows: use for
+    /// transactions sent with preflight (funding, sweeping).
+    pub async fn latest_blockhash_at(&self, commitment: &str) -> Result<(String, u64)> {
+        let v = self.call("getLatestBlockhash", json!([{"commitment": commitment}])).await?;
         Ok((
             v["value"]["blockhash"].as_str().ok_or_else(|| anyhow!("blockhash"))?.to_string(),
             v["context"]["slot"].as_u64().ok_or_else(|| anyhow!("context slot"))?,

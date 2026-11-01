@@ -39,7 +39,7 @@ fn sign(ixs: &[Instruction], payer: &Keypair, bh: Hash) -> Result<VersionedTrans
 async fn send_and_confirm(rpc: &Rpc, tx: &VersionedTransaction) -> Result<String> {
     let wire = base64::engine::general_purpose::STANDARD.encode(crate::tx::to_wire(tx));
     let sig = rpc
-        .call("sendTransaction", json!([wire, {"encoding": "base64", "preflightCommitment": "confirmed"}]))
+        .call("sendTransaction", json!([wire, {"encoding": "base64", "preflightCommitment": "processed"}]))
         .await?
         .as_str()
         .context("signature")?
@@ -78,7 +78,7 @@ pub async fn fund(rpc: &Rpc, ledger: &mut Ledger, master: &Keypair, n: u16, targ
     if !ixs.is_empty() && !dry {
         anyhow::ensure!(master_bal >= total + 20_000, "master holds {master_bal}, needs {total} + fees");
         for chunk in ixs.chunks(16) {
-            let (bh, _) = rpc.latest_blockhash().await?;
+            let (bh, _) = rpc.latest_blockhash_at("confirmed").await?;
             let tx = sign(chunk, master, Hash::from_str(&bh)?)?;
             let sig = tx.signatures[0].to_string();
             ledger.reserve("fund", None, &[(sig.clone(), BASE_FEE_PER_SIGNATURE)])?;
@@ -101,7 +101,7 @@ pub async fn sweep(rpc: &Rpc, ledger: &mut Ledger, master: &Keypair, n: u16, dry
         let amount = bal - BASE_FEE_PER_SIGNATURE;
         let mut row = json!({"payer": p.pubkey().to_string(), "balance": bal, "returned": amount});
         if !dry {
-            let (bh, _) = rpc.latest_blockhash().await?;
+            let (bh, _) = rpc.latest_blockhash_at("confirmed").await?;
             let tx = sign(&[transfer_ix(&p.pubkey(), &master.pubkey(), amount)], &p, Hash::from_str(&bh)?)?;
             ledger.reserve("sweep", None, &[(tx.signatures[0].to_string(), BASE_FEE_PER_SIGNATURE)])?;
             let sig = send_and_confirm(rpc, &tx).await?;
