@@ -620,6 +620,12 @@ def block_what_went_wrong_stats(ctx: Context) -> str:
             failed = probes["status_err"].fillna(False).astype(bool)
             rows.append(["Probes that landed with a transaction error", num(int(failed.sum())), DASH])
     inc = ctx.r("inclusion")
+    if inc.get("n_sent_stale_blockhash"):
+        rows.append([
+            "Probes signed with an expired blockhash",
+            num(inc.get("n_sent_stale_blockhash")),
+            f"{num(inc.get('n_landed_stale_blockhash'))} of them landed; the HTTP endpoint serving blockhashes fell behind the tip, so whole batches could not land. Excluded from the landing statistics",
+        ])
     if inc.get("spill_by_family"):
         k = sum(int(r["k"]) for r in inc["spill_by_family"])
         n = sum(int(r["n"]) for r in inc["spill_by_family"])
