@@ -27,6 +27,7 @@ RUN pip install --no-cache-dir /opt/analysis
 WORKDIR /work
 ENV PRECEDENCE_DATA=/work/data \
     PRECEDENCE_KEYPAIR=/keys/burner.json \
+    PREC_TEMPLATES=/opt/analysis/templates \
     RUST_LOG=info
 CMD ["precedence", "--help"]
 
