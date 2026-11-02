@@ -193,7 +193,24 @@ pub async fn verify(rpc: &Rpc, data_dir: &Path) -> Result<VerifyReport> {
             continue;
         }
         let stored: TrimmedBlock = serde_json::from_value(read_json_gz(&path)?)?;
-        let Some(live) = rpc.block_signatures(slot).await? else {
+        // A load-balanced endpoint occasionally answers with an incomplete block
+        // (no signatures, no rewards); ask again before calling it a mismatch.
+        let mut live = None;
+        for attempt in 0..4 {
+            match rpc.block_signatures(slot).await? {
+                Some(v) if !live_signatures(&v).is_empty() || stored.txs.is_empty() => {
+                    live = Some(v);
+                    break;
+                }
+                other => {
+                    live = other;
+                    if attempt < 3 {
+                        tokio::time::sleep(std::time::Duration::from_secs(2)).await;
+                    }
+                }
+            }
+        }
+        let Some(live) = live else {
             report.mismatches.push(format!("slot {slot}: getBlock returned no block"));
             continue;
         };
