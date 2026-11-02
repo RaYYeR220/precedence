@@ -189,11 +189,19 @@ def _story_items(ctx: Context, fams: dict[str, dict[str, Any]]) -> list[str]:
             f"Same fee, opposite order: Firedancer puts the **newer** of two equal-fee probes first ({pct(1 - fd_rate)} of pairs), "
             f"Jito-Solana the **older** ({pct(jl_rate)}), exactly as their schedulers' source code predicts."
         )
-    fp = ctx.summary.get("fingerprint", {}).get("validator_level", {})
-    if is_num(fp.get("probe_accuracy")):
+    dose = {r.get("bucket"): r for r in ctx.r("pairs_by_condition").get("dose_response_by_family", {}).get("all", [])}
+    b5, b20 = dose.get("5-20ms") or {}, dose.get("20-50ms") or {}
+    if is_num(b5.get("rate")) and is_num(b20.get("rate")):
+        batched = []
+        for name, f in fams.items():
+            ot = (f.get("rule_card") or {}).get("over_time") or {}
+            w = (ot.get("batched") or {}).get("w_ms")
+            if ot.get("rule") == "batched" and is_num(w) and w > 10:
+                batched.append(f"{name} (w ≈ {w:g} ms)")
+        tail = (" The exceptions run batch auctions: " + ", ".join(sorted(batched)) + " sort by fee only inside each batch.") if batched else ""
         out.append(
-            f"From our probes alone a classifier names who ordered a validator's blocks for **{pct(fp['probe_accuracy'])}** of validators; "
-            f"from whole-block statistics, the view without probes, {pct(fp.get('baseline_accuracy'))} (chance {pct(fp.get('chance_majority'))})."
+            f"Fee only decides among transactions that wait together: inside a leader's window, a probe paying more but sent 5–20 ms later "
+            f"came first in **{pct(b5['rate'])}** of pairs, 20–50 ms later in {pct(b20['rate'])}.{tail}"
         )
     return out
 

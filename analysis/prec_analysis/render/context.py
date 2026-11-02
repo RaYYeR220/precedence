@@ -174,6 +174,8 @@ class DataFacts:
         day = os.bbs["run_id"].astype(str).str.slice(0, 8).to_numpy()
         fam = os.bbs["producer_family"].astype(str).to_numpy() == family
         kind = os.bbs["kind"].astype(str).to_numpy()
+        phase = pd.to_numeric(os.bbs.get("send_phase_us"), errors="coerce").to_numpy(dtype=float) if "send_phase_us" in os.bbs else np.full(os.n_bb, np.nan)
+        in_window = ~(phase < 0)
         out: dict[str, dict[str, Any]] = {}
         for d in sorted(set(day[fam])):
             base = fam & (day == d)
@@ -183,7 +185,10 @@ class DataFacts:
                 ("ties", ("tie",), fifo_pred),
                 ("over_time", ("sweep",), fifo_pred),
             ):
-                sub = os.subset(base & np.isin(kind, kinds))
+                mask = base & np.isin(kind, kinds)
+                if name == "over_time":
+                    mask &= in_window  # as in the rule card: sweeps that started inside the window
+                sub = os.subset(mask)
                 row[name] = pair_rate(sub, pred_fn(sub), f"render|day|{family}|{d}|{name}", self.n_boot, self.n_perm) if sub.n_bb else None
             out[f"{d[:4]}-{d[4:6]}-{d[6:]}"] = row
         return out

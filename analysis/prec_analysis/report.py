@@ -142,6 +142,15 @@ def card_component(card: dict[str, Any]) -> str | None:
     return "; ".join(parts) if parts else None
 
 
+def _started_in_window(os: OrderSet) -> np.ndarray:
+    """Batch-blocks whose first send was at or after their window's measured start (true
+    when no exact slot time exists)."""
+    if "send_phase_us" not in os.bbs:
+        return np.ones(os.n_bb, dtype=bool)
+    phase = pd.to_numeric(os.bbs["send_phase_us"], errors="coerce").to_numpy(dtype=float)
+    return ~(phase < 0)
+
+
 def _unit_counts(probes: pd.DataFrame, col: str, value: str) -> dict[str, int]:
     own = probes[(probes["in_block"]) & (probes[col].astype(str) == value)]
     return {"n_windows": int(own["window_key"].nunique()), "n_landed_probes": int(len(own))}
@@ -167,7 +176,10 @@ def analyze(ds: Dataset, settings: Settings = Settings()) -> dict[str, Any]:
         "pairs_by_condition": {
             "by_family": condition_rates(os, "producer_family", settings.n_boot, settings.n_perm),
             "by_validator": condition_rates(os, "producer", settings.n_boot, settings.n_perm),
-            "dose_response_by_family": dose_response(os, "producer_family", settings.n_boot, settings.n_perm),
+            # Arrival can only compete with fee for probes that reach a leader
+            # while it builds; batches whose first send was before the window
+            # waited in its queue together and are left out of this table.
+            "dose_response_by_family": dose_response(os.subset(_started_in_window(os)), "producer_family", settings.n_boot, settings.n_perm),
             "format_effect": format_effect(os, "producer_family", settings.n_boot, settings.n_perm),
             "batch_tau_by_family": tau_tables(os, "producer_family", settings.n_boot),
             "definitions": DEFINITIONS,
@@ -189,7 +201,7 @@ DEFINITIONS = {
     "earlier_sent_first": "pairs with different send times: share where the earlier-sent probe precedes",
     "ci": "95% percentile interval, bootstrap over batches (windows)",
     "p_perm": "two-sided permutation p-value, positions permuted within each batch-block (null rate 0.5)",
-    "dose_response": "higher_priority_first among pairs where the higher-priority probe was sent later by the bucket's gap",
+    "dose_response": "higher_priority_first among pairs where the higher-priority probe was sent later by the bucket's gap; batches whose first send was at or after their window's measured start",
     "tau_priority": "Kendall tau_b of priority vs position per batch-block, +1 = higher priority earlier",
     "tau_send": "Kendall tau_b of send time vs position per batch-block, +1 = earlier sent earlier",
     "units": "attribution by block producer; family = producer clientId in the snapshot nearest the window",

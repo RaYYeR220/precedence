@@ -205,8 +205,28 @@ def _window_time(window: dict[str, Any], sent: list[int]) -> float | None:
     return float(min(sent)) if sent else None
 
 
+def exact_slot_times(run: Run) -> dict[int, int]:
+    """First-shred time of each slot from one node's own timestamps: the entry
+    stream's (`source: grpc`, status 3) when the run recorded them, otherwise the
+    websocket's (`firstShredReceived`). Never mixed: two nodes see a slot at
+    different times.
+    """
+    grpc: dict[int, int] = {}
+    ws: dict[int, int] = {}
+    for row in run.slots or []:
+        t, slot = row.get("server_unix_us"), row.get("slot")
+        if t is None or slot is None:
+            continue
+        if row.get("source") == "grpc" and row.get("status") == 3:
+            grpc[int(slot)] = min(int(t), grpc.get(int(slot), int(t)))
+        elif row.get("source") == "ws" and row.get("status") == "firstShredReceived":
+            ws[int(slot)] = min(int(t), ws.get(int(slot), int(t)))
+    return grpc if len(grpc) >= 100 else ws
+
+
 def _probe_rows(run: Run, blocks: dict[int, dict[str, Any]], index: BlockIndex) -> list[dict[str, Any]]:
     batches = {int(b["batch_id"]): b for b in run.batches}
+    slot_times = exact_slot_times(run)
     windows = {int(w["batch_id"]): w for w in run.windows}
     entries = clean_entries(run.entries, blocks)
     sent_by_batch: dict[int, list[int]] = {}
@@ -225,6 +245,11 @@ def _probe_rows(run: Run, blocks: dict[int, dict[str, Any]], index: BlockIndex) 
         planned_family = batch.get("family", window.get("family"))
         sent = p.get("sent_unix_us")
         first = window.get("first_send_unix_us")
+        wfs_exact = slot_times.get(int(batch.get("window_first_slot", window.get("window_first_slot", -1)) or -1))
+        # Where the batch's first send actually fell relative to its window's
+        # real start (negative: before the window). Measured, not intended.
+        first_measured = min(sent_by_batch.get(bid, [])) if sent_by_batch.get(bid) else None
+        send_phase_us = (first_measured - wfs_exact) if (first_measured is not None and wfs_exact is not None) else None
         offset = p.get("planned_offset_us", dprobe.get("send_offset_us", 0)) or 0
         if sent is not None:
             t_send = int(sent)
@@ -269,6 +294,7 @@ def _probe_rows(run: Run, blocks: dict[int, dict[str, Any]], index: BlockIndex) 
                 "window_status": window.get("status"),
                 "window_time_us": t_win,
                 "first_send_unix_us": first,
+                "send_phase_us": send_phase_us,
                 "slot_us": window.get("slot_us"),
                 "tpu_is_proxy": window.get("tpu_is_proxy", batch.get("tpu_is_proxy")),
                 "rtt_us": window.get("rtt_us"),

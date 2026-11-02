@@ -30,6 +30,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 import numpy as np
+import pandas as pd
 
 from .constants import ALPHA, BATCH_PASS_MAX_MS, BATCH_W_GRID_MS, N_BOOT, N_PERM, POWER_SIMS
 from .models import (
@@ -82,6 +83,16 @@ class CardContext:
     def kinds(self) -> np.ndarray:
         return self.os.bbs["kind"].astype(str).to_numpy()
 
+    @property
+    def started_in_window(self) -> np.ndarray:
+        """Batch-blocks whose first send was at or after their window's measured start
+        (true when no exact slot time exists, e.g. a local validator that always leads).
+        """
+        if "send_phase_us" not in self.os.bbs:
+            return np.ones(self.os.n_bb, dtype=bool)
+        phase = pd.to_numeric(self.os.bbs["send_phase_us"], errors="coerce").to_numpy(dtype=float)
+        return ~(phase < 0)
+
     def members(self, validators: list[str], family: str | None = None) -> Members:
         producer = self.os.bbs["producer"].astype(str).to_numpy()
         fam = self.os.bbs["producer_family"].astype(str).to_numpy()
@@ -133,8 +144,14 @@ def fit_component(ctx: CardContext, name: str, label: str, members: Members) -> 
     kinds = ctx.kinds
     n_strata = len(ctx.strata_names)
     blocks = []
+    in_window = ctx.started_in_window
     for validator, ids in members:
         sel = np.sort(ids[np.isin(kinds[ids], comp_kinds)])
+        if name == "over_time":
+            # A sweep says something about order over time only if it reached the
+            # leader while it was building: one that started before the window sat
+            # in the queue as a whole and was sorted like a burst.
+            sel = sel[in_window[sel]]
         if sel.size == 0:
             continue
         key = (validator, name, sel.tobytes())

@@ -47,6 +47,7 @@ BB_COLUMNS = [
     "spacing_us",
     "anchor_type",
     "anchor_slots",
+    "send_phase_us",
 ]
 
 
