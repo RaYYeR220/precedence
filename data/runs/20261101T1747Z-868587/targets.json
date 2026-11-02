@@ -1,0 +1,262 @@
+[
+  {
+    "identity": "5Cchr1XGEg7dbBXByV5NY2ad8jfxAM7HA3x8D56rq9Ux",
+    "family": "AgaveBam",
+    "version": "4.3.2",
+    "stake": 5717980431130735,
+    "tpu_quic": "63.254.180.11:5010",
+    "tpu_is_proxy": true,
+    "windows": [
+      464181720,
+      464181812,
+      464182388,
+      464182468,
+      464182608,
+      464182864,
+      464183400,
+      464183432,
+      464183640,
+      464183680
+    ]
+  },
+  {
+    "identity": "Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD",
+    "family": "AgaveBam",
+    "version": "4.3.2",
+    "stake": 4515917747055076,
+    "tpu_quic": "198.13.131.139:5010",
+    "tpu_is_proxy": true,
+    "windows": [
+      464181556,
+      464181820,
+      464182160,
+      464182472,
+      464182632,
+      464183208,
+      464183608,
+      464183796,
+      464183844
+    ]
+  },
+  {
+    "identity": "HEL1USMZKAL2odpNBj2oCjffnFGaYwmbGmyewGv1e2TU",
+    "family": "JitoLabs",
+    "version": "4.4.0",
+    "stake": 16695127022373578,
+    "tpu_quic": "64.130.57.215:8002",
+    "tpu_is_proxy": false,
+    "windows": [
+      464181656,
+      464181708,
+      464182020,
+      464182080,
+      464182320,
+      464182372,
+      464182452,
+      464182624,
+      464182636,
+      464182764,
+      464182776,
+      464182896,
+      464183012,
+      464183104,
+      464183176,
+      464183196,
+      464183268,
+      464183316,
+      464183340,
+      464183348,
+      464183372,
+      464183508,
+      464183772
+    ]
+  },
+  {
+    "identity": "E1r4Psq84tHfQ6aPTvvDka4U3u8zPVD7gEUrH25RdxHL",
+    "family": "JitoLabs",
+    "version": "4.4.0",
+    "stake": 10426987443804379,
+    "tpu_quic": "64.130.42.75:8002",
+    "tpu_is_proxy": false,
+    "windows": [
+      464181684,
+      464181796,
+      464181844,
+      464182028,
+      464182112,
+      464182268,
+      464182524,
+      464182760,
+      464182796,
+      464183032,
+      464183204,
+      464183616,
+      464183628,
+      464183828
+    ]
+  },
+  {
+    "identity": "CAo1dCGYrB6NhHh5xb1cGjUiu86iyCfMTENxgHumSve4",
+    "family": "HarmonicAgave",
+    "version": "4.3.2",
+    "stake": 9451196599342320,
+    "tpu_quic": "64.130.46.242:12291",
+    "tpu_is_proxy": true,
+    "windows": [
+      464182140,
+      464182284,
+      464182312,
+      464182480,
+      464182784,
+      464182920,
+      464183192,
+      464183236,
+      464183304,
+      464183712,
+      464183804
+    ]
+  },
+  {
+    "identity": "EkvdKhULbMFqjKBKotAzGi3kwMvMpYNDKJXXQQmi6C1f",
+    "family": "HarmonicAgave",
+    "version": "4.3.2",
+    "stake": 4110432872539233,
+    "tpu_quic": "63.254.166.232:12324",
+    "tpu_is_proxy": true,
+    "windows": [
+      464182548,
+      464182744
+    ]
+  },
+  {
+    "identity": "JUPiTERrZqgf1jUyR7dSkhMx4Kn2qJyekWsg3LT1h4b",
+    "family": "HarmonicFiredancer",
+    "version": "26.10.5",
+    "stake": 9583156897451053,
+    "tpu_quic": "198.13.140.105:12349",
+    "tpu_is_proxy": true,
+    "windows": [
+      464181512,
+      464181928,
+      464182100,
+      464183020,
+      464183028,
+      464183068,
+      464183108,
+      464183120,
+      464183312,
+      464183532,
+      464183620,
+      464183816
+    ]
+  },
+  {
+    "identity": "Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM",
+    "family": "HarmonicFiredancer",
+    "version": "26.10.5",
+    "stake": 7001293408393458,
+    "tpu_quic": "198.13.140.105:12351",
+    "tpu_is_proxy": true,
+    "windows": [
+      464181536,
+      464182000,
+      464182428,
+      464182540,
+      464182772,
+      464182844,
+      464183088,
+      464183292
+    ]
+  },
+  {
+    "identity": "9eGrDohdNTAo61DRHyfMuqKWXqYnA3i254Wiszxe8FoY",
+    "family": "Firedancer",
+    "version": "26.10.5",
+    "stake": 6977107962602704,
+    "tpu_quic": "86.54.152.246:9007",
+    "tpu_is_proxy": false,
+    "windows": [
+      464182108,
+      464182512,
+      464182852,
+      464182944,
+      464182984,
+      464183308,
+      464183356,
+      464183852
+    ]
+  },
+  {
+    "identity": "JD549HsbJHeEKKUrKgg4Fj2iyv2RGjsV7NTZjZUrHybB",
+    "family": "Firedancer",
+    "version": "26.10.5",
+    "stake": 6055468444440678,
+    "tpu_quic": "86.54.153.246:9007",
+    "tpu_is_proxy": false,
+    "windows": [
+      464181828,
+      464182040,
+      464182568,
+      464182576,
+      464182708,
+      464183072,
+      464183336,
+      464183388,
+      464183500,
+      464183540,
+      464183676
+    ]
+  },
+  {
+    "identity": "9jxgosAfHgHzwnxsHw4RAZYaLVokMbnYtmiZBreynGFP",
+    "family": "FireBAM",
+    "version": "26.10.5",
+    "stake": 4477329987787841,
+    "tpu_quic": "198.13.140.227:5010",
+    "tpu_is_proxy": true,
+    "windows": [
+      464182876,
+      464182952,
+      464183488,
+      464183524
+    ]
+  },
+  {
+    "identity": "ana2y2YvQ3ZPMwm6qhnN3nJoUSiT3qx5Pvetkq9xcfY",
+    "family": "Rakurai",
+    "version": "4.3.2",
+    "stake": 2468301718210941,
+    "tpu_quic": "45.77.64.138:8002",
+    "tpu_is_proxy": false,
+    "windows": [
+      464181608,
+      464183124,
+      464183476
+    ]
+  },
+  {
+    "identity": "7PdKhpKz7T39vZHFL1UfcYNDsLvay6hp4KPQq1aUckFf",
+    "family": "Rakurai",
+    "version": "4.3.2",
+    "stake": 770839006691438,
+    "tpu_quic": "64.130.41.180:8002",
+    "tpu_is_proxy": false,
+    "windows": [
+      464181920,
+      464182148,
+      464182456
+    ]
+  },
+  {
+    "identity": "5Us18hLZPXJTS4QVuGSsUw137Dyd2tgBaem24Xsf5nBS",
+    "family": "Agave",
+    "version": "4.3.2",
+    "stake": 1207980324911175,
+    "tpu_quic": "185.189.44.172:12002",
+    "tpu_is_proxy": false,
+    "windows": [
+      464182676,
+      464183752
+    ]
+  }
+]

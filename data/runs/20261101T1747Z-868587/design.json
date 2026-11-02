@@ -1,0 +1,4773 @@
+{
+  "batches": [
+    {
+      "batch_id": 0,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 1,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 0,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 14,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 2699303443039999008,
+        "spacing_us": 0
+      },
+      "design_hash": "62e9c0b0a2af1f15a795dea32fed08300db442d06b1bb6344f76a613b5960ff2",
+      "family": "HarmonicFiredancer",
+      "path": "quic",
+      "target": "JUPiTERrZqgf1jUyR7dSkhMx4Kn2qJyekWsg3LT1h4b",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12349",
+      "version": "26.10.5",
+      "window_first_slot": 464181512
+    },
+    {
+      "batch_id": 1,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 2,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 1,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 12,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 6,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 8487154847405305599,
+        "spacing_us": 0
+      },
+      "design_hash": "4949fccbc2eff845b1a0b837c2d0d53859cc4a7ffe0021f255add28eb0fa8bb8",
+      "family": "HarmonicFiredancer",
+      "path": "rpc",
+      "target": "Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12351",
+      "version": "26.10.5",
+      "window_first_slot": 464181536
+    },
+    {
+      "batch_id": 2,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 15,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 13,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 3,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 4,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 14,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 7,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 16636689250489519259,
+        "spacing_us": 20000
+      },
+      "design_hash": "2641cb6dfb6dd6de655f916670dc71df4f4bb4db109e00a4356256e70953e6e3",
+      "family": "AgaveBam",
+      "path": "quic",
+      "target": "Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.131.139:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464181556
+    },
+    {
+      "batch_id": 3,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 14,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 11,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          }
+        ],
+        "seed": 12823905682216946950,
+        "spacing_us": 0
+      },
+      "design_hash": "66bae6ece7f7bfe9266c2151e6b01aa7e99a1db5ee28cb880a07905403a84131",
+      "family": "Rakurai",
+      "path": "rpc",
+      "target": "ana2y2YvQ3ZPMwm6qhnN3nJoUSiT3qx5Pvetkq9xcfY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "45.77.64.138:8002",
+      "version": "4.3.2",
+      "window_first_slot": 464181608
+    },
+    {
+      "batch_id": 4,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 15000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 25000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 5000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 35000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 30000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 20000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 2
+          }
+        ],
+        "seed": 104689528015917992,
+        "spacing_us": 5000
+      },
+      "design_hash": "a55904d9b1975d2baa04ca914687b34e2e713a7551c0555ad321ed221f1850ab",
+      "family": "JitoLabs",
+      "path": "quic",
+      "target": "HEL1USMZKAL2odpNBj2oCjffnFGaYwmbGmyewGv1e2TU",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.57.215:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464181656
+    },
+    {
+      "batch_id": 5,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 0,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 11,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 6,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 7,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          }
+        ],
+        "seed": 17780462835594856553,
+        "spacing_us": 0
+      },
+      "design_hash": "249422e3ac1674e224f3032f6858c7c1d7112ead1dbd0bc898b2ef512807d871",
+      "family": "JitoLabs",
+      "path": "rpc",
+      "target": "E1r4Psq84tHfQ6aPTvvDka4U3u8zPVD7gEUrH25RdxHL",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.42.75:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464181684
+    },
+    {
+      "batch_id": 6,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 12,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 3,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 10,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 9,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 2,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 11,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 0,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 4,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 6855233535210539047,
+        "spacing_us": 20000
+      },
+      "design_hash": "b9c0404524e89fa898442e582e8a8d372d24a41f5ee2bc78a7d65577aa0498e7",
+      "family": "JitoLabs",
+      "path": "quic",
+      "target": "HEL1USMZKAL2odpNBj2oCjffnFGaYwmbGmyewGv1e2TU",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.57.215:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464181708
+    },
+    {
+      "batch_id": 7,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 0,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 3,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 2,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 6,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          }
+        ],
+        "seed": 3946026789438859174,
+        "spacing_us": 0
+      },
+      "design_hash": "b2511c93d4f760a5f5db15cfb451ef13b961ad18227597e7dcd1f65d28659c55",
+      "family": "AgaveBam",
+      "path": "rpc",
+      "target": "5Cchr1XGEg7dbBXByV5NY2ad8jfxAM7HA3x8D56rq9Ux",
+      "tpu_is_proxy": true,
+      "tpu_quic": "63.254.180.11:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464181720
+    },
+    {
+      "batch_id": 8,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          }
+        ],
+        "seed": 8191700395228333007,
+        "spacing_us": 500
+      },
+      "design_hash": "06f088d7eb77c6077ea4d5f3234d994a679dbf991a4baca0e8ac4539a9bb3cd6",
+      "family": "JitoLabs",
+      "path": "quic",
+      "target": "E1r4Psq84tHfQ6aPTvvDka4U3u8zPVD7gEUrH25RdxHL",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.42.75:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464181796
+    },
+    {
+      "batch_id": 9,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 11,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 3,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 9,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 8,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 5,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 7,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 12,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 2,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 0,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 4,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 1619356504131001090,
+        "spacing_us": 20000
+      },
+      "design_hash": "ca4f877a0aee35c5a0aa465a8d0235764034f82749587d62c30919644bf0cea8",
+      "family": "AgaveBam",
+      "path": "quic",
+      "target": "5Cchr1XGEg7dbBXByV5NY2ad8jfxAM7HA3x8D56rq9Ux",
+      "tpu_is_proxy": true,
+      "tpu_quic": "63.254.180.11:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464181812
+    },
+    {
+      "batch_id": 10,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 6000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 8000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 4000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 14000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 12000,
+            "send_rank": 6
+          }
+        ],
+        "seed": 915565093041993484,
+        "spacing_us": 2000
+      },
+      "design_hash": "ba124072cb7c9da5a17a16459ae0f8a4dc9dd918ad840d6b8406e1b602e18f30",
+      "family": "AgaveBam",
+      "path": "quic",
+      "target": "Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.131.139:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464181820
+    },
+    {
+      "batch_id": 11,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 1,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 2,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 13,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 7,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 12,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 0,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          }
+        ],
+        "seed": 7807330853310420038,
+        "spacing_us": 0
+      },
+      "design_hash": "59a9144a2a7cbd8fb30ff76e14affa9a366f0bce232be6a923d75c63a78d9d73",
+      "family": "Firedancer",
+      "path": "quic",
+      "target": "JD549HsbJHeEKKUrKgg4Fj2iyv2RGjsV7NTZjZUrHybB",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.153.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464181828
+    },
+    {
+      "batch_id": 12,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 6,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 1,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 4,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 0,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 13,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 4326238463788653751,
+        "spacing_us": 0
+      },
+      "design_hash": "b57c2257f1bdf4923a804e9cac74fddfabba072bbff9e50b2292b56c1600ef93",
+      "family": "JitoLabs",
+      "path": "quic",
+      "target": "E1r4Psq84tHfQ6aPTvvDka4U3u8zPVD7gEUrH25RdxHL",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.42.75:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464181844
+    },
+    {
+      "batch_id": 13,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 4000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 12000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 6000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 14000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 8000,
+            "send_rank": 4
+          }
+        ],
+        "seed": 3162657833267579372,
+        "spacing_us": 2000
+      },
+      "design_hash": "eb44486d743fc5f9627a59cce1fc75ff6d5e0b3a64f1aa32be88940691ed2bab",
+      "family": "Rakurai",
+      "path": "quic",
+      "target": "7PdKhpKz7T39vZHFL1UfcYNDsLvay6hp4KPQq1aUckFf",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.41.180:8002",
+      "version": "4.3.2",
+      "window_first_slot": 464181920
+    },
+    {
+      "batch_id": 14,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 5,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 14,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 8,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 4,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 9,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 15,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 10,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 0,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 6,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 11,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 15409108966475900978,
+        "spacing_us": 10000
+      },
+      "design_hash": "e4aec2613d592401274f50a7e06aa36ef3115e69217d017f60c4adc1917af658",
+      "family": "HarmonicFiredancer",
+      "path": "quic",
+      "target": "JUPiTERrZqgf1jUyR7dSkhMx4Kn2qJyekWsg3LT1h4b",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12349",
+      "version": "26.10.5",
+      "window_first_slot": 464181928
+    },
+    {
+      "batch_id": 15,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 13,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 2,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 0,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 9,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 8699421622034711470,
+        "spacing_us": 0
+      },
+      "design_hash": "f1cedc43825c28eb643d6c023da960f7fe0c8228d324e8be1d031d4194b49aba",
+      "family": "HarmonicFiredancer",
+      "path": "quic",
+      "target": "Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12351",
+      "version": "26.10.5",
+      "window_first_slot": 464182000
+    },
+    {
+      "batch_id": 16,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 6,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 12,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 7,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 10,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          }
+        ],
+        "seed": 3110599933192629212,
+        "spacing_us": 0
+      },
+      "design_hash": "198413393f2d1d9a9d39321268985e30ca9a0556ee34f623d7aa6d9d359bdc69",
+      "family": "JitoLabs",
+      "path": "rpc",
+      "target": "HEL1USMZKAL2odpNBj2oCjffnFGaYwmbGmyewGv1e2TU",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.57.215:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464182020
+    },
+    {
+      "batch_id": 17,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 10,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 4,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 13,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 11,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 0,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 3,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 6,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 12,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 4696844572894864445,
+        "spacing_us": 10000
+      },
+      "design_hash": "842bdf72501e5b7ef0d55b67c09a7fa2eb8374595ba380748bce6fe5bc9b6b67",
+      "family": "JitoLabs",
+      "path": "quic",
+      "target": "E1r4Psq84tHfQ6aPTvvDka4U3u8zPVD7gEUrH25RdxHL",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.42.75:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464182028
+    },
+    {
+      "batch_id": 18,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 11,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 8,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 6,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 1,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 7,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 13,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 4337610584578685316,
+        "spacing_us": 0
+      },
+      "design_hash": "aa5d0c09f9f427c088d5b7a65b70079435ec880eeda9b4d7651a169c70cb84f6",
+      "family": "Firedancer",
+      "path": "rpc",
+      "target": "JD549HsbJHeEKKUrKgg4Fj2iyv2RGjsV7NTZjZUrHybB",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.153.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182040
+    },
+    {
+      "batch_id": 19,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 4,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 0
+          }
+        ],
+        "seed": 5286849053524864704,
+        "spacing_us": 0
+      },
+      "design_hash": "3827f58a03bba370d9c47b62171a38040b7a2693f654d79c27565089ce8c35c1",
+      "family": "JitoLabs",
+      "path": "quic",
+      "target": "HEL1USMZKAL2odpNBj2oCjffnFGaYwmbGmyewGv1e2TU",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.57.215:8002",
+      "version": "4.4.0",
+      "window_first_slot": 464182080
+    },
+    {
+      "batch_id": 20,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 2,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 0,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 14,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 1,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          }
+        ],
+        "seed": 7814475371314906277,
+        "spacing_us": 0
+      },
+      "design_hash": "406b0ddcb09e2532c31fbb224813e4df37e5d19777ddca08f14f9174da9c4302",
+      "family": "HarmonicFiredancer",
+      "path": "rpc",
+      "target": "JUPiTERrZqgf1jUyR7dSkhMx4Kn2qJyekWsg3LT1h4b",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12349",
+      "version": "26.10.5",
+      "window_first_slot": 464182100
+    },
+    {
+      "batch_id": 21,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 15,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 14,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 1,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 3,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 2,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 2
+          }
+        ],
+        "seed": 2582395712768325778,
+        "spacing_us": 0
+      },
+      "design_hash": "960343eaa3416d05558e8c25cff33254fb572ee7ee60aa6e35eec1fdd2a9a76d",
+      "family": "Firedancer",
+      "path": "quic",
+      "target": "9eGrDohdNTAo61DRHyfMuqKWXqYnA3i254Wiszxe8FoY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.152.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182108
+    },
+    {
+      "batch_id": 22,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 4,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 1,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 8,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 2,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 9,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 10,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 0,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 12,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 7,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 16434650232669128244,
+        "spacing_us": 20000
+      },
+      "design_hash": "706a78402180a88875814f743f0f2a8053248bd4ab61a265602c4d593587133d",
+      "family": "HarmonicAgave",
+      "path": "quic",
+      "target": "CAo1dCGYrB6NhHh5xb1cGjUiu86iyCfMTENxgHumSve4",
+      "tpu_is_proxy": true,
+      "tpu_quic": "64.130.46.242:12291",
+      "version": "4.3.2",
+      "window_first_slot": 464182140
+    },
+    {
+      "batch_id": 23,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 5,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 3,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 2,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 11,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 13,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 14,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 1,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 4,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 0,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 15,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 5526294655990051982,
+        "spacing_us": 10000
+      },
+      "design_hash": "b4846397908e1a6cf123d2e3ed363fe831f24a3665d531c87096e2a145f7e6ad",
+      "family": "Rakurai",
+      "path": "quic",
+      "target": "7PdKhpKz7T39vZHFL1UfcYNDsLvay6hp4KPQq1aUckFf",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.41.180:8002",
+      "version": "4.3.2",
+      "window_first_slot": 464182148
+    },
+    {
+      "batch_id": 24,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 14,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 1,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 3,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 10,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 12,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          }
+        ],
+        "seed": 3669575436690394693,
+        "spacing_us": 0
+      },
+      "design_hash": "0bfb62e8d1adb007300eb1a461968d871934b1ed47df135053706e27b6805822",
+      "family": "AgaveBam",
+      "path": "quic",
+      "target": "Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.131.139:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464182160
+    },
+    {
+      "batch_id": 25,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 8000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 6000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 12000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 14000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 4000,
+            "send_rank": 2
+          }
+        ],
+        "seed": 1631483590520281421,
+        "spacing_us": 2000
+      },
+      "design_hash": "26d10cd3ec0ab649fceb821f16c9f1e2c677fdbd6c70522cc21403a59307ca91",
+      "family": "HarmonicAgave",
+      "path": "quic",
+      "target": "CAo1dCGYrB6NhHh5xb1cGjUiu86iyCfMTENxgHumSve4",
+      "tpu_is_proxy": true,
+      "tpu_quic": "64.130.46.242:12291",
+      "version": "4.3.2",
+      "window_first_slot": 464182284
+    },
+    {
+      "batch_id": 26,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 4,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 1,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 9,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 2,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 12,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 6
+          }
+        ],
+        "seed": 1778548336807808955,
+        "spacing_us": 0
+      },
+      "design_hash": "76350c8c3e744c12b9eb2b343ee180deaa0c8b0013204e69ffebe7302278e8a4",
+      "family": "HarmonicAgave",
+      "path": "quic",
+      "target": "CAo1dCGYrB6NhHh5xb1cGjUiu86iyCfMTENxgHumSve4",
+      "tpu_is_proxy": true,
+      "tpu_quic": "64.130.46.242:12291",
+      "version": "4.3.2",
+      "window_first_slot": 464182312
+    },
+    {
+      "batch_id": 27,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 10,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 4,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 11,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 2
+          }
+        ],
+        "seed": 17513536995955407645,
+        "spacing_us": 0
+      },
+      "design_hash": "94fc621ac5892b063a89931a0921f2bbdbb97b0dafa2bb74a0a4304a0dc08a36",
+      "family": "AgaveBam",
+      "path": "quic",
+      "target": "5Cchr1XGEg7dbBXByV5NY2ad8jfxAM7HA3x8D56rq9Ux",
+      "tpu_is_proxy": true,
+      "tpu_quic": "63.254.180.11:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464182388
+    },
+    {
+      "batch_id": 28,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 0,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 9,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 3,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 14,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 6,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 7,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 13,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 8,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 1,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 2,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 1507000432606085939,
+        "spacing_us": 10000
+      },
+      "design_hash": "588cf47e4d35d9f1080fbad469f187934913b330d9b201b9b8053cb62bad7a09",
+      "family": "HarmonicFiredancer",
+      "path": "quic",
+      "target": "Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12351",
+      "version": "26.10.5",
+      "window_first_slot": 464182428
+    },
+    {
+      "batch_id": 29,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 13,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 2,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 8,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 7,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 1,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          }
+        ],
+        "seed": 8512756589775522141,
+        "spacing_us": 0
+      },
+      "design_hash": "73fdac5028e6439b06f13033bbc77ab99758544d33def78e976a3bdf1807f24b",
+      "family": "Rakurai",
+      "path": "rpc",
+      "target": "7PdKhpKz7T39vZHFL1UfcYNDsLvay6hp4KPQq1aUckFf",
+      "tpu_is_proxy": false,
+      "tpu_quic": "64.130.41.180:8002",
+      "version": "4.3.2",
+      "window_first_slot": 464182456
+    },
+    {
+      "batch_id": 30,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          }
+        ],
+        "seed": 14610452481802346327,
+        "spacing_us": 500
+      },
+      "design_hash": "1fb8398200f6709ce3ee7d7811364a416784866faf32dcf948af5bce8fc98922",
+      "family": "AgaveBam",
+      "path": "quic",
+      "target": "5Cchr1XGEg7dbBXByV5NY2ad8jfxAM7HA3x8D56rq9Ux",
+      "tpu_is_proxy": true,
+      "tpu_quic": "63.254.180.11:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464182468
+    },
+    {
+      "batch_id": 31,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 8,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 6,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 2,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 0
+          }
+        ],
+        "seed": 3131639095675736928,
+        "spacing_us": 0
+      },
+      "design_hash": "ab75760b207b7eb64651afd3929b96de8c7ac8161ba2e23ebcd4c713c2e7a2d1",
+      "family": "HarmonicAgave",
+      "path": "rpc",
+      "target": "CAo1dCGYrB6NhHh5xb1cGjUiu86iyCfMTENxgHumSve4",
+      "tpu_is_proxy": true,
+      "tpu_quic": "64.130.46.242:12291",
+      "version": "4.3.2",
+      "window_first_slot": 464182480
+    },
+    {
+      "batch_id": 32,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 2,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 5,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 0,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 14,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 11,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 13,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 4,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 7,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 9,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 1691776500412012185,
+        "spacing_us": 20000
+      },
+      "design_hash": "a130b906084bd07da6ff13a64aea7fe2a8f1a52ae88fe54257bb2abb0ac11972",
+      "family": "Firedancer",
+      "path": "quic",
+      "target": "9eGrDohdNTAo61DRHyfMuqKWXqYnA3i254Wiszxe8FoY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.152.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182512
+    },
+    {
+      "batch_id": 33,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          }
+        ],
+        "seed": 9490981550240303700,
+        "spacing_us": 500
+      },
+      "design_hash": "651e8364a2d066f60c61cf08a1785cb55cceb99f8321f9d5c5b3cec618af5a82",
+      "family": "HarmonicFiredancer",
+      "path": "quic",
+      "target": "Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12351",
+      "version": "26.10.5",
+      "window_first_slot": 464182540
+    },
+    {
+      "batch_id": 34,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          }
+        ],
+        "seed": 14025680948127932145,
+        "spacing_us": 500
+      },
+      "design_hash": "a7442a3b7fa629dfb790d2d9637aa92752dcdd94810690fb184b0fe2b617ed44",
+      "family": "HarmonicAgave",
+      "path": "quic",
+      "target": "EkvdKhULbMFqjKBKotAzGi3kwMvMpYNDKJXXQQmi6C1f",
+      "tpu_is_proxy": true,
+      "tpu_quic": "63.254.166.232:12324",
+      "version": "4.3.2",
+      "window_first_slot": 464182548
+    },
+    {
+      "batch_id": 35,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 4,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 6,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 2,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 3,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 13,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 9,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 14,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 8,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 12,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 11,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 7814135388548777450,
+        "spacing_us": 20000
+      },
+      "design_hash": "cc28d30227fe845206d64779c8cf1ec081df45a31554b4b185108620aa053a77",
+      "family": "Firedancer",
+      "path": "quic",
+      "target": "JD549HsbJHeEKKUrKgg4Fj2iyv2RGjsV7NTZjZUrHybB",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.153.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182568
+    },
+    {
+      "batch_id": 36,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 30000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 35000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 5000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 25000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 20000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 15000,
+            "send_rank": 3
+          }
+        ],
+        "seed": 5599283702473568565,
+        "spacing_us": 5000
+      },
+      "design_hash": "627405f60917caa3a06447f9c9cd35dedde77b6ce41e80375727c0ac0ae1b6ae",
+      "family": "Firedancer",
+      "path": "quic",
+      "target": "JD549HsbJHeEKKUrKgg4Fj2iyv2RGjsV7NTZjZUrHybB",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.153.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182576
+    },
+    {
+      "batch_id": 37,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 15,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 2,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 1,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 5,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 13,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 10062502023300293459,
+        "spacing_us": 0
+      },
+      "design_hash": "b1144b33e259fb00115043cd2c2519cf97255f66220bf75f910fee7f753f3813",
+      "family": "AgaveBam",
+      "path": "rpc",
+      "target": "Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.131.139:5010",
+      "version": "4.3.2",
+      "window_first_slot": 464182632
+    },
+    {
+      "batch_id": 38,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 3,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 5,
+            "send_offset_us": 20000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 14,
+            "priority_fee": 15,
+            "send_offset_us": 40000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 15,
+            "priority_fee": 40,
+            "send_offset_us": 60000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 10,
+            "priority_fee": 100,
+            "send_offset_us": 80000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 7,
+            "priority_fee": 250,
+            "send_offset_us": 100000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 120000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 2,
+            "priority_fee": 1000,
+            "send_offset_us": 140000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 9,
+            "priority_fee": 2000,
+            "send_offset_us": 160000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 5,
+            "priority_fee": 4000,
+            "send_offset_us": 180000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 8,
+            "priority_fee": 7000,
+            "send_offset_us": 200000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 0,
+            "priority_fee": 10000,
+            "send_offset_us": 220000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 1769234383475997195,
+        "spacing_us": 20000
+      },
+      "design_hash": "bb2c49ca437398772295ba020fa585bf158f7892be6d9afa24ec2b8354ba447a",
+      "family": "Agave",
+      "path": "quic",
+      "target": "5Us18hLZPXJTS4QVuGSsUw137Dyd2tgBaem24Xsf5nBS",
+      "tpu_is_proxy": false,
+      "tpu_quic": "185.189.44.172:12002",
+      "version": "4.3.2",
+      "window_first_slot": 464182676
+    },
+    {
+      "batch_id": 39,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 1,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 8,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 4,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 10,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 7,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 13413118873660322174,
+        "spacing_us": 0
+      },
+      "design_hash": "2359a56ad965193731b5be6e9a8d94b5f79b1a920115b470abd6afa216b6129f",
+      "family": "HarmonicAgave",
+      "path": "quic",
+      "target": "EkvdKhULbMFqjKBKotAzGi3kwMvMpYNDKJXXQQmi6C1f",
+      "tpu_is_proxy": true,
+      "tpu_quic": "63.254.166.232:12324",
+      "version": "4.3.2",
+      "window_first_slot": 464182744
+    },
+    {
+      "batch_id": 40,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 13,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 0,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 5,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 14,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 15,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 3183550235013830504,
+        "spacing_us": 0
+      },
+      "design_hash": "3da1759ade85e4b86bd656df70f0cd508c4763aaff5adea5aa04ca8ff2dab89f",
+      "family": "Firedancer",
+      "path": "rpc",
+      "target": "9eGrDohdNTAo61DRHyfMuqKWXqYnA3i254Wiszxe8FoY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.152.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182852
+    },
+    {
+      "batch_id": 41,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 12,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 2,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 6,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 14,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 3,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 5
+          }
+        ],
+        "seed": 13417310631432451485,
+        "spacing_us": 0
+      },
+      "design_hash": "ecaf67228f17d7d0000dca3f200c1a4c69f1080b4d2a33d0d54e4669efcd4021",
+      "family": "FireBAM",
+      "path": "rpc",
+      "target": "9jxgosAfHgHzwnxsHw4RAZYaLVokMbnYtmiZBreynGFP",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.227:5010",
+      "version": "26.10.5",
+      "window_first_slot": 464182876
+    },
+    {
+      "batch_id": 42,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          }
+        ],
+        "seed": 10657384126191352233,
+        "spacing_us": 500
+      },
+      "design_hash": "bd04027b5eca81e385668f5fb9b489ec1def09c5dd4fe88d80ea7b25ae6ac56d",
+      "family": "Firedancer",
+      "path": "quic",
+      "target": "9eGrDohdNTAo61DRHyfMuqKWXqYnA3i254Wiszxe8FoY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "86.54.152.246:9007",
+      "version": "26.10.5",
+      "window_first_slot": 464182944
+    },
+    {
+      "batch_id": 43,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 14,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 1,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 5,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 12,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 8,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 9,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 7,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 0,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 4,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 11,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 10,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 10442360366426461017,
+        "spacing_us": 10000
+      },
+      "design_hash": "37d8a2ba042008fd6797cc291e846147348e4b4b4111bfe7e6b5d0ed7a4e007f",
+      "family": "FireBAM",
+      "path": "quic",
+      "target": "9jxgosAfHgHzwnxsHw4RAZYaLVokMbnYtmiZBreynGFP",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.227:5010",
+      "version": "26.10.5",
+      "window_first_slot": 464182952
+    },
+    {
+      "batch_id": 44,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 1000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 1500,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 2000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 2500,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 500,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 12,
+            "priority_fee": 500,
+            "send_offset_us": 3000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 3500,
+            "send_rank": 7
+          }
+        ],
+        "seed": 1993003041370308633,
+        "spacing_us": 500
+      },
+      "design_hash": "fb1db6887f850bef44d83367fcb75a2270c22a95331ee4485b78ede46651751d",
+      "family": "HarmonicFiredancer",
+      "path": "quic",
+      "target": "JUPiTERrZqgf1jUyR7dSkhMx4Kn2qJyekWsg3LT1h4b",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.105:12349",
+      "version": "26.10.5",
+      "window_first_slot": 464183020
+    },
+    {
+      "batch_id": 45,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 13,
+            "priority_fee": 500,
+            "send_offset_us": 5000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 8,
+            "priority_fee": 500,
+            "send_offset_us": 30000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 0,
+            "priority_fee": 500,
+            "send_offset_us": 35000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 20000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 6,
+            "priority_fee": 500,
+            "send_offset_us": 25000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 500,
+            "send_offset_us": 15000,
+            "send_rank": 3
+          }
+        ],
+        "seed": 3000395834285251101,
+        "spacing_us": 5000
+      },
+      "design_hash": "60136bd6cc01b6ab96fe757d4c78cc6c3ef47b94e8a2aa842cdfc6c420d88680",
+      "family": "Rakurai",
+      "path": "quic",
+      "target": "ana2y2YvQ3ZPMwm6qhnN3nJoUSiT3qx5Pvetkq9xcfY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "45.77.64.138:8002",
+      "version": "4.3.2",
+      "window_first_slot": 464183124
+    },
+    {
+      "batch_id": 46,
+      "design": {
+        "anchor": {
+          "slots": 1.0,
+          "type": "in_window"
+        },
+        "arm": "distinct",
+        "kind": "sweep",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 2,
+            "priority_fee": 5,
+            "send_offset_us": 10000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 1,
+            "priority_fee": 15,
+            "send_offset_us": 20000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 7,
+            "priority_fee": 40,
+            "send_offset_us": 30000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 13,
+            "priority_fee": 100,
+            "send_offset_us": 40000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 250,
+            "send_offset_us": 50000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 60000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 10,
+            "priority_fee": 1000,
+            "send_offset_us": 70000,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 8,
+            "payer_slot": 0,
+            "priority_fee": 2000,
+            "send_offset_us": 80000,
+            "send_rank": 8
+          },
+          {
+            "format": "v1",
+            "idx": 9,
+            "payer_slot": 12,
+            "priority_fee": 4000,
+            "send_offset_us": 90000,
+            "send_rank": 9
+          },
+          {
+            "format": "v1",
+            "idx": 10,
+            "payer_slot": 14,
+            "priority_fee": 7000,
+            "send_offset_us": 100000,
+            "send_rank": 10
+          },
+          {
+            "format": "v1",
+            "idx": 11,
+            "payer_slot": 15,
+            "priority_fee": 10000,
+            "send_offset_us": 110000,
+            "send_rank": 11
+          }
+        ],
+        "seed": 15469332644647511711,
+        "spacing_us": 10000
+      },
+      "design_hash": "d412e76a3a99f6d16983c43b9bc823105fa7cba0e928cf83c1e603395db69628",
+      "family": "Rakurai",
+      "path": "quic",
+      "target": "ana2y2YvQ3ZPMwm6qhnN3nJoUSiT3qx5Pvetkq9xcfY",
+      "tpu_is_proxy": false,
+      "tpu_quic": "45.77.64.138:8002",
+      "version": "4.3.2",
+      "window_first_slot": 464183476
+    },
+    {
+      "batch_id": 47,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "tie",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 9,
+            "priority_fee": 500,
+            "send_offset_us": 10000,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 7,
+            "priority_fee": 500,
+            "send_offset_us": 25000,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 3,
+            "priority_fee": 500,
+            "send_offset_us": 20000,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 5,
+            "priority_fee": 500,
+            "send_offset_us": 15000,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 2,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 10,
+            "priority_fee": 500,
+            "send_offset_us": 5000,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 1,
+            "priority_fee": 500,
+            "send_offset_us": 30000,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 11,
+            "priority_fee": 500,
+            "send_offset_us": 35000,
+            "send_rank": 7
+          }
+        ],
+        "seed": 14876746445123286891,
+        "spacing_us": 5000
+      },
+      "design_hash": "c4862a50dea45788f7d588d8893a830733ca556e63081e8208ae29f6cc818875",
+      "family": "FireBAM",
+      "path": "quic",
+      "target": "9jxgosAfHgHzwnxsHw4RAZYaLVokMbnYtmiZBreynGFP",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.227:5010",
+      "version": "26.10.5",
+      "window_first_slot": 464183488
+    },
+    {
+      "batch_id": 48,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 15,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 2,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 7,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 9,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 0,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 8,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 10,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 3
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 1,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 2
+          }
+        ],
+        "seed": 7978309237187363795,
+        "spacing_us": 0
+      },
+      "design_hash": "39a6682bcc628f50836151cdaf5b1d90ca2be302cac8ab3779c9cf093d899811",
+      "family": "FireBAM",
+      "path": "quic",
+      "target": "9jxgosAfHgHzwnxsHw4RAZYaLVokMbnYtmiZBreynGFP",
+      "tpu_is_proxy": true,
+      "tpu_quic": "198.13.140.227:5010",
+      "version": "26.10.5",
+      "window_first_slot": 464183524
+    },
+    {
+      "batch_id": 49,
+      "design": {
+        "anchor": {
+          "slots": 3.0,
+          "type": "before_window"
+        },
+        "arm": "distinct",
+        "kind": "ladder",
+        "probes": [
+          {
+            "format": "v1",
+            "idx": 0,
+            "payer_slot": 4,
+            "priority_fee": 500,
+            "send_offset_us": 0,
+            "send_rank": 5
+          },
+          {
+            "format": "v1",
+            "idx": 1,
+            "payer_slot": 1,
+            "priority_fee": 150,
+            "send_offset_us": 0,
+            "send_rank": 4
+          },
+          {
+            "format": "v1",
+            "idx": 2,
+            "payer_slot": 8,
+            "priority_fee": 1500,
+            "send_offset_us": 0,
+            "send_rank": 1
+          },
+          {
+            "format": "v1",
+            "idx": 3,
+            "payer_slot": 3,
+            "priority_fee": 0,
+            "send_offset_us": 0,
+            "send_rank": 2
+          },
+          {
+            "format": "v1",
+            "idx": 4,
+            "payer_slot": 15,
+            "priority_fee": 10,
+            "send_offset_us": 0,
+            "send_rank": 7
+          },
+          {
+            "format": "v1",
+            "idx": 5,
+            "payer_slot": 5,
+            "priority_fee": 40,
+            "send_offset_us": 0,
+            "send_rank": 6
+          },
+          {
+            "format": "v1",
+            "idx": 6,
+            "payer_slot": 0,
+            "priority_fee": 4000,
+            "send_offset_us": 0,
+            "send_rank": 0
+          },
+          {
+            "format": "v1",
+            "idx": 7,
+            "payer_slot": 14,
+            "priority_fee": 10000,
+            "send_offset_us": 0,
+            "send_rank": 3
+          }
+        ],
+        "seed": 18058468743050375482,
+        "spacing_us": 0
+      },
+      "design_hash": "9872b8a555ff672cd96bff3389310cabb697cc82600eda4d3029f6d4580efe3c",
+      "family": "Agave",
+      "path": "quic",
+      "target": "5Us18hLZPXJTS4QVuGSsUw137Dyd2tgBaem24Xsf5nBS",
+      "tpu_is_proxy": false,
+      "tpu_quic": "185.189.44.172:12002",
+      "version": "4.3.2",
+      "window_first_slot": 464183752
+    }
+  ],
+  "run_id": "20261101T1747Z-868587",
+  "run_seed": 12314492101954128582,
+  "sha256": "72d4c8fe83f46b9e019f465f1c9ea537f8cbbea3de8746167a69b9489f22bcf0"
+}
