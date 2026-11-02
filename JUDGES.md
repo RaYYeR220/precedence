@@ -25,7 +25,8 @@
    producer and full transaction order, and every recorded entry hash chain against the public
    RPC. The entry check matters because `getBlock` does not expose entries: we recorded them from a
    gRPC stream, and the verifier recomputes each block's entry hashes from its transaction
-   signatures and requires the chain to end exactly on the block's blockhash.
+   signatures and requires the chain to end exactly on the block's blockhash. Our own last run of
+   the same check is in [`data/verify.json`](data/verify.json).
 
 5. **Check that we did not fit the story to the data.** [docs/PREDICTIONS.md](docs/PREDICTIONS.md)
    was committed before the first transaction (compare its commit time with the run start times in

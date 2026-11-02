@@ -1,4 +1,716 @@
 {
- "available": false,
- "reason": "no entries.jsonl with entries for the landed slots"
+ "available": true,
+ "families": {
+  "Agave": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 23629,
+     "17-64": 0,
+     "2-4": 2726,
+     "5-16": 82,
+     ">64": 0
+    },
+    "max": 13,
+    "mean": 1.154367,
+    "median": 1.0,
+    "n_entries": 26437,
+    "p90": 2.0,
+    "share_single_tx": 0.893785
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.458333,
+      0.625
+     ],
+     "n_batches": 2,
+     "n_pairs": 40,
+     "p_perm": 0.898,
+     "rate": 0.525
+    },
+    "same_entry": {
+     "ci": [
+      0.438768,
+      0.676073
+     ],
+     "n_batches": 7,
+     "n_pairs": 155,
+     "p_perm": 0.442,
+     "rate": 0.548387
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.70545,
+      0.85524
+     ],
+     "n_batches": 28,
+     "n_pairs": 559,
+     "p_perm": 0.001,
+     "rate": 0.781753
+    },
+    "same_entry": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 21,
+     "n_pairs": 121,
+     "p_perm": 0.001,
+     "rate": 1.0
+    }
+   },
+   "n_pairs_cross_entry": 1040,
+   "n_pairs_same_entry": 296,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 166,
+     "17-64": 0,
+     "2-4": 113,
+     "5-16": 98,
+     ">64": 0
+    },
+    "max": 13,
+    "mean": 3.352785,
+    "median": 2.0,
+    "n_entries": 377,
+    "p90": 8.0,
+    "share_single_tx": 0.440318
+   },
+   "share_pairs_same_entry": 0.221557
+  },
+  "AgaveBam": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 95032,
+     "17-64": 0,
+     "2-4": 716,
+     "5-16": 277,
+     ">64": 0
+    },
+    "max": 5,
+    "mean": 1.020349,
+    "median": 1.0,
+    "n_entries": 96025,
+    "p90": 1.0,
+    "share_single_tx": 0.989659
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.290812,
+      0.50227
+     ],
+     "n_batches": 16,
+     "n_pairs": 447,
+     "p_perm": 0.007,
+     "rate": 0.395973
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.894919,
+      0.940227
+     ],
+     "n_batches": 81,
+     "n_pairs": 1664,
+     "p_perm": 0.001,
+     "rate": 0.920072
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "n_pairs_cross_entry": 3076,
+   "n_pairs_same_entry": 0,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 950,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 950,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "share_pairs_same_entry": 0.0
+  },
+  "FireBAM": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 25386,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 25386,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.102679,
+      0.375
+     ],
+     "n_batches": 8,
+     "n_pairs": 224,
+     "p_perm": 0.001,
+     "rate": 0.232143
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.9125,
+      0.968105
+     ],
+     "n_batches": 20,
+     "n_pairs": 533,
+     "p_perm": 0.001,
+     "rate": 0.941839
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "n_pairs_cross_entry": 1384,
+   "n_pairs_same_entry": 0,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 354,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 354,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "share_pairs_same_entry": 0.0
+  },
+  "Firedancer": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 77618,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 77618,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.073129,
+      0.154762
+     ],
+     "n_batches": 21,
+     "n_pairs": 588,
+     "p_perm": 0.001,
+     "rate": 0.112245
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.908793,
+      0.981603
+     ],
+     "n_batches": 58,
+     "n_pairs": 1497,
+     "p_perm": 0.001,
+     "rate": 0.950568
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "n_pairs_cross_entry": 3472,
+   "n_pairs_same_entry": 0,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 911,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 911,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "share_pairs_same_entry": 0.0
+  },
+  "HarmonicAgave": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 106060,
+     "17-64": 0,
+     "2-4": 1355,
+     "5-16": 620,
+     ">64": 0
+    },
+    "max": 5,
+    "mean": 1.036895,
+    "median": 1.0,
+    "n_entries": 108035,
+    "p90": 1.0,
+    "share_single_tx": 0.981719
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.466307,
+      0.560606
+     ],
+     "n_batches": 27,
+     "n_pairs": 734,
+     "p_perm": 0.67,
+     "rate": 0.512262
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.658815,
+      0.739228
+     ],
+     "n_batches": 101,
+     "n_pairs": 2276,
+     "p_perm": 0.001,
+     "rate": 0.699473
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "n_pairs_cross_entry": 4117,
+   "n_pairs_same_entry": 0,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 1218,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 1218,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "share_pairs_same_entry": 0.0
+  },
+  "HarmonicFiredancer": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 88099,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 88099,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.447205,
+      0.560598
+     ],
+     "n_batches": 23,
+     "n_pairs": 644,
+     "p_perm": 0.862,
+     "rate": 0.506211
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.85169,
+      0.933705
+     ],
+     "n_batches": 69,
+     "n_pairs": 1707,
+     "p_perm": 0.001,
+     "rate": 0.896895
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "n_pairs_cross_entry": 3676,
+   "n_pairs_same_entry": 0,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 1037,
+     "17-64": 0,
+     "2-4": 0,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 1,
+    "mean": 1.0,
+    "median": 1.0,
+    "n_entries": 1037,
+    "p90": 1.0,
+    "share_single_tx": 1.0
+   },
+   "share_pairs_same_entry": 0.0
+  },
+  "JitoLabs": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 80691,
+     "17-64": 6,
+     "2-4": 10823,
+     "5-16": 1184,
+     ">64": 0
+    },
+    "max": 21,
+    "mean": 1.24233,
+    "median": 1.0,
+    "n_entries": 92704,
+    "p90": 2.0,
+    "share_single_tx": 0.870416
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.479842,
+      0.655608
+     ],
+     "n_batches": 22,
+     "n_pairs": 494,
+     "p_perm": 0.043,
+     "rate": 0.568826
+    },
+    "same_entry": {
+     "ci": [
+      0.742934,
+      0.876067
+     ],
+     "n_batches": 21,
+     "n_pairs": 354,
+     "p_perm": 0.001,
+     "rate": 0.813559
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.50272,
+      0.658283
+     ],
+     "n_batches": 95,
+     "n_pairs": 1590,
+     "p_perm": 0.001,
+     "rate": 0.583019
+    },
+    "same_entry": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 62,
+     "n_pairs": 766,
+     "p_perm": 0.001,
+     "rate": 1.0
+    }
+   },
+   "n_pairs_cross_entry": 3440,
+   "n_pairs_same_entry": 1224,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 706,
+     "17-64": 0,
+     "2-4": 166,
+     "5-16": 525,
+     ">64": 0
+    },
+    "max": 16,
+    "mean": 4.173228,
+    "median": 1.0,
+    "n_entries": 1397,
+    "p90": 10.0,
+    "share_single_tx": 0.505369
+   },
+   "share_pairs_same_entry": 0.262436
+  },
+  "Rakurai": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 12849,
+     "17-64": 0,
+     "2-4": 3163,
+     "5-16": 980,
+     ">64": 0
+    },
+    "max": 16,
+    "mean": 1.645304,
+    "median": 1.0,
+    "n_entries": 16992,
+    "p90": 3.0,
+    "share_single_tx": 0.756179
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      0.318982,
+      0.630606
+     ],
+     "n_batches": 10,
+     "n_pairs": 164,
+     "p_perm": 0.88,
+     "rate": 0.487805
+    },
+    "same_entry": {
+     "ci": [
+      0.268452,
+      0.452396
+     ],
+     "n_batches": 11,
+     "n_pairs": 143,
+     "p_perm": 0.003,
+     "rate": 0.342657
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.594689,
+      0.783507
+     ],
+     "n_batches": 27,
+     "n_pairs": 525,
+     "p_perm": 0.001,
+     "rate": 0.689524
+    },
+    "same_entry": {
+     "ci": [
+      1.0,
+      1.0
+     ],
+     "n_batches": 24,
+     "n_pairs": 182,
+     "p_perm": 0.001,
+     "rate": 1.0
+    }
+   },
+   "n_pairs_cross_entry": 1379,
+   "n_pairs_same_entry": 380,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 132,
+     "17-64": 0,
+     "2-4": 116,
+     "5-16": 203,
+     ">64": 0
+    },
+    "max": 15,
+    "mean": 4.627494,
+    "median": 4.0,
+    "n_entries": 451,
+    "p90": 10.0,
+    "share_single_tx": 0.292683
+   },
+   "share_pairs_same_entry": 0.216032
+  },
+  "Unknown": {
+   "block_entry_sizes": {
+    "histogram": {
+     "1": 10123,
+     "17-64": 0,
+     "2-4": 239,
+     "5-16": 36,
+     ">64": 0
+    },
+    "max": 10,
+    "mean": 1.04222,
+    "median": 1.0,
+    "n_entries": 10398,
+    "p90": 1.0,
+    "share_single_tx": 0.973553
+   },
+   "earlier_sent_first_tie": {
+    "cross_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "higher_priority_first": {
+    "cross_entry": {
+     "ci": [
+      0.333333,
+      0.6
+     ],
+     "n_batches": 6,
+     "n_pairs": 20,
+     "p_perm": 1.0,
+     "rate": 0.5
+    },
+    "same_entry": {
+     "ci": [
+      null,
+      null
+     ],
+     "n_batches": 0,
+     "n_pairs": 0,
+     "p_perm": null,
+     "rate": null
+    }
+   },
+   "n_pairs_cross_entry": 20,
+   "n_pairs_same_entry": 0,
+   "probe_entry_sizes": {
+    "histogram": {
+     "1": 28,
+     "17-64": 0,
+     "2-4": 3,
+     "5-16": 0,
+     ">64": 0
+    },
+    "max": 4,
+    "mean": 1.225806,
+    "median": 1.0,
+    "n_entries": 31,
+    "p90": 1.0,
+    "share_single_tx": 0.903226
+   },
+   "share_pairs_same_entry": 0.0
+  }
+ }
 }

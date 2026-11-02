@@ -1,5 +1,5392 @@
 {
- "families": {},
+ "families": {
+  "Agave": {
+   "concordance_mde": 0.592499,
+   "curve": [
+    {
+     "expected_concordance": 0.512597,
+     "power": 0.07,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531428,
+     "power": 0.135,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.5624,
+     "power": 0.6,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.592499,
+     "power": 0.875,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 50,
+   "n_pairs": 1336,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 0.15
+  },
+  "AgaveBam": {
+   "concordance_mde": 0.561489,
+   "curve": [
+    {
+     "expected_concordance": 0.512411,
+     "power": 0.115,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530964,
+     "power": 0.275,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.561489,
+     "power": 0.885,
+     "theta": 0.1
+    }
+   ],
+   "n_batch_blocks": 142,
+   "n_pairs": 3076,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.1
+  },
+  "FireBAM": {
+   "concordance_mde": 0.5972,
+   "curve": [
+    {
+     "expected_concordance": 0.513272,
+     "power": 0.055,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533103,
+     "power": 0.195,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565665,
+     "power": 0.49,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.5972,
+     "power": 0.915,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 43,
+   "n_pairs": 1384,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.15
+  },
+  "Firedancer": {
+   "concordance_mde": 0.564149,
+   "curve": [
+    {
+     "expected_concordance": 0.512959,
+     "power": 0.11,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.532325,
+     "power": 0.405,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.564149,
+     "power": 0.925,
+     "theta": 0.1
+    }
+   ],
+   "n_batch_blocks": 118,
+   "n_pairs": 3558,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.1
+  },
+  "HarmonicAgave": {
+   "concordance_mde": 0.561299,
+   "curve": [
+    {
+     "expected_concordance": 0.51237,
+     "power": 0.125,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530864,
+     "power": 0.315,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.561299,
+     "power": 0.84,
+     "theta": 0.1
+    }
+   ],
+   "n_batch_blocks": 180,
+   "n_pairs": 4146,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.1
+  },
+  "HarmonicFiredancer": {
+   "concordance_mde": 0.562035,
+   "curve": [
+    {
+     "expected_concordance": 0.512522,
+     "power": 0.08,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531242,
+     "power": 0.305,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562035,
+     "power": 0.81,
+     "theta": 0.1
+    }
+   ],
+   "n_batch_blocks": 140,
+   "n_pairs": 3676,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.1
+  },
+  "JitoLabs": {
+   "concordance_mde": 0.561039,
+   "curve": [
+    {
+     "expected_concordance": 0.512318,
+     "power": 0.12,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530733,
+     "power": 0.31,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.561039,
+     "power": 0.895,
+     "theta": 0.1
+    }
+   ],
+   "n_batch_blocks": 204,
+   "n_pairs": 4693,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.1
+  },
+  "Rakurai": {
+   "concordance_mde": 0.596419,
+   "curve": [
+    {
+     "expected_concordance": 0.513162,
+     "power": 0.06,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.532829,
+     "power": 0.2,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565128,
+     "power": 0.595,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.596419,
+     "power": 0.96,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 55,
+   "n_pairs": 1759,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.15
+  },
+  "Unknown": {
+   "concordance_mde": 0.858904,
+   "curve": [
+    {
+     "expected_concordance": 0.506666,
+     "power": 0.045,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.516657,
+     "power": 0.025,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.533256,
+     "power": 0.075,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.549739,
+     "power": 0.055,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.566053,
+     "power": 0.09,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.597973,
+     "power": 0.115,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.657871,
+     "power": 0.17,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.723433,
+     "power": 0.4,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.778072,
+     "power": 0.595,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.858904,
+     "power": 0.805,
+     "theta": 1.5
+    }
+   ],
+   "n_batch_blocks": 11,
+   "n_pairs": 20,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 1.5
+  }
+ },
  "method": "200 Mallows data sets per theta (same theta in every stratum) around each unit's reference rule, observed batch-block sizes, same permutation null as the real data; MDE = smallest theta with power >= 80% at alpha 0.05",
- "validators": {}
+ "validators": {
+  "2FL6757bjpBe1datbq91eKDCp7Jqpce5HC8aZ6eTYpef": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "2GUnfxZavKoPfS9s3VSEjaWDzB3vNf5RojUhprCS1rSx": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.506111,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.515272,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.530512,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.545686,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.560762,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.5905,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.647539,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.712458,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.768756,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.854686,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.910578,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.96685,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.995508,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "2m1A2WM1vte7RWz5xTTw4i1SiXmngVtXhqFERaUjoAAb": {
+   "concordance_mde": 0.952574,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.025,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.03,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.015,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.06,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.06,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.06,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.095,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.11,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.245,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.45,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.53,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.81,
+     "theta": 3.0
+    }
+   ],
+   "n_batch_blocks": 6,
+   "n_pairs": 6,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 3.0
+  },
+  "3ytgyJXpm3teGLwkHqp9h2qqYNpY4Z1QpWAeVpz79gpJ": {
+   "concordance_mde": 0.96685,
+   "curve": [
+    {
+     "expected_concordance": 0.506111,
+     "power": 0.08,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.515272,
+     "power": 0.05,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.530512,
+     "power": 0.06,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.545686,
+     "power": 0.09,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.560762,
+     "power": 0.085,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.5905,
+     "power": 0.08,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.647539,
+     "power": 0.14,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.712458,
+     "power": 0.205,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.768756,
+     "power": 0.245,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.854686,
+     "power": 0.445,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.910578,
+     "power": 0.615,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.96685,
+     "power": 0.85,
+     "theta": 3.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 6,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 3.0
+  },
+  "4k6wgP5WPBKQpsFGtzuXNrjcTE2fKWLj17nDvFeG5zSF": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "5Cchr1XGEg7dbBXByV5NY2ad8jfxAM7HA3x8D56rq9Ux": {
+   "concordance_mde": 0.593667,
+   "curve": [
+    {
+     "expected_concordance": 0.512766,
+     "power": 0.065,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531846,
+     "power": 0.185,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.563213,
+     "power": 0.54,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.593667,
+     "power": 0.825,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 33,
+   "n_pairs": 975,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.15
+  },
+  "5EhGYUyQNrxgUbuYF4vbL2SZDT6RMfhq3yjeyevvULeC": {
+   "concordance_mde": 0.623079,
+   "curve": [
+    {
+     "expected_concordance": 0.512787,
+     "power": 0.07,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531899,
+     "power": 0.21,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.563323,
+     "power": 0.365,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.593835,
+     "power": 0.745,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.623079,
+     "power": 0.95,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 28,
+   "n_pairs": 773,
+   "note": null,
+   "reference_model": "batched(w=5ms)",
+   "theta_mde": 0.2
+  },
+  "5Us18hLZPXJTS4QVuGSsUw137Dyd2tgBaem24Xsf5nBS": {
+   "concordance_mde": 0.62207,
+   "curve": [
+    {
+     "expected_concordance": 0.512671,
+     "power": 0.08,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531612,
+     "power": 0.15,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562763,
+     "power": 0.28,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.593031,
+     "power": 0.64,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.62207,
+     "power": 0.88,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 23,
+   "n_pairs": 634,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 0.2
+  },
+  "5ZqveVffQPiUbkjBg4KD9kib1MKHLqiFno4ke9jSq9qk": {
+   "concordance_mde": 0.818104,
+   "curve": [
+    {
+     "expected_concordance": 0.511324,
+     "power": 0.04,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.528268,
+     "power": 0.045,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.55623,
+     "power": 0.065,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.583598,
+     "power": 0.115,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.610119,
+     "power": 0.135,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.65983,
+     "power": 0.315,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.743174,
+     "power": 0.59,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.818104,
+     "power": 0.89,
+     "theta": 0.75
+    }
+   ],
+   "n_batch_blocks": 5,
+   "n_pairs": 59,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 0.75
+  },
+  "5d9Mdc2Zk8as8GL1AxQeXxv5htBBvC5bjfmsXC7UUWwG": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "5essVpBYvocZkQnkrWsMDfRPwtp4BeihJRaweKLR4dRn": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "5pPRHniefFjkiaArbGX3Y8NUysJmQ9tMZg3FrFGwHzSm": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505666,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.514162,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.528299,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.542383,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.556391,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.584077,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.637507,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.699146,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.753677,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.839842,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.898666,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.961139,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.994628,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 5,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "6aow5rTURdbhbeMDrFrbP2GR5vZjMEhktEy87iH1VGPs": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "6ptuwW4rg5A3wP9hNKxeymG3QhSagugPd3grnMTGJwWG": {
+   "concordance_mde": 0.825547,
+   "curve": [
+    {
+     "expected_concordance": 0.511663,
+     "power": 0.05,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529112,
+     "power": 0.04,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557904,
+     "power": 0.085,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586072,
+     "power": 0.065,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613349,
+     "power": 0.15,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.664404,
+     "power": 0.26,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.749641,
+     "power": 0.69,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.825547,
+     "power": 0.945,
+     "theta": 0.75
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 56,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.75
+  },
+  "6y7V8dL673XFzm9QyC5vvh3itWkp7wztahBd2yDqsyrK": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.506111,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.515272,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.530512,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.545686,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.560762,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.5905,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.647539,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.712458,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.768756,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.854686,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.910578,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.96685,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.995508,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "7CR3Jq4ny2tsr3DX3DvyjoU8TYs776MGkU6nLMWjAqCT": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "7KVnUL45FH4N8Z7x1dnvJ7GzMx12cs81mS26mHzNjQPN": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "7PdKhpKz7T39vZHFL1UfcYNDsLvay6hp4KPQq1aUckFf": {
+   "concordance_mde": 0.769818,
+   "curve": [
+    {
+     "expected_concordance": 0.513309,
+     "power": 0.055,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533194,
+     "power": 0.045,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565841,
+     "power": 0.105,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.597451,
+     "power": 0.25,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.627627,
+     "power": 0.365,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.682664,
+     "power": 0.715,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.769818,
+     "power": 0.99,
+     "theta": 0.5
+    }
+   ],
+   "n_batch_blocks": 5,
+   "n_pairs": 178,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.5
+  },
+  "7QQGNm3ptwinipDCyaCF7jY5katgmFUu1ieP2f7nwLpE": {
+   "concordance_mde": 0.621279,
+   "curve": [
+    {
+     "expected_concordance": 0.512589,
+     "power": 0.06,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531408,
+     "power": 0.165,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562356,
+     "power": 0.345,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.592428,
+     "power": 0.63,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.621279,
+     "power": 0.895,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 24,
+   "n_pairs": 672,
+   "note": null,
+   "reference_model": "batched(w=5ms)",
+   "theta_mde": 0.2
+  },
+  "8gDfqHXZ5ektqQQrLrCGtSzYRwkWQrm3ANnAvQCt2LoM": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "97jbhVBYcSmwGXjrx5PPWXucDsVBqwyoQ6rzP3B6eeMt": {
+   "concordance_mde": 0.825547,
+   "curve": [
+    {
+     "expected_concordance": 0.511663,
+     "power": 0.065,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529112,
+     "power": 0.045,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557904,
+     "power": 0.1,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586072,
+     "power": 0.125,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613349,
+     "power": 0.13,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.664404,
+     "power": 0.335,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.749641,
+     "power": 0.68,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.825547,
+     "power": 0.945,
+     "theta": 0.75
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 56,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 0.75
+  },
+  "9UM8wQ8F5oMiRcP5YdqD6Lr4krpBWCD8LtgQYoisJd9i": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "9W3QTgBhkU4Bwg6cwnDJo6eGZ9BtZafSdu1Lo9JmWws7": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "9XhmwxwWtoR6oD4xpSHutoTXku8hXyq76XoTKFZb7ct7": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "9eGrDohdNTAo61DRHyfMuqKWXqYnA3i254Wiszxe8FoY": {
+   "concordance_mde": 0.597582,
+   "curve": [
+    {
+     "expected_concordance": 0.513328,
+     "power": 0.07,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533242,
+     "power": 0.18,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565935,
+     "power": 0.77,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.597582,
+     "power": 0.98,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 50,
+   "n_pairs": 1677,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.15
+  },
+  "9hQqNe3DQTiwhspatewA8EXhz12e6sq5UJVJ2qNRwnTf": {
+   "concordance_mde": 0.866368,
+   "curve": [
+    {
+     "expected_concordance": 0.511219,
+     "power": 0.045,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.528005,
+     "power": 0.03,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.555709,
+     "power": 0.03,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.582829,
+     "power": 0.08,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.609115,
+     "power": 0.11,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.658407,
+     "power": 0.105,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.741162,
+     "power": 0.385,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.815789,
+     "power": 0.67,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.866368,
+     "power": 0.83,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 30,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 1.0
+  },
+  "9iFPQbP1jGkj67sXg6YLLGRUBVEDMcapdS6jmCZSnz8R": {
+   "concordance_mde": 0.866368,
+   "curve": [
+    {
+     "expected_concordance": 0.511219,
+     "power": 0.045,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.528005,
+     "power": 0.015,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.555709,
+     "power": 0.045,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.582829,
+     "power": 0.045,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.609115,
+     "power": 0.1,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.658407,
+     "power": 0.15,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.741162,
+     "power": 0.42,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.815789,
+     "power": 0.57,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.866368,
+     "power": 0.845,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 30,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 1.0
+  },
+  "9jxgosAfHgHzwnxsHw4RAZYaLVokMbnYtmiZBreynGFP": {
+   "concordance_mde": 0.597065,
+   "curve": [
+    {
+     "expected_concordance": 0.513251,
+     "power": 0.045,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533052,
+     "power": 0.14,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565568,
+     "power": 0.525,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.597065,
+     "power": 0.87,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 33,
+   "n_pairs": 1050,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.15
+  },
+  "9rkJMARqK6VBkcxGfKBAwnA44gPAfGxPbPsfsggFNDSQ": {
+   "concordance_mde": 0.738527,
+   "curve": [
+    {
+     "expected_concordance": 0.51099,
+     "power": 0.05,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.527438,
+     "power": 0.08,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.554602,
+     "power": 0.12,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.581234,
+     "power": 0.23,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.607104,
+     "power": 0.32,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.655832,
+     "power": 0.6,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.738527,
+     "power": 0.97,
+     "theta": 0.5
+    }
+   ],
+   "n_batch_blocks": 11,
+   "n_pairs": 203,
+   "note": null,
+   "reference_model": "batched(w=30ms)",
+   "theta_mde": 0.5
+  },
+  "A1vqhA2fS6K7CvHsJKX1ACcHJFEmyRg4KuR5pctHANy4": {
+   "concordance_mde": 0.871034,
+   "curve": [
+    {
+     "expected_concordance": 0.511433,
+     "power": 0.045,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.52854,
+     "power": 0.07,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.556768,
+     "power": 0.085,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.584394,
+     "power": 0.105,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.611159,
+     "power": 0.12,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.661302,
+     "power": 0.185,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.745255,
+     "power": 0.4,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.8205,
+     "power": 0.775,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.871034,
+     "power": 0.845,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 29,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 1.0
+  },
+  "A9mvukTd77EbRoBX4ydSCFQHdu5bsRFkNXTTRstA8FAC": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "ABC1U4cf9DZMwqy8ktEr4WJj8VHmVBQibbC57gEJthwY": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "AMukCLCr52XxsEjXoDxKKxjNg4FpnsReXNaQx8aR6DJF": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "ANCVpxEySGWWLqqkVKw2xWYDE9UP4fmZWMCBr5t96jch": {
+   "concordance_mde": 0.93646,
+   "curve": [
+    {
+     "expected_concordance": 0.508029,
+     "power": 0.06,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.52006,
+     "power": 0.06,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.540027,
+     "power": 0.05,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.55981,
+     "power": 0.065,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.579323,
+     "power": 0.07,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.617226,
+     "power": 0.12,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.686844,
+     "power": 0.21,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.759641,
+     "power": 0.28,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.816538,
+     "power": 0.375,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.892719,
+     "power": 0.69,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.93646,
+     "power": 0.86,
+     "theta": 2.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 11,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 2.0
+  },
+  "Aw5wEMXhbygFLR7jHtHpih8QvxVBGAMTqsQ2SjWPk1ex": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "Awes4Tr6TX8JDzEhCZY2QVNimT6iD1zWHzf1vNyGvpLM": {
+   "concordance_mde": 0.590446,
+   "curve": [
+    {
+     "expected_concordance": 0.512305,
+     "power": 0.075,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530702,
+     "power": 0.19,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.56098,
+     "power": 0.56,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.590446,
+     "power": 0.945,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 48,
+   "n_pairs": 1234,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.15
+  },
+  "BFmqBsaGjeYA7gHpReKmnVkRyhqiMmHoR9ttv1crWmzy": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "BJvrWSfonXnS2Km8iA9KLY6D6vS3GcsaUwUNPFBumTca": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "BUv44cVtsdvU9z2BfFGk6s5JZZWrmVnq5qCaii5ARyyB": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "BtsmiEEvnSuUnKxqXj2PZRYpPJAc7C34mGz8gtJ1DAaH": {
+   "concordance_mde": 0.617845,
+   "curve": [
+    {
+     "expected_concordance": 0.512193,
+     "power": 0.04,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530425,
+     "power": 0.15,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.560446,
+     "power": 0.355,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.58969,
+     "power": 0.755,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.617845,
+     "power": 0.915,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 31,
+   "n_pairs": 854,
+   "note": null,
+   "reference_model": "batched(w=50ms)",
+   "theta_mde": 0.2
+  },
+  "C8Bey3LKVJHVqN6xPTeW8WJfUgFQAeGNBpT4Rp99JP1k": {
+   "concordance_mde": 0.592311,
+   "curve": [
+    {
+     "expected_concordance": 0.512572,
+     "power": 0.03,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531365,
+     "power": 0.115,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562274,
+     "power": 0.475,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.592311,
+     "power": 0.835,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 37,
+   "n_pairs": 1080,
+   "note": null,
+   "reference_model": "batched(w=5ms)",
+   "theta_mde": 0.15
+  },
+  "CAo1dCGYrB6NhHh5xb1cGjUiu86iyCfMTENxgHumSve4": {
+   "concordance_mde": 0.594893,
+   "curve": [
+    {
+     "expected_concordance": 0.512941,
+     "power": 0.075,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.532282,
+     "power": 0.25,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.564064,
+     "power": 0.72,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.594893,
+     "power": 0.985,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 54,
+   "n_pairs": 1643,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 0.15
+  },
+  "CQdLgwkmmHF8DE6t4sguXMTXWDxq3oLh3xfekDTmow12": {
+   "concordance_mde": 0.857494,
+   "curve": [
+    {
+     "expected_concordance": 0.510755,
+     "power": 0.055,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.526847,
+     "power": 0.055,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.553418,
+     "power": 0.05,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.579452,
+     "power": 0.1,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.604719,
+     "power": 0.115,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.652233,
+     "power": 0.155,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.732651,
+     "power": 0.38,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.806395,
+     "power": 0.68,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.857494,
+     "power": 0.815,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 4,
+   "n_pairs": 33,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 1.0
+  },
+  "CW9C7HBwAMgqNdXkNgFg9Ujr3edR2Ab9ymEuQnVacd1A": {
+   "concordance_mde": 0.979578,
+   "curve": [
+    {
+     "expected_concordance": 0.508332,
+     "power": 0.005,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.520816,
+     "power": 0.05,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.541532,
+     "power": 0.01,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.562049,
+     "power": 0.01,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.582272,
+     "power": 0.025,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.621504,
+     "power": 0.015,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.693283,
+     "power": 0.055,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.767687,
+     "power": 0.14,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.825086,
+     "power": 0.225,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.900233,
+     "power": 0.38,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.942027,
+     "power": 0.525,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.979578,
+     "power": 0.825,
+     "theta": 3.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 10,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 3.0
+  },
+  "Cu9Ls6dsTL6cxFHZdStHwVSh1uy2ynXz8qPJMS5FRq86": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "DNVZMSqeRH18Xa4MCTrb1MndNf3Npg4MEwqswo23eWkf": {
+   "concordance_mde": 0.620982,
+   "curve": [
+    {
+     "expected_concordance": 0.51255,
+     "power": 0.065,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531312,
+     "power": 0.115,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562174,
+     "power": 0.32,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.592178,
+     "power": 0.625,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.620982,
+     "power": 0.875,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 24,
+   "n_pairs": 664,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.2
+  },
+  "DRpbCBMxVnDK7maPM5tGv6MvB3v1sRMC86PZ8okm21hy": {
+   "concordance_mde": 0.683637,
+   "curve": [
+    {
+     "expected_concordance": 0.513418,
+     "power": 0.07,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533464,
+     "power": 0.095,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.566358,
+     "power": 0.22,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.598169,
+     "power": 0.405,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.62849,
+     "power": 0.565,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.683637,
+     "power": 0.94,
+     "theta": 0.3
+    }
+   ],
+   "n_batch_blocks": 10,
+   "n_pairs": 311,
+   "note": null,
+   "reference_model": "batched(w=40ms)",
+   "theta_mde": 0.3
+  },
+  "DbWTEseEDkBQzxbUFaTm9JsLy9FfeEGm1bsrfHSzCuEr": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "DrifTrN923QaouP89UxkQzFGbumKPCnfkNYQRwmZxatz": {
+   "concordance_mde": 0.624909,
+   "curve": [
+    {
+     "expected_concordance": 0.512997,
+     "power": 0.035,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.53242,
+     "power": 0.105,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.564336,
+     "power": 0.3,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.59529,
+     "power": 0.58,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.624909,
+     "power": 0.825,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 19,
+   "n_pairs": 569,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.2
+  },
+  "E1r4Psq84tHfQ6aPTvvDka4U3u8zPVD7gEUrH25RdxHL": {
+   "concordance_mde": 0.592792,
+   "curve": [
+    {
+     "expected_concordance": 0.51264,
+     "power": 0.1,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531534,
+     "power": 0.335,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562605,
+     "power": 0.785,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.592792,
+     "power": 0.985,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 70,
+   "n_pairs": 1806,
+   "note": null,
+   "reference_model": "batched(w=5ms)",
+   "theta_mde": 0.15
+  },
+  "E3mDbFMr8yZcCAZx5wPUFCRmLX31u8Nnj4jPoPc54h3F": {
+   "concordance_mde": 0.61901,
+   "curve": [
+    {
+     "expected_concordance": 0.512318,
+     "power": 0.085,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530736,
+     "power": 0.1,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.561059,
+     "power": 0.28,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.59059,
+     "power": 0.515,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.61901,
+     "power": 0.8,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 20,
+   "n_pairs": 539,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.2
+  },
+  "EJsJx7Smt3jBheNF2ReTxq3HXh9Aczt6PHK12B5tkJk8": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "EUcJwf7jXskRE6NZBtFPVH2EedNvNYko8LL2WT62XctB": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "EkvdKhULbMFqjKBKotAzGi3kwMvMpYNDKJXXQQmi6C1f": {
+   "concordance_mde": 0.613729,
+   "curve": [
+    {
+     "expected_concordance": 0.511713,
+     "power": 0.08,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529234,
+     "power": 0.12,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.558136,
+     "power": 0.265,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586392,
+     "power": 0.655,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613729,
+     "power": 0.855,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 30,
+   "n_pairs": 673,
+   "note": null,
+   "reference_model": "batched(w=40ms)",
+   "theta_mde": 0.2
+  },
+  "EvnRmnMrd69kFdbLMxWkTn1icZ7DCceRhvmb2SJXqDo4": {
+   "concordance_mde": 0.730106,
+   "curve": [
+    {
+     "expected_concordance": 0.510502,
+     "power": 0.12,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.526222,
+     "power": 0.12,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.552201,
+     "power": 0.18,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.577708,
+     "power": 0.195,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.602537,
+     "power": 0.39,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.649502,
+     "power": 0.63,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.730106,
+     "power": 1.0,
+     "theta": 0.5
+    }
+   ],
+   "n_batch_blocks": 14,
+   "n_pairs": 198,
+   "note": null,
+   "reference_model": "batched(w=20ms)",
+   "theta_mde": 0.5
+  },
+  "Ex1AxFCipXGfSxgvXPPT3nPQUARddCduHwKR6jHiXAaT": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "FBKFWadXZJahGtFitAsBvbqh5968gLY7dMBBJUoUjeNi": {
+   "concordance_mde": 0.757039,
+   "curve": [
+    {
+     "expected_concordance": 0.512322,
+     "power": 0.085,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.530746,
+     "power": 0.11,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.561075,
+     "power": 0.15,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.590601,
+     "power": 0.17,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.619001,
+     "power": 0.33,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.67151,
+     "power": 0.71,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.757039,
+     "power": 0.98,
+     "theta": 0.5
+    }
+   ],
+   "n_batch_blocks": 9,
+   "n_pairs": 207,
+   "note": null,
+   "reference_model": "batched(w=40ms)",
+   "theta_mde": 0.5
+  },
+  "FbYX2uN573G5WsgiPdHU6fS5PNUyjdXfGfpZNkYUuT4k": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "Fc6NNdS2j3EmrWbU6Uqt6wsKB5ef72NjaWfNxKYbULGD": {
+   "concordance_mde": 0.615343,
+   "curve": [
+    {
+     "expected_concordance": 0.511903,
+     "power": 0.06,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529707,
+     "power": 0.085,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.55905,
+     "power": 0.415,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.587692,
+     "power": 0.755,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.615343,
+     "power": 0.94,
+     "theta": 0.2
+    }
+   ],
+   "n_batch_blocks": 30,
+   "n_pairs": 776,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.2
+  },
+  "Fd7btgySsrjuo25CJCj7oE7VPMyezDhnx7pZkj2v69Nk": {
+   "concordance_mde": 0.672998,
+   "curve": [
+    {
+     "expected_concordance": 0.512481,
+     "power": 0.055,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531138,
+     "power": 0.105,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.561824,
+     "power": 0.235,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.591647,
+     "power": 0.515,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.620269,
+     "power": 0.795,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.672998,
+     "power": 0.975,
+     "theta": 0.3
+    }
+   ],
+   "n_batch_blocks": 22,
+   "n_pairs": 533,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.3
+  },
+  "FyrwfMaomErzqrFUXMjCJ7mA4u81DsiDdrzC3MJD6d4j": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505666,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.514162,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.528299,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.542383,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.556391,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.584077,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.637507,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.699146,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.753677,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.839842,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.898666,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.961139,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.994628,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 5,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "G3a3iYZKNLbivothF3twqcaTCEvoPb9uJ2bFc9DNKkBQ": {
+   "concordance_mde": 0.876033,
+   "curve": [
+    {
+     "expected_concordance": 0.511663,
+     "power": 0.055,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529112,
+     "power": 0.045,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557904,
+     "power": 0.065,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586072,
+     "power": 0.075,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613349,
+     "power": 0.07,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.664404,
+     "power": 0.155,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.749641,
+     "power": 0.33,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.825547,
+     "power": 0.68,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.876033,
+     "power": 0.84,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 28,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 1.0
+  },
+  "G83jy4NB16A4mchfRjZvfH8SPH2TxwjSZYxh5fzg2Qys": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "GBQ2GvTzmjXMu97dr7WUnLKYTNim1aoZsYS53KYXAAAA": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "GEM1N1UE3C8BB8EaaEPrcFvT3iLMVrurknjW5AYjUReR": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "GZ4U21pYmFkCk6ZNTHRzfVEZZXauyZLKDmuuuKGwvp5H": {
+   "concordance_mde": 0.876033,
+   "curve": [
+    {
+     "expected_concordance": 0.511663,
+     "power": 0.035,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529112,
+     "power": 0.055,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557904,
+     "power": 0.04,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586072,
+     "power": 0.045,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613349,
+     "power": 0.05,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.664404,
+     "power": 0.12,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.749641,
+     "power": 0.37,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.825547,
+     "power": 0.63,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.876033,
+     "power": 0.815,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 28,
+   "note": null,
+   "reference_model": "fifo",
+   "theta_mde": 1.0
+  },
+  "Gv9gguvrAkgQtB5g5a3Un7trcHCxLYsk8vSojLmQMsWV": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "HEL1USMZKAL2odpNBj2oCjffnFGaYwmbGmyewGv1e2TU": {
+   "concordance_mde": 0.58825,
+   "curve": [
+    {
+     "expected_concordance": 0.511989,
+     "power": 0.075,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529918,
+     "power": 0.21,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.559452,
+     "power": 0.79,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.58825,
+     "power": 0.975,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 73,
+   "n_pairs": 1757,
+   "note": null,
+   "reference_model": "batched(w=10ms)",
+   "theta_mde": 0.15
+  },
+  "Ha1iade1AH3B12K9SccfWoPdFtQKKQsj2ZyWwxcjqJJU": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.506111,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.515272,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.530512,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.545686,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.560762,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.5905,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.647539,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.712458,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.768756,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.854686,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.910578,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.96685,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.995508,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "HnrXmm65CyvmSyvwEMjmyHzYjAyhHiHEJ7s1pf6BxTYA": {
+   "concordance_mde": 0.876033,
+   "curve": [
+    {
+     "expected_concordance": 0.511663,
+     "power": 0.03,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529112,
+     "power": 0.035,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557904,
+     "power": 0.075,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586072,
+     "power": 0.085,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613349,
+     "power": 0.095,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.664404,
+     "power": 0.145,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.749641,
+     "power": 0.38,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.825547,
+     "power": 0.69,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.876033,
+     "power": 0.87,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 28,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 1.0
+  },
+  "JD549HsbJHeEKKUrKgg4Fj2iyv2RGjsV7NTZjZUrHybB": {
+   "concordance_mde": 0.593124,
+   "curve": [
+    {
+     "expected_concordance": 0.512685,
+     "power": 0.075,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.531646,
+     "power": 0.145,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.562828,
+     "power": 0.56,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.593124,
+     "power": 0.905,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 42,
+   "n_pairs": 1215,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.15
+  },
+  "JUPiTERrZqgf1jUyR7dSkhMx4Kn2qJyekWsg3LT1h4b": {
+   "concordance_mde": 0.594447,
+   "curve": [
+    {
+     "expected_concordance": 0.512877,
+     "power": 0.085,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.532122,
+     "power": 0.255,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.563753,
+     "power": 0.71,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.594447,
+     "power": 0.95,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 52,
+   "n_pairs": 1470,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 0.15
+  },
+  "LA1NEzryoih6CQW3gwQqJQffK2mKgnXcjSQZSRpM3wc": {
+   "concordance_mde": 0.769818,
+   "curve": [
+    {
+     "expected_concordance": 0.513309,
+     "power": 0.095,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533194,
+     "power": 0.095,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.565841,
+     "power": 0.135,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.597451,
+     "power": 0.17,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.627627,
+     "power": 0.39,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.682664,
+     "power": 0.77,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.769818,
+     "power": 1.0,
+     "theta": 0.5
+    }
+   ],
+   "n_batch_blocks": 5,
+   "n_pairs": 178,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.5
+  },
+  "LeDbQ99QT342j9S5YdyXLrsq2Gu3T3dMGajExdAuE3V": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.506111,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.515272,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.530512,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.545686,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.560762,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.5905,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.647539,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.712458,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.768756,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.854686,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.910578,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.96685,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.995508,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "Ninja1spj6n9t5hVYgF3PdnYz2PLnkt7rvaw3firmjs": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "PAWsME7oYbjt5TRNc11mBa33JhKnQr9AYherdr9YAZ6": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 3,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "SSmBEooM7RkmyuXxuKgAhTvhQZ36Z3G2WsmLGJKoQLY": {
+   "concordance_mde": 0.787849,
+   "curve": [
+    {
+     "expected_concordance": 0.514779,
+     "power": 0.05,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.536841,
+     "power": 0.035,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.572934,
+     "power": 0.11,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.607621,
+     "power": 0.135,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.640387,
+     "power": 0.24,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.698981,
+     "power": 0.52,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.787849,
+     "power": 0.875,
+     "theta": 0.5
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 94,
+   "note": null,
+   "reference_model": "batched(w=20ms)",
+   "theta_mde": 0.5
+  },
+  "Stakex4B2tpDHPWGvV1dninfiaYCGdakgTknpzPitLh": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "UPSCQNqdbiaqrQou9X9y8mr43ZHzvoNpKC26Mo7GubF": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "ana2y2YvQ3ZPMwm6qhnN3nJoUSiT3qx5Pvetkq9xcfY": {
+   "concordance_mde": 0.599258,
+   "curve": [
+    {
+     "expected_concordance": 0.513573,
+     "power": 0.05,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.533849,
+     "power": 0.145,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.567111,
+     "power": 0.475,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.599258,
+     "power": 0.86,
+     "theta": 0.15
+    }
+   ],
+   "n_batch_blocks": 30,
+   "n_pairs": 1042,
+   "note": null,
+   "reference_model": "batched(w=5ms)",
+   "theta_mde": 0.15
+  },
+  "bkpk9KVsDRfrArzzmkJ9mPEvbXfQxczzQYR3QMGiR8Z": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "ciTyjzN9iyobidMycjyqRRM7vXAHXkFzH3m8vEr6cQj": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 2,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "kyzzzgRymGpePUsLyr48kQHt53kh5CSfRH1qfvz1xgj": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505833,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.514579,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.529129,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.543622,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.55803,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.586486,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.641269,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.704138,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.759332,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.845408,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.903133,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.963281,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.994958,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 2,
+   "n_pairs": 4,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  },
+  "pSo1KZXgG1EGHch6pPmscfYhv3buXyaj2dR8WkVnkfc": {
+   "concordance_mde": 0.876033,
+   "curve": [
+    {
+     "expected_concordance": 0.511663,
+     "power": 0.025,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.529112,
+     "power": 0.03,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557904,
+     "power": 0.015,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.586072,
+     "power": 0.085,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.613349,
+     "power": 0.09,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.664404,
+     "power": 0.125,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.749641,
+     "power": 0.295,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.825547,
+     "power": 0.625,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.876033,
+     "power": 0.835,
+     "theta": 1.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 28,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 1.0
+  },
+  "qZMH9GWnnBkx7aM1h98iKSv2Lz5N78nwNSocAxDQrbP": {
+   "concordance_mde": 0.817457,
+   "curve": [
+    {
+     "expected_concordance": 0.511233,
+     "power": 0.035,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.528041,
+     "power": 0.06,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.555787,
+     "power": 0.075,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.582958,
+     "power": 0.09,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.609307,
+     "power": 0.165,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.658772,
+     "power": 0.34,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.74205,
+     "power": 0.675,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.817457,
+     "power": 0.925,
+     "theta": 0.75
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 62,
+   "note": null,
+   "reference_model": "priority_lifo_ties",
+   "theta_mde": 0.75
+  },
+  "shftkxnsXmqAkmLgz9Mn7bNB5Fr6mKgFc58kFHfVikj": {
+   "concordance_mde": 0.822979,
+   "curve": [
+    {
+     "expected_concordance": 0.511546,
+     "power": 0.04,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.528821,
+     "power": 0.07,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.557326,
+     "power": 0.08,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.585218,
+     "power": 0.105,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.612235,
+     "power": 0.11,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.662826,
+     "power": 0.275,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.747409,
+     "power": 0.685,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.822979,
+     "power": 0.91,
+     "theta": 0.75
+    }
+   ],
+   "n_batch_blocks": 3,
+   "n_pairs": 57,
+   "note": null,
+   "reference_model": "priority_fifo_ties",
+   "theta_mde": 0.75
+  },
+  "vu1sGn2f1Xim6voHNLt4nLn38zNkYdLasU7hEr1TC2D": {
+   "concordance_mde": null,
+   "curve": [
+    {
+     "expected_concordance": 0.505,
+     "power": 0.0,
+     "theta": 0.02
+    },
+    {
+     "expected_concordance": 0.512497,
+     "power": 0.0,
+     "theta": 0.05
+    },
+    {
+     "expected_concordance": 0.524979,
+     "power": 0.0,
+     "theta": 0.1
+    },
+    {
+     "expected_concordance": 0.53743,
+     "power": 0.0,
+     "theta": 0.15
+    },
+    {
+     "expected_concordance": 0.549834,
+     "power": 0.0,
+     "theta": 0.2
+    },
+    {
+     "expected_concordance": 0.574443,
+     "power": 0.0,
+     "theta": 0.3
+    },
+    {
+     "expected_concordance": 0.622459,
+     "power": 0.0,
+     "theta": 0.5
+    },
+    {
+     "expected_concordance": 0.679179,
+     "power": 0.0,
+     "theta": 0.75
+    },
+    {
+     "expected_concordance": 0.731059,
+     "power": 0.0,
+     "theta": 1.0
+    },
+    {
+     "expected_concordance": 0.817574,
+     "power": 0.0,
+     "theta": 1.5
+    },
+    {
+     "expected_concordance": 0.880797,
+     "power": 0.0,
+     "theta": 2.0
+    },
+    {
+     "expected_concordance": 0.952574,
+     "power": 0.0,
+     "theta": 3.0
+    },
+    {
+     "expected_concordance": 0.993307,
+     "power": 0.0,
+     "theta": 5.0
+    }
+   ],
+   "n_batch_blocks": 1,
+   "n_pairs": 1,
+   "note": "power stays below 80% up to theta 5",
+   "reference_model": "fifo",
+   "theta_mde": null
+  }
+ }
 }

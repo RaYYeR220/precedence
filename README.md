@@ -8,8 +8,11 @@ builder. All measurements are post-Alpenglow (slots ≥ 459,653,000, Votor live,
 handover not active).
 
 <!-- results:headline:start -->
-- **0** of 0 probes landed (–), in 0 leader windows over 0 runs and 0 blocks.
-- Pre-registered predictions: **0 confirmed**, 0 refuted, 20 inconclusive of 20.
+- **67.7%** of stake does not order its own blocks: on AgaveBam, FireBAM, HarmonicAgave, HarmonicFiredancer a BAM node or a Harmonic builder does, and the validator's gossip TPU address is theirs.
+- On validators that schedule locally (Agave, JitoLabs, Rakurai), two of our probes recorded in **one entry** are in fee order **100.0%** of the time, across entries only 58.3%–78.2%: the scheduler sorts, parallel execution threads reshuffle. Entry boundaries are not in `getBlock`; we recorded them and prove them against each blockhash.
+- Same fee, opposite order: Firedancer puts the **newer** of two equal-fee probes first (89.0% of pairs), Jito-Solana the **older** (67.1%), exactly as their schedulers' source code predicts.
+- Fee only decides among transactions that wait together: inside a leader's window, a probe paying more but sent 5–20 ms later came first in **19.4%** of pairs, 20–50 ms later in 9.6%. The exceptions run batch auctions: AgaveBam (w ≈ 20 ms), FireBAM (w ≈ 20 ms), HarmonicFiredancer (w ≈ 20 ms) sort by fee only inside each batch.
+- **6,782** of our probes in 1,102 blocks of 87 validators, over 7 runs; of 20 predictions written from the clients' source code before the first send, **17 held** and 3 did not.
 <!-- results:headline:end -->
 
 Most stake no longer orders its own blocks. Validators running BAM (`AgaveBam`, `FireBAM`)
@@ -21,9 +24,20 @@ the order** and **what rule that component applied**.
 
 ## Short answer
 
-<!-- results:verdicts:start -->
-_No results yet: run `python -m prec_analysis analyze` first._
-<!-- results:verdicts:end -->
+<!-- results:short_answer:start -->
+| Client family | Stake | Who orders the block | Queued together | Ties | Over time | Probes in blocks |
+| --- | ---: | --- | --- | --- | --- | ---: |
+| **AgaveBam** | 35.8% | BAM node | priority: 92.0% [89.7, 94.0] | newest first: 60.4% [49.2, 71.1] | batch auction, w = 20 ms: w within 10 ms–20 ms | 953 |
+| **JitoLabs** | 24.0% | local scheduler | priority: 100.0% in one entry, 58.3% across entries | oldest first: 67.1% [60.0, 73.8] | send order: 95.5% [88.9, 100.0] | 1,411 |
+| **HarmonicAgave** | 21.0% | Harmonic builder | priority: 69.9% [65.8, 74.0] | none detectable: p = 0.529, detectable from 61.2% | send order: 88.0% [84.3, 90.8] | 1,229 |
+| **HarmonicFiredancer** | 9.0% | Harmonic builder | priority: 89.7% [85.3, 93.3] | none detectable: p = 0.964, detectable from 61.3% | batch auction, w = 20 ms | 1,037 |
+| **Firedancer** | 5.4% | Firedancer pack | priority: 95.1% [91.3, 98.2] | newest first: 89.0% [85.1, 92.9] | scheduler passes, w = 5 ms: w not identifiable | 939 |
+| **FireBAM** | 1.9% | BAM node | priority: 94.2% [91.5, 97.0] | newest first: 76.8% [62.0, 89.7] | batch auction, w = 20 ms | 354 |
+| **Rakurai** | 1.2% | local scheduler | priority: 100.0% in one entry, 69.0% across entries | none detectable: p = 0.048, detectable from 66.4% | send order: 93.6% [85.3, 98.8] | 451 |
+| **Agave** | 1.0% | local scheduler | priority: 100.0% in one entry, 78.2% across entries | none detectable: p = 0.342, detectable from 75.0% | send order: 89.8% [79.8, 99.2] | 377 |
+
+_Queued together: probes that reached the orderer at the same moment (ladder bursts); where entries were recorded, pairs in one entry show the scheduler's own decision. Equal fees: which of two equal-fee probes came first. Over time: probes 10–20 ms apart with the fee rising, so arrival order and fee order disagree on every pair. Each part is claimed only when it beats random ordering (permutation test, α = 0.05); intervals are 95% over batches._
+<!-- results:short_answer:end -->
 
 - Dated measurements, per-validator results and what went wrong: [REPORT.md](REPORT.md)
 - Every probe block drawn as a strip, with links to the chain: [explorer](https://rayyer220.github.io/precedence/) (also `site/dist/index.html`)
@@ -108,7 +122,40 @@ always attributed to the validator that actually produced the block (the `Fee` r
 block), never to the one we aimed at.
 
 <!-- results:leader_types:start -->
-_No run in the data directory._
+| Client family (gossip clientId) | Stake | Staked validators | Gossip nodes | tpuQuic host differs from gossip host | Most common version |
+| --- | ---: | ---: | ---: | ---: | --- |
+| AgaveBam | 35.8% | 352 | 354 | 99.7% of 354 | 4.4.0-rc.1 (40.6%) |
+| JitoLabs | 24.0% | 148 | 962 | 2.0% of 952 | 4.4.0 (38.5%) |
+| HarmonicAgave | 21.0% | 46 | 87 | 52.9% of 87 | 4.3.2 (60.9%) |
+| HarmonicFiredancer | 9.0% | 43 | 50 | 86.0% of 50 | 26.10.5 (65.1%) |
+| Firedancer | 5.4% | 30 | 128 | 4.7% of 128 | 26.10.5 (60.0%) |
+| FireBAM | 1.9% | 20 | 20 | 100.0% of 20 | 26.10.5 (100.0%) |
+| Rakurai | 1.2% | 9 | 17 | 0.0% of 16 | 4.3.2 (77.8%) |
+| Agave | 1.0% | 18 | 2,278 | 0.1% of 1,724 | 4.3.2 (44.4%) |
+| Raiku | 0.1% | 1 | 4 | 0.0% of 4 | 4.4.0 (100.0%) |
+| Unknown(11951) | 0.1% | 1 | 1 | 0.0% of 1 | 4.4.0 (100.0%) |
+| Unknown(16) | 0.0% | 1 | 1 | 0.0% of 1 | 0.1.0 (100.0%) |
+| Unknown(42) | 0.0% | 1 | 1 | – | 4.2.1 (100.0%) |
+| Frankendancer | 0.0% | 0 | 3 | 0.0% of 2 | 0.101.40300 (66.7%) |
+| Unknown(19785) | 0.0% | 0 | 3 | – | 0.0.0 (100.0%) |
+| Unknown(61453) | 0.0% | 0 | 3 | – | 0.1.0 (100.0%) |
+| Unknown(28263) | 0.0% | 0 | 2 | – | 0.0.0 (100.0%) |
+
+_Snapshot nearest the first run's start (2026-11-01 17:47 UTC); stake from getVoteAccounts; versions among staked nodes when stake is known._
+
+| Producer's gossip clientId | Client declared in the block footer | Probe blocks |
+| --- | --- | ---: |
+| JitoLabs | JitoLabs | 187 |
+| HarmonicAgave | HarmonicAgave | 152 |
+| AgaveBam | JitoLabs | 142 |
+| HarmonicFiredancer | (empty) | 109 |
+| Firedancer | (empty) | 81 |
+| Agave | Agave | 39 |
+| FireBAM | (empty) | 36 |
+| Rakurai | Rakurai | 35 |
+| Unknown | JitoLabs | 11 |
+
+_Footers are self-reported by the producer (SIMD-0307 user agent) and were recorded only when the entry stream delivered them._
 <!-- results:leader_types:end -->
 
 Timing: after Alpenglow a window is not four equal slots. Measured from the first-shred
@@ -119,7 +166,17 @@ recent period, and every analysis uses the *measured* send time relative to the 
 start, not the intended one.
 
 <!-- results:clock:start -->
-_No run in the data directory._
+| Slots with an exact time | Window period p10 / p50 / p90 (ms) | Slot 2 of the window starts after (median ms) | Slot 3 of the window starts after (median ms) | Slot 4 of the window starts after (median ms) |
+| ---: | ---: | ---: | ---: | ---: |
+| 56,489 | 790 / 819 / 971 (n=14,089) | 149 (n=14,119) | 348 (n=14,112) | 548 (n=14,106) |
+
+| Send anchor | Batches | Planned first send (ms) | Actual first send p10 / p50 / p90 (ms) |
+| --- | ---: | ---: | ---: |
+| before the window, 3 slots | 900 | -622 | -2976 / -919 / -330 |
+| in the window, +1 slot | 239 | +207 | -2166 / +4 / +420 |
+| in the window, +2 slots | 110 | +413 | -2154 / +21 / +758 |
+
+_Times are the node's own first-shred timestamps; windows are the 4-slot groups starting at slots divisible by 4; send phase is the first send minus the exact start of the batch's window (negative = before the window)._
 <!-- results:clock:end -->
 
 ### The path from our backend to the executing node, and everything in between
@@ -173,13 +230,27 @@ rule" verdict comes with its minimum detectable effect.
 <!-- results:controls:start -->
 | Control | Statistic | Expected | Observed |
 | --- | --- | --- | ---: |
-| Shuffled positions | validators selecting no rule | ≈ 95% | – |
-| Shuffled positions | families selecting no rule | ≈ 95% | – |
-| Shuffled positions | mean τ, priority vs position (ladder, format) | ≈ 0 | –  |
-| Shuffled positions | sign test fires (ladder, format) | ≈ 5% | – |
-| Shuffled positions | mean τ, send time vs position (tie, sweep) | ≈ 0 | –  |
-| Inert variable (idx parity) | odd idx first | ≈ 50% | –, p = – |
-| Inert variable (idx parity) | mean τ | ≈ 0 | – , sign test p = – |
+| Shuffled positions | validators selecting no rule | ≈ 95% | 98.1% |
+| Shuffled positions | families selecting no rule | ≈ 95% | 100.0% |
+| Shuffled positions | mean τ, priority vs position (ladder, format) | ≈ 0 | 0.000 [-0.045, 0.043] |
+| Shuffled positions | sign test fires (ladder, format) | ≈ 5% | 4.0% |
+| Shuffled positions | mean τ, send time vs position (tie, sweep) | ≈ 0 | 0.000 [-0.033, 0.036] |
+| Inert variable (idx parity) | odd idx first | ≈ 50% | 49.4% [47.7, 51.2] n=8,894, p = 0.527 |
+| Inert variable (idx parity) | mean τ | ≈ 0 | -0.025 [-0.062, 0.012], sign test p = 0.245 |
+
+| Family | Blocks | Spearman priority vs index | Adjacent pairs falling in priority | Zero-priority share | Mean tx per block |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| AgaveBam | 189 | -0.255 [-0.288, -0.224] | 57.6% | 23.9% | 525 |
+| JitoLabs | 247 | -0.102 [-0.116, -0.087] | 54.8% | 23.5% | 475 |
+| HarmonicAgave | 209 | -0.107 [-0.127, -0.088] | 53.9% | 27.0% | 543 |
+| HarmonicFiredancer | 154 | -0.078 [-0.102, -0.054] | 57.3% | 27.0% | 572 |
+| Firedancer | 124 | -0.256 [-0.295, -0.217] | 60.3% | 30.3% | 657 |
+| FireBAM | 47 | -0.224 [-0.287, -0.165] | 60.1% | 19.5% | 540 |
+| Rakurai | 56 | -0.168 [-0.211, -0.123] | 57.9% | 29.4% | 499 |
+| Agave | 59 | -0.139 [-0.180, -0.097] | 54.2% | 21.3% | 517 |
+| Unknown | 17 | -0.104 [-0.196, -0.029] | 55.3% | 24.8% | 637 |
+
+_What an observer of whole blocks sees without our probes (supplementary; negative Spearman = higher priority earlier)._
 <!-- results:controls:end -->
 
 ## What this design does not separate

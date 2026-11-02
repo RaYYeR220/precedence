@@ -28,13 +28,13 @@ Every statement this repository makes, with how strongly it is supported and wha
 
 | Claim | Tier | Evidence |
 |---|---|---|
-| Per validator and family: the rule for probes queued together, for ties, and over time | MODELED | `results/summary.json` → `rule_card`; Mallows models, permutation tests (`analysis/prec_analysis/card.py`, `models.py`) |
+| Per validator and family: the rule for probes queued together, for ties, and over time (over time: batches that reached the leader inside its window, by measured send phase) | MODELED | `results/summary.json` → `rule_card`; Mallows models, permutation tests (`analysis/prec_analysis/card.py`, `models.py`) |
 | A rule's strictness (concordance, θ) and its interval | MODELED | bootstrap over batches; `results/summary.json` |
 | "No rule detectable" for a part | MODELED | permutation test fails at α = 0.05; the minimum detectable effect is in `results/power.json` |
 | Batch length w of a batch auction | MODELED | grid search over w and phase, with an identifiability check (`results/models.json`) |
 | Scheduler decision vs parallel execution | MODELED on VERIFIED-LIVE inputs | same-entry vs cross-entry pairs (`results/entries.json`); entries verified as above |
 | Prediction outcomes | REPRODUCIBLE | `docs/PREDICTIONS.md` (pre-registered) → REPORT §3, rules in `analysis/prec_analysis/render/predictions.py` |
-| Naming the orderer from probes beats whole-block statistics | MODELED | leave-one-validator-out classification, `results/fingerprint.json` and `results/baseline.json` |
+| How well our probes, and whole-block statistics, name the orderer (per validator about equally well, per window the probes better; both above chance) | MODELED | leave-one-validator-out classification, `results/fingerprint.json` and `results/baseline.json` |
 | The pipeline recovers a known rule | REPRODUCIBLE | `localnet/` (real Agave 4.3.2) and `python -m prec_analysis validate` (simulation) |
 
 ## Not claimed

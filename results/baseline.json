@@ -1,1 +1,123 @@
-{}
+{
+ "method": "multinomial logistic regression (impute 0 + missing indicators, standardise), leave-one-validator-out",
+ "validator_level": {
+  "accuracy": 0.633803,
+  "balanced_accuracy": 0.469329,
+  "chance_majority": 0.380282,
+  "chance_uniform": 0.25,
+  "class_shares": {
+   "bam": 0.338028,
+   "fd-pack": 0.056338,
+   "harmonic": 0.380282,
+   "local-greedy": 0.225352
+  },
+  "classes": [
+   "local-greedy",
+   "fd-pack",
+   "bam",
+   "harmonic"
+  ],
+  "confusion": {
+   "bam": {
+    "bam": 18,
+    "fd-pack": 1,
+    "harmonic": 3,
+    "local-greedy": 2
+   },
+   "fd-pack": {
+    "bam": 3,
+    "fd-pack": 0,
+    "harmonic": 1,
+    "local-greedy": 0
+   },
+   "harmonic": {
+    "bam": 2,
+    "fd-pack": 0,
+    "harmonic": 22,
+    "local-greedy": 3
+   },
+   "local-greedy": {
+    "bam": 6,
+    "fd-pack": 1,
+    "harmonic": 4,
+    "local-greedy": 5
+   }
+  },
+  "features": [
+   "block_spearman_priority_index",
+   "block_adjacent_monotonicity",
+   "block_n_tx",
+   "block_share_zero_priority"
+  ],
+  "n_rows": 71,
+  "n_validators": 71,
+  "recall": {
+   "bam": 0.75,
+   "fd-pack": 0.0,
+   "harmonic": 0.814815,
+   "local-greedy": 0.3125
+  },
+  "validator_chance_majority": 0.380282,
+  "validator_vote_accuracy": 0.633803
+ },
+ "window_level": {
+  "accuracy": 0.357513,
+  "balanced_accuracy": 0.330548,
+  "chance_majority": 0.340674,
+  "chance_uniform": 0.25,
+  "class_shares": {
+   "bam": 0.195596,
+   "fd-pack": 0.137306,
+   "harmonic": 0.340674,
+   "local-greedy": 0.326425
+  },
+  "classes": [
+   "local-greedy",
+   "fd-pack",
+   "bam",
+   "harmonic"
+  ],
+  "confusion": {
+   "bam": {
+    "bam": 61,
+    "fd-pack": 10,
+    "harmonic": 12,
+    "local-greedy": 68
+   },
+   "fd-pack": {
+    "bam": 32,
+    "fd-pack": 16,
+    "harmonic": 41,
+    "local-greedy": 17
+   },
+   "harmonic": {
+    "bam": 9,
+    "fd-pack": 4,
+    "harmonic": 135,
+    "local-greedy": 115
+   },
+   "local-greedy": {
+    "bam": 45,
+    "fd-pack": 31,
+    "harmonic": 112,
+    "local-greedy": 64
+   }
+  },
+  "features": [
+   "block_spearman_priority_index",
+   "block_adjacent_monotonicity",
+   "block_n_tx",
+   "block_share_zero_priority"
+  ],
+  "n_rows": 772,
+  "n_validators": 71,
+  "recall": {
+   "bam": 0.403974,
+   "fd-pack": 0.150943,
+   "harmonic": 0.513308,
+   "local-greedy": 0.253968
+  },
+  "validator_chance_majority": 0.380282,
+  "validator_vote_accuracy": 0.422535
+ }
+}

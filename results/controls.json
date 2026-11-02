@@ -1,9 +1,378 @@
 {
  "inert_variable": {
-  "n_batch_blocks": 0
+  "expected": "rate ~ 0.5, tau ~ 0, p_perm uniform",
+  "odd_idx_first": {
+   "ci": [
+    0.476705,
+    0.512446
+   ],
+   "n_batches": 609,
+   "n_pairs": 8894,
+   "p_perm": 0.527,
+   "rate": 0.494153
+  },
+  "tau_parity": {
+   "ci": [
+    -0.061843,
+    0.012452
+   ],
+   "mean": -0.02529,
+   "n": 651,
+   "n_negative": 305,
+   "n_positive": 276,
+   "sign_test_p": 0.24536
+  },
+  "variable": "idx parity (odd before even), ladder/tie/format batches"
  },
  "shuffled_positions": {
-  "n_batch_blocks": 0
+  "expected": "mean tau ~ 0, sign test fires ~5% of shuffles, units select random except at the 5% test level",
+  "families_selected": {
+   "random": 27
+  },
+  "model_shuffles": 3,
+  "share_families_random": 1.0,
+  "share_validators_random": 0.980843,
+  "tau_priority_ladder_format": {
+   "mean_tau": 0.00043,
+   "n_batch_blocks": 574,
+   "n_shuffles": 200,
+   "range_95": [
+    -0.045206,
+    0.042849
+   ],
+   "sign_test_rejection_rate": 0.04
+  },
+  "tau_send_tie_sweep": {
+   "mean_tau": 8.4e-05,
+   "n_batch_blocks": 369,
+   "n_shuffles": 200,
+   "range_95": [
+    -0.033466,
+    0.035741
+   ],
+   "sign_test_rejection_rate": 0.03
+  },
+  "validators_selected": {
+   "fifo": 1,
+   "priority_fifo_ties": 4,
+   "random": 256
+  }
  },
- "whole_block_observational": {}
+ "whole_block_observational": {
+  "Agave": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.533146,
+     0.551155
+    ],
+    "mean": 0.541731,
+    "n": 59
+   },
+   "n_blocks": 59,
+   "n_tx": {
+    "ci": [
+     457.592373,
+     594.564831
+    ],
+    "mean": 517.254237,
+    "n": 59
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.194036,
+     0.233631
+    ],
+    "mean": 0.213481,
+    "n": 59
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.180071,
+     -0.096602
+    ],
+    "mean": -0.138804,
+    "n": 59
+   }
+  },
+  "AgaveBam": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.573099,
+     0.579481
+    ],
+    "mean": 0.576349,
+    "n": 189
+   },
+   "n_blocks": 189,
+   "n_tx": {
+    "ci": [
+     502.073677,
+     548.905688
+    ],
+    "mean": 524.962963,
+    "n": 189
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.229693,
+     0.249489
+    ],
+    "mean": 0.239427,
+    "n": 189
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.287881,
+     -0.223805
+    ],
+    "mean": -0.255276,
+    "n": 189
+   }
+  },
+  "FireBAM": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.592245,
+     0.608946
+    ],
+    "mean": 0.601011,
+    "n": 47
+   },
+   "n_blocks": 47,
+   "n_tx": {
+    "ci": [
+     476.082447,
+     601.852128
+    ],
+    "mean": 540.12766,
+    "n": 47
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.174346,
+     0.215337
+    ],
+    "mean": 0.195299,
+    "n": 47
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.287187,
+     -0.164593
+    ],
+    "mean": -0.224263,
+    "n": 47
+   }
+  },
+  "Firedancer": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.596944,
+     0.607978
+    ],
+    "mean": 0.602835,
+    "n": 124
+   },
+   "n_blocks": 124,
+   "n_tx": {
+    "ci": [
+     616.198185,
+     702.083871
+    ],
+    "mean": 657.120968,
+    "n": 124
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.288104,
+     0.318428
+    ],
+    "mean": 0.303342,
+    "n": 124
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.294938,
+     -0.217398
+    ],
+    "mean": -0.255888,
+    "n": 124
+   }
+  },
+  "HarmonicAgave": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.536735,
+     0.5416
+    ],
+    "mean": 0.539172,
+    "n": 209
+   },
+   "n_blocks": 209,
+   "n_tx": {
+    "ci": [
+     515.108852,
+     572.540431
+    ],
+    "mean": 543.497608,
+    "n": 209
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.260654,
+     0.279788
+    ],
+    "mean": 0.269897,
+    "n": 209
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.127122,
+     -0.087628
+    ],
+    "mean": -0.107129,
+    "n": 209
+   }
+  },
+  "HarmonicFiredancer": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.569746,
+     0.576185
+    ],
+    "mean": 0.572965,
+    "n": 154
+   },
+   "n_blocks": 154,
+   "n_tx": {
+    "ci": [
+     530.095942,
+     616.559416
+    ],
+    "mean": 572.071429,
+    "n": 154
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.258655,
+     0.282547
+    ],
+    "mean": 0.270009,
+    "n": 154
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.102477,
+     -0.05436
+    ],
+    "mean": -0.078256,
+    "n": 154
+   }
+  },
+  "JitoLabs": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.541771,
+     0.555072
+    ],
+    "mean": 0.548157,
+    "n": 247
+   },
+   "n_blocks": 247,
+   "n_tx": {
+    "ci": [
+     449.148988,
+     503.165486
+    ],
+    "mean": 475.206478,
+    "n": 247
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.224249,
+     0.246915
+    ],
+    "mean": 0.235109,
+    "n": 247
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.115716,
+     -0.087481
+    ],
+    "mean": -0.101559,
+    "n": 247
+   }
+  },
+  "Rakurai": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.567648,
+     0.590183
+    ],
+    "mean": 0.578913,
+    "n": 56
+   },
+   "n_blocks": 56,
+   "n_tx": {
+    "ci": [
+     422.960714,
+     584.966518
+    ],
+    "mean": 499.232143,
+    "n": 56
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.260997,
+     0.329615
+    ],
+    "mean": 0.294383,
+    "n": 56
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.210732,
+     -0.123283
+    ],
+    "mean": -0.168434,
+    "n": 56
+   }
+  },
+  "Unknown": {
+   "adjacent_monotonicity": {
+    "ci": [
+     0.53847,
+     0.568821
+    ],
+    "mean": 0.553341,
+    "n": 17
+   },
+   "n_blocks": 17,
+   "n_tx": {
+    "ci": [
+     466.982353,
+     854.069118
+    ],
+    "mean": 637.470588,
+    "n": 17
+   },
+   "share_zero_priority": {
+    "ci": [
+     0.205557,
+     0.288656
+    ],
+    "mean": 0.247554,
+    "n": 17
+   },
+   "spearman_priority_index": {
+    "ci": [
+     -0.196117,
+     -0.029108
+    ],
+    "mean": -0.103881,
+    "n": 17
+   }
+  }
+ }
 }

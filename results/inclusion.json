@@ -1,3 +1,4599 @@
 {
- "n_probes": 0
+ "by_family": [
+  {
+   "ci": [
+    0.961417,
+    0.989933
+   ],
+   "k": 396,
+   "n": 404,
+   "rate": 0.980198,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.856899,
+    0.898502
+   ],
+   "k": 830,
+   "n": 944,
+   "rate": 0.879237,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.959014,
+    0.989295
+   ],
+   "k": 372,
+   "n": 380,
+   "rate": 0.978947,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.9749,
+    0.990703
+   ],
+   "k": 965,
+   "n": 980,
+   "rate": 0.984694,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.985234,
+    0.996185
+   ],
+   "k": 1056,
+   "n": 1064,
+   "rate": 0.992481,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.978328,
+    0.991982
+   ],
+   "k": 1121,
+   "n": 1136,
+   "rate": 0.986796,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.911656,
+    0.938301
+   ],
+   "k": 1378,
+   "n": 1488,
+   "rate": 0.926075,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.991859,
+    1.0
+   ],
+   "k": 468,
+   "n": 468,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  }
+ ],
+ "by_family_kind": [
+  {
+   "ci": [
+    0.578934,
+    0.867476
+   ],
+   "k": 24,
+   "kind": "format",
+   "n": 32,
+   "rate": 0.75,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.981866,
+    1.0
+   ],
+   "k": 208,
+   "kind": "ladder",
+   "n": 208,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.965653,
+    1.0
+   ],
+   "k": 108,
+   "kind": "sweep",
+   "n": 108,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.935806,
+    1.0
+   ],
+   "k": 56,
+   "kind": "tie",
+   "n": 56,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.943376,
+    1.0
+   ],
+   "k": 64,
+   "kind": "format",
+   "n": 64,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.942778,
+    0.977899
+   ],
+   "k": 432,
+   "kind": "ladder",
+   "n": 448,
+   "rate": 0.964286,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.759016,
+    0.853286
+   ],
+   "k": 214,
+   "kind": "sweep",
+   "n": 264,
+   "rate": 0.810606,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.641782,
+    0.777209
+   ],
+   "k": 120,
+   "kind": "tie",
+   "n": 168,
+   "rate": 0.714286,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.892821,
+    1.0
+   ],
+   "k": 32,
+   "kind": "format",
+   "n": 32,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.899589,
+    0.973093
+   ],
+   "k": 144,
+   "kind": "ladder",
+   "n": 152,
+   "rate": 0.947368,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.971721,
+    1.0
+   ],
+   "k": 132,
+   "kind": "sweep",
+   "n": 132,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.943376,
+    1.0
+   ],
+   "k": 64,
+   "kind": "tie",
+   "n": 64,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.949349,
+    1.0
+   ],
+   "k": 72,
+   "kind": "format",
+   "n": 72,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.943507,
+    0.978847
+   ],
+   "k": 417,
+   "kind": "ladder",
+   "n": 432,
+   "rate": 0.965278,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.987357,
+    1.0
+   ],
+   "k": 300,
+   "kind": "sweep",
+   "n": 300,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.97864,
+    1.0
+   ],
+   "k": 176,
+   "kind": "tie",
+   "n": 176,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.958173,
+    1.0
+   ],
+   "k": 88,
+   "kind": "format",
+   "n": 88,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.971665,
+    0.992638
+   ],
+   "k": 544,
+   "kind": "ladder",
+   "n": 552,
+   "rate": 0.985507,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.984246,
+    1.0
+   ],
+   "k": 240,
+   "kind": "sweep",
+   "n": 240,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.979549,
+    1.0
+   ],
+   "k": 184,
+   "kind": "tie",
+   "n": 184,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.966839,
+    1.0
+   ],
+   "k": 112,
+   "kind": "format",
+   "n": 112,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.98237,
+    0.997941
+   ],
+   "k": 493,
+   "kind": "ladder",
+   "n": 496,
+   "rate": 0.993952,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.933986,
+    0.977864
+   ],
+   "k": 300,
+   "kind": "sweep",
+   "n": 312,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.982526,
+    1.0
+   ],
+   "k": 216,
+   "kind": "tie",
+   "n": 216,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.686755,
+    0.828114
+   ],
+   "k": 104,
+   "kind": "format",
+   "n": 136,
+   "rate": 0.764706,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.925233,
+    0.958939
+   ],
+   "k": 680,
+   "kind": "ladder",
+   "n": 720,
+   "rate": 0.944444,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.87294,
+    0.931513
+   ],
+   "k": 348,
+   "kind": "sweep",
+   "n": 384,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.971078,
+    0.997786
+   ],
+   "k": 246,
+   "kind": "tie",
+   "n": 248,
+   "rate": 0.991935,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.9259,
+    1.0
+   ],
+   "k": 48,
+   "kind": "format",
+   "n": 48,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.97864,
+    1.0
+   ],
+   "k": 176,
+   "kind": "ladder",
+   "n": 176,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.975967,
+    1.0
+   ],
+   "k": 156,
+   "kind": "sweep",
+   "n": 156,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.958173,
+    1.0
+   ],
+   "k": 88,
+   "kind": "tie",
+   "n": 88,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  }
+ ],
+ "by_family_kind_path_fee": [
+  {
+   "ci": [
+    0.409275,
+    0.928521
+   ],
+   "k": 6,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.75,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.409275,
+    0.928521
+   ],
+   "k": 6,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.75,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.409275,
+    0.928521
+   ],
+   "k": 6,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.75,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.409275,
+    0.928521
+   ],
+   "k": 6,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.75,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "ladder",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.609666,
+    1.0
+   ],
+   "k": 6,
+   "kind": "ladder",
+   "n": 6,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "sweep",
+   "n": 9,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.935806,
+    1.0
+   ],
+   "k": 56,
+   "kind": "tie",
+   "n": 56,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.806392,
+    1.0
+   ],
+   "k": 16,
+   "kind": "format",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.806392,
+    1.0
+   ],
+   "k": 16,
+   "kind": "format",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.806392,
+    1.0
+   ],
+   "k": 16,
+   "kind": "format",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.806392,
+    1.0
+   ],
+   "k": 16,
+   "kind": "format",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.86287,
+    0.988734
+   ],
+   "k": 47,
+   "kind": "ladder",
+   "n": 49,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.959184,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.5656,
+    0.89877
+   ],
+   "k": 17,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.772727,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.5656,
+    0.89877
+   ],
+   "k": 17,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 0.772727,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.614834,
+    0.926931
+   ],
+   "k": 18,
+   "kind": "sweep",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.818182,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.641782,
+    0.777209
+   ],
+   "k": 120,
+   "kind": "tie",
+   "n": 168,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.714286,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "format",
+   "n": 8,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.716713,
+    0.988881
+   ],
+   "k": 15,
+   "kind": "ladder",
+   "n": 16,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.9375,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.741167,
+    1.0
+   ],
+   "k": 11,
+   "kind": "sweep",
+   "n": 11,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.943376,
+    1.0
+   ],
+   "k": 64,
+   "kind": "tie",
+   "n": 64,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.824121,
+    1.0
+   ],
+   "k": 18,
+   "kind": "format",
+   "n": 18,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.824121,
+    1.0
+   ],
+   "k": 18,
+   "kind": "format",
+   "n": 18,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.824121,
+    1.0
+   ],
+   "k": 18,
+   "kind": "format",
+   "n": 18,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.824121,
+    1.0
+   ],
+   "k": 18,
+   "kind": "format",
+   "n": 18,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.88887,
+    0.996234
+   ],
+   "k": 46,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 0.978723,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.857515,
+    0.988252
+   ],
+   "k": 45,
+   "kind": "ladder",
+   "n": 47,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.957447,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.64567,
+    1.0
+   ],
+   "k": 7,
+   "kind": "ladder",
+   "n": 7,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.866808,
+    1.0
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 25,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.97864,
+    1.0
+   ],
+   "k": 176,
+   "kind": "tie",
+   "n": 176,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.851345,
+    1.0
+   ],
+   "k": 22,
+   "kind": "format",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.851345,
+    1.0
+   ],
+   "k": 22,
+   "kind": "format",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.851345,
+    1.0
+   ],
+   "k": 22,
+   "kind": "format",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.851345,
+    1.0
+   ],
+   "k": 22,
+   "kind": "format",
+   "n": 22,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.912811,
+    0.9971
+   ],
+   "k": 60,
+   "kind": "ladder",
+   "n": 61,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.983607,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.675592,
+    1.0
+   ],
+   "k": 8,
+   "kind": "ladder",
+   "n": 8,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.838875,
+    1.0
+   ],
+   "k": 20,
+   "kind": "sweep",
+   "n": 20,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.979549,
+    1.0
+   ],
+   "k": 184,
+   "kind": "tie",
+   "n": 184,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.879357,
+    1.0
+   ],
+   "k": 28,
+   "kind": "format",
+   "n": 28,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.879357,
+    1.0
+   ],
+   "k": 28,
+   "kind": "format",
+   "n": 28,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.879357,
+    1.0
+   ],
+   "k": 28,
+   "kind": "format",
+   "n": 28,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.879357,
+    1.0
+   ],
+   "k": 28,
+   "kind": "format",
+   "n": 28,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.846298,
+    0.980563
+   ],
+   "k": 50,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.943396,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.932418,
+    1.0
+   ],
+   "k": 53,
+   "kind": "ladder",
+   "n": 53,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.700855,
+    1.0
+   ],
+   "k": 9,
+   "kind": "ladder",
+   "n": 9,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.811072,
+    0.993178
+   ],
+   "k": 25,
+   "kind": "sweep",
+   "n": 26,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.961538,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.982526,
+    1.0
+   ],
+   "k": 216,
+   "kind": "tie",
+   "n": 216,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.600039,
+    0.87563
+   ],
+   "k": 26,
+   "kind": "format",
+   "n": 34,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.764706,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.600039,
+    0.87563
+   ],
+   "k": 26,
+   "kind": "format",
+   "n": 34,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.764706,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.600039,
+    0.87563
+   ],
+   "k": 26,
+   "kind": "format",
+   "n": 34,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.764706,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.600039,
+    0.87563
+   ],
+   "k": 26,
+   "kind": "format",
+   "n": 34,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.764706,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.855065,
+    0.971573
+   ],
+   "k": 71,
+   "kind": "ladder",
+   "n": 76,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.934211,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.784689,
+    1.0
+   ],
+   "k": 14,
+   "kind": "ladder",
+   "n": 14,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757818,
+    0.967598
+   ],
+   "k": 29,
+   "kind": "sweep",
+   "n": 32,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 0.90625,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.971078,
+    0.997786
+   ],
+   "k": 246,
+   "kind": "tie",
+   "n": 248,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 0.991935,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "format",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "format",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "format",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.757506,
+    1.0
+   ],
+   "k": 12,
+   "kind": "format",
+   "n": 12,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.831821,
+    1.0
+   ],
+   "k": 19,
+   "kind": "ladder",
+   "n": 19,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 10,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 150,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 1500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.438503,
+    1.0
+   ],
+   "k": 3,
+   "kind": "ladder",
+   "n": 3,
+   "path": "rpc",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 0,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 5,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 15,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 40,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 100,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 250,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 1000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 2000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 4000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 7000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.771905,
+    1.0
+   ],
+   "k": 13,
+   "kind": "sweep",
+   "n": 13,
+   "path": "quic",
+   "priority_fee": 10000,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.958173,
+    1.0
+   ],
+   "k": 88,
+   "kind": "tie",
+   "n": 88,
+   "path": "quic",
+   "priority_fee": 500,
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  }
+ ],
+ "by_family_path": [
+  {
+   "ci": [
+    0.95629,
+    0.98857
+   ],
+   "k": 348,
+   "n": 356,
+   "path": "quic",
+   "rate": 0.977528,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.9259,
+    1.0
+   ],
+   "k": 48,
+   "n": 48,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.848009,
+    0.892033
+   ],
+   "k": 774,
+   "n": 888,
+   "path": "quic",
+   "rate": 0.871622,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.935806,
+    1.0
+   ],
+   "k": 56,
+   "n": 56,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.95629,
+    0.98857
+   ],
+   "k": 348,
+   "n": 356,
+   "path": "quic",
+   "rate": 0.977528,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.862024,
+    1.0
+   ],
+   "k": 24,
+   "n": 24,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.973389,
+    0.990138
+   ],
+   "k": 909,
+   "n": 924,
+   "path": "quic",
+   "rate": 0.983766,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.935806,
+    1.0
+   ],
+   "k": 56,
+   "n": 56,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.984294,
+    0.995941
+   ],
+   "k": 992,
+   "n": 1000,
+   "path": "quic",
+   "rate": 0.992,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.943376,
+    1.0
+   ],
+   "k": 64,
+   "n": 64,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.97687,
+    0.991438
+   ],
+   "k": 1049,
+   "n": 1064,
+   "path": "quic",
+   "rate": 0.985902,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.949349,
+    1.0
+   ],
+   "k": 72,
+   "n": 72,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.904531,
+    0.933246
+   ],
+   "k": 1266,
+   "n": 1376,
+   "path": "quic",
+   "rate": 0.920058,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.966839,
+    1.0
+   ],
+   "k": 112,
+   "n": 112,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.991422,
+    1.0
+   ],
+   "k": 444,
+   "n": 444,
+   "path": "quic",
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  },
+  {
+   "ci": [
+    0.862024,
+    1.0
+   ],
+   "k": 24,
+   "n": 24,
+   "path": "rpc",
+   "rate": 1.0,
+   "target_family": "Rakurai"
+  }
+ ],
+ "client_changed": {
+  "n_probes": 0,
+  "n_windows": 0,
+  "validators": []
+ },
+ "landing_slot": [
+  {
+   "kind": "format",
+   "n": 24,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 24
+   },
+   "target_family": "Agave"
+  },
+  {
+   "kind": "ladder",
+   "n": 208,
+   "share_in_window": 0.822115,
+   "slot_offset_counts": {
+    "-1": 12,
+    "-2": 11,
+    "-3": 10,
+    "-4": 4,
+    "0": 151,
+    "1": 4,
+    "2": 16
+   },
+   "target_family": "Agave"
+  },
+  {
+   "kind": "sweep",
+   "n": 108,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 24,
+    "1": 50,
+    "2": 34
+   },
+   "target_family": "Agave"
+  },
+  {
+   "kind": "tie",
+   "n": 56,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 56
+   },
+   "target_family": "Agave"
+  },
+  {
+   "kind": "format",
+   "n": 64,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 64
+   },
+   "target_family": "AgaveBam"
+  },
+  {
+   "kind": "ladder",
+   "n": 432,
+   "share_in_window": 0.93287,
+   "slot_offset_counts": {
+    "-1": 11,
+    "-2": 9,
+    "-3": 2,
+    "-4": 2,
+    "-5": 1,
+    "-6": 2,
+    "-7": 1,
+    "-8": 1,
+    "0": 337,
+    "1": 44,
+    "2": 22
+   },
+   "target_family": "AgaveBam"
+  },
+  {
+   "kind": "sweep",
+   "n": 214,
+   "share_in_window": 0.943925,
+   "slot_offset_counts": {
+    "0": 45,
+    "1": 64,
+    "2": 59,
+    "3": 34,
+    "8": 12
+   },
+   "target_family": "AgaveBam"
+  },
+  {
+   "kind": "tie",
+   "n": 120,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 120
+   },
+   "target_family": "AgaveBam"
+  },
+  {
+   "kind": "format",
+   "n": 32,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 32
+   },
+   "target_family": "FireBAM"
+  },
+  {
+   "kind": "ladder",
+   "n": 144,
+   "share_in_window": 0.868056,
+   "slot_offset_counts": {
+    "-1": 4,
+    "-2": 4,
+    "-3": 3,
+    "-4": 3,
+    "0": 83,
+    "1": 9,
+    "2": 25,
+    "3": 8,
+    "49": 5
+   },
+   "target_family": "FireBAM"
+  },
+  {
+   "kind": "sweep",
+   "n": 132,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 34,
+    "1": 35,
+    "2": 51,
+    "3": 12
+   },
+   "target_family": "FireBAM"
+  },
+  {
+   "kind": "tie",
+   "n": 64,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 56,
+    "1": 8
+   },
+   "target_family": "FireBAM"
+  },
+  {
+   "kind": "format",
+   "n": 72,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 72
+   },
+   "target_family": "Firedancer"
+  },
+  {
+   "kind": "ladder",
+   "n": 417,
+   "share_in_window": 0.877698,
+   "slot_offset_counts": {
+    "-1": 6,
+    "-10": 8,
+    "-2": 8,
+    "-3": 6,
+    "-4": 4,
+    "-5": 1,
+    "-6": 3,
+    "-7": 1,
+    "0": 316,
+    "1": 33,
+    "18": 1,
+    "2": 8,
+    "22": 2,
+    "3": 9,
+    "34": 1,
+    "4": 2,
+    "41": 1,
+    "5": 3,
+    "50": 1,
+    "6": 2,
+    "7": 1
+   },
+   "target_family": "Firedancer"
+  },
+  {
+   "kind": "sweep",
+   "n": 300,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 136,
+    "1": 125,
+    "2": 39
+   },
+   "target_family": "Firedancer"
+  },
+  {
+   "kind": "tie",
+   "n": 176,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 160,
+    "2": 8,
+    "3": 8
+   },
+   "target_family": "Firedancer"
+  },
+  {
+   "kind": "format",
+   "n": 88,
+   "share_in_window": 0.909091,
+   "slot_offset_counts": {
+    "-3": 8,
+    "0": 80
+   },
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "kind": "ladder",
+   "n": 544,
+   "share_in_window": 0.858456,
+   "slot_offset_counts": {
+    "-1": 5,
+    "-10": 2,
+    "-11": 2,
+    "-2": 15,
+    "-3": 3,
+    "-4": 11,
+    "-5": 5,
+    "-6": 1,
+    "-7": 12,
+    "-8": 3,
+    "-9": 1,
+    "0": 406,
+    "1": 15,
+    "2": 20,
+    "3": 26,
+    "32": 8,
+    "4": 1,
+    "5": 5,
+    "6": 2,
+    "7": 1
+   },
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "kind": "sweep",
+   "n": 240,
+   "share_in_window": 0.929167,
+   "slot_offset_counts": {
+    "-4": 12,
+    "0": 80,
+    "1": 90,
+    "2": 46,
+    "3": 7,
+    "40": 5
+   },
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "kind": "tie",
+   "n": 184,
+   "share_in_window": 0.913043,
+   "slot_offset_counts": {
+    "-4": 8,
+    "-6": 8,
+    "0": 157,
+    "3": 11
+   },
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "kind": "format",
+   "n": 112,
+   "share_in_window": 0.642857,
+   "slot_offset_counts": {
+    "-4": 16,
+    "-8": 16,
+    "0": 72,
+    "12": 8
+   },
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "kind": "ladder",
+   "n": 493,
+   "share_in_window": 0.774848,
+   "slot_offset_counts": {
+    "-1": 10,
+    "-2": 9,
+    "-3": 21,
+    "-4": 47,
+    "-5": 3,
+    "-6": 1,
+    "-7": 2,
+    "-8": 10,
+    "0": 311,
+    "1": 20,
+    "2": 36,
+    "3": 15,
+    "91": 1,
+    "92": 1,
+    "93": 1,
+    "94": 2,
+    "95": 1,
+    "96": 2
+   },
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "kind": "sweep",
+   "n": 300,
+   "share_in_window": 0.96,
+   "slot_offset_counts": {
+    "-1": 12,
+    "0": 138,
+    "1": 63,
+    "2": 77,
+    "3": 10
+   },
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "kind": "tie",
+   "n": 216,
+   "share_in_window": 0.703704,
+   "slot_offset_counts": {
+    "-3": 25,
+    "-4": 15,
+    "-5": 8,
+    "-8": 8,
+    "0": 144,
+    "24": 8,
+    "3": 8
+   },
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "kind": "format",
+   "n": 104,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 104
+   },
+   "target_family": "JitoLabs"
+  },
+  {
+   "kind": "ladder",
+   "n": 680,
+   "share_in_window": 0.879412,
+   "slot_offset_counts": {
+    "-1": 22,
+    "-2": 25,
+    "-3": 15,
+    "-4": 5,
+    "-5": 4,
+    "-6": 2,
+    "0": 480,
+    "1": 29,
+    "10": 1,
+    "2": 59,
+    "22": 1,
+    "3": 30,
+    "43": 1,
+    "44": 2,
+    "45": 2,
+    "5": 2
+   },
+   "target_family": "JitoLabs"
+  },
+  {
+   "kind": "sweep",
+   "n": 348,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 138,
+    "1": 90,
+    "2": 86,
+    "3": 34
+   },
+   "target_family": "JitoLabs"
+  },
+  {
+   "kind": "tie",
+   "n": 246,
+   "share_in_window": 0.96748,
+   "slot_offset_counts": {
+    "-6": 7,
+    "-7": 1,
+    "0": 230,
+    "3": 8
+   },
+   "target_family": "JitoLabs"
+  },
+  {
+   "kind": "format",
+   "n": 48,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 48
+   },
+   "target_family": "Rakurai"
+  },
+  {
+   "kind": "ladder",
+   "n": 176,
+   "share_in_window": 0.880682,
+   "slot_offset_counts": {
+    "-1": 4,
+    "-2": 4,
+    "-3": 4,
+    "-5": 3,
+    "-6": 1,
+    "0": 98,
+    "1": 33,
+    "2": 16,
+    "3": 8,
+    "4": 4,
+    "41": 1
+   },
+   "target_family": "Rakurai"
+  },
+  {
+   "kind": "sweep",
+   "n": 156,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 60,
+    "1": 66,
+    "2": 16,
+    "3": 14
+   },
+   "target_family": "Rakurai"
+  },
+  {
+   "kind": "tie",
+   "n": 88,
+   "share_in_window": 1.0,
+   "slot_offset_counts": {
+    "0": 88
+   },
+   "target_family": "Rakurai"
+  }
+ ],
+ "n_landed": 6586,
+ "n_landed_stale_blockhash": 196,
+ "n_landed_without_block": 0,
+ "n_probes": 10980,
+ "n_sent": 6864,
+ "n_sent_stale_blockhash": 3712,
+ "overall": {
+  "ci": [
+   0.954573,
+   0.963911
+  ],
+  "k": 6586,
+  "n": 6864,
+  "rate": 0.959499
+ },
+ "spill_by_family": [
+  {
+   "ci": [
+    0.068547,
+    0.126134
+   ],
+   "k": 37,
+   "n": 396,
+   "rate": 0.093434,
+   "target_family": "Agave"
+  },
+  {
+   "ci": [
+    0.024436,
+    0.049729
+   ],
+   "k": 29,
+   "n": 830,
+   "rate": 0.03494,
+   "target_family": "AgaveBam"
+  },
+  {
+   "ci": [
+    0.032939,
+    0.078389
+   ],
+   "k": 19,
+   "n": 372,
+   "rate": 0.051075,
+   "target_family": "FireBAM"
+  },
+  {
+   "ci": [
+    0.033248,
+    0.059483
+   ],
+   "k": 43,
+   "n": 965,
+   "rate": 0.04456,
+   "target_family": "Firedancer"
+  },
+  {
+   "ci": [
+    0.080209,
+    0.115897
+   ],
+   "k": 102,
+   "n": 1056,
+   "rate": 0.096591,
+   "target_family": "HarmonicAgave"
+  },
+  {
+   "ci": [
+    0.173209,
+    0.219595
+   ],
+   "k": 219,
+   "n": 1121,
+   "rate": 0.195361,
+   "target_family": "HarmonicFiredancer"
+  },
+  {
+   "ci": [
+    0.046893,
+    0.071674
+   ],
+   "k": 80,
+   "n": 1378,
+   "rate": 0.058055,
+   "target_family": "JitoLabs"
+  },
+  {
+   "ci": [
+    0.029534,
+    0.067621
+   ],
+   "k": 21,
+   "n": 468,
+   "rate": 0.044872,
+   "target_family": "Rakurai"
+  }
+ ],
+ "window_status": {
+  "sent": 1253,
+  "skipped:connect": 10,
+  "skipped:error": 16,
+  "skipped:late": 15,
+  "skipped:late_at_send": 57
+ }
 }
