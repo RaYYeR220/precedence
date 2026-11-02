@@ -111,12 +111,19 @@ def headline_items(ctx: Context) -> list[str]:
         return []
     inp = s.get("inputs", {})
     inc = ctx.r("inclusion").get("overall", {})
+    fams = ctx.families()
+    vals = ctx.validators()
+    story = _story_items(ctx, fams)
+    if story:
+        return story + [
+            f"**{num(inp.get('n_probes_landed'))}** of our probes in {plural(inp.get('n_blocks'), 'block')} of "
+            f"{plural(sum(1 for v in vals.values() if v.get('n_landed_probes')), 'validator')}, over {plural(len(inp.get('runs', [])), 'run')}; "
+            + _predictions_line(ctx)
+        ]
     items = [
         f"**{num(inp.get('n_probes_landed'))}** of {num(inp.get('n_probes_sent'))} probes landed ({pct(inc.get('rate'))}), "
         f"in {plural(inp.get('n_windows_sent'), 'leader window')} over {plural(len(inp.get('runs', [])), 'run')} and {plural(inp.get('n_blocks'), 'block')}."
     ]
-    fams = ctx.families()
-    vals = ctx.validators()
     fam_fit = [f for f in fams.values() if f.get("verdict") != "insufficient_data"]
     val_fit = [v for v in vals.values() if v.get("verdict") != "insufficient_data"]
     if fam_fit:
@@ -137,6 +144,58 @@ def headline_items(ctx: Context) -> list[str]:
     c = outcome_counts(outcomes)
     items.append(f"Pre-registered predictions: **{c['confirmed']} confirmed**, {c['refuted']} refuted, {c['inconclusive']} inconclusive of {len(outcomes)}.")
     return items[:5]
+
+
+def _predictions_line(ctx: Context) -> str:
+    c = outcome_counts(evaluate(ctx))
+    n = c["confirmed"] + c["refuted"] + c["inconclusive"]
+    return f"of {n} predictions written from the clients' source code before the first send, **{c['confirmed']} held** and {c['refuted']} did not."
+
+
+def _story_items(ctx: Context, fams: dict[str, dict[str, Any]]) -> list[str]:
+    """The README's opening numbers, each one sentence, all read from the results."""
+    out: list[str] = []
+    if ctx.data is not None and ctx.data.total_stake:
+        ext = [f for f, v in fams.items() if v.get("orderer_class") in ("bam", "harmonic")]
+        share = sum(ctx.data.stake_share_of_family(f) or 0.0 for f in ext)
+        if share:
+            out.append(
+                f"**{pct(share)}** of stake does not order its own blocks: on {', '.join(sorted(ext))} "
+                "a BAM node or a Harmonic builder does, and the validator's gossip TPU address is theirs."
+            )
+    local = []
+    for name, f in fams.items():
+        if f.get("orderer_class") != "local-greedy":
+            continue
+        ent = ((f.get("rule_card") or {}).get("simultaneous") or {}).get("entries") or {}
+        same, cross = (ent.get("same_entry") or {}).get("rate"), (ent.get("cross_entry") or {}).get("rate")
+        if is_num(same) and is_num(cross):
+            local.append((name, same, cross))
+    if local:
+        sames = [x[1] for x in local]
+        crosses = [x[2] for x in local]
+        same_txt = pct(min(sames)) if min(sames) == max(sames) else f"{pct(min(sames))}–{pct(max(sames))}"
+        out.append(
+            f"On validators that schedule locally ({', '.join(sorted(x[0] for x in local))}), two of our probes recorded in **one entry** "
+            f"are in fee order **{same_txt}** of the time, across entries only {pct(min(crosses))}–{pct(max(crosses))}: "
+            "the scheduler sorts, parallel execution threads reshuffle. Entry boundaries are not in `getBlock`; we recorded them and prove them against each blockhash."
+        )
+    fd = ((fams.get("Firedancer") or {}).get("rule_card") or {}).get("ties") or {}
+    jl = ((fams.get("JitoLabs") or {}).get("rule_card") or {}).get("ties") or {}
+    fd_rate = (fd.get("earlier_sent_first") or {}).get("rate") if isinstance(fd.get("earlier_sent_first"), dict) else None
+    jl_rate = (jl.get("earlier_sent_first") or {}).get("rate") if isinstance(jl.get("earlier_sent_first"), dict) else None
+    if fd.get("rule") == "lifo" and is_num(fd_rate) and jl.get("rule") == "fifo" and is_num(jl_rate):
+        out.append(
+            f"Same fee, opposite order: Firedancer puts the **newer** of two equal-fee probes first ({pct(1 - fd_rate)} of pairs), "
+            f"Jito-Solana the **older** ({pct(jl_rate)}), exactly as their schedulers' source code predicts."
+        )
+    fp = ctx.summary.get("fingerprint", {}).get("validator_level", {})
+    if is_num(fp.get("probe_accuracy")):
+        out.append(
+            f"From our probes alone a classifier names who ordered a validator's blocks for **{pct(fp['probe_accuracy'])}** of validators; "
+            f"from whole-block statistics, the view without probes, {pct(fp.get('baseline_accuracy'))} (chance {pct(fp.get('chance_majority'))})."
+        )
+    return out
 
 
 def _card_headline(fams: dict[str, dict[str, Any]]) -> str | None:
@@ -193,6 +252,37 @@ def block_verdicts(ctx: Context) -> str:
         ["Family", "Stake", "Validators", "Windows", "Landed probes", *(CARD_PART_TITLES[n] for n in CARD_PARTS), "Best single rule", "Strictness: concordance [CI], θ", "Component", "Verdict"],
         rows,
         "lrrrrlllllll",
+    )
+
+
+def block_short_answer(ctx: Context) -> str:
+    """The README's first table: one row per family, the three rule-card answers."""
+    fams = ctx.families()
+    if not fams:
+        return NO_RESULTS
+    rows = []
+    for name in family_order(list(fams)):
+        if name == "Unknown":
+            continue
+        f = fams[name]
+        rows.append(
+            [
+                f"**{name}**",
+                _stake(ctx, family=name),
+                ORDERER_CLASS_TEXT.get(f.get("orderer_class") or "", DASH),
+                *card_cells(f),
+                num(f.get("n_landed_probes")),
+            ]
+        )
+    return table(
+        ["Client family", "Stake", "Who orders the block", *(CARD_PART_TITLES[n] for n in CARD_PARTS), "Probes in blocks"],
+        rows,
+        "lrllllr",
+    ) + "\n\n" + note(
+        "Queued together: probes that reached the orderer at the same moment (ladder bursts); where entries were recorded, "
+        "pairs in one entry show the scheduler's own decision. Equal fees: which of two equal-fee probes came first. "
+        "Over time: probes 10–20 ms apart with the fee rising, so arrival order and fee order disagree on every pair. "
+        "Each part is claimed only when it beats random ordering (permutation test, α = 0.05); intervals are 95% over batches."
     )
 
 
@@ -722,6 +812,7 @@ def block_clock(ctx: Context) -> str:
 
 BLOCKS: dict[str, Callable[[Context], str]] = {
     "headline": block_headline,
+    "short_answer": block_short_answer,
     "verdicts": block_verdicts,
     "per_validator": block_per_validator,
     "predictions": block_predictions,
