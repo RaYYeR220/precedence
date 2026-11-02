@@ -269,9 +269,7 @@ def test_stake_share_comes_from_the_snapshot(small_dir: Path, results_dir: Path,
     rows = [line for line in verdicts.splitlines() if line.startswith("| ") and "Family" not in line and "---" not in line]
     assert rows and all("%" in line.split("|")[2] for line in rows)
     leaders = text.split("<!-- results:leader_types:start -->")[1].split("<!-- results:leader_types:end -->")[0]
-    first_table = leaders.strip().split("
-
-")[0]
+    first_table = leaders.strip().split(2 * chr(10))[0]
     lrows = [line.split("|") for line in first_table.splitlines() if line.startswith("| ") and "Client family" not in line and "---" not in line]
     shares = [float(r[2].strip().rstrip("%")) for r in lrows]
     assert lrows and abs(sum(shares) - 100.0) < 0.5
