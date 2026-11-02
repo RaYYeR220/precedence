@@ -442,7 +442,10 @@ def _run_facts(ds: Dataset, probes: pd.DataFrame, ledger: list[dict[str, Any]]) 
                 slots.append(int(b["window_first_slot"]))
         mine = probes[probes["run_id"] == run.run_id] if not probes.empty else probes
         errors: Counter[str] = Counter(str(p["send_err"]) for p in run.probes if p.get("send_err"))
-        spend = [e for e in ledger if e.get("run_id") == run.run_id]
+        # A run's probes are its signatures; settlements written later by a
+        # reconciliation carry another run id but the same signature.
+        own = {str(p.get("signature")) for p in run.probes if p.get("signature")}
+        spend = [e for e in ledger if e.get("run_id") == run.run_id or str(e.get("signature")) in own]
         reserves = [e for e in spend if e.get("kind") == "reserve"]
         settles = [e for e in spend if e.get("kind") == "settle"]
         out.append(
