@@ -196,6 +196,7 @@ pub async fn collect(rpc: &Rpc, data_dir: &Path, run_dir: &Path) -> Result<Colle
     }
     let missing = pending;
     let pruned = prune_entries(data_dir, run_dir)?;
+    pack_run(run_dir)?;
     let landed = map.values().filter(|v| !v.is_null()).count();
     tracing::info!(probes = sigs.len(), landed, blocks = slots.len(), fetched, "collected");
     Ok(CollectSummary { probes_sent: sigs.len(), landed, blocks: slots.len(), fetched, missing, entry_lines_kept: pruned })
@@ -228,6 +229,34 @@ pub fn prune_entries(data_dir: &Path, run_dir: &Path) -> Result<usize> {
     gz.finish()?;
     std::fs::remove_file(&raw)?;
     Ok(kept.len())
+}
+
+/// Gzip a finished run's bulky recordings (gossip snapshots, slot events,
+/// block footers) with a fixed header so identical content gives identical
+/// bytes. The analysis reads either form.
+pub fn pack_run(run_dir: &Path) -> Result<()> {
+    let mut files: Vec<std::path::PathBuf> = vec![run_dir.join("slots.jsonl"), run_dir.join("footers.jsonl")];
+    if let Ok(rd) = std::fs::read_dir(run_dir.join("snapshot")) {
+        for e in rd.flatten() {
+            let n = e.file_name().to_string_lossy().to_string();
+            if n.starts_with("nodes-") && n.ends_with(".json") {
+                files.push(e.path());
+            }
+        }
+    }
+    for f in files {
+        if !f.exists() {
+            continue;
+        }
+        let bytes = std::fs::read(&f)?;
+        let out = std::fs::File::create(f.with_file_name(format!("{}.gz", f.file_name().unwrap().to_string_lossy())))?;
+        let mut gz = flate2::GzBuilder::new().mtime(0).write(out, flate2::Compression::best());
+        use std::io::Write;
+        gz.write_all(&bytes)?;
+        gz.finish()?;
+        std::fs::remove_file(&f)?;
+    }
+    Ok(())
 }
 
 #[derive(Debug, Serialize)]

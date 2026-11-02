@@ -124,6 +124,12 @@ def _optional_jsonl(path: Path, issues: list[str]) -> list[dict[str, Any]] | Non
         return None
 
 
+def _packed(path: Path) -> Path:
+    """The gzipped copy of a recording when collection packed it, else the file itself."""
+    gz = path.with_name(path.name + ".gz")
+    return gz if gz.exists() else path
+
+
 def load_snapshots(snapshot_dir: Path, issues: list[str]) -> list[Snapshot]:
     """Every `nodes-<unix>.json` in a run's snapshot directory, oldest first."""
     if not snapshot_dir.is_dir():
@@ -167,12 +173,12 @@ def load_run(run_dir: Path) -> Run:
     else:
         issues.append("statuses.json missing: every probe counts as not landed")
     windows = _optional_jsonl(run_dir / "windows.jsonl", issues) or []
-    slots = _optional_jsonl(run_dir / "slots.jsonl", issues) or []
+    slots = _optional_jsonl(_packed(run_dir / "slots.jsonl"), issues) or []
     # Collection keeps only the entries of stored blocks, gzipped.
     entries = _optional_jsonl(run_dir / "entries.jsonl.gz", issues)
     if entries is None:
         entries = _optional_jsonl(run_dir / "entries.jsonl", issues)
-    footers = _optional_jsonl(run_dir / "footers.jsonl", issues)
+    footers = _optional_jsonl(_packed(run_dir / "footers.jsonl"), issues)
     snapshots = load_snapshots(run_dir / "snapshot", issues)
     if not snapshots:
         issues.append("no nodes-<unix>.json snapshot: families fall back to the planned label")

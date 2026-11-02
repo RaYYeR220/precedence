@@ -88,6 +88,10 @@ enum Cmd {
         common: Common,
         run_dir: PathBuf,
     },
+    /// Gzip a finished run's recordings (done by `collect`; for older runs).
+    Pack {
+        run_dir: PathBuf,
+    },
     /// Re-check every stored probe position against getBlock.
     Verify {
         #[command(flatten)]
@@ -237,6 +241,10 @@ async fn main() -> Result<()> {
             let s = collect::collect(&rpc, &common.data, &run_dir).await?;
             io::write_json(run_dir.join("collect.json"), &s)?;
             println!("{}", serde_json::to_string_pretty(&s)?);
+        }
+        Cmd::Pack { run_dir } => {
+            collect::pack_run(&run_dir)?;
+            println!("packed {}", run_dir.display());
         }
         Cmd::Verify { common, out } => {
             let rpc = Rpc::new(&common.rpc);

@@ -121,6 +121,36 @@ class DataFacts:
             return None
         return self.stake.get(pubkey, 0) / total
 
+    def client_identity(self) -> list[dict[str, Any]]:
+        """For every probe block whose footer we recorded: the producer's gossip
+        `clientId` next to the client its block footer declares (SIMD-0307 user
+        agent, self-reported by the producer; empty when the producer sets none).
+        """
+        footers: dict[int, str] = {}
+        for run in self.dataset.runs:
+            for f in run.footers or []:
+                if f.get("slot") is not None:
+                    footers.setdefault(int(f["slot"]), str(f.get("user_agent") or ""))
+        p = self.probes
+        if p.empty or not footers:
+            return []
+        in_block = p[p["in_block"].astype(bool)]
+        producers = in_block.groupby("landed_slot")["producer_family"].first()
+        counts: Counter[tuple[str, str]] = Counter()
+        for slot, fam in producers.items():
+            ua = footers.get(int(slot))
+            if ua is None:
+                continue
+            if "client:" in ua:
+                declared = ua.split("client:")[-1].rstrip(")").strip()
+            else:
+                declared = ua.split("/")[0].split(" ")[0] if ua else ""
+            counts[(str(fam), declared or "(empty)")] += 1
+        return [
+            {"gossip": g, "footer": f, "blocks": n}
+            for (g, f), n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+        ]
+
     # -- splits the results do not carry -------------------------------------------
 
     @cached_property

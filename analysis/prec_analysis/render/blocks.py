@@ -668,11 +668,20 @@ def block_leader_types(ctx: Context) -> str:
         )
     when = datetime.fromtimestamp(ctx.data.reference_time_us / 1e6, tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC") if ctx.data.reference_time_us else "unknown time"
     stake_note = "stake from getVoteAccounts" if has_stake else "no getVoteAccounts snapshot, so no stake"
-    return (
+    out = (
         table(["Client family (gossip clientId)", "Stake", "Staked validators", "Gossip nodes", "tpuQuic host differs from gossip host", "Most common version"], out_rows, "lrrrrl")
         + "\n\n"
         + note(f"Snapshot nearest the first run's start ({when}); {stake_note}; versions among staked nodes when stake is known.")
     )
+    ident = ctx.data.client_identity()
+    if ident:
+        out += "\n\n" + table(
+            ["Producer's gossip clientId", "Client declared in the block footer", "Probe blocks"],
+            [[r["gossip"], r["footer"], num(r["blocks"])] for r in ident],
+            "llr",
+        )
+        out += "\n\n" + note("Footers are self-reported by the producer (SIMD-0307 user agent) and were recorded only when the entry stream delivered them.")
+    return out
 
 
 def _ms_q(q: list[float] | None) -> str:
