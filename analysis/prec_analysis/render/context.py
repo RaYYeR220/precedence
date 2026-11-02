@@ -28,7 +28,7 @@ from ..inclusion import wilson
 from ..load import Dataset, Run, Snapshot, client_id_of, find_run_dirs, load_dataset, read_json, read_jsonl
 from ..models import resample_counts, seed_for
 from ..orders import OrderSet
-from ..stats import bb_mask, pair_rate, priority_pred
+from ..stats import bb_mask, fifo_pred, pair_rate, priority_pred
 from ..tidy import probes_frame
 
 RESULT_FILES = (
@@ -161,6 +161,32 @@ class DataFacts:
         os = self.order_set
         fam = os.bbs["producer_family"].astype(str).to_numpy()
         return bb_mask(os, kind="ladder", anchor_type=anchor_type) & np.isin(fam, list(families))
+
+    def rates_by_day(self, family: str) -> dict[str, dict[str, Any]]:
+        """Key pair rates per measurement day (UTC date in the run id, i.e. when the run
+        started) for blocks produced by `family`: higher priority first on ladder and
+        format pairs, earlier sent first on tie pairs and on sweep pairs. Same estimator,
+        batch bootstrap and permutation test as `pairs_by_condition`.
+        """
+        os = self.order_set
+        if os.n_bb == 0:
+            return {}
+        day = os.bbs["run_id"].astype(str).str.slice(0, 8).to_numpy()
+        fam = os.bbs["producer_family"].astype(str).to_numpy() == family
+        kind = os.bbs["kind"].astype(str).to_numpy()
+        out: dict[str, dict[str, Any]] = {}
+        for d in sorted(set(day[fam])):
+            base = fam & (day == d)
+            row: dict[str, Any] = {}
+            for name, kinds, pred_fn in (
+                ("queued_together", ("ladder", "format"), priority_pred),
+                ("ties", ("tie",), fifo_pred),
+                ("over_time", ("sweep",), fifo_pred),
+            ):
+                sub = os.subset(base & np.isin(kind, kinds))
+                row[name] = pair_rate(sub, pred_fn(sub), f"render|day|{family}|{d}|{name}", self.n_boot, self.n_perm) if sub.n_bb else None
+            out[f"{d[:4]}-{d[4:6]}-{d[6:]}"] = row
+        return out
 
     def ladder_priority_by_anchor(self, families: tuple[str, ...], anchor_type: str) -> dict[str, Any] | None:
         """Higher-priority-first rate of ladder pairs whose batch was anchored `anchor_type`

@@ -47,4 +47,4 @@
 
 What we could not separate, and what went wrong, is stated plainly in
 [README → What this design does not separate](README.md#what-this-design-does-not-separate) and
-[REPORT §12](REPORT.md#12-what-went-wrong).
+[REPORT §13](REPORT.md#13-what-went-wrong).

@@ -286,6 +286,31 @@ def block_short_answer(ctx: Context) -> str:
     )
 
 
+def block_replication(ctx: Context) -> str:
+    """The same three rates per family on each measurement day."""
+    if ctx.data is None:
+        return NO_DATA
+    fams = [f for f in family_order(list(ctx.families())) if f != "Unknown"]
+    rows = []
+    days: set[str] = set()
+    for fam in fams:
+        by_day = ctx.data.rates_by_day(fam)
+        days |= set(by_day)
+        for d, r in by_day.items():
+            cells = []
+            for part in ("queued_together", "ties", "over_time"):
+                x = r.get(part)
+                cells.append(f"{pct(x['rate'])} {pct_ci(x.get('ci'))} n={num(x['n_pairs'])}" if x and is_num(x.get("rate")) else DASH)
+            rows.append([fam, d, *cells])
+    if not rows:
+        return note("No probe pairs yet.")
+    if len(days) < 2:
+        return note("All measurements so far are from one day.") + 2 * chr(10) + table(["Family", "Day (UTC)", "Queued together: higher fee first", "Equal fees: older first", "Over time: earlier sent first"], rows, "llrrr")
+    return table(["Family", "Day (UTC)", "Queued together: higher fee first", "Equal fees: older first", "Over time: earlier sent first"], rows, "llrrr") + 2 * chr(10) + note(
+        "Day = UTC date on which a run started. Rates are shares of pairs of our probes in one block, 95% interval over batches."
+    )
+
+
 def block_per_validator(ctx: Context) -> str:
     vals = ctx.validators()
     if not vals:
@@ -815,6 +840,7 @@ def block_clock(ctx: Context) -> str:
 BLOCKS: dict[str, Callable[[Context], str]] = {
     "headline": block_headline,
     "short_answer": block_short_answer,
+    "replication": block_replication,
     "verdicts": block_verdicts,
     "per_validator": block_per_validator,
     "predictions": block_predictions,
