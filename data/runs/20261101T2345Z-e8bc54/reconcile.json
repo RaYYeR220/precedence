@@ -1,0 +1,14 @@
+{
+  "lamports_charged": 0,
+  "open_before": 0,
+  "settled_charged": 0,
+  "settled_zero": 0,
+  "totals": {
+    "cap": 50000000,
+    "committed": 39360245,
+    "n_reserved": 10604,
+    "n_settled": 10604,
+    "reserved": 72635730,
+    "settled": 39360245
+  }
+}
