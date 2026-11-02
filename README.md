@@ -61,6 +61,11 @@ One command, no keys, nothing spent. It:
 3. runs a short mainnet dry run: cluster snapshot, target selection, batches planned and signed
    for the targets' next leader windows, QUIC connections opened to their TPUs, nothing sent.
 
+Step 1 takes about two minutes. Step 2 re-reads every one of the ~1,100 probe blocks from
+`api.mainnet-beta.solana.com`, which allows about one `getBlock` per second per client, so it
+takes about 25 minutes; point `PRECEDENCE_RPC` at your own endpoint to make it faster. Our own
+last run of step 2 is in [`data/verify.json`](data/verify.json).
+
 | Command | What it does |
 |---|---|
 | `docker compose --profile test run --rm test` | Rust and Python test suites |
