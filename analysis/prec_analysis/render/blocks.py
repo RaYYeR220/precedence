@@ -714,7 +714,9 @@ def block_what_went_wrong_stats(ctx: Context) -> str:
         rows.append([
             "Probes signed with an expired blockhash",
             num(inc.get("n_sent_stale_blockhash")),
-            f"{num(inc.get('n_landed_stale_blockhash'))} of them landed; the HTTP endpoint serving blockhashes fell behind the tip, so whole batches could not land. Excluded from the landing statistics",
+            f"{num(inc.get('n_landed_stale_blockhash'))} of them landed. In runs 2–5 a batch was prepared on a window-start prediction made minutes ahead, "
+            "signed too early and sent with a blockhash older than 140 slots, so whole batches could not land; fixed by re-predicting while waiting. "
+            "Excluded from the landing statistics; their landed probes still count for order",
         ])
     if inc.get("spill_by_family"):
         k = sum(int(r["k"]) for r in inc["spill_by_family"])

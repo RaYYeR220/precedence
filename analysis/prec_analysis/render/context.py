@@ -212,6 +212,9 @@ class DataFacts:
         if p.empty:
             return {}
         sent = p[p["sent"].astype(bool) & (p["target_family"].astype(str) == family)]
+        if "stale_blockhash" in sent:
+            # A batch signed with an expired blockhash could not land anywhere.
+            sent = sent[~sent["stale_blockhash"].fillna(False).astype(bool)]
         out = {}
         for anchor, grp in sent.groupby("anchor_type", sort=True):
             k, n = int(grp["landed"].astype(bool).sum()), int(len(grp))

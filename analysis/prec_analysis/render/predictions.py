@@ -551,24 +551,27 @@ def p_h1(ctx: Context) -> tuple[str, str]:
     """Reads `summary.validators[v].rule_card.over_time` for Harmonic validators: rule,
     `batched.w_ms`, `batched.w_range_ms`.
 
-    The strategy is not published, so fba validators are the ones whose sweep rule
-    is batched. Confirmed when there is at least one and every one has a w range
-    meeting 40–75 ms; refuted when one is entirely outside; inconclusive when none
-    selects batched.
+    The strategy is not published, and fba is the default, so the prediction is
+    about the typical Harmonic validator. Among validators whose sweep shows a
+    detectable rule: confirmed when most of them are batched with a w range meeting
+    40–75 ms; refuted when most show another rule (or a batch length outside the
+    range); inconclusive when fewer than three validators have a detectable rule.
     """
     cards = _harmonic_cards(ctx)
     if not cards:
         return INCONCLUSIVE, "no Harmonic validator with data"
-    batched = [(card.get("over_time") or {}).get("batched") or {} for _, _, card in cards if (card.get("over_time") or {}).get("rule") == "batched"]
+    detected = [card.get("over_time") or {} for _, _, card in cards if (card.get("over_time") or {}).get("rule") not in (None, "random")]
+    batched = [c.get("batched") or {} for c in detected if c.get("rule") == "batched"]
     evidence = f"{len(cards)} Harmonic validators, over time: {_mix(cards, 'over_time')}"
-    if not batched:
-        return INCONCLUSIVE, evidence
+    if len(detected) < 3:
+        return INCONCLUSIVE, evidence + "; fewer than three validators with a detectable rule over time"
 
     def meets(b: dict[str, Any]) -> bool:
         rng = b.get("w_range_ms") or [b.get("w_ms"), b.get("w_ms")]
         return is_num(rng[0]) and is_num(rng[1]) and rng[1] >= HARMONIC_W_MS[0] and rng[0] <= HARMONIC_W_MS[1]
 
-    return (CONFIRMED if all(meets(b) for b in batched) else REFUTED), evidence
+    ok = sum(1 for b in batched if meets(b))
+    return (CONFIRMED if 2 * ok > len(detected) else REFUTED), evidence + f"; {ok} of {len(detected)} with a detectable rule are batched at 40–75 ms"
 
 
 @rule("P-H2", "Harmonic validators on fifo: send order regardless of fee")
@@ -584,7 +587,11 @@ def p_h2(ctx: Context) -> tuple[str, str]:
     if not cards:
         return INCONCLUSIVE, "no Harmonic validator with data"
     fifo = [v for v, _, card in cards if (card.get("simultaneous") or {}).get("rule") == "fifo"]
-    evidence = f"{len(cards)} Harmonic validators, queued together: {_mix(cards, 'simultaneous')}"
+    fifo_over = [v for v, _, card in cards if (card.get("over_time") or {}).get("rule") == "fifo"]
+    evidence = (
+        f"{len(cards)} Harmonic validators, queued together: {_mix(cards, 'simultaneous')}; "
+        f"send order detected for {len(set(fifo) | set(fifo_over))} validator(s): {', '.join(v[:6] + '…' for v in sorted(set(fifo) | set(fifo_over))) or 'none'}"
+    )
     return (CONFIRMED if fifo else INCONCLUSIVE), evidence
 
 
